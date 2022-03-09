@@ -1,0 +1,28 @@
+body {
+    color: #707070;
+    margin: 0;
+    text-align: center;
+    font-family: Helvetica, Arial, sans-serif;
+    width: 100vw;
+    min-width: 100vw;
+    max-width: 100vw;
+}
+
+nav {
+    background-color: #488adc;
+    color: #ffffff;
+    text-align: left;
+    padding: 16px;
+    font-family: Optima, Segoe, "Segoe UI", Candara, Calibri, Arial, sans-serif;
+}
+
+.back-a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
