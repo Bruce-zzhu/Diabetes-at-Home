@@ -26,3 +26,11 @@ img {
     margin-left: auto;
     margin-right: auto;
 }
+
+ul {
+    list-style-position: inside;
+}
+
+ol {
+    list-style-position: inside;
+}
