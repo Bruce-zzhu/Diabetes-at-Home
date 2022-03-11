@@ -35,6 +35,18 @@ img {
     margin-right: auto;
 }
 
+video {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+iframe {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 ul {
     list-style-position: inside;
 }
