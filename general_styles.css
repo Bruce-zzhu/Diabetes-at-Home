@@ -1,18 +1,48 @@
 body {
     color: #707070;
     margin: 0;
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: "Segoe UI", Arial, sans-serif;
     width: 100vw;
     min-width: 100vw;
     max-width: 100vw;
 }
-
 nav {
     background-color: #488adc;
     color: #ffffff;
     text-align: left;
-    padding: 16px;
-    font-family: Optima, Segoe, "Segoe UI", Candara, Calibri, Arial, sans-serif;
+    padding:20px;
+    word-wrap: normal;
+    line-height: 1;
+    font-size: 18px;
+    font-family: 'Segoe UI', Candara, Arial, sans-serif;
+    display: inline-block;
+}
+
+
+/* REFERENCE THIS */
+.materials_icon {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 14px;   /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    /* padding: 18px;*/
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Support for IE. */
+    font-feature-settings: 'liga';
 }
 
 .back-a {
