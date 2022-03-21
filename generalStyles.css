@@ -1,23 +1,28 @@
 body {
     color: #707070;
     margin: 0;
-    font-family: "Segoe UI", Arial, sans-serif;
     width: 100vw;
     min-width: 100vw;
     max-width: 100vw;
+    align-items: center;
+    font-size: 15px;
+    font-family: 'Lexend', 'Inter', Arial, Helvetica, sans-serif;
 }
 nav {
     background-color: #488adc;
     color: #ffffff;
     text-align: left;
-    padding:20px;
+    padding:25px;
     word-wrap: normal;
     line-height: 1;
-    font-size: 18px;
-    font-family: 'Segoe UI', Candara, Arial, sans-serif;
-    display: inline-block;
+    font-size: 20px;
+    font-family: 'Inter', 'Lexend', Arial, Helvetica, sans-serif;
+    display: block;
+    top: 50%;
+    position: relative;
+    overflow: hidden;
+    font-weight: bold;
 }
-
 
 /* REFERENCE THIS */
 .materials_icon {
@@ -32,7 +37,8 @@ nav {
     word-wrap: normal;
     white-space: nowrap;
     direction: ltr;
-    /* padding: 18px;*/
+    
+
     /* Support for all WebKit browsers. */
     -webkit-font-smoothing: antialiased;
     /* Support for Safari and Chrome. */
@@ -47,12 +53,48 @@ nav {
 
 .back-a {
     color: #ffffff;
-    font-weight: bold;
     text-decoration: none;
+    position: absolute;
+    top: 50%;
+    left: 4%;
+    transform: translate(-50%, -50%);
+    display: inline-block;
 }
 
 .ref-a {
     text-decoration: none;
+}
+
+.logo-banner {
+    display:inline-block;
+    color: #ffffff;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.login-nav {
+    color: #ffffff;
+    display:inline-flex;
+    text-align: right;
+    position: absolute;
+    top: 50%;
+    left: 89%;
+    transform: translate(-50%, -50%);
+    text-decoration: none;
+}
+
+.about-dropdown {
+    color: #ffffff;
+    text-decoration: none;
+    display:inline-flex;
+    text-align: right;
+    position: absolute;
+    top: 50%;
+    left: 95%;
+    transform: translate(-50%, -50%);
 }
 
 strong {
@@ -75,12 +117,39 @@ iframe {
     height: 100%;
 }
 
+h1 {
+    font-weight: bold;
+    font-size: 40px;
+    text-align: center;
+    font-family: 'Inter', 'Lexend', Arial, Helvetica, sans-serif;
+}
+
+h2 {
+    font-weight: bolder;
+    font-size: 30px;
+    text-align: left;
+    font-family: 'Inter', 'Lexend', Arial, Helvetica, sans-serif;
+}
+
+h3 {
+    font-size: 24px;
+    text-align: left;
+    font-family: 'Inter', 'Lexend', Arial, Helvetica, sans-serif;
+}
+
+p {
+    text-align: justify;
+    font-family: 'Lexend', 'Inter', Arial, Helvetica, sans-serif;
+}
+
 ul {
     list-style-position: inside;
+    font-family: 'Lexend', 'Inter', Arial, Helvetica, sans-serif;
 }
 
 ol {
     list-style-position: inside;
+    font-family: 'Lexend', 'Inter', Arial, Helvetica, sans-serif;
 }
 
 section {
