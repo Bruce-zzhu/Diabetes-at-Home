@@ -54,9 +54,10 @@ nav {
 .back-a {
     color: #ffffff;
     text-decoration: none;
+    text-align: left;
     position: absolute;
     top: 50%;
-    left: 4%;
+    left: 10%;
     transform: translate(-50%, -50%);
     display: inline-block;
 }
@@ -178,4 +179,21 @@ section {
 
 hr {
     width: 75%;
+}
+
+/* Make the about and login button disappear when the website is in the tablet and phone view */
+@media screen and (max-width: 1024px) {
+    .about-dropdown {
+        display: none;
+    }
+    .login-nav {
+        display: none;
+    }
+}
+
+/* Make the about and login button disappear when the website is in the tablet and phone view */
+@media screen and (min-width: 1024px) {
+    .back-a {
+        display: none;
+    }
 }
