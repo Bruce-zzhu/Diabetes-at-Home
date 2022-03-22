@@ -9,6 +9,7 @@ body {
     font-family: 'Lexend', 'Inter', Arial, Helvetica, sans-serif;
 }
 nav {
+    width: 96.5%;
     background-color: #488adc;
     color: #ffffff;
     text-align: left;
@@ -18,9 +19,10 @@ nav {
     font-size: 20px;
     font-family: 'Inter', 'Lexend', Arial, Helvetica, sans-serif;
     display: block;
-    position: relative;
+    position: fixed;
     overflow: hidden;
     font-weight: bold;
+    z-index: 300;
 }
 
 /* REFERENCE THIS */
@@ -103,10 +105,6 @@ nav {
 
 .about-dropdown:hover .dropdown {display: block;}
 
-.sticky {
-    display: fixed;
-    top: 0px;
-}
 
 strong {
     font-weight: bold;
