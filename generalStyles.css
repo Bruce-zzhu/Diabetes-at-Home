@@ -98,6 +98,11 @@ nav {
     transform: translate(-50%, -50%);
 }
 
+.sticky {
+    display: fixed;
+    top: 0px;
+}
+
 strong {
     font-weight: bold;
 }
