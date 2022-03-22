@@ -131,6 +131,8 @@ h1 {
     font-size: 40px;
     text-align: center;
     font-family: 'Inter', 'Lexend', Arial, Helvetica, sans-serif;
+    padding-top: 30px;
+    padding-bottom: 10px;
 }
 
 h2 {
@@ -172,7 +174,7 @@ section {
 .ytVid_container {
     position: relative;
     padding-bottom: 56.25%;
-    padding-top: 30px;
+    padding-top: 20px;
     height: 0;
     overflow: hidden;
 }
