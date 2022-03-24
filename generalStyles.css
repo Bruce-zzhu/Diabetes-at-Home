@@ -25,7 +25,8 @@ nav {
     z-index: 300;
 }
 
-/* REFERENCE THIS */
+/* Icons from Google Fonts website: 
+https://developers.google.com/fonts/docs/material_icons */
 .materials_icon {
     font-family: 'Material Icons';
     font-weight: normal;
@@ -126,6 +127,7 @@ nav {
     background-color: #488adc;
 }
 
+/* Dropdown menu for about pages appear when hovering */
 .about-dropdown:hover .dropdown{
     display: block;
 }
@@ -202,7 +204,7 @@ section {
     padding: 32px;
 }
 
-.ytVid_container {
+.ytVid-container {
     position: relative;
     padding-bottom: 56.25%;
     padding-top: 20px;
@@ -210,7 +212,7 @@ section {
     overflow: hidden;
 }
 
-.ytVid_container iframe {
+.ytVid-container iframe {
     position: absolute;
     top: 0;
     left: 0;
