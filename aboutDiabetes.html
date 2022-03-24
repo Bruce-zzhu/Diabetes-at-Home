@@ -7,25 +7,29 @@
             name="viewport"
             content="width=375, initial-scale=1, maximum-scale=1"
         />
-        <link rel="stylesheet" href="../generalStyles.css" />
+        <link rel="stylesheet" href="about.css" />
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <title>Document</title>
     </head>
     
     <body>
-        <nav class="nav-sticky">
-            <a class="back-a" href="#home"><span class="material-icons">arrow_back_ios</span> Back</a>
-            <a class="logo-banner"><img src="../iconWithName.png" alt="Diabetes @ Home logo" height="48"></a>
-            <a class="login-nav" href="#login">Login</a>
-            <div class="about-nav">
-                <a class="about-dropdown" >About</a>
-                <div class="dropdown">
-                    <a>About Diabetes</a>
-                    <a>About Diabetes@Home</a>
+        <nav>
+            <div id="nav-container">
+                <a class="nav-back">
+                    <span class="material-icons">arrow_back_ios</span>
+                    <div>Back</div>
+                </a>
+                <a class="nav-name">
+                    <div>Diabetes</div>
+                    <img class="nav-logo" src="logo.svg" alt="logo">
+                    <div>Home</div>
+                </a>
+                <div class="nav-links">
+                    <a class="nav-login">Login</a>
+                    <a class="nav-about">About</a>
                 </div>
-            </div> 
+            </div>
         </nav>
-
         <section>
             <h1>About Diabetes</h1>
             <div class="ytVid_container">
