@@ -44,9 +44,6 @@ nav {
     font-size: 1.7rem;
 }
 
-<<<<<<< HEAD:generalStyles.css
-
-=======
 
 
 .nav-logo {
@@ -74,7 +71,6 @@ nav {
 
 /* Icons from Google Fonts website: 
 https://developers.google.com/fonts/docs/material_icons */
->>>>>>> ebc063d04d84fb61deec76de3fbe8f607b4dac40:about.css
 .materials_icon {
     font-family: 'Material Icons';
     font-weight: normal;
@@ -126,11 +122,8 @@ https://developers.google.com/fonts/docs/material_icons */
     display: none;
 }
 
-<<<<<<< HEAD:generalStyles.css
-
-=======
+/* Dropdown menu for about pages appear when hovering */
 .about-dropdown:hover .dropdown {display: block;} */
->>>>>>> ebc063d04d84fb61deec76de3fbe8f607b4dac40:about.css
 
 
 strong {
