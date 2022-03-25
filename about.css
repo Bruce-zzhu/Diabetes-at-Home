@@ -211,41 +211,19 @@ hr {
     width: 75%;
 }
 
-/* Make the about and login button disappear when the website is in the tablet and phone view */
-/* @media screen and (max-width: 1024px) {
-    .about-dropdown {
-        display: none;
-    }
-    .login-nav {
-        display: none;
-    }
-} */
-
-/* Make the about and login button disappear when the website is in the tablet and phone view */
-/* @media screen and (min-width: 1024px) {
-    .back-a {
-        display: none;
-    }
-} */
 
 
-/* @media screen and (max-width: 1024px) {
-    .about-dropdown {
-        display: none;
-    }
-    .login-nav {
-        display: none;
-    }
-} */
-
-@media screen and (min-width: 375px) {
+/* Make the back button disappear when the website is in the desktop view */
+@media screen and (min-width: 1024px) {
     .nav-back {
         display: none;
     }
 }
 
-@media screen and (max-width: 375px) {
+/* Make the about and login button disappear when the website is in the tablet and phone view */
+@media screen and (max-width: 1024px) {
     .nav-name, .nav-links {
         display: none;
     }
+
 }
