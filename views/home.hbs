@@ -83,8 +83,18 @@
 
 .feature-list {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   background-color: #fff;
+}
+
+.feature {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.feature img {
+  height: 7.5em;
 }
 </style>
 <div class="sub-nav">
@@ -106,18 +116,20 @@
         </div>
         <div class="space"></div>
     </div>
-    <div class="feature-list">
-        <div class="feature">
-          <img src="https://cdn.uxwing.com/wp-content/themes/uxwing/download/21-medical-science-lab/medical-report.svg" />
-          <h4>Record your health data</h4>
-        </div>
-        <div class="feature">
-          <img src="https://cdn.uxwing.com/wp-content/themes/uxwing/download/42-business-professional-services/chart.svg" />
-          <h4>Be encouraged to stay healthy</h4>
-        </div>
-        <div class="feature">
-          <img src="https://cdn.uxwing.com/wp-content/themes/uxwing/download/21-medical-science-lab/online-physician-consultation.svg" />
-          <h4>Communicate with your clinician</h4>
-        </div>
+</div>
+<section>
+<div class="feature-list">
+    <div class="feature">
+      <img src="https://cdn.uxwing.com/wp-content/themes/uxwing/download/21-medical-science-lab/medical-report.svg" />
+      <h4>Record your<br/>health data</h4>
+    </div>
+    <div class="feature">
+      <img src="https://cdn.uxwing.com/wp-content/themes/uxwing/download/42-business-professional-services/chart.svg" />
+      <h4>Be encouraged to<br/>stay healthy</h4>
+    </div>
+    <div class="feature">
+      <img src="https://cdn.uxwing.com/wp-content/themes/uxwing/download/21-medical-science-lab/online-physician-consultation.svg" />
+      <h4>Communicate with<br/>your clinician</h4>
     </div>
 </div>
+</section>
