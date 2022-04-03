@@ -1,0 +1,32 @@
+<style>
+    footer {
+      width: 100%;
+      max-height: 3em;
+      background-color: #488adc;
+      color: #ffffff;
+      padding: 1em;
+      text-align: center;
+      border-top: #ffffff; /* change according to content background */
+    }
+    /* Make the back button disappear when the website is in the desktop view */
+    @media screen and (min-width: 1024px) {
+      .desktop-footer {
+        display: block;
+      }
+      .mobile-footer {
+        display: none;
+      }
+    }
+
+    /* Make the about and login button disappear when the website is in the tablet and phone view */
+    @media screen and (max-width: 1024px) {
+      .desktop-footer {
+        display: none;
+      }
+      .mobile-footer {
+        display: block;
+      }
+    }
+</style>
+<footer class="mobile-ftr"></footer>
+<footer class="desktop-ftr">© 2022 Group xD</footer>
