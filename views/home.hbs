@@ -96,6 +96,21 @@
 .feature img {
   height: 7.5em;
 }
+
+
+@media screen and (min-width: 1024px) {
+  .feature-list {
+    flex-direction: row;
+  }
+} /*
+    Make the about and login button disappear when the website is in the tablet
+    and phone view */
+@media screen and (max-width: 1024px) {
+  .feature-list {
+    flex-direction: column;
+  }
+}
+
 </style>
 <div class="sub-nav">
     <a href="aboutDiabetes">About diabetes</a>
