@@ -20,7 +20,9 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 // hero page
 app.get('/', (req, res) => {
-    res.render('home');
+    res.render('home', {
+        style: 'about.css'
+    });
 })
 
 // aboutUs page
