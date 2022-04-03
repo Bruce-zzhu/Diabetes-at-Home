@@ -14,12 +14,16 @@
 .banner {
   position: relative;
   background-color: #8DC4DC;
+  max-width: 1920px;
+  max-height: 360px;
+  overflow: hidden;
 }
 
-/*.banner-img {
-  position: absolute;
-  width: 100%;
-}*/
+.banner-img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
 
 .banner-content {
   position: absolute;
@@ -30,7 +34,7 @@
 
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 3fr 2fr;
+  grid-template-rows: 3fr 1fr;
   grid-gap: 0;
   grid-template-areas: 
     "welcome space"
@@ -43,19 +47,44 @@
   text-align: center;
 }
 
+.welcome h1 {
+  color: #000;
+}
+
 .login {
   grid-area: login;
-  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.login h3 {
+  text-align: center;
+  color: #000000;
 }
 
 .btn-list {
   display: flex;
-  align-items: center;
+  flex-direction: row;
   justify-content: space-evenly;
+}
+
+.btn-list button {
+  background-color: #488adc;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  font-size: 1.25rem;
+  padding: 3px;
 }
 
 .space {
   grid-area: space;
+}
+
+.feature-list {
+  display: flex;
+  justify-content: space-around;
+  background-color: #fff;
 }
 </style>
 <div class="sub-nav">
@@ -63,7 +92,7 @@
     <a href="aboutUs">About us</a>
 </div>
 <div class="banner">
-    <img class="banner-img" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/woman-using-glucometer-on-blue-background-top-view-royalty-free-image-1585155304.jpg?crop=0.825xw:0.7xh;0.104xw,0.224xh" alt="Patient using glucometer">
+    <img class="banner-img" alt="Patient using glucometer" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/woman-using-glucometer-on-blue-background-top-view-royalty-free-image-1585155304.jpg">
     <div class="banner-content">
         <div class="welcome">
             <h1>Let's manage your health together!</h1>
@@ -76,5 +105,19 @@
             </div>
         </div>
         <div class="space"></div>
+    </div>
+    <div class="feature-list">
+        <div class="feature">
+          <img src="https://cdn.uxwing.com/wp-content/themes/uxwing/download/21-medical-science-lab/medical-report.svg" />
+          <h4>Record your health data</h4>
+        </div>
+        <div class="feature">
+          <img src="https://cdn.uxwing.com/wp-content/themes/uxwing/download/42-business-professional-services/chart.svg" />
+          <h4>Be encouraged to stay healthy</h4>
+        </div>
+        <div class="feature">
+          <img src="https://cdn.uxwing.com/wp-content/themes/uxwing/download/21-medical-science-lab/online-physician-consultation.svg" />
+          <h4>Communicate with your clinician</h4>
+        </div>
     </div>
 </div>
