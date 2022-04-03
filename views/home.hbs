@@ -14,23 +14,19 @@
 .banner {
   position: relative;
   background-color: #8DC4DC;
-  max-width: 1920px;
-  max-height: 360px;
+  width: 100%;
+  height: 30em;
   overflow: hidden;
 }
 
 .banner-img {
-  max-width: 100%;
-  height: auto;
   object-fit: cover;
 }
 
 .banner-content {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 0.5;
+  padding-left: 10%;
+  padding-right: 10%;
 
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -99,16 +95,37 @@
 
 
 @media screen and (min-width: 1024px) {
+
+  .banner-content {
+    top: 0;
+    grid-template-areas: 
+      "welcome space"
+      "login space";
+  }
+
+  .banner-img {
+    display: block;
+  }
   .feature-list {
+
     flex-direction: row;
   }
-} /*
-    Make the about and login button disappear when the website is in the tablet
-    and phone view */
+}
+
 @media screen and (max-width: 1024px) {
+  .banner-content {
+    grid-template-areas: 
+      "welcome welcome"
+      "login login";
+  }
+
+  .banner-img {
+    display: none;
+  }
   .feature-list {
     flex-direction: column;
   }
+
 }
 
 </style>
@@ -117,7 +134,7 @@
     <a href="aboutUs">About us</a>
 </div>
 <div class="banner">
-    <img class="banner-img" alt="Patient using glucometer" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/woman-using-glucometer-on-blue-background-top-view-royalty-free-image-1585155304.jpg">
+    <img class="banner-img" alt="Patient using glucometer" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/woman-using-glucometer-on-blue-background-top-view-royalty-free-image-1585155304.jpg" />
     <div class="banner-content">
         <div class="welcome">
             <h1>Let's manage your health together!</h1>
