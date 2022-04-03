@@ -19,54 +19,6 @@ body {
   font-family: "Lexend", "Inter", Arial, Helvetica, sans-serif;
 }
 
-nav {
-  font-family: "Inter", "Lexend", Arial, Helvetica, sans-serif;
-  width: 100%;
-
-  background-color: #488adc;
-  color: #ffffff;
-  position: fixed;
-  overflow: hidden;
-  z-index: 300;
-}
-
-#nav-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 90%;
-  height: 3rem;
-  margin: auto;
-}
-
-.nav-name div,
-.nav-logo {
-  display: inline-block;
-  vertical-align: middle;
-  font-size: 1.7rem;
-}
-
-.nav-logo {
-  width: 2.5rem;
-}
-
-.nav-links {
-  display: flex;
-  justify-content: space-between;
-  width: 10rem;
-  font-size: 1.3rem;
-}
-
-.nav-back {
-  font-size: 1.3rem;
-}
-
-.nav-back span,
-.nav-back div {
-  display: inline-block;
-  vertical-align: middle;
-}
-
 #citation-list li {
   /* white-space: pre-wrap; CSS3 */ /*causing issues on Chrome */
   white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
@@ -121,10 +73,6 @@ https://developers.google.com/fonts/docs/material_icons */
     display: none;
 }
 
-/* Dropdown menu for about pages appear when hovering */
-.about-dropdown:hover .dropdown {
-  display: block;
-}
 */ strong {
   font-weight: bold;
 }
@@ -210,17 +158,3 @@ hr {
   width: 75%;
 }
 
-/* Make the back button disappear when the website is in the desktop view */
-@media screen and (min-width: 1024px) {
-  .nav-back {
-    display: none;
-  }
-}
-
-/* Make the about and login button disappear when the website is in the tablet and phone view */
-@media screen and (max-width: 1024px) {
-  .nav-name,
-  .nav-links {
-    display: none;
-  }
-}
