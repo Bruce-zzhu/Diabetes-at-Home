@@ -1,13 +1,24 @@
-<footer>
-    <style type="text/css" scoped>
-        footer {
-            width: 100%;
-            background-color: #488adc;
-            color: #ffffff;
-            padding: 1em;
-            text-align: center;
-            border-top: #ffffff; /* change according to content background */
-        }
-    </style>
-    © Group xD, 2022
-</footer>
+<style type="text/css" scoped>
+    footer {
+      width: 100%;
+      background-color: #488adc;
+      color: #ffffff;
+      padding: 1em;
+      text-align: center;
+      border-top: #ffffff; /* change according to content background */
+    }
+    /* Make the back button disappear when the website is in the desktop view */
+    @media screen and (min-width: 1024px) {
+      footer {
+          display: block;
+      }
+    }
+
+    /* Make the about and login button disappear when the website is in the tablet and phone view */
+    @media screen and (max-width: 1024px) {
+      footer {
+        display: none;
+      }
+    }
+</style>
+<footer>© Group xD, 2022</footer>
