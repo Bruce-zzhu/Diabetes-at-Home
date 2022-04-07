@@ -100,6 +100,17 @@ nav a {
   display: flex;
   flex-direction: column;
 }
+
+#nav-profile {
+  margin: auto;
+  padding: 0.75rem;
+}
+
+#nav-profile > * {
+  font-size: 0.75rem;
+  text-align: center;
+}
+
 /* Make the back button disappear when the website is in the desktop view */
 @media screen and (min-width: 1024px) {
   .nav-back {
@@ -115,32 +126,8 @@ nav a {
   }
 }
 
-.materials_icon {
-  font-family: "Material Icons";
-  font-weight: normal;
-  font-style: normal;
-  font-size: 14px; /* Preferred icon size */
-  display: inline-block;
-  line-height: 1;
-  text-transform: none;
-  letter-spacing: normal;
-  word-wrap: normal;
-  white-space: nowrap;
-  direction: ltr;
-
-  /* Support for all WebKit browsers. */
-  -webkit-font-smoothing: antialiased;
-  /* Support for Safari and Chrome. */
-  text-rendering: optimizeLegibility;
-
-  /* Support for Firefox. */
-  -moz-osx-font-smoothing: grayscale;
-
-  /* Support for IE. */
-  font-feature-settings: "liga";
-}
-
 </style>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <nav>
     <a class="nav-back">
         <span class="material-icons">arrow_back_ios</span>
@@ -173,15 +160,25 @@ nav a {
             <a href="comments">Comments</a>
             <div class="dropdown">
                 <button class="dropbtn"><span class="material-icons">account_circle</span></button>
-                <div style="padding: 3em;" class="dropdown-content">
-                    <img style="width: 3em;" src="https://uxwing.com/wp-content/themes/uxwing/download/12-peoples-avatars/no-profile-picture.svg" />
-                    <p><strong>Firstname Lastname</strong><br >Log out</p>
+                <div class="dropdown-content">
+                    <div id="nav-profile">
+                        <img style="width: 3rem;" src="https://uxwing.com/wp-content/themes/uxwing/download/12-peoples-avatars/no-profile-picture.svg" />
+                        <p><strong>Firstname Lastname</strong><br />clinician@email.com</p>
+                        <p><button onclick="logOut()">Log out</button></p>                     
+                    </div>
+                    <a href="settings/colour">Colour Scheme <span class="material-icons">arrow_forward_ios</span></a>
+                    <a href="settings/password">Change Password <span class="material-icons">arrow_forward_ios</span></a>
                 </div>
             </div>
         </div>
     </div>
 </nav>
 <script>
+    function logOut() {
+        login = false;
+        console.log("User has logged out");
+    }
+
     if (window.location.pathname == "/") {
         document.getElementById("nav-links").style.display = "none";
     } else if ({{login}}) {
