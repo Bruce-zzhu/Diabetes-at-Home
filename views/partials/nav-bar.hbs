@@ -39,6 +39,7 @@ nav a {
 }
 #nav-links {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   width: 10rem;
   font-size: 1.3rem;
@@ -121,18 +122,37 @@ nav a {
         <div>Home</div>
     </a>
     <div id="nav-links">
-        <a href="login">Login</a>
-        <div class="dropdown">
-            <button class="dropbtn">About</button>
-            <div class="dropdown-content">
-                <a href="aboutUs">About D@H</a>
-                <a href="aboutDiabetes">About Diabetes</a>
+        <div id="nl-pre-login">
+            <div class="dropdown">
+                <button class="dropbtn">Login</button>
+                <div class="dropdown-content">
+                    <a href="login_p">As Patient</a>
+                    <a href="login_c">As Clinician</a>
+                </div>
             </div>
+            <div class="dropdown">
+                <button class="dropbtn">About</button>
+                <div class="dropdown-content">
+                    <a href="aboutUs">About D@H</a>
+                    <a href="aboutDiabetes">About Diabetes</a>
+                </div>
+            </div>
+        </div>
+        <div id="nl-post-login">
+
         </div>
     </div>
 </nav>
 <script>
     if (window.location.pathname == "/") {
         document.getElementById("nav-links").style.display = "none";
+    } else if ({{login}}) {
+        document.getElementById("nl-post-login").style.display = "block";
+        document.getElementById("nl-pre-login").style.display = "none";
+    } else {
+        document.getElementById("nl-post-login").style.display = "none";
+        document.getElementById("nl-pre-login").style.display = "block";
+
     }
+
 </script>
