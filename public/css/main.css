@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css?family=Lexend");  /* text */
+@import url("https://fonts.googleapis.com/css?family=Inter");  /* headings */
+
+:root {
+    --font-text: "Lexend", sans-serif;
+    --font-heading: "Inter", sans-serif;
+
+    --bg-color: #f6f8fa;
+    --primary-color: #488adc;
+    --secondary-color: #a8bce2;
+    --tertiary-color: #e9ecf2;
+    --deepBlue-color: #124b8e;
+    --grey-color: #707070;
+    --deepGrey-color: #5c5c5c;
+    --green-color: #239651;
+    --purple-color: #ab3bd5;
+    --yellow-color: #ffba00;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 100%;  /* 16px */
+    font-family: var(--font-text);
+    background-color: var(--bg-color);
+} 
