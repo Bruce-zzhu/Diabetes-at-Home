@@ -1,22 +1,14 @@
 @import url("https://fonts.googleapis.com/css?family=Lexend");
 @import url("https://fonts.googleapis.com/css?family=Inter");
 
-* {
-  box-sizing: border-box;
-}
-
-html {
-  font-size: 100%;
-} /* 16px */
 
 body {
-  color: #707070;
+  color: var(--brown-color);
   margin: 0;
   width: 100vw;
   min-width: 100vw;
   max-width: 100vw;
   align-items: center;
-  font-family: "Lexend", "Inter", Arial, Helvetica, sans-serif;
 }
 
 #citation-list li {
