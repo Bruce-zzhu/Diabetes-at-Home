@@ -23,9 +23,9 @@
 
 html {
     font-size: 100%;  /* 16px */
-    font-family: var(--font-text);
 } 
 
 body {
     background-color: var(--bg-color);
+    font-family: var(--font-text);
 }
