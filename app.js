@@ -38,6 +38,16 @@ app.get('/aboutDiabetes', (req, res) => {
 })
 
 
+// clinician dashboard
+app.get('/dashboard', (req, res) => {
+    patients = [1,2,3,4,5];
+    res.render('clinician/dashboard', {
+        style: 'dashboard.css',
+        patients
+    });
+})
+
+
 
 app.listen(port, () => {
     console.log(`Listen on http://localhost:${port}`)
