@@ -49,6 +49,10 @@ app.get('/dashboard', (req, res) => {
     });
 })
 
+// view patient page
+app.get('/view-patient', (req, res) => {
+    res.render('clinician/viewPatient')
+})
 
 
 app.listen(port, () => {
