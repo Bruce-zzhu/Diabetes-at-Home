@@ -10,7 +10,6 @@
     --secondary-color: #a8bce2;
     --tertiary-color: #e9ecf2;
     --deepBlue-color: #124b8e;
-    --grey-color: #707070;
     --brown-color: #5c5c5c;
     --green-color: #239651;
     --purple-color: #ab3bd5;
@@ -23,6 +22,9 @@
 
 html {
     font-size: 100%;  /* 16px */
-    font-family: var(--font-text);
-    background-color: var(--bg-color);
 } 
+
+body {
+    background-color: var(--bg-color);
+    font-family: var(--font-text);
+}
