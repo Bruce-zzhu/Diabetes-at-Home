@@ -76,11 +76,6 @@ app.get('/view-patient/:id', async (req, res) => {
     })
 })
 
-app.get('/view/3', (req, res) => {
-    res.render('clinician/viewPatient', {
-        style: 'viewPatient.css'
-    })
-})
 
 
 app.listen(port, () => {
