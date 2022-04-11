@@ -4,6 +4,18 @@ const port = 3000;
 const path = require('path');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose')
+const {Patient, TimeSeries} = require('./models/patient');
+
+const connectionURL = 'mongodb://localhost:27017/diabetes-at-home';
+mongoose.connect(connectionURL);
+
+const db = mongoose.connection;
+// event handlers
+db.on('error', console.error.bind(console, 'connection error:'))
+db.once('open', () => {
+    console.log('connected to Mongo')
+})
 
 // set up express-handlebars
 app.engine('hbs', exphbs.engine({ extname: 'hbs', defaultLayout: 'main' }));
@@ -17,6 +29,10 @@ app.use(express.static(path.join(__dirname, '/public')));
 
 // process incoming request
 app.use(bodyParser.urlencoded({ extended: true }))
+
+
+
+
 
 // hero page
 app.get('/', (req, res) => {
@@ -41,8 +57,9 @@ app.get('/about-diabetes', (req, res) => {
 
 
 // clinician dashboard
-app.get('/dashboard', (req, res) => {
-    patients = [1,2,3,4,5];
+app.get('/dashboard', async (req, res) => {
+    // .lean() is to slove the handlebars access error
+    const patients = await Patient.find({}).populate('timeSeries').lean()  
     res.render('clinician/dashboard', {
         style: 'dashboard.css',
         patients
@@ -50,8 +67,19 @@ app.get('/dashboard', (req, res) => {
 })
 
 // view patient page
-app.get('/view-patient', (req, res) => {
-    res.render('clinician/viewPatient')
+app.get('/view-patient/:id', async (req, res) => {
+    const pid = req.params.id;
+    const patient = await Patient.findById(pid).lean();
+    res.render('clinician/viewPatient', {
+        style: 'viewPatient.css',
+        patient
+    })
+})
+
+app.get('/view/3', (req, res) => {
+    res.render('clinician/viewPatient', {
+        style: 'viewPatient.css'
+    })
 })
 
 

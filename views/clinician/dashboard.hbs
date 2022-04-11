@@ -28,13 +28,19 @@
         <tbody>
             {{#each patients}}
                 <tr class="align-middle">
-                    <th scope="row">{{this}}</th>
-                    <td><strong>Firstname Lastname</strong><br />Age: xx &nbsp;
-                        Gender: xx</td>
-                    <td>Value</td>
-                    <td>Value</td>
-                    <td>Value</td>
-                    <td>Value</td>
+                    <th scope="row">{{@index}}</th>
+                    
+                        <td>
+                            <a href="/view-patient/{{_id}}">
+                                <strong>{{firstName}} {{lastName}}</strong><br />
+                                Age: {{age}} &nbsp;
+                                Gender: {{gender}}
+                            </a>
+                        </td>
+                    
+                    {{#each timeSeries}}
+                    <td>{{value}}</td>
+                    {{/each}}
                 </tr>
             {{/each}}
         </tbody>
