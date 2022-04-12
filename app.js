@@ -27,14 +27,14 @@ app.get('/', (req, res) => {
 
 // aboutUs page
 app.get('/about-us', (req, res) => {
-    res.render('about/aboutUs', {
+    res.render('about/about-us', {
         style: 'about.css'
     });
 })
 
 // aboutDiabetes page
 app.get('/about-diabetes', (req, res) => {
-    res.render('about/aboutDiabetes', {
+    res.render('about/about-diabetes', {
         style: 'about.css'
     });
 })
