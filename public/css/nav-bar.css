@@ -1,9 +1,13 @@
+:root {
+  --nav-alt-color: white;
+}
+
 nav {
   width: 100%;
   overflow: visible;
   background-color: var(--primary-color);
   width: 100%;
-  color: #ffffff;
+  color: var(--nav-alt-color);
   position: fixed;
   z-index: 1;
   display: flex;
@@ -12,7 +16,8 @@ nav {
   padding: 1rem;
   height: 3rem;
   margin: auto;
-  box-shadow: 0px 1.5px 0px #ffffff; /*background colour*/
+  box-shadow: 0 1.5px 0 var(--bg-color);
+  font-size: 1rem;
 }
 .nav-back {
   font-size: 1.3rem;
@@ -22,9 +27,10 @@ nav {
   display: inline-block;
   vertical-align: middle;
 }
-nav a {
+
+nav a, nav a:hover {
   text-decoration: none;
-  color: #ffffff;
+  color: var(--nav-alt-color);
 }
 
 .nav-name div,
@@ -33,22 +39,15 @@ nav a {
   vertical-align: middle;
   font-size: 1.5rem;
 }
+
 .nav-logo {
   width: 2rem;
 }
+
 #nav-links {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  font-size: 1.3rem;
-}
-#nav-links a {
-  float: left;
-  font-size: 16px;
-  color: white;
-  text-align: center;
-  padding: 1em 1em;
-  text-decoration: none;
 }
 
 #nav-links > * {
@@ -56,24 +55,35 @@ nav a {
   flex-direction: row;
 }
 
+#nav-links a, .dropbtn {
+  height: 3rem;
+  padding: calc(1rem - 3px);
+}
+
+#nav-links a {
+  float: left;
+  text-align: center;
+  text-decoration: none;
+}
+
 .dropdown {
   float: left;
   overflow: hidden;
   z-index: 1;
 }
+
 .dropdown .dropbtn {
-  font-size: 16px;
   border: none;
   outline: none;
-  color: white;
-  padding: 14px 16px;
+  color: var(--nav-alt-color);
   background-color: inherit;
   font-family: inherit;
   margin: 0;
 }
+
 #nav-links a:hover,
 .dropdown:hover .dropbtn {
-  background-color: white;
+  background-color: var(--nav-alt-color);
   color: var(--primary-color);
 }
 .dropdown-content {
@@ -93,7 +103,7 @@ nav a {
   text-align: left;
 }
 .dropdown-content a:hover {
-  background-color: #ffffff;
+  background-color: var(--nav-alt-color);
   color: var(--primary-color);
 }
 .dropdown:hover .dropdown-content {
