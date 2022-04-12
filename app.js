@@ -7,7 +7,8 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose')
 const {Patient, TimeSeries} = require('./models/patient');
 
-const connectionURL = 'mongodb://localhost:27017/diabetes-at-home';
+require('dotenv').config();
+const connectionURL = process.env.MONGO_URL || 'mongodb://localhost:27017/diabetes-at-home';
 mongoose.connect(connectionURL);
 
 const db = mongoose.connection;
@@ -58,7 +59,7 @@ app.get('/about-diabetes', (req, res) => {
 
 // clinician dashboard
 app.get('/dashboard', async (req, res) => {
-    // .lean() is to slove the handlebars access error
+    // .lean() is to solve the handlebars access error
     const patients = await Patient.find({}).populate('timeSeries').lean()  
     res.render('clinician/dashboard', {
         style: 'dashboard.css',
