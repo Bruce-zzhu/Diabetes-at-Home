@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 const {Patient, TimeSeries} = require('./patient');
 
-const connectionURL = 'mongodb://localhost:27017/diabetes-at-home';
+require('dotenv').config();
+const connectionURL = process.env.MONGO_URL || 'mongodb://localhost:27017/diabetes-at-home';
 mongoose.connect(connectionURL);
 
 const db = mongoose.connection;
@@ -40,8 +41,9 @@ const loadDataToDB = async () => {
 
     for (let i = 0; i < 5; i++) {
         const patient = new Patient({
-            firstName: 'Tom',
-            lastName: 'Smith',
+            firstName: 'Jon',
+            lastName: 'Snow',
+            nickName: 'King in the North',
             age: 30,
             gender: 'M',
             timeSeries: [bloodGlucose, insulin, weight, exercise]
