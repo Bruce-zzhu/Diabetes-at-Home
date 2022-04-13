@@ -1,0 +1,148 @@
+@import url("https://fonts.googleapis.com/css?family=Lexend");
+@import url("https://fonts.googleapis.com/css?family=Inter");
+
+
+body {
+  color: #707070;
+  margin: 0;
+  width: 100vw;
+  min-width: 100vw;
+  max-width: 100vw;
+  align-items: center;
+  font-family: "Lexend", "Inter", Arial, Helvetica, sans-serif;
+}
+
+#citation-list li {
+  /* white-space: pre-wrap; CSS3 */ /*causing issues on Chrome */
+  white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+  white-space: -pre-wrap; /* Opera 4-6 */
+  white-space: -o-pre-wrap; /* Opera 7 */
+  word-wrap: break-word; /* Internet Explorer 5.5+ */
+}
+
+/* Icons from Google Fonts website: 
+https://developers.google.com/fonts/docs/material_icons */
+.materials_icon {
+  font-family: "Material Icons";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 14px; /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: "liga";
+}
+
+.ref-a {
+  text-decoration: none;
+}
+
+/* .aboutDropdown {
+    color: #ffffff;
+    text-decoration: none;
+    display:inline-flex;
+    text-align: right;
+    position: absolute;
+    top: 50%;
+    left: 95%;
+    transform: translate(-50%, -50%);
+} */
+
+/* .dropdown{
+    display: none;
+}
+
+*/ strong {
+  font-weight: bold;
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+iframe {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  height: 100%;
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 40px;
+  text-align: center;
+  font-family: "Inter", "Lexend", Arial, Helvetica, sans-serif;
+  padding-top: 30px;
+  padding-bottom: 10px;
+}
+
+h2 {
+  font-weight: bolder;
+  font-size: 30px;
+  text-align: left;
+  font-family: "Inter", "Lexend", Arial, Helvetica, sans-serif;
+}
+
+h3 {
+  font-size: 24px;
+  text-align: left;
+  font-family: "Inter", "Lexend", Arial, Helvetica, sans-serif;
+}
+
+p {
+  text-align: justify;
+  font-family: "Lexend", "Inter", Arial, Helvetica, sans-serif;
+}
+
+ul {
+  list-style-position: inside;
+  font-family: "Lexend", "Inter", Arial, Helvetica, sans-serif;
+}
+
+ol {
+  list-style-position: inside;
+  font-family: "Lexend", "Inter", Arial, Helvetica, sans-serif;
+}
+
+section {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 896px;
+  padding: 32px;
+}
+
+.ytVid-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 20px;
+  height: 0;
+  overflow: hidden;
+}
+
+.ytVid-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
