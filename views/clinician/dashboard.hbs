@@ -23,6 +23,7 @@
                 <th scope="col">Insulin Taken<br /><span>doses</span></th>
                 <th scope="col">Weight<br /><span>kg</span></th>
                 <th scope="col">Exercise Completed<br /><span>steps</span></th>
+                <th scope="col">Comment<br /></th>
             </tr>
         </thead>
         <tbody>
@@ -39,7 +40,8 @@
                         </td>
                     
                     {{#each timeSeries}}
-                    <td>{{value}}</td>
+                    <td>{{value}} {{comment}}</td>
+            
                     {{/each}}
                 </tr>
             {{/each}}
