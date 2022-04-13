@@ -56,6 +56,20 @@ app.get('/about-diabetes', (req, res) => {
     });
 })
 
+// Clinician Login page
+app.get('/login_c', (req, res) => {
+    res.render('clinician/login', {
+        style: 'login.css'
+    });
+})
+
+// Patient Login page
+app.get('/login_p', (req, res) => {
+    res.render('patient/login', {
+        style: 'login.css'
+    });
+})
+
 
 // clinician dashboard
 app.get('/dashboard', async (req, res) => {

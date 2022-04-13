@@ -1,18 +1,18 @@
 
 h1 {
-    font-size: 3rem;
+    font-size: 7rem;
     font-weight: 600;
     text-align: center;
-    padding-top: 8rem;
-    padding-bottom: 3rem;
+    padding-top: 3rem;
+    padding-bottom: 0.5rem;
 }
 
 h2 {
     font-size: 2rem;
     font-weight: 400;
     text-align: center;
-    padding-top: 1.5rem;
-    padding-bottom: 4rem;
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
 }
 
 h3 {
@@ -23,16 +23,37 @@ h3 {
     padding-bottom: 1rem;
 }
 
+.login-logo {
+    width: 7rem;
+}
+
 input[type=submit] {
     background-color: var(--brown-color);
-    color: var(--bg-color);
-    cursor: pointer;
+    border: var(--bg-color) solid;
+    cursor:default;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
 }
 
 .container {
-    padding: 15%;
-    width: 80%;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    width: 50%;
+    margin-bottom: 10%;
     background-color: var(--primary-color);
+    color: var(--bg-color);
+    text-align: center;
+    border-radius: 3rem;
+}
+
+.container a{
+    padding: 1rem;
+}
+
+form {
+    text-align: center;
 }
 
 strong {
