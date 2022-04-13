@@ -1,0 +1,28 @@
+{
+  "name": "Diabetes-at-Home",
+  "version": "1.0.0",
+  "description": "Group project for INFO30005",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bruce-zzhu/Diabetes-at-Home.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bruce-zzhu/Diabetes-at-Home/issues"
+  },
+  "homepage": "https://github.com/Bruce-zzhu/Diabetes-at-Home#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "express-handlebars": "^6.0.3",
+    "mongoose": "^6.2.10"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.0"
+  }
+}
