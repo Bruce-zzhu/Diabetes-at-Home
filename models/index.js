@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const { Patient, TimeSeries } = require("./patient");
+const { Clinician } = require("./clinician");
 
 require("dotenv").config();
 const connectionURL =
@@ -18,6 +19,7 @@ const loadDataToDB = async () => {
   // delete the old data
   await Patient.deleteMany({});
   await TimeSeries.deleteMany({});
+  await Clinician.deleteMany({});
 
   const bloodGlucose = new TimeSeries({
     name: "Blood Glucose",
@@ -45,6 +47,13 @@ const loadDataToDB = async () => {
   });
   await comment.save();
 
+  const clinician = new Clinician({
+    firstName: "Tony",
+    lastName: "He",
+    email: "TonyHe@db.com",
+    patients: [],
+  });
+  await clinician.save();
   for (let i = 0; i < 5; i++) {
     const patient = new Patient({
       firstName: "Jon",
