@@ -19,7 +19,11 @@ db.once('open', () => {
 })
 
 // set up express-handlebars
-app.engine('hbs', exphbs.engine({ extname: 'hbs', defaultLayout: 'main' }));
+app.engine('hbs', exphbs.engine({
+    extname: 'hbs',
+    defaultLayout: 'main',
+    helpers: require("./public/scripts/hbs-helpers")
+}));
 app.set('view engine', 'hbs');
 
 // link views to views directory

@@ -12,11 +12,17 @@
     />
     <link rel="stylesheet" href="/css/{{style}}" />
     <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/nav-bar.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
 </head>
 <body>
     {{> nav-bar login=true}}
     {{{body}}}
-    {{> footer}}
+    {{#if (isDesktop window.innerWidth)}}
+        {{> desktop-footer}}
+    {{else}}
+        <p>MOBILE FOOTER PLACEHOLDER</p>
+    {{/if}}
 
 
 

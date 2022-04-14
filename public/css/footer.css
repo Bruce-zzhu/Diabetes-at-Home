@@ -1,0 +1,12 @@
+.desktop-footer {
+    width: 100%;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.5em;
+    text-align: center;
+    border-top: var(--bg-color); /* change according to content background */
+    position: static;
+    bottom: 0;
+  }
+
+  
