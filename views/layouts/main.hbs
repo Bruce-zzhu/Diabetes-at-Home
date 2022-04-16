@@ -18,13 +18,7 @@
 <body>
     {{> nav-bar login=true}}
     {{{body}}}
-    {{#if (isDesktop window.innerWidth)}}
-        {{> desktop-footer}}
-    {{else}}
-        <p>MOBILE FOOTER PLACEHOLDER</p>
-    {{/if}}
-
-
+    {{> footer}}
 
     <script
         src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
