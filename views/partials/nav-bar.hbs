@@ -1,17 +1,19 @@
 <link rel="stylesheet" href="css/nav-bar.css" />
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <nav>
-    {{!-- <a class="nav-back">
+    <a class="nav-back">
         <span class="material-icons">arrow_back_ios</span>
         <div>Back</div>
-    </a> --}}
-    <button onclick="newEntry()" class="btn btn-outline-light tablet nav-new-entry icon"><span class="material-icons">create</span></button>
+    </a>
+    <button onclick="newEntry()" class="btn btn-outline-light tablet post-login nav-new-entry icon"><span class="material-icons">create</span></button>
     <div class="mobile" style="width: 1rem"></div>
-    <a class="nav-name" href="/">
+
+    <a id="nav-name" href="/">
         <div>Diabetes</div>
         <img class="nav-logo" src="/images/logo.svg" alt="logo" />
         <div>Home</div>
     </a>
+
 
     <div id="nav-links">
         <div class="desktop">
@@ -48,6 +50,7 @@
                 </div>
             </div>
         </div>
+
         <div class="tablet">
             <div class="pre-login">
                 <div class="dropdown">
@@ -77,6 +80,7 @@
                 </div>
             </div>
         </div>
+
         <div class="mobile">
             <div class="dropdown">
                 <button class="dropbtn icon"><span class="material-icons">menu</span></button>
@@ -90,18 +94,35 @@
         </div>
     </div>
 </nav>
+
+
 <script>
-    if (window.location.pathname == "/") {
-        document.getElementById("nav-links").style.display = "none";
-    } else if ({{login}}) {
+    if ({{login}}) {
         const pre_login = document.getElementsByClassName("pre-login");
         for (var i=0; i<pre_login.length; i++) {
+            pre_login[i].remove();
             pre_login[i].innerHTML = "";
         }
+
     } else {
         const post_login = document.getElementsByClassName("post-login");
         for (var i=0; i<post_login.length; i++) {
+            post_login[i].remove();
             post_login[i].innerHTML = "";
         }
+    }
+
+
+    if (window.location.pathname.startsWith("/about")  ||
+    window.location.pathname.startsWith("settings")) {
+        document.getElementById("nav-back").style.display = "block";
+    }
+
+    if (window.location.pathname == "/") {
+        document.getElementById("nav-links").style.display = "none";
+    }
+
+    if (window.location.pathname.startsWith("/about")) {
+
     }
 </script>

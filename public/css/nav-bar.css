@@ -19,9 +19,12 @@ nav {
   box-shadow: 0 1.5px 0 var(--bg-color);
   font-size: 1rem;
 }
+
 .nav-back {
   font-size: 1.3rem;
+  display: none;
 }
+
 .nav-back span,
 .nav-back div {
   display: inline-block;
@@ -45,7 +48,11 @@ nav a, nav a:hover {
   color: var(--nav-alt-color);
 }
 
-.nav-name div,
+#nav-name {
+  padding-left: 1rem;
+}
+
+#nav-name div,
 .nav-logo {
   display: inline-block;
   vertical-align: middle;
@@ -156,43 +163,35 @@ nav a, nav a:hover {
     Make the about and login button disappear when the website is in the tablet
     and phone view */
 /* @media screen and (max-width: 1024px) {
-  .nav-name,
+  #nav-name,
   #nav-links {
     display: none;
   }
 } */
 
+.mobile {
+  display: none;
+}
+.tablet {
+  display: none;
+}
+.desktop {
+  display: none;
+}
+
 @media screen and (max-width: 375px) {
   .mobile {
     display: flex;
   }
-  .tablet {
-    display: none;
-  }
-  .desktop {
-    display: none;
-  }
 }
 
 @media screen and (min-width: 376px) and (max-width: 1024px) {
-  .mobile {
-    display: none;
-  }
   .tablet {
     display: flex;
-  }
-  .desktop {
-    display: none;
   }
 }
 
 @media screen and (min-width: 1025px) {
-  .mobile {
-    display: none;
-  }
-  .tablet {
-    display: none;
-  }
   .desktop {
     display: flex;
   }
