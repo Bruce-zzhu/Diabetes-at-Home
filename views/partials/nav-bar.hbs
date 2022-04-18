@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="css/nav-bar.css" />
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <nav>
-    <a class="nav-back">
+    <a id="nav-back" class="mobile">
         <span class="material-icons">arrow_back_ios</span>
         <div>Back</div>
     </a>
@@ -13,7 +13,6 @@
         <img class="nav-logo" src="/images/logo.svg" alt="logo" />
         <div>Home</div>
     </a>
-
 
     <div id="nav-links">
         <div class="desktop">
@@ -95,7 +94,6 @@
     </div>
 </nav>
 
-
 <script>
     if ({{login}}) {
         const pre_login = document.getElementsByClassName("pre-login");
@@ -112,11 +110,7 @@
         }
     }
 
-
-    if (window.location.pathname.startsWith("/about")  ||
-    window.location.pathname.startsWith("settings")) {
-        document.getElementById("nav-back").style.display = "block";
-    }
+    // TODO: implement "< Back" button on mobile
 
     if (window.location.pathname == "/") {
         document.getElementById("nav-links").style.display = "none";

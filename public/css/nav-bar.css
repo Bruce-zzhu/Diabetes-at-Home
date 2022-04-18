@@ -20,13 +20,13 @@ nav {
   font-size: 1rem;
 }
 
-.nav-back {
+#nav-back {
   font-size: 1.3rem;
   display: none;
 }
 
-.nav-back span,
-.nav-back div {
+#nav-back span,
+#nav-back div {
   display: inline-block;
   vertical-align: middle;
 }
@@ -155,7 +155,7 @@ nav a, nav a:hover {
 
 /* Make the back button disappear when the website is in the desktop view */
 /* @media screen and (min-width: 1024px) {
-  .nav-back {
+  #nav-back {
     display: none;
   }
 } */
