@@ -1,45 +1,47 @@
 <link rel="stylesheet" href="css/nav-bar.css" />
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <nav>
-    <a class="nav-back">
+    {{!-- <a class="nav-back">
         <span class="material-icons">arrow_back_ios</span>
         <div>Back</div>
-    </a>
+    </a> --}}
     <a class="nav-name" href="/">
         <div>Diabetes</div>
         <img class="nav-logo" src="/images/logo.svg" alt="logo" />
         <div>Home</div>
     </a>
     <div id="nav-links">
-        <div id="nl-pre-login">
-            <div class="dropdown">
-                <button class="dropbtn">Login</button>
-                <div class="dropdown-content">
-                    <a href="/login_p">As Patient</a>
-                    <a href="/login_c">As Clinician</a>
-                </div>
-            </div>
-            <div class="dropdown">
-                <button class="dropbtn">About</button>
-                <div class="dropdown-content">
-                    <a href="/about-us">About D@H</a>
-                    <a href="/about-diabetes">About Diabetes</a>
-                </div>
-            </div>
-        </div>
-        <div id="nl-post-login">
-            <a href="/dashboard">Dashboard</a>
-            <a href="/comments">Comments</a>
-            <div class="dropdown">
-                <button class="dropbtn"><span class="material-icons">account_circle</span></button>
-                <div class="dropdown-content">
-                    <div id="nav-profile">
-                        <img style="width: 3rem;" src="https://uxwing.com/wp-content/themes/uxwing/download/12-peoples-avatars/no-profile-picture.svg" />
-                        <p><strong>Firstname Lastname</strong><br />clinician@email.com</p>
-                        <p><button onclick="logOut()">Log out</button></p>                     
+        <div class="desktop">
+            <div id="nl-pre-login">
+                <div class="dropdown">
+                    <button class="dropbtn">Login</button>
+                    <div class="dropdown-content">
+                        <a href="/login_p">As Patient</a>
+                        <a href="/login_c">As Clinician</a>
                     </div>
-                    <a href="/settings/colour"><span style="float: left">Colour Scheme</span><span style="float: right" class="material-icons">chevron_right</span></a>
-                    <a href="/settings/password"><span style="float: left">Change Password</span><span style="float: right" class="material-icons">chevron_right</span></a>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">About</button>
+                    <div class="dropdown-content">
+                        <a href="/about-us">About D@H</a>
+                        <a href="/about-diabetes">About Diabetes</a>
+                    </div>
+                </div>
+            </div>
+            <div id="nl-post-login">
+                <a href="/dashboard">Dashboard</a>
+                <a href="/comments">Comments</a>
+                <div class="dropdown">
+                    <button class="dropbtn"><span class="material-icons">account_circle</span></button>
+                    <div class="dropdown-content">
+                        <div id="nav-profile">
+                            <img style="width: 3rem;" src="https://uxwing.com/wp-content/themes/uxwing/download/12-peoples-avatars/no-profile-picture.svg" />
+                            <p><strong>Firstname Lastname</strong><br />clinician@email.com</p>
+                            <p><button onclick="logOut()">Log out</button></p>                     
+                        </div>
+                        <a href="/settings/colour"><span style="float: left">Colour Scheme</span><span style="float: right" class="material-icons">chevron_right</span></a>
+                        <a href="/settings/password"><span style="float: left">Change Password</span><span style="float: right" class="material-icons">chevron_right</span></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -54,12 +56,9 @@
     if (window.location.pathname == "/") {
         document.getElementById("nav-links").style.display = "none";
     } else if ({{login}}) {
-        document.getElementById("nl-post-login").style.display = "flex";
-        document.getElementById("nl-pre-login").style.display = "none";
+        document.getElementById("nl-pre-login").innerHTML = "";
     } else {
-        document.getElementById("nl-post-login").style.display = "none";
-        document.getElementById("nl-pre-login").style.display = "flex";
-
+        document.getElementById("nl-post-login").innerHTML = "";
     }
 
 </script>

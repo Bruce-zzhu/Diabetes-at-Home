@@ -130,17 +130,35 @@ nav a, nav a:hover {
   max-height: 100%;
 }
 
+#nl-post-login, #nl-pre-login {
+  display: flex;
+  flex-direction: row;
+}
+
 /* Make the back button disappear when the website is in the desktop view */
-@media screen and (min-width: 1024px) {
+/* @media screen and (min-width: 1024px) {
   .nav-back {
     display: none;
   }
-} /*
+} */
+/*
     Make the about and login button disappear when the website is in the tablet
     and phone view */
-@media screen and (max-width: 1024px) {
+/* @media screen and (max-width: 1024px) {
   .nav-name,
   #nav-links {
     display: none;
+  }
+} */
+
+@media screen and (max-width: 1024px) {
+  .desktop {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .desktop {
+    display: block;
   }
 }
