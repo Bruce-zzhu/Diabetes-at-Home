@@ -28,3 +28,7 @@ body {
     background-color: var(--bg-color);
     font-family: var(--font-text);
 }
+
+.icon {
+    padding: 0.25rem;
+}
