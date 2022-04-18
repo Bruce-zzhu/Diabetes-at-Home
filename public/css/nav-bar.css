@@ -28,6 +28,18 @@ nav {
   vertical-align: middle;
 }
 
+.nav-new-entry {
+  border-radius: 50%;
+}
+
+.icon {
+  padding: 0.25rem;
+}
+
+.nav-new-entry span {
+  font-size: 1.25rem;
+}
+
 nav a, nav a:hover {
   text-decoration: none;
   color: var(--nav-alt-color);
@@ -51,7 +63,6 @@ nav a, nav a:hover {
 }
 
 #nav-links > * {
-  display: flex;
   flex-direction: row;
 }
 
@@ -112,17 +123,17 @@ nav a, nav a:hover {
   flex-direction: column;
 }
 
-#nav-profile {
+.nav-profile {
   margin: auto;
   padding-top: 0.75rem;
 }
 
-#nav-profile > * {
+.nav-profile > * {
   font-size: 0.75rem;
   text-align: center;
 }
 
-#nav-profile img {
+.nav-profile img {
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -130,7 +141,7 @@ nav a, nav a:hover {
   max-height: 100%;
 }
 
-#nl-post-login, #nl-pre-login {
+.post-login, .pre-login {
   display: flex;
   flex-direction: row;
 }
@@ -151,14 +162,38 @@ nav a, nav a:hover {
   }
 } */
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 375px) {
+  .mobile {
+    display: flex;
+  }
+  .tablet {
+    display: none;
+  }
   .desktop {
     display: none;
   }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (min-width: 376px) and (max-width: 1024px) {
+  .mobile {
+    display: none;
+  }
+  .tablet {
+    display: flex;
+  }
   .desktop {
-    display: block;
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .mobile {
+    display: none;
+  }
+  .tablet {
+    display: none;
+  }
+  .desktop {
+    display: flex;
   }
 }
