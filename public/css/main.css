@@ -1,5 +1,5 @@
-@import url("https://fonts.googleapis.com/css?family=Lexend");  /* text */
-@import url("https://fonts.googleapis.com/css?family=Inter");  /* headings */
+@import url("https://fonts.googleapis.com/css?family=Lexend"); /* text */
+@import url("https://fonts.googleapis.com/css?family=Inter"); /* headings */
 
 :root {
     --font-text: "Lexend", sans-serif;
@@ -21,8 +21,8 @@
 }
 
 html {
-    font-size: 100%;  /* 16px */
-} 
+    font-size: 100%; /* 16px */
+}
 
 body {
     background-color: var(--bg-color);

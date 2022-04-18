@@ -1,156 +1,159 @@
 :root {
-  --nav-alt-color: white;
+    --nav-alt-color: white;
 }
 
 nav {
-  width: 100%;
-  overflow: visible;
-  background-color: var(--primary-color);
-  width: 100%;
-  color: var(--nav-alt-color);
-  position: fixed;
-  z-index: 1;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  height: 3rem;
-  margin: auto;
-  box-shadow: 0 1.5px 0 var(--bg-color);
-  font-size: 1rem;
+    width: 100%;
+    overflow: visible;
+    background-color: var(--primary-color);
+    width: 100%;
+    color: var(--nav-alt-color);
+    position: fixed;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    height: 3rem;
+    margin: auto;
+    box-shadow: 0 1.5px 0 var(--bg-color);
+    font-size: 1rem;
 }
 
 #nav-back {
-  font-size: 1.3rem;
-  display: none;
+    font-size: 1.3rem;
+    display: none;
 }
 
 #nav-back span,
 #nav-back div {
-  display: inline-block;
-  vertical-align: middle;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .nav-new-entry {
-  border-radius: 50%;
+    border-radius: 50%;
 }
 
 .icon {
-  padding: 0.25rem;
+    padding: 0.25rem;
 }
 
 .nav-new-entry span {
-  font-size: 1.25rem;
+    font-size: 1.25rem;
 }
 
-nav a, nav a:hover {
-  text-decoration: none;
-  color: var(--nav-alt-color);
+nav a,
+nav a:hover {
+    text-decoration: none;
+    color: var(--nav-alt-color);
 }
 
 #nav-name {
-  padding-left: 1rem;
+    padding-left: 1rem;
 }
 
 #nav-name div,
 .nav-logo {
-  display: inline-block;
-  vertical-align: middle;
-  font-size: 1.5rem;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 1.5rem;
 }
 
 .nav-logo {
-  width: 2rem;
+    width: 2rem;
 }
 
 #nav-links {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 #nav-links > * {
-  flex-direction: row;
+    flex-direction: row;
 }
 
-#nav-links a, .dropbtn {
-  height: 3rem;
-  padding: calc(1rem - 3px);
+#nav-links a,
+.dropbtn {
+    height: 3rem;
+    padding: calc(1rem - 3px);
 }
 
 #nav-links a {
-  float: left;
-  text-align: center;
-  text-decoration: none;
+    float: left;
+    text-align: center;
+    text-decoration: none;
 }
 
 .dropdown {
-  float: left;
-  overflow: hidden;
-  z-index: 1;
+    float: left;
+    overflow: hidden;
+    z-index: 1;
 }
 
 .dropdown .dropbtn {
-  border: none;
-  outline: none;
-  color: var(--nav-alt-color);
-  background-color: inherit;
-  font-family: inherit;
-  margin: 0;
+    border: none;
+    outline: none;
+    color: var(--nav-alt-color);
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
 }
 
 #nav-links a:hover,
 .dropdown:hover .dropbtn {
-  background-color: var(--nav-alt-color);
-  color: var(--primary-color);
+    background-color: var(--nav-alt-color);
+    color: var(--primary-color);
 }
 .dropdown-content {
-  display: none;
-  right: 0;
-  position: fixed;
-  background-color: var(--primary-color);
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+    display: none;
+    right: 0;
+    position: fixed;
+    background-color: var(--primary-color);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
 }
 
 .dropdown-content a {
-  float: none;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
+    float: none;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
 }
 .dropdown-content a:hover {
-  background-color: var(--nav-alt-color);
-  color: var(--primary-color);
+    background-color: var(--nav-alt-color);
+    color: var(--primary-color);
 }
 .dropdown:hover .dropdown-content {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .nav-profile {
-  margin: auto;
-  padding-top: 0.75rem;
+    margin: auto;
+    padding-top: 0.75rem;
 }
 
 .nav-profile > * {
-  font-size: 0.75rem;
-  text-align: center;
+    font-size: 0.75rem;
+    text-align: center;
 }
 
 .nav-profile img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 100%;
-  max-height: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    max-height: 100%;
 }
 
-.post-login, .pre-login {
-  display: flex;
-  flex-direction: row;
+.post-login,
+.pre-login {
+    display: flex;
+    flex-direction: row;
 }
 
 /* Make the back button disappear when the website is in the desktop view */
@@ -170,29 +173,29 @@ nav a, nav a:hover {
 } */
 
 .mobile {
-  display: none;
+    display: none;
 }
 .tablet {
-  display: none;
+    display: none;
 }
 .desktop {
-  display: none;
+    display: none;
 }
 
 @media screen and (max-width: 375px) {
-  .mobile {
-    display: flex;
-  }
+    .mobile {
+        display: flex;
+    }
 }
 
 @media screen and (min-width: 376px) and (max-width: 1024px) {
-  .tablet {
-    display: flex;
-  }
+    .tablet {
+        display: flex;
+    }
 }
 
 @media screen and (min-width: 1025px) {
-  .desktop {
-    display: flex;
-  }
+    .desktop {
+        display: flex;
+    }
 }
