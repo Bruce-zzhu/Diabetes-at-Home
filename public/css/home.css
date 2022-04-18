@@ -6,7 +6,7 @@
     display: flex;
     justify-content: space-evenly;
   }
-  
+
   
   .sub-nav a {
     color: black;
@@ -25,6 +25,11 @@
   
   .banner-img {
     float: right; 
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    max-height: 100%;
   }
   
   .banner-content {
