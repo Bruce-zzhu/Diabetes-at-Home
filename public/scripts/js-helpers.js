@@ -3,6 +3,11 @@ function logOut() {
     console.log("User has logged out");
 }
 
+function newEntry() {
+    console.log("User creating new entry");
+}
+
 module.exports = {
-    logOut
+    logOut,
+    newEntry
 }
