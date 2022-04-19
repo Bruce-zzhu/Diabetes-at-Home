@@ -1,33 +1,10 @@
-<style>
-    footer {
-      width: 100%;
-      background-color: var(--primary-color);
-      color: white;
-      padding: 0.5em;
-      text-align: center;
-      border-top: var(--bg-color); /* change according to content background */
-      position: static;
-      bottom: 0;
-    }
-    /* Make the back button disappear when the website is in the desktop view */
-    @media screen and (min-width: 1024px) {
-      .desktop-footer {
-        display: block;
-      }
-      .mobile-footer {
-        display: none;
-      }
-    }
+<footer class="desktop tablet">© 2022 Group xD</footer>
+<footer class="mobile post-login">
+    <button id="ftr-message" class="icon btn btn-light"><span class="material-icons">mail</span></button>
+    <button class="icon btn btn-light" onclick="newEntry()"><span class="material-icons">create</span></button>
+    <button class="icon btn btn-light"><span class="material-icons">equalizer</span></button>
+</footer>
 
-    /* Make the about and login button disappear when the website is in the tablet and phone view */
-    @media screen and (max-width: 1024px) {
-      .desktop-footer {
-        display: none;
-      }
-      .mobile-footer {
-        display: block;
-      }
-    }
-</style>
-<footer class="mobile-footer"></footer>
-<footer class="desktop-footer">© 2022 Group xD</footer>
+<script>
+    if ({{unread}}) { document.getElementById("ftr-message").innerHTML = "<span class='material-icons'>mark_email_unread</span>" }
+</script>
