@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = process.env.port || 3000;
 const path = require('path');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
@@ -19,7 +19,11 @@ db.once('open', () => {
 })
 
 // set up express-handlebars
-app.engine('hbs', exphbs.engine({ extname: 'hbs', defaultLayout: 'main' }));
+app.engine('hbs', exphbs.engine({
+    extname: 'hbs',
+    defaultLayout: 'main',
+    helpers: require("./public/scripts/hbs-helpers")
+}));
 app.set('view engine', 'hbs');
 
 // link views to views directory
@@ -38,7 +42,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 // hero page
 app.get('/', (req, res) => {
     res.render('home', {
-        style: 'about.css'
+        style: 'home.css'
     });
 })
 

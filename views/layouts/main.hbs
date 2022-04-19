@@ -15,13 +15,12 @@
     <link rel="stylesheet" href="/css/{{style}}" />
     <link rel="stylesheet" href="/css/main.css" />
     <link rel="stylesheet" href="/css/nav-bar.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
 </head>
 <body>
     {{> nav-bar login=true}}
     {{{body}}}
-    {{> footer}}
-
-
+    {{> footer unread=false}}
 
     <script
         src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
