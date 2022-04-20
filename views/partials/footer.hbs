@@ -1,10 +1,13 @@
+<script>
+    function newEntry() {
+        document.getElementById("new-entry-popup").style.display = "block";
+    }
+    if ({{unread}}) { document.getElementById("ftr-message").innerHTML = "<span class='material-icons'>mark_email_unread</span>" }
+</script>
+
 <footer class="desktop tablet">© 2022 Group xD</footer>
 <footer class="mobile post-login">
     <button id="ftr-message" class="icon btn btn-light"><span class="material-icons">mail</span></button>
     <button class="icon btn btn-light" onclick="newEntry()"><span class="material-icons">create</span></button>
     <button class="icon btn btn-light"><span class="material-icons">equalizer</span></button>
 </footer>
-
-<script>
-    if ({{unread}}) { document.getElementById("ftr-message").innerHTML = "<span class='material-icons'>mark_email_unread</span>" }
-</script>
