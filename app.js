@@ -62,7 +62,7 @@ app.get('/about-diabetes', (req, res) => {
 
 
 // clinician dashboard
-app.get('/dashboard', async (req, res) => {
+app.get('/clinician/dashboard', async (req, res) => {
     // .lean() is to solve the handlebars access error
     const patients = await Patient.find({}).populate('timeSeries').lean()  
     res.render('clinician/dashboard', {

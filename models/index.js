@@ -3,8 +3,7 @@ const { Patient, TimeSeries } = require("./patient");
 const { Clinician } = require("./clinician");
 
 require("dotenv").config();
-const connectionURL =
-  process.env.MONGO_URL || "mongodb://localhost:27017/diabetes-at-home";
+const connectionURL = process.env.MONGO_URL || "mongodb://localhost:27017/diabetes-at-home";
 mongoose.connect(connectionURL);
 
 const db = mongoose.connection;
