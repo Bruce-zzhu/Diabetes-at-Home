@@ -1,14 +1,14 @@
 const express = require("express");
 const app = express();
-const port = 3000;
-const path = require("path");
-const exphbs = require("express-handlebars");
-const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
-const { Patient, TimeSeries } = require("./models/patient");
+const port = process.env.port || 3000;
+const path = require('path');
+const exphbs = require('express-handlebars');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose')
+const {Patient, TimeSeries} = require('./models/patient');
 
-require("dotenv").config();
-const connectionURL = process.env.MONGO_URL || "mongodb://localhost:27017/diabetes-at-home";
+require('dotenv').config();
+const connectionURL = process.env.MONGO_URL || 'mongodb://localhost:27017/diabetes-at-home';
 mongoose.connect(connectionURL);
 
 const db = mongoose.connection;
@@ -19,8 +19,12 @@ db.once("open", () => {
 });
 
 // set up express-handlebars
-app.engine("hbs", exphbs.engine({ extname: "hbs", defaultLayout: "main" }));
-app.set("view engine", "hbs");
+app.engine('hbs', exphbs.engine({
+    extname: 'hbs',
+    defaultLayout: 'main',
+    helpers: require("./public/scripts/hbs-helpers")
+}));
+app.set('view engine', 'hbs');
 
 // link views to views directory
 app.set("views", path.join(__dirname, "/views"));
@@ -32,11 +36,11 @@ app.use(express.static(path.join(__dirname, "/public")));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // hero page
-app.get("/", (req, res) => {
-  res.render("home", {
-    style: "about.css",
-  });
-});
+app.get('/', (req, res) => {
+    res.render('home', {
+        style: 'home.css'
+    });
+})
 
 // aboutUs page
 app.get("/about-us", (req, res) => {
@@ -53,14 +57,14 @@ app.get("/about-diabetes", (req, res) => {
 });
 
 // clinician dashboard
-app.get("/dashboard", async (req, res) => {
-  // .lean() is to solve the handlebars access error
-  const patients = await Patient.find({}).populate("timeSeries").lean();
-  res.render("clinician/dashboard", {
-    style: "dashboard.css",
-    patients,
-  });
-});
+app.get('/clinician/dashboard', async (req, res) => {
+    // .lean() is to solve the handlebars access error
+    const patients = await Patient.find({}).populate('timeSeries').lean()  
+    res.render('clinician/dashboard', {
+        style: 'dashboard.css',
+        patients
+    });
+})
 
 // view patient page
 app.get("/view-patient/:id", async (req, res) => {
