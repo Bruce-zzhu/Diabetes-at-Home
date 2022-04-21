@@ -10,15 +10,6 @@ const patientSchema = new Schema(
         gender: { type: String, enum: ["male", "female"], required: true },
         engagementRate: { type: Number },
         email: { type: String, required: true, unique: true },
-        password: { type: String, required: true },
-
-        timeSeries: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: "TimeSeries",
-                required: true,
-            },
-        ],
     },
     {
         timestamps: { createdAt: "createTime", updatedAt: "updateTime" },
@@ -26,58 +17,56 @@ const patientSchema = new Schema(
 );
 
 const timeSeriesSchema = new Schema({
-    patientId: {
+    patient: {
         type: Schema.Types.ObjectId,
         ref: "Patient",
         required: true,
     },
-    date: { type: String, required: true },
-    data: {
-        bloodGlucose: {
-            name: { type: String, default: "Blood Glucose" },
-            status: {
-                type: String,
-                enum: ["recorded", "unrecorded"],
-                default: "unrecorded",
-            },
-            value: { type: Number, default: 8 },
-            comment: { type: String, default: "" },
-            createdAt: { type: Date, default: null },
-        },
-        insulin: {
-            name: { type: String, default: "Insulin Taken" },
-            status: {
-                type: String,
-                enum: ["recorded", "unrecorded"],
-                default: "unrecorded",
-            },
-            value: { type: Number, default: 2 },
-            comment: { type: String, default: "" },
-            createdAt: { type: Date, default: null },
-        },
-        weight: {
-            name: { type: String, default: "Weight" },
-            status: {
-                type: String,
-                enum: ["recorded", "unrecorded"],
-                default: "unrecorded",
-            },
-            value: { type: Number, default: 60 },
-            comment: { type: String, default: "" },
-            createdAt: { type: Date, default: null },
-        },
-        exercise: {
-            name: { type: String, default: "Exercise Completed" },
-            status: {
-                type: String,
-                enum: ["recorded", "unrecorded"],
-                default: "unrecorded",
-            },
-            value: { type: Number, default: 5000 },
-            comment: { type: String, default: "" },
-            createdAt: { type: Date, default: null },
-        },
+    date: { 
+        type: String, 
+        required: true 
     },
+    bloodGlucose: {
+        isRequired: {
+            type: Boolean,
+            default: true,
+        },
+        value: { type: Number },
+        unit: { type: String, default: "nmol/L" },
+        comment: { type: String, default: "" },
+        createdAt: { type: Date, default: null },
+    },
+    insulin: {
+        isRequired: {
+            type: Boolean,
+            default: true,
+        },
+        value: { type: Number },
+        unit: { type: String, default: "doses" },
+        comment: { type: String, default: "" },
+        createdAt: { type: Date, default: null },
+    },
+    weight: {
+        isRequired: {
+            type: Boolean,
+            default: true,
+        },
+        value: { type: Number },
+        unit: { type: String, default: "kg" },
+        comment: { type: String, default: "" },
+        createdAt: { type: Date, default: null },
+    },
+    exercise: {
+        isRequired: {
+            type: Boolean,
+            default: true,
+        },
+        value: { type: Number },
+        unit: { type: String, default: "steps" },
+        comment: { type: String, default: "" },
+        createdAt: { type: Date, default: null },
+    }
+
 });
 
 const Patient = mongoose.model("Patient", patientSchema);

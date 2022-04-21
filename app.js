@@ -8,8 +8,7 @@ const mongoose = require("mongoose");
 const { Patient, TimeSeries } = require("./models/patient");
 
 require("dotenv").config();
-const connectionURL =
-  process.env.MONGO_URL || "mongodb://localhost:27017/diabetes-at-home";
+const connectionURL = process.env.MONGO_URL || "mongodb://localhost:27017/diabetes-at-home";
 mongoose.connect(connectionURL);
 
 const db = mongoose.connection;
