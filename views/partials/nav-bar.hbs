@@ -111,7 +111,7 @@
             pre_login[i].innerHTML = "";
         }
         for (i=0; i<names.length; i++) {
-            names[i].href = "/patient/625546b114c1a266e5336d36/homepage"
+            names[i].href = "/homepage"
         }
     } else {
         const post_login = document.getElementsByClassName("post-login");
@@ -123,8 +123,6 @@
             names[i].href = "/"
         }
     }
-
-    // TODO: implement "< Back" button on mobile
 
     if (window.location.pathname == "/") {
         document.getElementById("nav-links").innerHTML = "";
