@@ -1,0 +1,81 @@
+.home-container {
+    top: 5rem;
+    background-color: var(--bg-color);
+    display: none;
+    position: relative;
+    padding-bottom: 5rem;
+}
+
+.module {
+    border: 1px solid var(--brown-color);
+    padding: 1rem;
+    box-shadow: 2px 2px 5px var(--brown-color);
+}
+
+#profile {
+    grid-area: profile;
+}
+
+#leaderboard {
+    grid-area: leaderboard;
+}
+
+#messages {
+    grid-area: messages;
+}
+
+#hist-today {
+    grid-area: hist-today;
+}
+
+#hist-7days {
+    grid-area: hist-7days;
+}
+
+#recent-data {
+    grid-area: recent-data;
+}
+
+@media screen and (max-width: 375px) {
+    .home-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .module {
+        margin: 1rem;
+        width: 324px;
+        height: 225px;
+    }
+}
+
+@media screen and (min-width: 376px) {
+    .home-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 2fr 2fr;
+        grid-gap: 2rem;
+        grid-template-areas:
+            "profile leaderboard messages"
+            "hist-today hist-7days recent-data";
+        grid-auto-columns: auto;
+        grid-auto-rows: auto;
+
+        margin: auto;
+        width: calc(280px * 3 + 2rem * 2);
+    }
+    .module {
+        width: 280px;
+        height: 180px;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .home-container {
+        width: calc(504px * 3 + 2rem * 2);
+    }
+    .module {
+        width: 504px;
+        height: 324px;
+    }
+}

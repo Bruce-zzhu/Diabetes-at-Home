@@ -1,13 +1,8 @@
-
-<nav>
-    <a id="nav-back" class="mobile">
-        <span class="material-icons">arrow_back_ios</span>
-        <div>Back</div>
-    </a>
+<nav id="normal-nav">
     <button onclick="newEntry()" class="btn btn-outline-light tablet post-login nav-new-entry icon"><span class="material-icons">create</span></button>
     <div class="mobile" style="width: 1rem"></div>
 
-    <a id="nav-name" href="/">
+    <a class="nav-name" href="/">
         <div>Diabetes</div>
         <img class="nav-logo" src="/images/logo.svg" alt="logo" />
         <div>Home</div>
@@ -78,9 +73,6 @@
                 </div>
             </div>
         </div>
-        <div id="nl-post-login">
-            <a href="/clinician/dashboard">Dashboard</a>
-            <a href="/comments">Comments</a>
 
         <div class="mobile">
             <div class="dropdown">
@@ -95,30 +87,48 @@
         </div>
     </div>
 </nav>
+<nav id="simple-nav">
+    <a id="nav-back" class="mobile">
+        <span class="material-icons">arrow_back_ios</span>
+        <div>Back</div>
+    </a>
+    <a class="nav-name" href="/">
+        <div>Diabetes</div>
+        <img class="nav-logo" src="/images/logo.svg" alt="logo" />
+        <div>Home</div>
+    </a>
+    <div></div>
+</nav>
 
 <script>
+    const names = document.getElementsByClassName("nav-name");
     if ({{login}}) {
         const pre_login = document.getElementsByClassName("pre-login");
         for (var i=0; i<pre_login.length; i++) {
             pre_login[i].remove();
             pre_login[i].innerHTML = "";
         }
-
+        for (i=0; i<names.length; i++) {
+            names[i].href = "/homepage"
+        }
     } else {
         const post_login = document.getElementsByClassName("post-login");
-        for (var i=0; i<post_login.length; i++) {
+        for (i=0; i<post_login.length; i++) {
             post_login[i].remove();
             post_login[i].innerHTML = "";
         }
+        for (i=0; i<names.length; i++) {
+            names[i].href = "/"
+        }
     }
-
-    // TODO: implement "< Back" button on mobile
 
     if (window.location.pathname == "/") {
-        document.getElementById("nav-links").style.display = "none";
+        document.getElementById("nav-links").innerHTML = "";
     }
 
-    if (window.location.pathname.startsWith("/about")) {
-
+    if (window.location.pathname.startsWith("/about") ||
+    window.location.pathname.startsWith("/settings")) {
+        document.getElementById("normal-nav").style.display = "none";
+        document.getElementById("simple-nav").style.display = "flex";
     }
 </script>

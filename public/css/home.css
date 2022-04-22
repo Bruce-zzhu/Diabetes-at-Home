@@ -4,6 +4,7 @@
     padding-top: 3.5rem;
     padding-bottom: 0.5rem;
     display: flex;
+    flex-direction: row;
     justify-content: space-evenly;
   }
 
@@ -19,7 +20,7 @@
     position: relative;
     background-color: #86C9E2;
     width: 100%;
-    height: 30em;
+    height: 30rem;
     overflow: hidden;
   }
   

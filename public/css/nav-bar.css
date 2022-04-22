@@ -21,7 +21,7 @@ nav {
 
 #nav-back {
     font-size: 1.3rem;
-    display: none;
+    display: block;
 }
 
 #nav-back span,
@@ -44,11 +44,21 @@ nav a:hover {
     color: var(--nav-alt-color);
 }
 
-#nav-name {
+.nav-name {
     padding-left: 1rem;
 }
 
-#nav-name div,
+nav .btn-light {
+    border-radius: 3px;
+    padding: 0rem 0.5rem 0rem 0.5rem;
+    border: 2px solid var(--brown-color)
+}
+
+nav .btn-outline-light:hover {
+    color: var(--brown-color);
+}
+
+.nav-name div,
 .nav-logo {
     display: inline-block;
     vertical-align: middle;
@@ -145,52 +155,44 @@ nav a:hover {
     max-height: 100%;
 }
 
-.post-login,
-.pre-login {
+nav .post-login,
+nav .pre-login {
     display: flex;
     flex-direction: row;
 }
 
-/* Make the back button disappear when the website is in the desktop view */
-/* @media screen and (min-width: 1024px) {
-  #nav-back {
+#simple-nav {
     display: none;
-  }
-} */
-/*
-    Make the about and login button disappear when the website is in the tablet
-    and phone view */
-/* @media screen and (max-width: 1024px) {
-  #nav-name,
-  #nav-links {
-    display: none;
-  }
-} */
+    text-align: center;
+}
 
-.mobile {
+nav .mobile {
     display: none;
 }
-.tablet {
+nav .tablet {
     display: none;
 }
-.desktop {
+nav .desktop {
     display: none;
 }
 
 @media screen and (max-width: 375px) {
-    .mobile {
+    nav .mobile {
         display: flex;
     }
 }
 
 @media screen and (min-width: 376px) and (max-width: 1024px) {
-    .tablet {
+    nav .tablet {
         display: flex;
+    }
+    #simple-nav .nav-name div {
+        display: none;
     }
 }
 
 @media screen and (min-width: 1025px) {
-    .desktop {
+    nav .desktop {
         display: flex;
     }
 }

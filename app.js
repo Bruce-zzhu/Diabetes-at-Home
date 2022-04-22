@@ -67,14 +67,25 @@ app.get('/clinician/dashboard', async (req, res) => {
 })
 
 // view patient page
-app.get("/view-patient/:id", async (req, res) => {
-  const pid = req.params.id;
-  const patient = await Patient.findById(pid).lean();
-  res.render("clinician/viewPatient", {
-    style: "viewPatient.css",
-    patient,
-  });
-});
+app.get('/view-patient/:id', async (req, res) => {
+    const pid = req.params.id;
+    const patient = await Patient.findById(pid).lean();
+    res.render('clinician/viewPatient', {
+        style: 'viewPatient.css',
+        patient
+    })
+})
+
+// patient homepage based on HARDCODED id
+app.get('/homepage', async (req, res) => {
+    const pid = "625546b114c1a266e5336d36"; // get pid from cookies or something
+    // const patient = await Patient.findById(pid).lean();
+    res.render('patient/homepage', {
+        style: 'homepage.css',
+        // patient
+    })
+})
+
 
 app.listen(port, () => {
   console.log(`Listen on http://localhost:${port}`);
