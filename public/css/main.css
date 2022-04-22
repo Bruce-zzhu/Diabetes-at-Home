@@ -27,6 +27,11 @@ html {
 body {
     background-color: var(--bg-color);
     font-family: var(--font-text);
+    min-height: 100vh;
+
+    /* display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-gap: 0; */
 }
 
 .icon {

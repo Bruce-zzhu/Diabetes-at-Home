@@ -13,11 +13,41 @@ footer {
 footer.mobile {
     position: fixed;
     background-color: var(--secondary-color);
-    display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
 
 footer .btn {
     border-radius: 50%;
+}
+
+footer .desktop, footer.desktop {
+    display: none;
+}
+
+footer .tablet, footer.tablet {
+    display: none;
+}
+
+footer .mobile, footer.mobile {
+    display: none;
+}
+
+
+@media screen and (max-width: 375px) {
+    footer .mobile, footer.mobile {
+        display: flex;
+    }
+}
+
+@media screen and (min-width: 376px) and (max-width: 1024px) {
+    footer .tablet, footer.tablet {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    footer .desktop, footer.desktop {
+        display: block;
+    }
 }

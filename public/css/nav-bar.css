@@ -145,8 +145,8 @@ nav a:hover {
     max-height: 100%;
 }
 
-.post-login,
-.pre-login {
+nav .post-login,
+nav .pre-login {
     display: flex;
     flex-direction: row;
 }
@@ -167,30 +167,30 @@ nav a:hover {
   }
 } */
 
-.mobile {
+nav .mobile {
     display: none;
 }
-.tablet {
+nav .tablet {
     display: none;
 }
-.desktop {
+nav .desktop {
     display: none;
 }
 
 @media screen and (max-width: 375px) {
-    .mobile {
+    nav .mobile {
         display: flex;
     }
 }
 
 @media screen and (min-width: 376px) and (max-width: 1024px) {
-    .tablet {
+    nav .tablet {
         display: flex;
     }
 }
 
 @media screen and (min-width: 1025px) {
-    .desktop {
+    nav .desktop {
         display: flex;
     }
 }
