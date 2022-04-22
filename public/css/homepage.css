@@ -12,28 +12,28 @@
     box-shadow: 2px 2px 5px var(--brown-color);
 }
 
-#d1 {
-    grid-area: d1;
+#profile {
+    grid-area: profile;
 }
 
-#d2 {
-    grid-area: d2;
+#leaderboard {
+    grid-area: leaderboard;
 }
 
-#d3 {
-    grid-area: d3;
+#messages {
+    grid-area: messages;
 }
 
-#d4 {
-    grid-area: d4;
+#hist-today {
+    grid-area: hist-today;
 }
 
-#d5 {
-    grid-area: d5;
+#hist-7days {
+    grid-area: hist-7days;
 }
 
-#d6 {
-    grid-area: d6;
+#recent-data {
+    grid-area: recent-data;
 }
 
 @media screen and (max-width: 375px) {
@@ -53,23 +53,29 @@
     .home-container {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: auto 2fr 2fr;
+        grid-template-rows: 2fr 2fr;
         grid-gap: 2rem;
         grid-template-areas:
-            "profile profile profile"
-            "d1 d2 d3"
-            "d4 d5 d6";
+            "profile leaderboard messages"
+            "hist-today hist-7days recent-data";
         grid-auto-columns: auto;
+        grid-auto-rows: auto;
 
         margin: auto;
-        width: 896px;
-        height: 576px;
+        width: calc(280px * 3 + 2rem * 2);
+    }
+    .module {
+        width: 280px;
+        height: 180px;
     }
 }
 
 @media screen and (min-width: 1025px) {
     .home-container {
-        width: 1344px;
-        height: 864px;
+        width: calc(504px * 3 + 2rem * 2);
+    }
+    .module {
+        width: 504px;
+        height: 324px;
     }
 }
