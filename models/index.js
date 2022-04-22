@@ -10,62 +10,59 @@ const db = mongoose.connection;
 // event handlers
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", () => {
-  console.log("connected to Mongo");
+    console.log("connected to Mongo");
 });
+
+// sample data
+const newPatient = new Patient({
+    firstName: "Pat",
+    lastName: "Smith",
+    nickName: "Pat",
+    age: "30",
+    gender: "male",
+    email: "pat@diabetemail.com",
+});
+const newClinician = new Clinician({
+    firstName: "Chris",
+    lastName: " Lee",
+    email: "chris@diabetemail.com",
+    patients: [newPatient._id]
+});
+const newTimeseries = new TimeSeries({
+    patient: newPatient._id,
+    date: new Date(),
+    bloodGlucose: {
+        isRequired: true,
+        value: 8
+    },
+    insulin: {
+        isRequired: true,
+        value: 2
+    },
+    weight: {
+        isRequired: false,
+        value: 65
+    },
+    exercise: {
+        isRequired: false,
+        value: 2000
+    }
+})
+
 
 // load sample data into mongodb
 const loadDataToDB = async () => {
-  // delete the old data
-  await Patient.deleteMany({});
-  await TimeSeries.deleteMany({});
-  await Clinician.deleteMany({});
+    // delete the old data
+    await Patient.deleteMany({});
+    await TimeSeries.deleteMany({});
+    await Clinician.deleteMany({});
 
-  const bloodGlucose = new TimeSeries({
-    name: "Blood Glucose",
-    value: 8,
-  });
-  await bloodGlucose.save();
-  const insulin = new TimeSeries({
-    name: "Insulin Taken",
-    value: 2,
-  });
-  await insulin.save();
-  const weight = new TimeSeries({
-    name: "Weight",
-    value: 60,
-  });
-  await weight.save();
-  const exercise = new TimeSeries({
-    name: "Exercise Completed",
-    value: 5000,
-  });
-  await exercise.save();
-  const comment = new TimeSeries({
-    name: "Comment",
-    comment: "good",
-  });
-  await comment.save();
-
-  const clinician = new Clinician({
-    firstName: "Tony",
-    lastName: "He",
-    email: "TonyHe@db.com",
-    patients: [],
-  });
-  await clinician.save();
-  for (let i = 0; i < 5; i++) {
-    const patient = new Patient({
-      firstName: "Jon",
-      lastName: "Snow",
-      nickName: "King in the North",
-      age: 30,
-      gender: "M",
-      timeSeries: [bloodGlucose, insulin, weight, exercise, comment],
-    });
-    await patient.save();
-  }
+    await newPatient.save();
+    await newClinician.save();
+    await newTimeseries.save();
+    
 };
 
 loadDataToDB().then(() => {
-  mongoose.connection.close();
+    mongoose.connection.close();
 });
