@@ -48,6 +48,16 @@ nav a:hover {
     padding-left: 1rem;
 }
 
+nav .btn-light {
+    border-radius: 3px;
+    padding: 0rem 0.5rem 0rem 0.5rem;
+    border: 2px solid var(--brown-color)
+}
+
+nav .btn-outline-light:hover {
+    color: var(--brown-color);
+}
+
 .nav-name div,
 .nav-logo {
     display: inline-block;
