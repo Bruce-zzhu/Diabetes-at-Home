@@ -1,9 +1,9 @@
 <style>
     #p-container {
         display: flex;
-        width: 50%;
+        width: 70%;
         height: 6rem;
-        justify-content: space-around;
+        justify-content: space-evenly;
         align-items: center;
         background-color: var(--tertiary-color);
         border: 1px solid var(--brown-color);
@@ -17,8 +17,8 @@
         position: relative;
         display: grid;
     }
-    .profile-pic { 
-        width: 4rem; 
+    .profile-pic {
+        width: 4rem;
         grid-column: 4 / -1;
         grid-row: 1;
         margin-left: 0.8rem;
@@ -30,28 +30,92 @@
         z-index: 1;
         padding-top: 55%;
     }
-
+    #container {
+        display: flex;
+        justify-content: space-between;
+    }
+    .nav-buttons {
+        display: flex;
+        width: 25%;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .nav-links {
+        background-color: white;
+        border-radius: 50%;
+        width: 4.5rem;
+        height: 4.5rem;
+        border: 1px solid var(--brown-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .nav-icons {
+        width: 2.2rem;
+    }
 </style>
 
-<div id="p-container">
-    <div class="profile-img">
-        <img class="profile-pic" src="/images/patientProfile.jpg" alt="profile" />
-        <img class="profile-badge" src="/images/badge.svg" alt="badge">
-    </div>
-    
-    <h3>{{firstName}} {{lastName}}</h3>
-    <div>Nickname: {{nickName}} <br />Age: {{age}} <br />Gender: {{gender}} </div>
-    <div class="engagement">
-        <h5>Engagement</h5>
-        <div class="progress">
-            <div
-                class="progress-bar"
-                role="progressbar"
-                style="width: 80%; background-color: var(--green-color);"
-                aria-valuenow="80"
-                aria-valuemin="0"
-                aria-valuemax="100"
-            >80%</div>
+<div id="container">
+    <div id="p-container">
+        <div class="profile-img">
+            <img
+                class="profile-pic"
+                src="/images/patientProfile.jpg"
+                alt="profile"
+            />
+            <img class="profile-badge" src="/images/badge.svg" alt="badge" />
         </div>
+
+        <h3>{{firstName}} {{lastName}}</h3>
+        <div>Nickname:
+            {{nickName}}
+            <br />Age:
+            {{age}}
+            <br />Gender:
+            {{gender}}
+        </div>
+        <div class="engagement">
+            <h5>Engagement</h5>
+            <div class="progress">
+                <div
+                    class="progress-bar"
+                    role="progressbar"
+                    style="width: 80%; background-color: var(--green-color);"
+                    aria-valuenow="80"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                >80%</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-buttons">
+        <a href="/">
+            <div class="nav-links">
+                <img
+                    class="nav-icons"          
+                    src="https://uxwing.com/wp-content/themes/uxwing/download/21-medical-science-lab/diagnostic-pulse.svg?fbclid=IwAR1zaDg8YWbt1LRrpu-2IynV1cZh296G-nxhCZfb2leP_v4WbXJRVmpaUSc"
+                    alt="view"
+                />
+            </div>
+        </a>
+        <a href="">
+            <div class="nav-links">
+                <img
+                    class="nav-icons"
+                    src="https://uxwing.com/wp-content/themes/uxwing/download/37-communication-chat-call/talk-bubble.svg?fbclid=IwAR2uTjZfSTihT5gGssLKvyiWhx-gUMphHcptNEcjUs7hPWT3abiHRm_RDqg"
+                    alt="comment"
+                />
+            </div>
+        </a>
+        <a href="">
+            <div class="nav-links">
+                <img
+                    class="nav-icons"   
+                    src="https://uxwing.com/wp-content/themes/uxwing/download/03-editing-user-action/notebook-pen.svg?fbclid=IwAR1HYmoODkyjNK9OCZzQwiiwBj3aTYrJ5d2x8c0JGge4EAg7aVEOGLGEG_c"
+                    alt="support"
+                />
+            </div>
+        </a>
     </div>
 </div>

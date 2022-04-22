@@ -1,0 +1,65 @@
+#view-container {
+    width: 80%;
+    margin: auto;
+}
+
+.space {
+    padding-top: 5rem;
+}
+
+.requirement {
+    padding-top: 4rem;
+    padding-bottom: 10rem;
+    
+}
+
+.re-container {
+    border: 1px solid var(--brown-color);
+    padding-left: 0;
+    padding-right: 0;
+    width: 100% !important;
+    position: relative;
+    height: 15rem;
+}
+
+.header {
+    height: 4rem;
+    background-color: var(--tertiary-color);
+    border-bottom: 1px solid var(--brown-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.header-text {
+    font-size: 1.7rem;
+    font-weight: bold;
+}
+
+.row {
+    font-size: 1rem;
+}
+
+input {
+    width: 5rem;
+}
+
+.checkbox {
+    height: 1rem;
+    width: 3rem;
+    accent-color: var(--green-color);
+}
+
+.require-text > span, .require-text > div{
+    display: inline-block;
+    margin-top: auto;
+}
+
+.require-text {
+    display: flex;
+    flex:1;
+    position: absolute;
+    right: 1rem;
+    bottom: 0;
+}
