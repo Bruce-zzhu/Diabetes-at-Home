@@ -113,6 +113,7 @@ grid-template-rows: 100%;
     height: 200px
 }
 #popup-overlay{
+    display: none;
     background-color: rgba(0, 0, 0, 0.7);
     top: 0;
     left: 0;
@@ -162,6 +163,7 @@ grid-template-rows: 100%;
     }
     #popup-overlay{
         background-color: initial;
+        z-index: 0;
     }
 }
 </style>
@@ -181,7 +183,7 @@ grid-template-rows: 100%;
         <a class="close" href="#">&times;</a>
         </div>
     </div>
-    <div class="container"> <!-- Add New Entry Container -->
+    <div id="popup" class="container"> <!-- Add New Entry Container -->
         <div class="content-container">
         <span>Add new entry for DD/MM</span> <!-- change to heading -->
         <br>

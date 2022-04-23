@@ -4,7 +4,8 @@ const port = process.env.port || 3000;
 const path = require('path');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose')
+const helpers = require('../Diabetes-at-Home/public/scripts/js-helpers');
+const mongoose = require('mongoose');
 const {Patient, TimeSeries} = require('./models/patient');
 
 require('dotenv').config();
