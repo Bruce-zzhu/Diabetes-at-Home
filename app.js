@@ -86,6 +86,13 @@ app.get('/homepage', async (req, res) => {
     })
 })
 
+// Add New Entry page
+app.get('/new-entry', (req, res) => {
+    res.render('partials/new-entry', {
+        // style: 'about.css'
+    });
+})
+
 
 app.listen(port, () => {
   console.log(`Listen on http://localhost:${port}`);
