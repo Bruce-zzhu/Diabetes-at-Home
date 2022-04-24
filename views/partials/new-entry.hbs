@@ -55,6 +55,10 @@ grid-template-rows: 100%;
 .comment-icon{
     display: none;
 }
+.buttons{
+    display: flex;
+    justify-content: center;
+}
 .buttons > *{
     margin: 0% 15px 0% 15px;
 }
@@ -194,57 +198,57 @@ grid-template-rows: 100%;
         <span>Add new entry for DD/MM</span> <!-- change to heading -->
         <br>
         <div class="form-container">
-            <form action="" class="data-form">
-                <div class="data-form-row">
-                    <label for="">My blood glucose levels are:</label>
+            <form action="/" name="data-entry-form" method="post" class="data-form">
+                <div class="data-form-row"> <!-- blood glucose entry -->
+                    <label for="blood-glucose-entry">My blood glucose levels are:</label>
                     <div class="grid"> 
-                        <input type="text" class="data-input">
+                        <input name="blood-glucose-entry" type="text" class="data-input">
                         <span class="unit-label">(nmol/L)</span>   
                         <span class="comment-label">Comments:</span> 
-                        <input type="text" class="comment-input">
+                        <input name="blood-glucose-entry-comment" type="text" class="comment-input">
                         <a href="#comment-popup-container" class="comment-icon-container"><img src="chat-dots.svg" alt="" class="comment-icon" href="#comment-popup-container"></a>
                         
                     </div>
-                </div>
-                
-                <div class="data-form-row">
-                    <label for="">My current weight is:</label>
+                </div>                
+                <div class="data-form-row"> <!-- weight entry -->
+                    <label for="weight-entry">My current weight is:</label>
                     <div class="grid"> 
-                        <input type="text" class="data-input">
+                        <input name="weight-entry" type="text" class="data-input">
                         <span class="unit-label">(kg)</span>   
                         <span class="comment-label">Comments:</span> 
-                        <input type="text" class="comment-input">  
+                        <input name="weight-entry-comment" type="text" class="comment-input">  
                         <img src="chat-dots.svg" alt="" class="comment-icon">
                     </div>
                 </div>
-                <div class="data-form-row">
-                    <label for="">I took this many doses of insulin:</label>
+                <div class="data-form-row"> <!-- insulin doses entry -->
+                    <label for="insulin-doses-entry">I took this many doses of insulin:</label>
                     <div class="grid"> 
-                        <input type="text" class="data-input">
+                        <input name="insulin-doses-entry" type="text" class="data-input">
                         <span class="unit-label">(doses)</span>   
                         <span class="comment-label">Comments:</span> 
-                        <input type="text" class="comment-input">  
+                        <input name="insulin-doses-entry-comment" type="text" class="comment-input">  
                         <img src="chat-dots.svg" alt="" class="comment-icon">
                     </div>
                 </div>
-                <div class="data-form-row">
-                    <label for="">I've walked this many steps:</label>
+                <div class="data-form-row"> <!-- step count entry  -->
+                    <label for="step-count-entry">I've walked this many steps:</label>
                     <div class="grid"> 
-                        <input type="text" class="data-input">
+                        <input name="step-count-entry" type="text" class="data-input">
                         <span class="unit-label">(steps)</span>   
                         <span class="comment-label">Comments:</span> 
-                        <input type="text" class="comment-input">
+                        <input name="step-count-entry-comment" type="text" class="comment-input">
                         <img src="chat-dots.svg" alt="" class="comment-icon">  
                     </div>
+                </div>
+                <div class="buttons">
+                    <button class="button">Cancel</button>
+                    <button class="button">Save</button>
+                    <button type="submit" value="Upload" id="upload-button"class="button">Upload</button>
                 </div>
             </form>
             
         </div>
-        <div class="buttons">
-            <button class="button">Cancel</button>
-            <button class="button">Save</button>
-            <button class="button">Upload</button>
-            </div>
+        
         </div>
     </div>
 </div>
