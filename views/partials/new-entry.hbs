@@ -124,6 +124,11 @@ grid-template-rows: 100%;
     overflow-y: hidden;
 }
 
+#escape-popup{
+    width: 100%;
+    height: 100%;
+}
+
 /* On screens that are 600px wide or less, make the menu links stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
     .container {
@@ -168,6 +173,7 @@ grid-template-rows: 100%;
 }
 </style>
 <div id="popup-overlay"> <!-- Background that shades the whole page -->
+    <div id="escape-popup"></div>
     <div id="comment-popup-container" class="overlay"> <!-- Add comment to data entry Popup  -->
         <div class="popup">
         <form action="/file.php"> <!-- change to database -->
