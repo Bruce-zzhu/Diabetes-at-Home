@@ -92,8 +92,11 @@ app.get('/new-entry', (req, res) => {
     res.render('partials/new-entry', {
         // style: 'about.css'
     });
-    console.log(JSON.stringify(req.body))
 })
+
+app.post('/new-entry'), (req, res) => {
+  res.redirect('/new-entry')
+}
 
 app.listen(port, () => {
   console.log(`Listen on http://localhost:${port}`);
