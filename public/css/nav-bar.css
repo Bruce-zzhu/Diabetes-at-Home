@@ -12,15 +12,15 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
-    height: 3rem;
+    padding: 16px;
+    height: 48px;
     margin: auto;
     box-shadow: 0 1.5px 0 var(--bg-color);
-    font-size: 1rem;
+    font-size: 16px;
 }
 
 #nav-back {
-    font-size: 1.3rem;
+    font-size: 20.8px;
     display: block;
 }
 
@@ -35,7 +35,7 @@ nav {
 }
 
 .nav-new-entry span {
-    font-size: 1.25rem;
+    font-size: 20px;
 }
 
 nav a,
@@ -45,12 +45,12 @@ nav a:hover {
 }
 
 .nav-name {
-    padding-left: 1rem;
+    padding-left: 16px;
 }
 
 nav .btn-light {
     border-radius: 3px;
-    padding: 0rem 0.5rem 0rem 0.5rem;
+    padding: 0 8px 0 8px;
     border: 2px solid var(--brown-color)
 }
 
@@ -62,11 +62,11 @@ nav .btn-outline-light:hover {
 .nav-logo {
     display: inline-block;
     vertical-align: middle;
-    font-size: 1.5rem;
+    font-size: 24px;
 }
 
 .nav-logo {
-    width: 2rem;
+    width: 32px;
 }
 
 #nav-links {
@@ -81,8 +81,8 @@ nav .btn-outline-light:hover {
 
 #nav-links a,
 .dropbtn {
-    height: 3rem;
-    padding: calc(1rem - 3px);
+    height: 48px;
+    padding: calc(16px - 3px);
 }
 
 #nav-links a {
@@ -139,11 +139,11 @@ nav .btn-outline-light:hover {
 
 .nav-profile {
     margin: auto;
-    padding-top: 0.75rem;
+    padding-top: 12px;
 }
 
 .nav-profile > * {
-    font-size: 0.75rem;
+    font-size: 12px;
     text-align: center;
 }
 
@@ -176,7 +176,7 @@ nav .desktop {
     display: none;
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 376px) {
     nav .mobile {
         display: flex;
     }
