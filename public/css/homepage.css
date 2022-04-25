@@ -36,6 +36,58 @@
     grid-area: recent-data;
 }
 
+#p-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 70%;
+}
+
+.profile-img {
+    position: relative;
+}
+.profile-pic {
+    width: 10rem;
+    position: absolute;
+    left: 1rem;
+}
+.profile-badge {
+    width: 3rem;
+    position: absolute;
+    top: 7.5rem;
+}
+
+.profile-text {
+    width: 60%;
+    padding-left: 15%;
+}
+
+.pname {
+    padding-bottom: 1.5rem;
+    font-weight: bold;
+}
+
+.pinfo {
+    font-size: 1.2rem;
+}
+
+.progress {
+    background-color: white;
+    border: 1px solid var(--brown-color);
+    border-radius: 10px;
+    margin: auto;
+}
+
+.engagement {
+    width: 70%;
+    margin: auto;
+}
+
+
+
+
+
+
 @media screen and (max-width: 375px) {
     .home-container {
         display: flex;
@@ -69,6 +121,13 @@
         height: 180px;
     }
 }
+
+@media screen and (max-width: 1024px) {
+    html {
+        font-size: 60% !important;
+    }
+}
+
 
 @media screen and (min-width: 1025px) {
     .home-container {
