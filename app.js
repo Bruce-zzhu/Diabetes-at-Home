@@ -60,10 +60,12 @@ app.get("/about-diabetes", (req, res) => {
 // clinician dashboard
 app.get('/clinician/dashboard', async (req, res) => {
     // .lean() is to solve the handlebars access error
-    const patients = await Patient.find({}).populate('timeSeries').lean()  
+    const patientPat = await Patient.findOne({firstName: "Pat"}).lean()
+    const timeSeries = await TimeSeries.findOne({patient: patientPat._id}).lean()
     res.render('clinician/dashboard', {
         style: 'dashboard.css',
-        patients
+        patientPat,
+        timeSeries
     });
 })
 
@@ -94,9 +96,9 @@ app.get('/new-entry', (req, res) => {
     });
 })
 
-app.post('/new-entry'), (req, res) => {
+app.post('/new-entry', (req, res) => {
   res.redirect('/new-entry')
-}
+})
 
 app.listen(port, () => {
   console.log(`Listen on http://localhost:${port}`);
