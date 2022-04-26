@@ -87,10 +87,10 @@ app.get('/view-patient/:id/overview', async (req, res) => {
 
 // patient homepage based on HARDCODED id
 app.get('/patient/dashboard', async (req, res) => {
-    // const patient = await Patient.findOne({firstName: 'Pat'}).lean();
+    const patient = await Patient.findOne({firstName: 'Pat'}).lean();
     res.render('patient/dashboard', {
         style: 'p-dashboard.css',
-        // patient
+        patient
     })
 })
 
