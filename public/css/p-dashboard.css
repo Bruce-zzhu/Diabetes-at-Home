@@ -10,7 +10,7 @@
 
 .module {
     border: 1px solid var(--brown-color);
-    padding: 1rem;
+    padding: 0.5rem;
     box-shadow: 2px 2px 5px var(--brown-color);
 }
 
@@ -43,6 +43,7 @@
     justify-content: space-between;
     align-items: flex-start;
     height: 70%;
+    margin-top: 0.5rem;
 }
 
 .profile-img {
@@ -82,8 +83,9 @@
     margin-left: 1rem;
 }
 
-.engagement > h5 {
+.engagement h5 {
     display: inline-block;
+    font-family: var(--font-text);
 }
 
 .engagement {
