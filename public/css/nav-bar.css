@@ -161,9 +161,17 @@ nav .pre-login {
     flex-direction: row;
 }
 
+nav .spacer {
+    width: 50px;
+}
+
+nav .simple-spacer {
+    width: 80px;
+}
+
 #simple-nav {
-    display: none;
     text-align: center;
+    display: flex;
 }
 
 nav .mobile {
@@ -180,14 +188,15 @@ nav .desktop {
     nav .mobile {
         display: flex;
     }
+    
+    #simple-nav .nav-name div {
+        display: none;
+    }
 }
 
 @media screen and (min-width: 376px) and (max-width: 1024px) {
     nav .tablet {
         display: flex;
-    }
-    #simple-nav .nav-name div {
-        display: none;
     }
 }
 

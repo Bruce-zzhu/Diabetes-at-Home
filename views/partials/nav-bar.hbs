@@ -1,10 +1,10 @@
 <nav id="normal-nav">
-    <div id="new-entry-button-header" class="tablet post-login">
-        <button class="btn btn-outline-light icon nav-new-entry"><span
+    <div id="nav-entry-div" class="tablet post-login">
+        <button class="new-entry-button-header btn btn-outline-light icon nav-new-entry"><span
                 class="material-icons"
             >create</span></button>
     </div>
-    <div class="mobile" style="width: 1rem"></div>
+    <div class="mobile spacer"></div>
 
     <a class="nav-name" href="/">
         <div>Diabetes</div>
@@ -115,7 +115,7 @@
     </div>
 </nav>
 <nav id="simple-nav">
-    <a id="nav-back" class="mobile">
+    <a id="nav-back" class="">
         <span class="material-icons">arrow_back_ios</span>
         <div>Back</div>
     </a>
@@ -124,10 +124,19 @@
         <img class="nav-logo" src="/images/logo.svg" alt="logo" />
         <div>Home</div>
     </a>
-    <div></div>
+    <div class="simple-spacer"></div>
 </nav>
 
 <script>
+    document.getElementById("nav-back").setAttribute('href', document.referrer);
+    
+    if (window.location.pathname.startsWith("/about") || 
+    window.location.pathname.startsWith("/settings")) {
+        document.getElementById("normal-nav").remove()
+    } else {
+        document.getElementById("simple-nav").remove()
+    }
+
     const names = document.getElementsByClassName("nav-name");
     if ({{login}}) {
         const pre_login = document.getElementsByClassName("pre-login");
@@ -136,7 +145,7 @@
             pre_login[i].innerHTML = "";
         }
         for (i=0; i<names.length; i++) {
-            names[i].href = "/homepage"
+            names[i].href = "/dashboard"
         }
     } else {
         const post_login = document.getElementsByClassName("post-login");
@@ -148,8 +157,9 @@
             names[i].href = "/"
         }
     }
+
     if (window.location.pathname == "/") {
-        document.getElementById("new-entry-button-header").innerHTML = "";
+        document.getElementById("nav-entry-div").remove();
     }
 
 </script>
