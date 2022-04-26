@@ -1,5 +1,9 @@
 <nav id="normal-nav">
-    <button id="new-entry-button-header" class="btn btn-outline-light tablet post-login nav-new-entry icon"><span class="material-icons">create</span></button>
+    <div id="new-entry-button-header" class="tablet post-login">
+        <button class="btn btn-outline-light icon nav-new-entry"><span
+                class="material-icons"
+            >create</span></button>
+    </div>
     <div class="mobile" style="width: 1rem"></div>
 
     <a class="nav-name" href="/">
@@ -30,15 +34,34 @@
                 <a href="/dashboard">Dashboard</a>
                 <a href="/comments">Comments</a>
                 <div class="dropdown">
-                    <button class="dropbtn"><span class="material-icons">account_circle</span></button>
+                    <button class="dropbtn"><span
+                            class="material-icons"
+                        >account_circle</span></button>
                     <div class="dropdown-content">
                         <div class="nav-profile">
-                            <img style="width: 3rem;" src="https://uxwing.com/wp-content/themes/uxwing/download/12-peoples-avatars/no-profile-picture.svg" />
-                            <p><strong>Firstname Lastname</strong><br />clinician@email.com</p>
-                            <p><button onclick="logOut()" class="btn btn-light">Log out</button></p>                     
+                            <img
+                                style="width: 3rem;"
+                                src="https://uxwing.com/wp-content/themes/uxwing/download/12-peoples-avatars/no-profile-picture.svg"
+                            />
+                            <p><strong>Chris Lee</strong><br
+                                />chris@diabetemail.com</p>
+                            <p><button
+                                    onclick="logOut()"
+                                    class="btn btn-light"
+                                >Log out</button></p>
                         </div>
-                        <a href="/settings/colour"><span style="float: left">Colour Scheme</span><span style="float: right" class="material-icons">chevron_right</span></a>
-                        <a href="/settings/password"><span style="float: left">Change Password</span><span style="float: right" class="material-icons">chevron_right</span></a>
+                        <a href="/settings/colour"><span
+                                style="float: left"
+                            >Colour Scheme</span><span
+                                style="float: right"
+                                class="material-icons"
+                            >chevron_right</span></a>
+                        <a href="/settings/password"><span
+                                style="float: left"
+                            >Change Password</span><span
+                                style="float: right"
+                                class="material-icons"
+                            >chevron_right</span></a>
                     </div>
                 </div>
             </div>
@@ -63,7 +86,9 @@
             </div>
             <div class="post-login">
                 <div class="dropdown">
-                    <button class="dropbtn"><span class="material-icons">menu</span></button>
+                    <button class="dropbtn"><span
+                            class="material-icons"
+                        >menu</span></button>
                     <div class="dropdown-content">
                         <a href="/dashboard">Dashboard</a>
                         <a href="/about-diabetes">About Diabetes</a>
@@ -76,7 +101,9 @@
 
         <div class="mobile">
             <div class="dropdown">
-                <button class="dropbtn icon"><span class="material-icons">menu</span></button>
+                <button class="dropbtn icon"><span
+                        class="material-icons"
+                    >menu</span></button>
                 <div class="dropdown-content">
                     <a href="/dashboard">Dashboard</a>
                     <a href="/about-diabetes">About Diabetes</a>
@@ -121,14 +148,8 @@
             names[i].href = "/"
         }
     }
-
     if (window.location.pathname == "/") {
-        document.getElementById("nav-links").innerHTML = "";
+        document.getElementById("new-entry-button-header").innerHTML = "";
     }
 
-    if (window.location.pathname.startsWith("/about") ||
-    window.location.pathname.startsWith("/settings")) {
-        document.getElementById("normal-nav").style.display = "none";
-        document.getElementById("simple-nav").style.display = "flex";
-    }
 </script>
