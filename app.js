@@ -101,7 +101,6 @@ app.get('/new-entry', (req, res) => {
 })
 
 app.post('/new-entry', (req, res) => {
-<<<<<<< HEAD
   res.redirect('/new-entry');
   console.log(req.body)
 })
@@ -109,9 +108,6 @@ app.post('/new-entry', (req, res) => {
 // Message Box
 app.get('/message-box', async(req, res) => {
     res.render('partials/message-box');
-=======
-  res.redirect('/new-entry')
->>>>>>> 8ac926baec332009ebd5e3208dc3a42adb4ac220
 })
 
 app.listen(port, () => {
