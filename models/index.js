@@ -33,19 +33,27 @@ const newTimeseries = new TimeSeries({
     date: new Date(),
     bloodGlucose: {
         isRequired: true,
-        value: 8
+        value: 20,
+        upperBound: 10,
+        lowerBound: 6
     },
     insulin: {
         isRequired: true,
-        value: 2
+        value: 2,
+        upperBound: 3,
+        lowerBound: 0
     },
     weight: {
         isRequired: false,
-        value: 65
+        value: 65,
+        upperBound: 100,
+        lowerBound: 50
     },
     exercise: {
         isRequired: false,
-        value: 2000
+        value: -1,
+        upperBound: 100000,
+        lowerBound: 0
     }
 })
 
