@@ -4,7 +4,7 @@ const port = process.env.port || 3000;
 const path = require('path');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
-const helpers = require(__dirname + '/public/scripts/js-helpers');
+const {isSameDay} = require('./public/scripts/js-helpers');
 const mongoose = require('mongoose');
 const { Patient, TimeSeries } = require('./models/patient');
 
@@ -62,16 +62,31 @@ app.get('/about-diabetes', (req, res) => {
 
 // clinician dashboard
 app.get('/clinician/dashboard', async (req, res) => {
-    // .lean() is to solve the handlebars access error
-    const patientPat = await Patient.findOne({ firstName: 'Pat' }).lean();
-    const timeSeries = await TimeSeries.findOne({
-        patient: patientPat._id,
-    }).lean();
-    res.render('clinician/dashboard', {
-        style: 'dashboard.css',
-        patientPat,
-        timeSeries,
-    });
+    try {
+        // .lean() is to solve the handlebars access error
+        const patients = await Patient.find({}).lean();
+        var timeSeriesList = [];
+        var today = new Date();
+        for (p of patients) {
+            const timeSeries = await TimeSeries.findOne({patient: p._id}).populate('patient').lean();
+            // check if it's today's timeseries
+            if (isSameDay(today, timeSeries.date)) {
+                // today's timeseries found
+                timeSeriesList.push(timeSeries)
+            } else {
+                // create today's timeseries
+            }
+            
+        } 
+
+        res.render('clinician/dashboard', {
+            style: 'dashboard.css',
+            timeSeriesList
+        });
+    } catch(e) {
+        console.log(e);
+    }
+    
 });
 
 // view patient page
@@ -91,9 +106,9 @@ app.get('/view-patient/:id/overview', async (req, res) => {
 
 // patient homepage based on HARDCODED id
 app.get('/patient/dashboard', async (req, res) => {
-    const patient = await Patient.findOne({ firstName: 'Pat' }).lean();
+    const patient = await Patient.findOne({firstName: 'Pat'}).lean();
     const timeSeries = await TimeSeries.findOne({patient: patient._id}).lean();
-    const dateArray = timeSeries.date.split(' ');
+    const dateArray = [timeSeries.date.getDate(), '0' + timeSeries.date.getMonth()+1, timeSeries.date.getFullYear()]
 
     res.render('patient/dashboard', {
         style: 'p-dashboard.css',
@@ -110,15 +125,11 @@ app.get('/new-entry', (req, res) => {
 });
 
 app.post('/new-entry', async (req, res) => {
-    const patient = await Patient.findOne({ firstName: 'Pat' }).lean();
     const blood = req.body.bloodGlucose;
     const weight = req.body.weight;
     const insulin = req.body.insulin;
     const exercise = req.body.exercise;
-    const newTimeSeries = new TimeSeries({
-        patient: patient._id,
-
-    })
+    
     console.log(req.body)
     res.redirect('/patient/dashboard');
 })

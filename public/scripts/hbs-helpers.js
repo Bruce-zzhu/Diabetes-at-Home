@@ -3,9 +3,12 @@ var register = function(Handlebars) {
         // check if the timeseries value is bounded
         isNotBounded: function (num, upper, lower) {
             return !(num <= upper && num >= lower);
+        },
+
+        // to make @index start from 1
+        idx: function(value) {
+            return parseInt(value) + 1;
         }
-
-
         
     }
 

@@ -16,6 +16,7 @@
 
     <table class="table table-striped text-center">
         <thead class="align-middle">
+            
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Patient</th>
@@ -24,48 +25,54 @@
                 <th scope="col">Weight<br /><span>kg</span></th>
                 <th scope="col">Exercise Completed<br /><span>steps</span></th>
             </tr>
+            
         </thead>
         <tbody>
-            {{!-- {{#each patients}}
-                <tr class="align-middle">
-                    <th scope="row">{{@index}}</th>
-                    
-                        <td>
-                            <a href="/view-patient/{{_id}}">
-                                <strong>{{firstName}} {{lastName}}</strong><br />
-                                Age: {{age}} &nbsp;
-                                Gender: {{gender}}
-                            </a>
-                        </td>
-                    
-                    {{#each timeSeries}}
-                    <td>{{value}} {{comment}}</td>
-            
-                    {{/each}}
-                </tr>
-            {{/each}} --}}
-
-            
+            {{#each timeSeriesList}}
             <tr class="align-middle">
-                <th scope="row">1</th>
-                    {{#with patientPat}}
-                    <td>
-                        <a href="/view-patient/{{_id}}/overview">
-                            <strong>{{firstName}} {{lastName}}</strong><br />
-                            Age: {{age}} &nbsp;
-                            Gender: {{gender}}
-                        </a>
-                    </td>
-                    {{/with}}
+                <th scope="row">{{idx @index}}</th>
+                    
+                <td>
+                    <a href="/view-patient/{{patient._id}}/overview">
+                        <strong>{{patient.firstName}} {{patient.lastName}}</strong><br />
+                        Age: {{patient.age}} &nbsp;
+                        Gender: {{patient.gender}}
+                    </a>
+                </td>
+                    
+                <td 
+                {{#if (isNotBounded bloodGlucose.value bloodGlucose.upperBound bloodGlucose.lowerBound)}}
+                style="color: red"
+                {{/if}}
+                >
+                    {{bloodGlucose.value}}{{#if bloodGlucose.isRequired}}*{{/if}}
+                </td>
                 
-                {{#with timeSeries}}
-                <td>{{bloodGlucose.value}}</td>
-                <td>{{insulin.value}}</td>
-                <td>{{weight.value}}</td>
-                <td>{{exercise.value}}</td>
+                <td 
+                {{#if (isNotBounded insulin.value insulin.upperBound insulin.lowerBound)}}
+                style="color: red"
+                {{/if}}
+                >
+                    {{insulin.value}}{{#if insulin.isRequired}}*{{/if}}
+                </td>
+                <td 
+                {{#if (isNotBounded weight.value weight.upperBound weight.lowerBound)}}
+                style="color: red"
+                {{/if}}
+                >
+                    {{weight.value}}{{#if weight.isRequired}}*{{/if}}
+                </td>
+                <td 
+                {{#if (isNotBounded exercise.value exercise.upperBound exercise.lowerBound)}}
+                style="color: red"
+                {{/if}}
+                >
+                    {{exercise.value}}{{#if exercise.isRequired}}*{{/if}}
+                </td>
         
-                {{/with}}
+                
             </tr>
+            {{/each}}
         </tbody>
     </table>
 </div>
