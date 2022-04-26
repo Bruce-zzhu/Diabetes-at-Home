@@ -44,7 +44,9 @@
         
     </div>
     <div id="leaderboard" class="module">text</div>
-    <div id="messages" class="module">text</div>
+    <div id="messages" class="module">
+        {{>message-box}}
+    </div>
     <div id="hist-today" class="module">
         {{>histTable timeSeries dateArray=dateArray}}
     </div>
