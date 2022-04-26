@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            h1 {
+                color:Green;
+            }
+            div.scroll {
+                padding:4px;
+                background-color: initial;
+                overflow-x: hidden;
+                overflow-y: auto;
+                text-align:justify;
+                width: 324px;
+                height: 200px;
+            }
+            .scroll > *{
+                padding-bottom: 10px;
+            }
+            .message-box-container{
+                margin:auto;
+                left: auto;
+                right: auto;
+                transform: translateY(200px);
+                width: 324px;
+                height: 225px;
+            }
+            .message{
+                height: 40px;
+                background-color: aqua;
+            }
+            .message2{
+                height: 40px;
+                background-color: brown;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="message-box-container">
+        <h5>Message Box</h5>
+        <div class="scroll">
+            <div class="message"></div>
+            <div class="message2"></div>
+            <div class="message"></div>
+            <div class="message2"></div>
+            <div class="message"></div>
+            <div class="message2"></div>
+            <div class="message"></div>
+            <div class="message2"></div>
+            <div class="message"></div>
+        </div>
+        </div>
+    </body>
+</html>  

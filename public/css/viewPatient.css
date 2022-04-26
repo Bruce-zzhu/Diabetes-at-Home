@@ -7,6 +7,20 @@
     padding-top: 5rem;
 }
 
+.head {
+    display: flex;
+    justify-content: space-between;
+}
+
+.profile {
+    width: 70%;
+}
+
+.view-nav {
+    width: 25%;
+    margin: auto;
+}
+
 .requirement {
     padding-top: 4rem;
     padding-bottom: 10rem;

@@ -1,6 +1,15 @@
 <div id="view-container">
     <div class="space"></div>
-    {{>patientProfile patient}}
+    <div class="head">
+        <div class="profile">
+            {{>patientProfile patient}}
+        </div>
+        <div class="view-nav">
+            {{>viewPatientNav}}
+        </div>
+        
+    </div>
+    
 
     <div class="requirement">
         <div class="re-container">

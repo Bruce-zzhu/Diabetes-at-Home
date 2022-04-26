@@ -26,7 +26,7 @@
             </tr>
         </thead>
         <tbody>
-            {{#each patients}}
+            {{!-- {{#each patients}}
                 <tr class="align-middle">
                     <th scope="row">{{@index}}</th>
                     
@@ -43,7 +43,29 @@
             
                     {{/each}}
                 </tr>
-            {{/each}}
+            {{/each}} --}}
+
+            
+            <tr class="align-middle">
+                <th scope="row">1</th>
+                    {{#with patientPat}}
+                    <td>
+                        <a href="/view-patient/{{_id}}/overview">
+                            <strong>{{firstName}} {{lastName}}</strong><br />
+                            Age: {{age}} &nbsp;
+                            Gender: {{gender}}
+                        </a>
+                    </td>
+                    {{/with}}
+                
+                {{#with timeSeries}}
+                <td>{{bloodGlucose.value}}</td>
+                <td>{{insulin.value}}</td>
+                <td>{{weight.value}}</td>
+                <td>{{exercise.value}}</td>
+        
+                {{/with}}
+            </tr>
         </tbody>
     </table>
 </div>

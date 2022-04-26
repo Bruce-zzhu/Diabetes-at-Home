@@ -38,8 +38,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // hero page
 app.get('/', (req, res) => {
-    res.render('home', {
-        style: 'home.css'
+    res.render('landing', {
+        style: 'landing.css'
     });
 })
 
@@ -60,43 +60,59 @@ app.get("/about-diabetes", (req, res) => {
 // clinician dashboard
 app.get('/clinician/dashboard', async (req, res) => {
     // .lean() is to solve the handlebars access error
-    const patients = await Patient.find({}).populate('timeSeries').lean()  
+    const patientPat = await Patient.findOne({firstName: "Pat"}).lean()
+    const timeSeries = await TimeSeries.findOne({patient: patientPat._id}).lean()
     res.render('clinician/dashboard', {
         style: 'dashboard.css',
-        patients
+        patientPat,
+        timeSeries
     });
 })
 
 // view patient page
-app.get('/view-patient/:id', async (req, res) => {
+app.get('/view-patient/:id/overview', async (req, res) => {
+  try {
     const pid = req.params.id;
     const patient = await Patient.findById(pid).lean();
+    
     res.render('clinician/viewPatient', {
         style: 'viewPatient.css',
         patient
     })
+  } catch(e) {
+    console.log(e)
+  }
+  
 })
 
 // patient homepage based on HARDCODED id
-app.get('/homepage', async (req, res) => {
-    const pid = "625546b114c1a266e5336d36"; // get pid from cookies or something
-    // const patient = await Patient.findById(pid).lean();
-    res.render('patient/homepage', {
-        style: 'homepage.css',
-        // patient
+app.get('/patient/dashboard', async (req, res) => {
+    const patient = await Patient.findOne({firstName: 'Pat'}).lean();
+    res.render('patient/dashboard', {
+        style: 'p-dashboard.css',
+        patient
     })
 })
 
-// Add New Entry page
+// Add New Entry page and process new entry forms
 app.get('/new-entry', (req, res) => {
-    res.render('partials/new-entry', {
-        // style: 'about.css'
+    res.render('partials/new-entry', { // style: 'about.css'
     });
 })
 
-app.post('/new-entry'), (req, res) => {
+app.post('/new-entry', (req, res) => {
+<<<<<<< HEAD
+  res.redirect('/new-entry');
+  console.log(req.body)
+})
+
+// Message Box
+app.get('/message-box', async(req, res) => {
+    res.render('partials/message-box');
+=======
   res.redirect('/new-entry')
-}
+>>>>>>> 8ac926baec332009ebd5e3208dc3a42adb4ac220
+})
 
 app.listen(port, () => {
   console.log(`Listen on http://localhost:${port}`);
