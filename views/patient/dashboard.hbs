@@ -26,7 +26,7 @@
                 </div>
                 
             </div>
-            
+            {{/with}}  
         </div>
         <div class="engagement">
             <h5>Engagement: </h5>
@@ -40,8 +40,7 @@
                     aria-valuemax="100"
                 >80%</div>
             </div>
-        </div>
-            {{/with}}    
+        </div>  
         
     </div>
     <div id="leaderboard" class="module">text</div>
@@ -50,5 +49,5 @@
         {{>histTable timeSeries dateArray=dateArray}}
     </div>
     <div id="hist-7days" class="module">text</div>
-    <div id="recent-data" class="module">text</div>
+    <div id="hist-chart" class="module">{{> history-chart}}</div>
 </div>

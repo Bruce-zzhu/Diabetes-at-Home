@@ -103,16 +103,22 @@ app.get('/patient/dashboard', async (req, res) => {
     });
 });
 
-// Add New Entry page
+// Add New Entry page and process new entry forms
 app.get('/new-entry', (req, res) => {
-    res.render('partials/new-entry', {
-        // style: 'about.css'
+    res.render('partials/new-entry', { // style: 'about.css'
     });
 });
 
 app.post('/new-entry', (req, res) => {
-    res.redirect('/new-entry');
-});
+  res.redirect('/new-entry');
+  console.log(req.body)
+})
+
+// Message Box
+app.get('/message-box', async(req, res) => {
+    res.render('partials/message-box');
+})
+
 
 app.listen(port, () => {
     console.log(`Listen on http://localhost:${port}`);

@@ -1,24 +1,14 @@
 <footer class="desktop tablet"><p>© 2022 Group xD</p></footer>
 <footer class="mobile post-login">
     <script src="../../public/scripts/js-helpers.js"></script>
-    <button class="icon btn btn-light" id="messages-button-footer"><span class="material-icons">mail</span></button>
+    <button class="icon btn btn-light" id="messages-button-footer"><span class="material-icons">mail</span><span id="ftr-notif"> </button>
     <button class="icon btn btn-light" id="new-entry-button-footer"><span class="material-icons">create</span></button>
     <button class="icon btn btn-light" id="leaderboard-button-footer"><span class="material-icons">equalizer</span></button>
 </footer>
 
 <script>
-    if ({{unread}}) { document.getElementById("ftr-message").innerHTML = "<span class='material-icons'>mark_email_unread</span>" }
+    if (!{{unread}}) { document.getElementById("ftr-notif").remove() }
     
-    // New Entry Header Button Clicked
-    document.getElementById("new-entry-button-header").onclick = function changeContent() {
-	var popup = document.getElementById("popup-overlay");
-  		if (popup.style.display === "none") {
-    		popup.style.display = "block";
-  		} 
-        else {
-    		popup.style.display = "none";
-  		}
-    };
     // New Entry Footer Button Clicked
     document.getElementById("new-entry-button-footer").onclick = function changeContent2() {
         var popup = document.getElementById("popup-overlay");
