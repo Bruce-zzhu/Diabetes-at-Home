@@ -4,7 +4,7 @@
   "description": "Group project for INFO30005",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -21,12 +21,10 @@
     "express": "^4.17.3",
     "express-handlebars": "^6.0.3",
     "mongoose": "^6.3.0",
-    "node": "^17.7.2"
+    "node": "^17.7.2",
+    "plotly.js-dist": "^2.11.1"
   },
   "devDependencies": {
     "dotenv": "^16.0.0"
-  },
-  "scripts": { 
-    "start": "node app.js" 
-}
+  }
 }
