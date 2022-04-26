@@ -9,16 +9,6 @@
 <script>
     if (!{{unread}}) { document.getElementById("ftr-notif").remove() }
     
-    // New Entry Header Button Clicked
-    document.getElementById("new-entry-button-header").onclick = function changeContent() {
-	var popup = document.getElementById("popup-overlay");
-  		if (popup.style.display === "none") {
-    		popup.style.display = "block";
-  		} 
-        else {
-    		popup.style.display = "none";
-  		}
-    };
     // New Entry Footer Button Clicked
     document.getElementById("new-entry-button-footer").onclick = function changeContent2() {
         var popup = document.getElementById("popup-overlay");
