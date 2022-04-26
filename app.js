@@ -4,7 +4,7 @@ const port = process.env.port || 3000;
 const path = require('path');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
-const helpers = require('../Diabetes-at-Home/public/scripts/js-helpers');
+const helpers = require(__dirname + '/public/scripts/js-helpers');
 const mongoose = require('mongoose');
 const { Patient, TimeSeries } = require('./models/patient');
 
@@ -25,7 +25,7 @@ app.engine(
     exphbs.engine({
         extname: 'hbs',
         defaultLayout: 'main',
-        helpers: require('./public/scripts/hbs-helpers'),
+        helpers: require(__dirname + '/public/scripts/hbs-helpers').helpers
     })
 );
 app.set('view engine', 'hbs');
@@ -109,9 +109,18 @@ app.get('/new-entry', (req, res) => {
     });
 });
 
-app.post('/new-entry', (req, res) => {
-  res.redirect('/new-entry');
-  console.log(req.body)
+app.post('/new-entry', async (req, res) => {
+    const patient = await Patient.findOne({ firstName: 'Pat' }).lean();
+    const blood = req.body.bloodGlucose;
+    const weight = req.body.weight;
+    const insulin = req.body.insulin;
+    const exercise = req.body.exercise;
+    const newTimeSeries = new TimeSeries({
+        patient: patient._id,
+
+    })
+    console.log(req.body)
+    res.redirect('/patient/dashboard');
 })
 
 // Message Box
