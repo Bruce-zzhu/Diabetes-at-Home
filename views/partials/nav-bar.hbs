@@ -4,7 +4,7 @@
                 class="material-icons"
             >create</span></button>
     </div>
-    <div class="mobile tablet spacer"></div>
+    <div class="mobile spacer"></div>
 
     <a class="nav-name" href="/">
         <div>Diabetes</div>
@@ -129,6 +129,13 @@
 
 <script>
     document.getElementById("nav-back").setAttribute('href', document.referrer);
+    
+    if (window.location.pathname.startsWith("/about") || 
+    window.location.pathname.startsWith("/settings")) {
+        document.getElementById("normal-nav").remove()
+    } else {
+        document.getElementById("simple-nav").remove()
+    }
 
     const names = document.getElementsByClassName("nav-name");
     if ({{login}}) {
@@ -153,13 +160,6 @@
 
     if (window.location.pathname == "/") {
         document.getElementById("nav-entry-div").remove();
-    }
-    
-    if (window.location.pathname.startsWith("/about") || 
-    window.location.pathname.startsWith("/settings")) {
-        document.getElementById("normal-nav").remove()
-    } else {
-        document.getElementById("simple-nav").remove()
     }
 
 </script>
