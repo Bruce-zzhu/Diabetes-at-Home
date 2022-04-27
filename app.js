@@ -161,7 +161,7 @@ function getAvergaeValue(timeSeriesList, averageTimeseries, endDateArray) {
         }
 
         averageTimeseries.bloodGlucose = (
-            averageTimeseries.bloodGlucose / timeSeriesArr.length
+            averageTimeseries.bloodGlucose / timeSeriesList.length
         ).toFixed(2);
 
         averageTimeseries.insulin =
