@@ -1,0 +1,52 @@
+<script>
+function withValue(){
+    if ((document.getElementById("email").value != "") && (document.getElementById("password").value != "")){
+        document.getElementById("login-submit").style.backgroundColor = "var(--deepBlue-color)"
+        document.getElementById("login-submit").style.cursor = "pointer"
+    } else{
+        document.getElementById("login-submit").style.backgroundColor = "var(--brown-color)"
+        document.getElementById("login-submit").style.cursor = "default"
+    }
+}
+</script>
+
+<section class="login-page patient">
+    <div class="buffer"></div>
+    <div class="container">
+        <h1>
+            D
+            <img class="login-logo" src="/images/logo.svg" alt="logo" />
+            H
+        </h1>
+        <img class="mobile-login-logo" src="/images/logo.svg" alt="logo" />
+        <h2>
+            <em>Diabetes at Home</em>
+        </h2>
+        <h3>
+            <strong>
+                Patient Login
+            </strong>
+        </h3>
+        <form onchange="withValue()">
+            <input type="text" id="email" name="email" placeholder="user@email.com"> <br>
+            <input type="password" id="password" name="password" placeholder="Password"> <br> <br>
+            <input type="submit" id="login-submit" value="LOG IN">
+        </form>
+        
+        <a href="/login_c" id="switch-login"> Login as clinician </a>
+        
+        <a href="/forgot_password" id="forgot-password">Forgot Password?</a>
+
+        <div class="about-buttons">
+            <form>
+                <input type="button" onclick="window.location.href='/about-diabetes';" value="ABOUT DIABETES" class="about-diabetes"/>
+            </form>
+            <form>
+                <input type="button" onclick="window.location.href='/about-us';" value="ABOUT THIS SITE" class="about-us"/>
+            </form>
+        </div>
+
+    </div>
+    
+    
+</section>
