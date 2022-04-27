@@ -4,14 +4,17 @@ const {isSameDay} = require('../public/scripts/js-helpers');
 const getTodayTimeSeries = async (patient) => {
     try {
         var today = new Date();
-        const timeSeries = await TimeSeries.findOne({patient: patient._id}).populate('patient').lean();
+        const timeSeries = await TimeSeries.find({patient: patient._id}).populate('patient').lean();
         // check if it's today's timeseries
-        if (timeSeries && isSameDay(today, timeSeries.date)) {
-            // today's timeseries found
-            return timeSeries;
-        } else {
-            return null;
+        for (ts of timeSeries) {
+            if (isSameDay(today, ts.date)) {
+                // today's timeseries found
+                return ts;
+            } 
         }
+        
+        return null;
+        
     } catch(e) {
         console.log(e);
     }
@@ -59,7 +62,7 @@ const getDashboardData = async (req, res) => {
                 timeSeriesList.push(timeSeries)
             } else {
                 // create today's timeseries
-                createTodayTimeSeries(p);
+                await createTodayTimeSeries(p);
             }
         } 
         res.render('clinician/dashboard', {
