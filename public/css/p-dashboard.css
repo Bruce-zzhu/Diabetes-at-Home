@@ -93,8 +93,17 @@
     padding-left: 2rem;
 }
 
+.date-text-a {
+    font-size: 14;
+} 
 
+.date-text-a-b {
+    font-size: 20;
+}
 
+.-- {
+    margin-bottom: -1rem;
+}
 
 
 
@@ -153,3 +162,4 @@
         height: 272px;
     }
 }
+

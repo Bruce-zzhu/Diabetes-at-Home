@@ -38,7 +38,7 @@ app.use(express.static(path.join(__dirname, "/public")));
 // process incoming request
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// routes 
+// routes
 app.use("/clinician", clinicianRoutes);
 app.use("/patient", patientRoutes);
 
@@ -102,19 +102,36 @@ app.get("/patient/dashboard", async (req, res) => {
         patient: patient._id,
     }).lean();
 
-    const dateArray = [
-        timeSeries.date.getDate(),
-        timeSeries.date.getMonth() + 1,
-        timeSeries.date.getFullYear(),
-    ];
-
+    timeSeriesArr.sort(function (a, b) {
+        var c = new Date(a.date);
+        var d = new Date(b.date);
+        return c - d;
+    });
     var averageTimeseries = {
         bloodGlucose: 0,
         insulin: 0,
         weight: 0,
         exercise: 0,
     };
-    const endDateArray = [];
+    var endDateArray = [];
+    const dateArray = [
+        timeSeries.date.getDate(),
+        timeSeries.date.getMonth() + 1,
+        timeSeries.date.getFullYear(),
+    ];
+
+    getAvergaeValue(timeSeriesArr, averageTimeseries, endDateArray);
+    res.render("patient/dashboard", {
+        style: "p-dashboard.css",
+        patient,
+        timeSeries,
+        averageTimeseries,
+        dateArray,
+        endDateArray,
+    });
+});
+
+function getAvergaeValue(timeSeriesArr, averageTimeseries, endDateArray) {
     if (timeSeriesArr.length < 7) {
         endDateArray.push(
             timeSeriesArr[timeSeriesArr.length - 1].date.getDate(),
@@ -154,21 +171,11 @@ app.get("/patient/dashboard", async (req, res) => {
         averageTimeseries.weight = averageTimeseries.weight / 7;
         averageTimeseries.exercise = averageTimeseries.exercise / 7;
     }
-    res.render("patient/dashboard", {
-        style: "p-dashboard.css",
-        patient,
-        timeSeries,
-        averageTimeseries,
-        dateArray,
-        endDateArray,
-    });
-});
-
+}
 // Add New Entry page and process new entry forms
 // app.get("/patient/new-entry", (req, res) => {
 //     res.render("patient/new-entry");
 // });
-
 
 // Message Box
 // app.get("/message-box", async (req, res) => {
