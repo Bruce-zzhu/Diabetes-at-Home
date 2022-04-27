@@ -47,10 +47,10 @@
         {{>message-box}}
     </div>
     <div id="hist-today" class="module">
-        {{>histTable timeSeries dateArray=dateArray}}
+        {{>histTable timeSeries todayArray=todayArray}}
     </div>
     <div id="hist-7days" class="module">
-        {{>averagehistTable averageTimeseries dateArray=dateArray endDateArray=endDateArray}}
+        {{>averagehistTable averageTimeseries startDateArray=startDateArray endDateArray=endDateArray}}
 
     </div>
     <div id="hist-chart" class="module">{{> hist-chart}}</div>

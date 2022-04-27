@@ -108,11 +108,15 @@ app.get("/patient/dashboard", async (req, res) => {
         await createTodayTimeSeries(patient);
     }
 
+    const todayArray = [
+        todayTimeSeries.date.getDate(),
+        todayTimeSeries.date.getMonth() + 1,
+        todayTimeSeries.date.getFullYear(),
+    ];
+
     const timeSeriesList = await TimeSeries.find({
         patient: patient._id,
-    })
-        .populate("patient")
-        .lean();
+    }).populate("patient").lean();
 
     var averageTimeseries = {
         bloodGlucose: 0,
@@ -121,13 +125,7 @@ app.get("/patient/dashboard", async (req, res) => {
         exercise: 0,
     };
     var endDateArray = [];
-    const dateArray = [
-        todayTimeSeries.date.getDate(),
-        todayTimeSeries.date.getMonth() + 1,
-        todayTimeSeries.date.getFullYear(),
-    ];
-
-    getAvergaeValue(timeSeriesList, averageTimeseries, endDateArray);
+    
 
     timeSeriesList.sort(function (a, b) {
         var c = new Date(a.date);
@@ -135,23 +133,45 @@ app.get("/patient/dashboard", async (req, res) => {
         return d - c;
     });
 
+    // start date for avg
+    const startDateArray = [
+        timeSeriesList[timeSeriesList.length - 1].date.getDate(),
+        timeSeriesList[timeSeriesList.length - 1].date.getMonth() + 1,
+        timeSeriesList[timeSeriesList.length - 1].date.getFullYear(),
+    ];
+
+    getAvergaeValue(timeSeriesList, averageTimeseries, endDateArray);
+
+    
+
     res.render("patient/dashboard", {
         style: "p-dashboard.css",
         patient,
+        todayArray,
         averageTimeseries,
-        dateArray,
+        startDateArray,
         endDateArray,
         timeSeriesList,
     });
 });
 
 function getAvergaeValue(timeSeriesList, averageTimeseries, endDateArray) {
-    if (timeSeriesList.length < 7) {
+    if (timeSeriesList.length > 1) {
         endDateArray.push(
-            timeSeriesList[timeSeriesList.length - 1].date.getDate(),
-            timeSeriesList[timeSeriesList.length - 1].date.getMonth() + 1,
-            timeSeriesList[timeSeriesList.length - 1].date.getFullYear()
+            timeSeriesList[1].date.getDate(),
+            timeSeriesList[1].date.getMonth() + 1,
+            timeSeriesList[1].date.getFullYear()
         );
+    } else {
+        endDateArray.push(
+            timeSeriesList[0].date.getDate(),
+            timeSeriesList[0].date.getMonth() + 1,
+            timeSeriesList[0].date.getFullYear()
+        );
+    }
+
+    if (timeSeriesList.length <= 7) {
+        
         for (let i = 1; i < timeSeriesList.length; i++) {
             averageTimeseries.bloodGlucose +=
                 timeSeriesList[i].bloodGlucose.value;
@@ -161,21 +181,16 @@ function getAvergaeValue(timeSeriesList, averageTimeseries, endDateArray) {
         }
 
         averageTimeseries.bloodGlucose = (
-            averageTimeseries.bloodGlucose / timeSeriesList.length
+            averageTimeseries.bloodGlucose / (timeSeriesList.length-1)
         ).toFixed(2);
 
         averageTimeseries.insulin =
-            averageTimeseries.insulin / timeSeriesList.length;
+            (averageTimeseries.insulin / (timeSeriesList.length-1)).toFixed(2);
         averageTimeseries.weight =
-            averageTimeseries.weight / timeSeriesList.length;
+            (averageTimeseries.weight / (timeSeriesList.length-1)).toFixed(2);
         averageTimeseries.exercise =
-            averageTimeseries.exercise / timeSeriesList.length;
+            (averageTimeseries.exercise / (timeSeriesList.length-1)).toFixed(2);
     } else {
-        endDateArray.push(
-            timeSeriesList[7].date.getDate(),
-            timeSeriesList[7].date.getMonth() + 1,
-            timeSeriesList[7].date.getFullYear()
-        );
         for (let i = 1; i < 8; i++) {
             averageTimeseries.bloodGlucose +=
                 timeSeriesList[i].bloodGlucose.value;
@@ -183,10 +198,10 @@ function getAvergaeValue(timeSeriesList, averageTimeseries, endDateArray) {
             averageTimeseries.weight += timeSeriesList[i].weight.value;
             averageTimeseries.exercise += timeSeriesList[i].exercise.value;
         }
-        averageTimeseries.bloodGlucose = averageTimeseries.bloodGlucose / 7;
-        averageTimeseries.insulin = averageTimeseries.insulin / 7;
-        averageTimeseries.weight = averageTimeseries.weight / 7;
-        averageTimeseries.exercise = averageTimeseries.exercise / 7;
+        averageTimeseries.bloodGlucose = (averageTimeseries.bloodGlucose / 7).toFixed(2);
+        averageTimeseries.insulin = (averageTimeseries.insulin / 7).toFixed(2);
+        averageTimeseries.weight = (averageTimeseries.weight / 7).toFixed(2);
+        averageTimeseries.exercise = (averageTimeseries.exercise / 7).toFixed(2);
     }
 }
 
