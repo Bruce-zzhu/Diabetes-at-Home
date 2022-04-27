@@ -97,6 +97,23 @@
     padding-top: 5rem;
     width: 80%;
     margin: auto;
+    padding-bottom: 5rem;
+}
+
+.red-rec {
+    background-color: red;
+    height: 0.8rem;
+    width: 0.8rem;
+    display: inline-block;
+}
+
+.label > div > p {
+    display: inline-block;
+    margin-bottom: 0.2rem;
+}
+
+.label > p {
+    margin-bottom: 0;
 }
 
 .table-info {
@@ -116,6 +133,18 @@
 
 span {
     font-weight: normal;
+}
+.date-text-a {
+    font-size: 0.9rem;
+} 
+
+.date-text-a-b {
+    font-size: 1.2rem;
+}
+
+.-- {
+    margin-bottom: -1.5rem;
+    margin-top: -0.5rem;
 }
 
 .table-striped>tbody>tr:nth-of-type(odd)>* {
@@ -192,3 +221,4 @@ thead {
         height: 272px;
     }
 }
+

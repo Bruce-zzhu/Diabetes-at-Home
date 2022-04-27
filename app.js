@@ -39,7 +39,7 @@ app.use(express.static(path.join(__dirname, "/public")));
 // process incoming request
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// routes 
+// routes
 app.use("/clinician", clinicianRoutes);
 app.use("/patient", patientRoutes);
 
@@ -95,6 +95,9 @@ app.get("/patient/leaderboard", (req, res) => {
     });
 });
 
+
+// ======= will tidy this up later ============
+
 const { createTodayTimeSeries, getTodayTimeSeries } = require('./controllers/clinician')
 // patient homepage based on HARDCODED id
 app.get("/patient/dashboard", async (req, res) => {
@@ -114,19 +117,39 @@ app.get("/patient/dashboard", async (req, res) => {
         patient: patient._id,
     }).populate('patient').lean();
 
-    const dateArray = [
-        timeSeries.date.getDate(),
-        timeSeries.date.getMonth() + 1,
-        timeSeries.date.getFullYear(),
-    ];
-
     var averageTimeseries = {
         bloodGlucose: 0,
         insulin: 0,
         weight: 0,
         exercise: 0,
     };
-    const endDateArray = [];
+    var endDateArray = [];
+    const dateArray = [
+        timeSeries.date.getDate(),
+        timeSeries.date.getMonth() + 1,
+        timeSeries.date.getFullYear(),
+    ];
+
+    getAvergaeValue(timeSeriesList, averageTimeseries, endDateArray);
+
+    timeSeriesList.sort(function (a, b) {
+        var c = new Date(a.date);
+        var d = new Date(b.date);
+        return d - c;
+    });
+
+    res.render("patient/dashboard", {
+        style: "p-dashboard.css",
+        patient,
+        timeSeries,
+        averageTimeseries,
+        dateArray,
+        endDateArray,
+        timeSeriesList
+    });
+});
+
+function getAvergaeValue(timeSeriesList, averageTimeseries, endDateArray) {
     if (timeSeriesList.length < 7) {
         endDateArray.push(
             timeSeriesList[timeSeriesList.length - 1].date.getDate(),
@@ -166,22 +189,15 @@ app.get("/patient/dashboard", async (req, res) => {
         averageTimeseries.weight = averageTimeseries.weight / 7;
         averageTimeseries.exercise = averageTimeseries.exercise / 7;
     }
-    res.render("patient/dashboard", {
-        style: "p-dashboard.css",
-        patient,
-        timeSeries,
-        averageTimeseries,
-        dateArray,
-        endDateArray,
-        timeSeriesList
-    });
-});
+}
+
+
+
 
 // Add New Entry page and process new entry forms
 // app.get("/patient/new-entry", (req, res) => {
 //     res.render("patient/new-entry");
 // });
-
 
 // Message Box
 // app.get("/message-box", async (req, res) => {
