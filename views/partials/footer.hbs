@@ -1,33 +1,37 @@
-<style>
-    footer {
-      width: 100%;
-      background-color: var(--primary-color);
-      color: white;
-      padding: 0.5em;
-      text-align: center;
-      border-top: var(--bg-color); /* change according to content background */
-      position: static;
-      bottom: 0;
-    }
-    /* Make the back button disappear when the website is in the desktop view */
-    @media screen and (min-width: 1024px) {
-      .desktop-footer {
-        display: block;
-      }
-      .mobile-footer {
-        display: none;
-      }
-    }
+<footer class="desktop tablet"><p>© 2022 Group xD</p></footer>
+<footer class="mobile post-login">
+    <script src="../../public/scripts/js-helpers.js"></script>
+    <button class="icon btn btn-light" id="messages-button-footer"><span class="material-icons">mail</span><span id="ftr-notif"> </button>
+    <button class="icon btn btn-light" id="new-entry-button-footer"><span class="material-icons">create</span></button>
+    <button class="icon btn btn-light" id="leaderboard-button-footer"><span class="material-icons">equalizer</span></button>
+</footer>
 
-    /* Make the about and login button disappear when the website is in the tablet and phone view */
-    @media screen and (max-width: 1024px) {
-      .desktop-footer {
-        display: none;
-      }
-      .mobile-footer {
-        display: block;
-      }
-    }
-</style>
-<footer class="mobile-footer"></footer>
-<footer class="desktop-footer">© 2022 Group xD</footer>
+<script>
+    if (!{{unread}}) { document.getElementById("ftr-notif").remove() }
+    
+    // New Entry Footer Button Clicked
+    document.getElementById("new-entry-button-footer").onclick = function changeContent2() {
+        var popup = document.getElementById("popup-overlay");
+        popup.style.display = "block";
+    };
+    // Messages Footer Button Clicked
+    document.getElementById("messages-button-footer").onclick = function changeContent3() {
+        var popup = document.getElementById("popup-overlay");
+        popup.style.display = "none";
+    };
+    // Leaderboard Footer Button Clicked
+    document.getElementById("leaderboard-button-footer").onclick = function changeContent3() {
+        var popup = document.getElementById("popup-overlay");
+        popup.style.display = "none";
+    };
+    // Close Popup Overlay onclick
+    document.getElementById("escape-popup").onclick = function changeContent4() {
+	    var popup = document.getElementById("popup-overlay");
+    		popup.style.display = "none";
+    };
+    // Close Popup onclick when uploading data
+    /*document.getElementById("upload-button").onclick = function changeContent4() {
+	    var popup = document.getElementById("popup-overlay");
+    		popup.style.display = "none";
+    };*/
+</script>

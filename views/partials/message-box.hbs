@@ -1,0 +1,89 @@
+
+<style>
+    h1 {
+        color:Green;
+    }
+    div.scroll {
+        padding:4px;
+        background-color: initial;
+        overflow-x: hidden;
+        overflow-y: auto;
+        text-align:justify;
+        width: auto;
+        height: 150px;
+    }
+    .scroll > *{
+        padding-bottom: 10px;
+    }
+    .message-box-container{
+        margin:auto;
+        left: auto;
+        right: auto;
+    }
+    .message{
+        background-color: rgb(255, 255, 255);
+        border: 1px solid grey;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    .unread > *{
+        font-weight: bold;
+        color: black;
+    }
+    .read{
+        font-weight:1 ;
+        font
+    }
+    .message-details{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 6px;
+    }
+    .message-time{
+        font-style: italic;
+    }
+
+@media screen and (max-width: 375px){
+    div.scroll{
+        height: 190px;
+    }
+}
+@media screen and (min-width: 1024px){
+    div.scroll{
+        height: 230px;
+    }
+}
+</style>
+<div class="message-box-container">
+<h5>Message Box</h5>
+<div class="scroll">
+    <div class="message unread">
+        <div class="message-details">
+            <span class="message-name-send">[clinician]:</span>
+            <span class="message-time">12:34am 22/03</span>
+        </div>
+        <p>Remember to fill out ALL the necessary fields each day!</p>
+    </div>
+    <div class="message">
+        <div class="message-details">
+            <span class="message-name-send">[clinician]:</span>
+            <span class="message-time">10:06am 21/03</span>
+        </div>
+        <p>Great work!</p>
+    </div>
+    <div class="message">
+        <div class="message-details">
+            <span class="message-name-send">[clinician]:</span>
+            <span class="message-time">3:58am 17/03</span>
+        </div>
+        <p>I'll see you next Monday. Good luck!</p>
+    </div>
+    <div class="message unread">
+        <div class="message-details">
+            <span class="message-name-send">[clinician]:</span>
+            <span class="message-time">2:00am 12/03</span>
+        </div>
+        <p>Been super consistent of late, keep up the good work!</p>
+    </div>
+</div>
+</div>

@@ -1,7 +1,68 @@
+<div id="view-container">
+    <div class="space"></div>
+    <div class="head">
+        <div class="profile">
+            {{>patientProfile patient}}
+        </div>
+        <div class="view-nav">
+            {{>viewPatientNav}}
+        </div>
+        
+    </div>
+    
 
-<h1>View Patient</h1>
-{{#with patient}}
-<h2>Name: {{firstName}}</h2>
-{{/with}}
+    <div class="requirement">
+        <div class="re-container">
+            <div class="header">
+                <h1 class="header-text">Time-series Requirements</h1>
+            </div>
+            <div class="row g-2">
+                <div class="col-5 offset-1">
+                    <div class="p-3 bg-light">Blood Glucose Level:
+                        <input class="from" type="number" />
+                        to
+                        <input class="to" type="number" />
+                        nmol/L
+                        <input
+                            class="checkbox"
+                            type="checkbox"
+                            checked="checked"
+                        />
+                    </div>
+                </div>
+                <div class="col-5 offset-1">
+                    <div class="p-3 bg-light">Weight:
+                        <input class="from" type="number" />
+                        to
+                        <input class="to" type="number" />
+                        kg
+                        <input class="checkbox" type="checkbox" />
+                    </div>
+                </div>
+                <div class="col-5 offset-1">
+                    <div class="p-3 bg-light">Insulin Taken:
+                        <input class="from" type="number" />
+                        to
+                        <input class="to" type="number" />
+                        doses
+                        <input class="checkbox" type="checkbox" />
+                    </div>
+                </div>
+                <div class="col-5 offset-1">
+                    <div class="p-3 bg-light">Exercise:
+                        <input class="from" type="number" />
+                        to
+                        <input class="to" type="number" />
+                        steps
+                        <input class="checkbox" type="checkbox" />
+                    </div>
+                </div>
+            </div>
+            <div class="require-text">
+                <span class="material-icons">done</span>
+                <div>Required to record</div>
+            </div>
+        </div>
+    </div>
 
-{{>patientProfile patient}}
+</div>

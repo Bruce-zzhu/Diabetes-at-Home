@@ -1,7 +1,121 @@
-<link rel="stylesheet" href="css/nav-bar.css" />
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<nav>
-    <a class="nav-back">
+<nav id="normal-nav">
+    <div id="nav-entry-div" class="tablet post-login">
+        <button id="new-entry-button-header" class="new-entry-button-header btn btn-outline-light icon nav-new-entry"><span
+                class="material-icons"
+            >create</span></button>
+    </div>
+    <div class="mobile spacer"></div>
+
+    <a class="nav-name" href="/">
+        <div>Diabetes</div>
+        <img class="nav-logo" src="/images/logo.svg" alt="logo" />
+        <div>Home</div>
+    </a>
+
+    <div id="nav-links">
+        <div class="desktop">
+            <div class="pre-login">
+                <div class="dropdown">
+                    <button class="dropbtn">Login</button>
+                    <div class="dropdown-content">
+                        <a href="/login_p">As Patient</a>
+                        <a href="/login_c">As Clinician</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">About</button>
+                    <div class="dropdown-content">
+                        <a href="/about-us">About D@H</a>
+                        <a href="/about-diabetes">About Diabetes</a>
+                    </div>
+                </div>
+            </div>
+            <div class="post-login">
+                <a href="/clinician/dashboard">Dashboard</a>
+                <a href="/clinician/comments">Comments</a>
+                <div class="dropdown">
+                    <button class="dropbtn"><span
+                            class="material-icons"
+                        >account_circle</span></button>
+                    <div class="dropdown-content">
+                        <div class="nav-profile">
+                            <img
+                                style="width: 3rem;"
+                                src="https://uxwing.com/wp-content/themes/uxwing/download/12-peoples-avatars/no-profile-picture.svg"
+                            />
+                            <p><strong>Chris Lee</strong><br
+                                />chris@diabetemail.com</p>
+                            <p><button
+                                    onclick="logOut()"
+                                    class="btn btn-light"
+                                >Log out</button></p>
+                        </div>
+                        <a href="/settings/colour"><span
+                                style="float: left"
+                            >Colour Scheme</span><span
+                                style="float: right"
+                                class="material-icons"
+                            >chevron_right</span></a>
+                        <a href="/settings/password"><span
+                                style="float: left"
+                            >Change Password</span><span
+                                style="float: right"
+                                class="material-icons"
+                            >chevron_right</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tablet">
+            <div class="pre-login">
+                <div class="dropdown">
+                    <button class="dropbtn">Login</button>
+                    <div class="dropdown-content">
+                        <a href="/login_p">As Patient</a>
+                        <a href="/login_c">As Clinician</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">About</button>
+                    <div class="dropdown-content">
+                        <a href="/about-us">About D@H</a>
+                        <a href="/about-diabetes">About Diabetes</a>
+                    </div>
+                </div>
+            </div>
+            <div class="post-login">
+                <div class="dropdown">
+                    <button class="dropbtn"><span
+                            class="material-icons"
+                        >menu</span></button>
+                    <div class="dropdown-content">
+                        <a href="/dashboard">Dashboard</a>
+                        <a href="/about-diabetes">About Diabetes</a>
+                        <a href="/about-us">About D@H</a>
+                        <a href="/settings">Settings</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mobile">
+            <div class="dropdown">
+                <button class="dropbtn icon"><span
+                        class="material-icons"
+                    >menu</span></button>
+                <div class="dropdown-content">
+                    <a href="/dashboard">Dashboard</a>
+                    <a href="/about-diabetes">About Diabetes</a>
+                    <a href="/about-us">About D@H</a>
+                    <a href="/settings">Settings</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<nav id="simple-nav">
+    <a id="nav-back" class="">
         <span class="material-icons">arrow_back_ios</span>
         <div>Back</div>
     </a>
@@ -10,56 +124,52 @@
         <img class="nav-logo" src="/images/logo.svg" alt="logo" />
         <div>Home</div>
     </a>
-    <div id="nav-links">
-        <div id="nl-pre-login">
-            <div class="dropdown">
-                <button class="dropbtn">Login</button>
-                <div class="dropdown-content">
-                    <a href="/login_p">As Patient</a>
-                    <a href="/login_c">As Clinician</a>
-                </div>
-            </div>
-            <div class="dropdown">
-                <button class="dropbtn">About</button>
-                <div class="dropdown-content">
-                    <a href="/about-us">About D@H</a>
-                    <a href="/about-diabetes">About Diabetes</a>
-                </div>
-            </div>
-        </div>
-        <div id="nl-post-login">
-            <a href="/dashboard">Dashboard</a>
-            <a href="/comments">Comments</a>
-            <div class="dropdown">
-                <button class="dropbtn"><span class="material-icons">account_circle</span></button>
-                <div class="dropdown-content">
-                    <div id="nav-profile">
-                        <img style="width: 3rem;" src="https://uxwing.com/wp-content/themes/uxwing/download/12-peoples-avatars/no-profile-picture.svg" />
-                        <p><strong>Firstname Lastname</strong><br />clinician@email.com</p>
-                        <p><button onclick="logOut()">Log out</button></p>                     
-                    </div>
-                    <a href="/settings/colour"><span style="float: left">Colour Scheme</span><span style="float: right" class="material-icons">chevron_right</span></a>
-                    <a href="/settings/password"><span style="float: left">Change Password</span><span style="float: right" class="material-icons">chevron_right</span></a>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="simple-spacer"></div>
 </nav>
+
 <script>
-    function logOut() {
-        login = false;
-        console.log("User has logged out");
+    document.getElementById("nav-back").setAttribute('href', document.referrer);
+    
+    if (window.location.pathname.startsWith("/about") || 
+    window.location.pathname.startsWith("/settings")) {
+        document.getElementById("normal-nav").remove()
+    } else {
+        document.getElementById("simple-nav").remove()
+    }
+
+    const names = document.getElementsByClassName("nav-name");
+    if ({{login}}) {
+        const pre_login = document.getElementsByClassName("pre-login");
+        for (var i=0; i<pre_login.length; i++) {
+            pre_login[i].remove();
+            pre_login[i].innerHTML = "";
+        }
+        for (i=0; i<names.length; i++) {
+            names[i].href = "/dashboard"
+        }
+    } else {
+        const post_login = document.getElementsByClassName("post-login");
+        for (i=0; i<post_login.length; i++) {
+            post_login[i].remove();
+            post_login[i].innerHTML = "";
+        }
+        for (i=0; i<names.length; i++) {
+            names[i].href = "/"
+        }
     }
 
     if (window.location.pathname == "/") {
-        document.getElementById("nav-links").style.display = "none";
-    } else if ({{login}}) {
-        document.getElementById("nl-post-login").style.display = "flex";
-        document.getElementById("nl-pre-login").style.display = "none";
-    } else {
-        document.getElementById("nl-post-login").style.display = "none";
-        document.getElementById("nl-pre-login").style.display = "flex";
-
+        document.getElementById("nav-entry-div").remove();
     }
 
+    // New Entry Header Button Clicked
+    document.getElementById("new-entry-button-header").onclick = function changeContent() {
+	var popup = document.getElementById("popup-overlay");
+  		if (popup.style.display === "none") {
+    		popup.style.display = "block";
+  		} 
+        else {
+    		popup.style.display = "none";
+  		}
+    };
 </script>

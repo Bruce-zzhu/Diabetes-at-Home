@@ -1,5 +1,5 @@
-@import url("https://fonts.googleapis.com/css?family=Lexend");  /* text */
-@import url("https://fonts.googleapis.com/css?family=Inter");  /* headings */
+@import url("https://fonts.googleapis.com/css?family=Lexend"); /* text */
+@import url("https://fonts.googleapis.com/css?family=Inter"); /* headings */
 
 :root {
     --font-text: "Lexend", sans-serif;
@@ -21,10 +21,25 @@
 }
 
 html {
-    font-size: 100%;  /* 16px */
-} 
+    font-size: 100%; /* 16px */
+}
 
 body {
     background-color: var(--bg-color);
     font-family: var(--font-text);
+    min-height: 100vh;
+
+    /* display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-gap: 0; */
 }
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+}
+
+.icon {
+    padding: 0.25rem;
+}
+
+
