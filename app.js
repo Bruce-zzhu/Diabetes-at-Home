@@ -4,10 +4,11 @@ const port = process.env.port || 3000;
 const path = require('path');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
-const {isSameDay} = require('./public/scripts/js-helpers');
+const { isSameDay } = require('./public/scripts/js-helpers');
 const mongoose = require('mongoose');
 const { Patient, TimeSeries } = require('./models/patient');
 const clinicianRoutes = require('./routers/clinician');
+const plotly = require("plotly.js-dist")
 
 require('dotenv').config();
 const connectionURL = process.env.MONGO_URL || 'mongodb://localhost:27017/diabetes-at-home';
@@ -94,9 +95,9 @@ app.get('/patient/leaderboard', (req, res) => {
 
 // patient homepage based on HARDCODED id
 app.get('/patient/dashboard', async (req, res) => {
-    const patient = await Patient.findOne({firstName: 'Pat'}).lean();
-    const timeSeries = await TimeSeries.findOne({patient: patient._id}).lean();
-    const dateArray = [timeSeries.date.getDate(), '0' + timeSeries.date.getMonth()+1, timeSeries.date.getFullYear()]
+    const patient = await Patient.findOne({ firstName: 'Pat' }).lean();
+    const timeSeries = await TimeSeries.findOne({ patient: patient._id }).lean();
+    const dateArray = [timeSeries.date.getDate(), '0' + timeSeries.date.getMonth() + 1, timeSeries.date.getFullYear()]
 
     res.render('patient/dashboard', {
         style: 'p-dashboard.css',
@@ -117,13 +118,13 @@ app.post('/new-entry', async (req, res) => {
     const weight = req.body.weight;
     const insulin = req.body.insulin;
     const exercise = req.body.exercise;
-    
+
     console.log(req.body)
     res.redirect('/patient/dashboard');
 })
 
 // Message Box
-app.get('/message-box', async(req, res) => {
+app.get('/message-box', async (req, res) => {
     res.render('partials/message-box');
 })
 
