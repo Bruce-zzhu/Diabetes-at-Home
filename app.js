@@ -4,10 +4,10 @@ const port = process.env.port || 3000;
 const path = require("path");
 const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
-const { isSameDay } = require("./public/scripts/js-helpers");
 const mongoose = require("mongoose");
 const { Patient, TimeSeries } = require("./models/patient");
 const clinicianRoutes = require("./routers/clinician");
+const patientRoutes = require("./routers/patient");
 
 require("dotenv").config();
 const connectionURL =
@@ -38,8 +38,9 @@ app.use(express.static(path.join(__dirname, "/public")));
 // process incoming request
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// routes for clinician
+// routes 
 app.use("/clinician", clinicianRoutes);
+app.use("/patient", patientRoutes);
 
 // hero page
 app.get("/", (req, res) => {
@@ -103,7 +104,7 @@ app.get("/patient/dashboard", async (req, res) => {
 
     const dateArray = [
         timeSeries.date.getDate(),
-        "0" + timeSeries.date.getMonth() + 1,
+        timeSeries.date.getMonth() + 1,
         timeSeries.date.getFullYear(),
     ];
 
@@ -117,7 +118,7 @@ app.get("/patient/dashboard", async (req, res) => {
     if (timeSeriesArr.length < 7) {
         endDateArray.push(
             timeSeriesArr[timeSeriesArr.length - 1].date.getDate(),
-            "0" + timeSeriesArr[timeSeriesArr.length - 1].date.getMonth() + 1,
+            timeSeriesArr[timeSeriesArr.length - 1].date.getMonth() + 1,
             timeSeriesArr[timeSeriesArr.length - 1].date.getFullYear()
         );
         for (let i = 0; i < timeSeriesArr.length; i++) {
@@ -138,7 +139,7 @@ app.get("/patient/dashboard", async (req, res) => {
     } else {
         endDateArray.push(
             timeSeriesArr[6].date.getDate(),
-            "0" + timeSeriesArr[6].date.getMonth() + 1,
+            timeSeriesArr[6].date.getMonth() + 1,
             timeSeriesArr[6].date.getFullYear()
         );
         for (let i = 0; i < 7; i++) {
@@ -164,26 +165,15 @@ app.get("/patient/dashboard", async (req, res) => {
 });
 
 // Add New Entry page and process new entry forms
-app.get("/new-entry", (req, res) => {
-    res.render("partials/new-entry", {
-        // style: 'about.css'
-    });
-});
+// app.get("/patient/new-entry", (req, res) => {
+//     res.render("patient/new-entry");
+// });
 
-app.post("/new-entry", async (req, res) => {
-    const blood = req.body.bloodGlucose;
-    const weight = req.body.weight;
-    const insulin = req.body.insulin;
-    const exercise = req.body.exercise;
-
-    console.log(req.body);
-    res.redirect("/patient/dashboard");
-});
 
 // Message Box
-app.get("/message-box", async (req, res) => {
-    res.render("partials/message-box");
-});
+// app.get("/message-box", async (req, res) => {
+//     res.render("partials/message-box");
+// });
 
 app.listen(port, () => {
     console.log(`Listen on http://localhost:${port}`);
