@@ -1,10 +1,9 @@
 <nav id="normal-nav">
-    <div id="nav-entry-div" class="tablet post-login">
+    <div id="nav-entry-div" class="tablet mobile post-login">
         <button id="new-entry-button-header" class="new-entry-button-header btn btn-outline-light icon nav-new-entry"><span
                 class="material-icons"
             >create</span></button>
     </div>
-    <div class="mobile spacer"></div>
 
     <a class="nav-name" href="/">
         <div>Diabetes</div>
@@ -31,8 +30,15 @@
                 </div>
             </div>
             <div class="post-login">
-                <a href="/clinician/dashboard">Dashboard</a>
-                <a href="/clinician/comments">Comments</a>
+                <a class="nav-clinician" href="/clinician/dashboard">Dashboard</a>
+                <a class="nav-clinician" href="/clinician/comments">Comments</a>
+                <div class="nav-patient dropdown">
+                    <button class="dropbtn">About</button>
+                    <div class="dropdown-content">
+                        <a href="/about-us">About D@H</a>
+                        <a href="/about-diabetes">About Diabetes</a>
+                    </div>
+                </div>
                 <div class="dropdown">
                     <button class="dropbtn"><span
                             class="material-icons"
@@ -43,8 +49,8 @@
                                 style="width: 3rem;"
                                 src="https://uxwing.com/wp-content/themes/uxwing/download/12-peoples-avatars/no-profile-picture.svg"
                             />
-                            <p><strong>Chris Lee</strong><br
-                                />chris@diabetemail.com</p>
+                            <p class="nav-clinician"><strong>Chris Lee</strong><br/>chris@diabetemail.com</p>
+                            <p class="nav-patient"><strong>Pat Smith</strong><br/>pat@diabetemail.com</p>
                             <p><button
                                     onclick="logOut()"
                                     class="btn btn-light"
@@ -67,7 +73,7 @@
             </div>
         </div>
 
-        <div class="tablet">
+        <div class="tablet mobile">
             <div class="pre-login">
                 <div class="dropdown">
                     <button class="dropbtn">Login</button>
@@ -90,25 +96,13 @@
                             class="material-icons"
                         >menu</span></button>
                     <div class="dropdown-content">
-                        <a href="/dashboard">Dashboard</a>
-                        <a href="/about-diabetes">About Diabetes</a>
-                        <a href="/about-us">About D@H</a>
+                        <a class="nav-patient" href="/patient/dashboard">Dashboard</a>
+                        <a class="nav-patient" href="/about-diabetes">About Diabetes</a>
+                        <a class="nav-patient" href="/about-us">About D@H</a>
+                        <a class="nav-clinician" href="/clinician/dashboard">Dashboard</a>
+                        <a class="nav-clinician" href="/clinician/comments">Comments</a>
                         <a href="/settings">Settings</a>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="mobile">
-            <div class="dropdown">
-                <button class="dropbtn icon"><span
-                        class="material-icons"
-                    >menu</span></button>
-                <div class="dropdown-content">
-                    <a href="/dashboard">Dashboard</a>
-                    <a href="/about-diabetes">About Diabetes</a>
-                    <a href="/about-us">About D@H</a>
-                    <a href="/settings">Settings</a>
                 </div>
             </div>
         </div>
@@ -135,6 +129,17 @@
         document.getElementById("normal-nav").remove()
     } else {
         document.getElementById("simple-nav").remove()
+        if (window.location.pathname.startsWith("/patient")) {
+            const clinLinks = document.getElementsByClassName("nav-clinician");
+            for (var i=0; i<clinLinks.length; i++) {
+                clinLinks[i].style.display = "none";
+            }
+        } else {
+            const patLinks = document.getElementsByClassName("nav-patient");
+            for (var i=0; i<patLinks.length; i++) {
+                patLinks[i].style.display = "none";
+            }
+        }
     }
 
     const names = document.getElementsByClassName("nav-name");

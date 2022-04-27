@@ -1,8 +1,5 @@
 
 <style>
-    h1 {
-        color:Green;
-    }
     div.scroll {
         padding:4px;
         background-color: initial;
@@ -30,10 +27,6 @@
         font-weight: bold;
         color: black;
     }
-    .read{
-        font-weight:1 ;
-        font
-    }
     .message-details{
         display: flex;
         justify-content: space-between;
@@ -48,14 +41,31 @@
         height: 190px;
     }
 }
-@media screen and (min-width: 1024px){
+@media screen and (min-width: 1025px){
     div.scroll{
         height: 230px;
     }
 }
+
+.message-box-container h5 {
+    position: relative;
+    font-weight: bold;
+}
+
+#unread-notif {
+    position: absolute;
+    float: right;
+    border-radius: 4px;
+    padding: 3px 4px 3px 4px;
+    font-weight: bold;
+    font-size: 16px;
+    right: 5px;
+    background-color: #f94d44;
+    color: white;
+}
 </style>
 <div class="message-box-container">
-<h5>Message Box</h5>
+<h5>Message Box<span id="unread-notif">NEW!</span></h5>
 <div class="scroll">
     <div class="message unread">
         <div class="message-details">
