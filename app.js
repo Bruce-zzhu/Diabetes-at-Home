@@ -70,9 +70,23 @@ app.get('/login_p', (req, res) => {
     });
 })
 
+// forgot password page
+app.get('/forgot_password', (req, res) => {
+    res.render('forgot-password', {
+        style: 'login.css'
+    });
+})
+
+// leaderboard page
+app.get('/patient/leaderboard', (req, res) => {
+    res.render('patient/leaderboard', {
+        style: 'leaderboard.css'
+    });
+})
+
 
 // clinician dashboard
-app.get('/dashboard', async (req, res) => {
+app.get('/clinician/dashboard', async (req, res) => {
     // .lean() is to solve the handlebars access error
     const patients = await Patient.find({}).populate('timeSeries').lean()  
     res.render('clinician/dashboard', {

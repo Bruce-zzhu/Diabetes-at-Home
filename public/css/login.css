@@ -1,14 +1,15 @@
 
 h1 {
-    font-size: 7rem;
+    font-size: 8vw;
     font-weight: 600;
     text-align: center;
-    padding-top: 3rem;
     padding-bottom: 0.5rem;
+    padding-left: 5%;
+    padding-right: 5%;
 }
 
 h2 {
-    font-size: 2rem;
+    font-size: 3vw;
     font-weight: 400;
     text-align: center;
     padding-top: 0.5rem;
@@ -16,7 +17,7 @@ h2 {
 }
 
 h3 {
-    font-size: 1.2rem;
+    font-size: 2vw;
     font-weight: 100;
     text-align: center;
     padding-top: 1rem;
@@ -24,7 +25,7 @@ h3 {
 }
 
 .login-logo {
-    width: 7rem;
+    width: 8vw;
 }
 
 input[type=submit] {
@@ -36,12 +37,14 @@ input[type=submit] {
 }
 
 .container {
-    padding-left: 10%;
-    padding-right: 10%;
-    padding-top: 10%;
-    padding-bottom: 10%;
+    align-content: center;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 5%;
+    padding-bottom: 5%;
     width: 50%;
-    margin-bottom: 10%;
+    height: 80%;
+    /*margin-bottom: 5%;*/
     background-color: var(--primary-color);
     color: var(--bg-color);
     text-align: center;
@@ -50,6 +53,9 @@ input[type=submit] {
 
 .container a{
     padding: 1rem;
+    color: var(--bg-color);
+    display: inline;
+    font-size: 1rem;
 }
 
 form {
@@ -64,4 +70,125 @@ em {
     font-style: italic;
 }
 
+h4 {
+    font-size: 1rem;
+    display: none;
+    color: #800035;
+}
 
+.buffer {
+    height: 10%;
+}
+
+.login-page {
+    min-height: 100%;
+}
+
+.login-page.clinician {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.login-page.patient {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+
+.desktop-background {
+    min-height: 100%;
+}
+
+.about-buttons {
+    display: none;
+    justify-content: space-between;
+}
+
+input[type=button] {
+    background-color: var(--secondary-color);
+    border: solid var(--bg-color);
+    border-radius: 0.5rem;
+}
+
+.mobile-login-logo {
+    display: none;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media screen and (min-width: 1024px) {
+    .login-page.patient {
+        background-image: url(https://post-phinf.pstatic.net/MjAxODA3MTZfMTkz/MDAxNTMxNzI3OTYyMDAz.TOz1mdltXgjJd54JFdH4UStRDVvSHAZ6x2W77fKFk9kg.KR0kJySZ0GNl4mFOYWNYj5kvKadaLauAdMHXGjW-pTQg.JPEG/GettyImages-990008836.jpg);
+    }
+
+    .login-page.clinician {
+        background-image: url(https://c.pxhere.com/images/65/a4/091a7a2f5db459f94a9a8e4c1997-1444739.jpg!d);
+    }
+    
+    
+}
+
+@media screen and (max-width: 1023px) {
+    .login-page {
+        background-color: var(--primary-color);
+    }
+    .container{
+        width: 100%;
+        height: 100%;
+    }
+    #forgot-password{
+        align-content: center;
+        text-align: center;
+    }
+    #switch-login {
+        display: none;
+    }
+    .about-buttons {
+        display: flex;
+        width: 100%;
+    }
+    .about-diabetes {
+        margin: 5% 5%;
+    }
+    .about-us {
+        margin: 5% 5%;
+    }
+    h4 {
+        display: block;
+    }
+}    
+
+@media screen and (max-width: 375px) {
+    .about-buttons {
+        /*border-radius: 0.5rem;
+        font-size: 1rem;
+        align-content: center;
+        align-self: center;*/
+        text-align: center;
+        display: block;
+        left: 50%;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    h1 {
+        display: none;
+    }
+
+    .mobile-login-logo {
+        display: block;
+
+    }
+
+    h2 {
+        display: none;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+
+}

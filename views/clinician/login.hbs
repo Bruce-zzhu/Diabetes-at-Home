@@ -10,7 +10,8 @@ function withValue(){
 }
 </script>
 
-<section class="login-page">
+<section class="login-page clinician">
+    <div class="buffer"></div>
     <div class="container">
         <h1>
             D
@@ -26,14 +27,15 @@ function withValue(){
                 Clinician Login
             </strong>
         </h3>
+        <h4>Error: Clinician Login only available on desktop</h4>
         <form onchange="withValue()">
             <input type="text" id="email" name="email" placeholder="user@email.com"> <br>
             <input type="password" id="password" name="password" placeholder="Password"> <br> <br>
-            <input type="submit" id="login-submit" value="LOG IN">
+            <input type="submit" id="login-submit" value="LOG IN" href = "/clinician/dashboard">
         </form>
         
-        <a href="/login_p"> Login as patient </a>
-        <a href="/">Forgot Password?</a>
+        <a href="/login_p" id="switch-login"> Login as patient </a>
+        <a href="/forgot_password" id="forgot-password">Forgot Password?</a>
 
     </div>
 </section>
