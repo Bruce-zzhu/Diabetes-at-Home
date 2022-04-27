@@ -94,6 +94,9 @@ app.get("/patient/leaderboard", (req, res) => {
 // patient homepage based on HARDCODED id
 app.get("/patient/dashboard", async (req, res) => {
     const patient = await Patient.findOne({ firstName: "Pat" }).lean();
+
+    const timeSeriesList = await TimeSeries.find({patient: patient._id}).populate('patient').lean();
+
     const timeSeries = await TimeSeries.findOne({
         patient: patient._id,
     }).lean();
@@ -161,6 +164,7 @@ app.get("/patient/dashboard", async (req, res) => {
         averageTimeseries,
         dateArray,
         endDateArray,
+        timeSeriesList
     });
 });
 

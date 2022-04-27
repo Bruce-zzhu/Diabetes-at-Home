@@ -8,6 +8,15 @@ var register = function(Handlebars) {
         // to make @index start from 1
         idx: function(value) {
             return parseInt(value) + 1;
+        },
+
+        // extract date info from Date object
+        getDate: function (date) {
+            const year = date.getFullYear();
+            const month = date.getMonth() + 1;
+            const day = date.getDate();
+
+            return `${day}/${month}/${year}`
         }
         
     }
