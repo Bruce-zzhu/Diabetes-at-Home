@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const {isSameDay} = require('./public/scripts/js-helpers');
 const mongoose = require('mongoose');
 const { Patient, TimeSeries } = require('./models/patient');
-const clinicianRoutes = require('./routes/clinician');
+const clinicianRoutes = require('./routers/clinician');
 
 require('dotenv').config();
 const connectionURL = process.env.MONGO_URL || 'mongodb://localhost:27017/diabetes-at-home';
