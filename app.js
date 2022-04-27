@@ -6,6 +6,7 @@ const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const { Patient, TimeSeries } = require("./models/patient");
+const { isSameDay } = require('./public/scripts/js-helpers');
 const clinicianRoutes = require("./routers/clinician");
 const patientRoutes = require("./routers/patient");
 
@@ -42,8 +43,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/clinician", clinicianRoutes);
 app.use("/patient", patientRoutes);
 
+
+
+
 // hero page
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
     res.render("landing", {
         style: "landing.css",
     });
@@ -91,19 +95,24 @@ app.get("/patient/leaderboard", (req, res) => {
     });
 });
 
+const { createTodayTimeSeries, getTodayTimeSeries } = require('./controllers/clinician')
 // patient homepage based on HARDCODED id
 app.get("/patient/dashboard", async (req, res) => {
     const patient = await Patient.findOne({ firstName: "Pat" }).lean();
 
-    const timeSeriesList = await TimeSeries.find({patient: patient._id}).populate('patient').lean();
+    const todayTimeSeries = await getTodayTimeSeries(patient);
+    // create timeSeries for each patient every day
+    if (!todayTimeSeries) {
+        await createTodayTimeSeries(patient);
+    }
 
     const timeSeries = await TimeSeries.findOne({
         patient: patient._id,
     }).lean();
 
-    const timeSeriesArr = await TimeSeries.find({
+    const timeSeriesList = await TimeSeries.find({
         patient: patient._id,
-    }).lean();
+    }).populate('patient').lean();
 
     const dateArray = [
         timeSeries.date.getDate(),
@@ -118,39 +127,39 @@ app.get("/patient/dashboard", async (req, res) => {
         exercise: 0,
     };
     const endDateArray = [];
-    if (timeSeriesArr.length < 7) {
+    if (timeSeriesList.length < 7) {
         endDateArray.push(
-            timeSeriesArr[timeSeriesArr.length - 1].date.getDate(),
-            timeSeriesArr[timeSeriesArr.length - 1].date.getMonth() + 1,
-            timeSeriesArr[timeSeriesArr.length - 1].date.getFullYear()
+            timeSeriesList[timeSeriesList.length - 1].date.getDate(),
+            timeSeriesList[timeSeriesList.length - 1].date.getMonth() + 1,
+            timeSeriesList[timeSeriesList.length - 1].date.getFullYear()
         );
-        for (let i = 0; i < timeSeriesArr.length; i++) {
+        for (let i = 0; i < timeSeriesList.length; i++) {
             averageTimeseries.bloodGlucose +=
-                timeSeriesArr[i].bloodGlucose.value;
-            averageTimeseries.insulin += timeSeriesArr[i].insulin.value;
-            averageTimeseries.weight += timeSeriesArr[i].weight.value;
-            averageTimeseries.exercise += timeSeriesArr[i].exercise.value;
+                timeSeriesList[i].bloodGlucose.value;
+            averageTimeseries.insulin += timeSeriesList[i].insulin.value;
+            averageTimeseries.weight += timeSeriesList[i].weight.value;
+            averageTimeseries.exercise += timeSeriesList[i].exercise.value;
         }
         averageTimeseries.bloodGlucose =
-            averageTimeseries.bloodGlucose / timeSeriesArr.length;
+            averageTimeseries.bloodGlucose / timeSeriesList.length;
         averageTimeseries.insulin =
-            averageTimeseries.insulin / timeSeriesArr.length;
+            averageTimeseries.insulin / timeSeriesList.length;
         averageTimeseries.weight =
-            averageTimeseries.weight / timeSeriesArr.length;
+            averageTimeseries.weight / timeSeriesList.length;
         averageTimeseries.exercise =
-            averageTimeseries.exercise / timeSeriesArr.length;
+            averageTimeseries.exercise / timeSeriesList.length;
     } else {
         endDateArray.push(
-            timeSeriesArr[6].date.getDate(),
-            timeSeriesArr[6].date.getMonth() + 1,
-            timeSeriesArr[6].date.getFullYear()
+            timeSeriesList[6].date.getDate(),
+            timeSeriesList[6].date.getMonth() + 1,
+            timeSeriesList[6].date.getFullYear()
         );
         for (let i = 0; i < 7; i++) {
             averageTimeseries.bloodGlucose +=
-                timeSeriesArr[i].bloodGlucose.value;
-            averageTimeseries.insulin += timeSeriesArr[i].insulin.value;
-            averageTimeseries.weight += timeSeriesArr[i].weight.value;
-            averageTimeseries.exercise += timeSeriesArr[i].exercise.value;
+                timeSeriesList[i].bloodGlucose.value;
+            averageTimeseries.insulin += timeSeriesList[i].insulin.value;
+            averageTimeseries.weight += timeSeriesList[i].weight.value;
+            averageTimeseries.exercise += timeSeriesList[i].exercise.value;
         }
         averageTimeseries.bloodGlucose = averageTimeseries.bloodGlucose / 7;
         averageTimeseries.insulin = averageTimeseries.insulin / 7;
