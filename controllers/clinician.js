@@ -87,5 +87,7 @@ const renderPatientProfile = async (req, res) => {
 
 module.exports = {
     getDashboardData,
-    renderPatientProfile
+    renderPatientProfile,
+    getTodayTimeSeries,
+    createTodayTimeSeries
 }
