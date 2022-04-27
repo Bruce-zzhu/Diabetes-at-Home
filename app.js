@@ -63,6 +63,34 @@ app.get('/about-diabetes', (req, res) => {
     });
 });
 
+// Clinician Login page
+app.get('/login_c', (req, res) => {
+    res.render('clinician/login', {
+        style: 'login.css'
+    });
+})
+
+// Patient Login page
+app.get('/login_p', (req, res) => {
+    res.render('patient/login', {
+        style: 'login.css'
+    });
+})
+
+// forgot password page
+app.get('/forgot_password', (req, res) => {
+    res.render('forgot-password', {
+        style: 'login.css'
+    });
+})
+
+// leaderboard page
+app.get('/patient/leaderboard', (req, res) => {
+    res.render('patient/leaderboard', {
+        style: 'leaderboard.css'
+    });
+})
+
 
 // patient homepage based on HARDCODED id
 app.get('/patient/dashboard', async (req, res) => {
