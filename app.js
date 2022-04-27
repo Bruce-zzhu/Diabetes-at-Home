@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const {isSameDay} = require('./public/scripts/js-helpers');
 const mongoose = require('mongoose');
 const { Patient, TimeSeries } = require('./models/patient');
-const clinicianRoutes = require('./routes/clinician');
+const clinicianRoutes = require('./routers/clinician');
 
 require('dotenv').config();
 const connectionURL = process.env.MONGO_URL || 'mongodb://localhost:27017/diabetes-at-home';
@@ -96,7 +96,7 @@ app.get('/patient/leaderboard', (req, res) => {
 app.get('/patient/dashboard', async (req, res) => {
     const patient = await Patient.findOne({firstName: 'Pat'}).lean();
     const timeSeries = await TimeSeries.findOne({patient: patient._id}).lean();
-    const dateArray = [timeSeries.date.getDate(), '0' + timeSeries.date.getMonth()+1, timeSeries.date.getFullYear()]
+    const dateArray = [timeSeries.date.getDate(), timeSeries.date.getMonth()+1, timeSeries.date.getFullYear()]
 
     res.render('patient/dashboard', {
         style: 'p-dashboard.css',
