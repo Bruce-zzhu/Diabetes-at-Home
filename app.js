@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const {isSameDay} = require('./public/scripts/js-helpers');
 const mongoose = require('mongoose');
 const { Patient, TimeSeries } = require('./models/patient');
+const clinicianRoutes = require('./routes/clinician');
 
 require('dotenv').config();
 const connectionURL = process.env.MONGO_URL || 'mongodb://localhost:27017/diabetes-at-home';
@@ -29,15 +30,17 @@ app.engine(
     })
 );
 app.set('view engine', 'hbs');
-
 // link views to views directory
 app.set('views', path.join(__dirname, '/views'));
-
 // link static files to public directory
 app.use(express.static(path.join(__dirname, '/public')));
-
 // process incoming request
 app.use(bodyParser.urlencoded({ extended: true }));
+
+
+// routes for clinician
+app.use('/clinician', clinicianRoutes);
+
 
 // hero page
 app.get('/', (req, res) => {
@@ -60,49 +63,6 @@ app.get('/about-diabetes', (req, res) => {
     });
 });
 
-// clinician dashboard
-app.get('/clinician/dashboard', async (req, res) => {
-    try {
-        // .lean() is to solve the handlebars access error
-        const patients = await Patient.find({}).lean();
-        var timeSeriesList = [];
-        var today = new Date();
-        for (p of patients) {
-            const timeSeries = await TimeSeries.findOne({patient: p._id}).populate('patient').lean();
-            // check if it's today's timeseries
-            if (isSameDay(today, timeSeries.date)) {
-                // today's timeseries found
-                timeSeriesList.push(timeSeries)
-            } else {
-                // create today's timeseries
-            }
-            
-        } 
-
-        res.render('clinician/dashboard', {
-            style: 'dashboard.css',
-            timeSeriesList
-        });
-    } catch(e) {
-        console.log(e);
-    }
-    
-});
-
-// view patient page
-app.get('/view-patient/:id/overview', async (req, res) => {
-    try {
-        const pid = req.params.id;
-        const patient = await Patient.findById(pid).lean();
-
-        res.render('clinician/viewPatient', {
-            style: 'viewPatient.css',
-            patient,
-        });
-    } catch (e) {
-        console.log(e);
-    }
-});
 
 // patient homepage based on HARDCODED id
 app.get('/patient/dashboard', async (req, res) => {
