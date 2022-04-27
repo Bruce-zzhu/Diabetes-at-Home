@@ -6,7 +6,7 @@ const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const { Patient, TimeSeries } = require("./models/patient");
-const { isSameDay } = require('./public/scripts/js-helpers');
+const { isSameDay } = require("./public/scripts/js-helpers");
 const clinicianRoutes = require("./routers/clinician");
 const patientRoutes = require("./routers/patient");
 
@@ -42,9 +42,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // routes
 app.use("/clinician", clinicianRoutes);
 app.use("/patient", patientRoutes);
-
-
-
 
 // hero page
 app.get("/", async (req, res) => {
@@ -95,10 +92,12 @@ app.get("/patient/leaderboard", (req, res) => {
     });
 });
 
-
 // ======= will tidy this up later ============
 
-const { createTodayTimeSeries, getTodayTimeSeries } = require('./controllers/clinician')
+const {
+    createTodayTimeSeries,
+    getTodayTimeSeries,
+} = require("./controllers/clinician");
 // patient homepage based on HARDCODED id
 app.get("/patient/dashboard", async (req, res) => {
     const patient = await Patient.findOne({ firstName: "Pat" }).lean();
@@ -109,10 +108,11 @@ app.get("/patient/dashboard", async (req, res) => {
         await createTodayTimeSeries(patient);
     }
 
-
     const timeSeriesList = await TimeSeries.find({
         patient: patient._id,
-    }).populate('patient').lean();
+    })
+        .populate("patient")
+        .lean();
 
     var averageTimeseries = {
         bloodGlucose: 0,
@@ -127,7 +127,6 @@ app.get("/patient/dashboard", async (req, res) => {
         todayTimeSeries.date.getFullYear(),
     ];
 
-
     getAvergaeValue(timeSeriesList, averageTimeseries, endDateArray);
 
     timeSeriesList.sort(function (a, b) {
@@ -136,14 +135,13 @@ app.get("/patient/dashboard", async (req, res) => {
         return d - c;
     });
 
-
     res.render("patient/dashboard", {
         style: "p-dashboard.css",
         patient,
         averageTimeseries,
         dateArray,
         endDateArray,
-        timeSeriesList
+        timeSeriesList,
     });
 });
 
@@ -154,7 +152,7 @@ function getAvergaeValue(timeSeriesList, averageTimeseries, endDateArray) {
             timeSeriesList[timeSeriesList.length - 1].date.getMonth() + 1,
             timeSeriesList[timeSeriesList.length - 1].date.getFullYear()
         );
-        for (let i = 0; i < timeSeriesList.length; i++) {
+        for (let i = 1; i < timeSeriesList.length; i++) {
             averageTimeseries.bloodGlucose +=
                 timeSeriesList[i].bloodGlucose.value;
             averageTimeseries.insulin += timeSeriesList[i].insulin.value;
@@ -174,11 +172,11 @@ function getAvergaeValue(timeSeriesList, averageTimeseries, endDateArray) {
             averageTimeseries.exercise / timeSeriesList.length;
     } else {
         endDateArray.push(
-            timeSeriesList[6].date.getDate(),
-            timeSeriesList[6].date.getMonth() + 1,
-            timeSeriesList[6].date.getFullYear()
+            timeSeriesList[7].date.getDate(),
+            timeSeriesList[7].date.getMonth() + 1,
+            timeSeriesList[7].date.getFullYear()
         );
-        for (let i = 0; i < 7; i++) {
+        for (let i = 1; i < 8; i++) {
             averageTimeseries.bloodGlucose +=
                 timeSeriesList[i].bloodGlucose.value;
             averageTimeseries.insulin += timeSeriesList[i].insulin.value;
@@ -191,9 +189,6 @@ function getAvergaeValue(timeSeriesList, averageTimeseries, endDateArray) {
         averageTimeseries.exercise = averageTimeseries.exercise / 7;
     }
 }
-
-
-
 
 // Add New Entry page and process new entry forms
 // app.get("/patient/new-entry", (req, res) => {
