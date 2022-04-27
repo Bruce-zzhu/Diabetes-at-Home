@@ -1,0 +1,41 @@
+<script>
+function withValue(){
+    if ((document.getElementById("email").value != "") && (document.getElementById("password").value != "")){
+        document.getElementById("login-submit").style.backgroundColor = "var(--deepBlue-color)"
+        document.getElementById("login-submit").style.cursor = "pointer"
+    } else{
+        document.getElementById("login-submit").style.backgroundColor = "var(--brown-color)"
+        document.getElementById("login-submit").style.cursor = "default"
+    }
+}
+</script>
+
+<section class="login-page clinician">
+    <div class="buffer"></div>
+    <div class="container">
+        <h1>
+            D
+            <img class="login-logo" src="/images/logo.svg" alt="logo" />
+            H
+        </h1>
+        
+        <h2>
+            <em>Diabetes at Home</em>
+        </h2>
+        <h3>
+            <strong>
+                Clinician Login
+            </strong>
+        </h3>
+        <h4>Error: Clinician Login only available on desktop</h4>
+        <form onchange="withValue()">
+            <input type="text" id="email" name="email" placeholder="user@email.com"> <br>
+            <input type="password" id="password" name="password" placeholder="Password"> <br> <br>
+            <input type="submit" id="login-submit" value="LOG IN" href = "/clinician/dashboard">
+        </form>
+        
+        <a href="/login_p" id="switch-login"> Login as patient </a>
+        <a href="/forgot_password" id="forgot-password">Forgot Password?</a>
+
+    </div>
+</section>
