@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const {isSameDay} = require('./public/scripts/js-helpers');
 const mongoose = require('mongoose');
 const { Patient, TimeSeries } = require('./models/patient');
-const clinicianRoutes = require('./routers/clinician');
+const clinicianRoutes = require('./routes/clinician');
 
 require('dotenv').config();
 const connectionURL = process.env.MONGO_URL || 'mongodb://localhost:27017/diabetes-at-home';
@@ -80,15 +80,20 @@ app.get('/patient/dashboard', async (req, res) => {
 
 // Add New Entry page and process new entry forms
 app.get('/new-entry', (req, res) => {
-    res.render('partials/new-entry', { // style: 'about.css'
+    res.render('partials/new-entry', {  style: 'about.css'
     });
 });
 
+const { getTodayTimeSeries } = require('./controllers/clinician')
 app.post('/new-entry', async (req, res) => {
     const blood = req.body.bloodGlucose;
     const weight = req.body.weight;
     const insulin = req.body.insulin;
     const exercise = req.body.exercise;
+
+    const patient = await Patient.findOne({firstName: 'Pat'});
+    
+
     
     console.log(req.body)
     res.redirect('/patient/dashboard');
