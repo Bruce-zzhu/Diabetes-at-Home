@@ -121,6 +121,7 @@ app.get("/patient/dashboard", async (req, res) => {
     ];
 
     getAvergaeValue(timeSeriesArr, averageTimeseries, endDateArray);
+    console.log(timeSeriesArr);
     res.render("patient/dashboard", {
         style: "p-dashboard.css",
         patient,
@@ -145,8 +146,9 @@ function getAvergaeValue(timeSeriesArr, averageTimeseries, endDateArray) {
             averageTimeseries.weight += timeSeriesArr[i].weight.value;
             averageTimeseries.exercise += timeSeriesArr[i].exercise.value;
         }
-        averageTimeseries.bloodGlucose =
-            averageTimeseries.bloodGlucose / timeSeriesArr.length;
+        averageTimeseries.bloodGlucose = (
+            averageTimeseries.bloodGlucose / timeSeriesArr.length
+        ).toFixed(2);
         averageTimeseries.insulin =
             averageTimeseries.insulin / timeSeriesArr.length;
         averageTimeseries.weight =
