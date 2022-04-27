@@ -5,7 +5,7 @@ footer {
     color: white;
     text-align: center;
     border-top: var(--bg-color); /* change according to content background */
-    position: fixed;
+    position: absolute;
     bottom: 0;
     padding-top: 5px;
     display: block;
