@@ -109,9 +109,6 @@ app.get("/patient/dashboard", async (req, res) => {
         await createTodayTimeSeries(patient);
     }
 
-    const timeSeries = await TimeSeries.findOne({
-        patient: patient._id,
-    }).lean();
 
     const timeSeriesList = await TimeSeries.find({
         patient: patient._id,
@@ -125,9 +122,9 @@ app.get("/patient/dashboard", async (req, res) => {
     };
     var endDateArray = [];
     const dateArray = [
-        timeSeries.date.getDate(),
-        timeSeries.date.getMonth() + 1,
-        timeSeries.date.getFullYear(),
+        todayTimeSeries.date.getDate(),
+        todayTimeSeries.date.getMonth() + 1,
+        todayTimeSeries.date.getFullYear(),
     ];
 
     getAvergaeValue(timeSeriesList, averageTimeseries, endDateArray);
@@ -141,7 +138,6 @@ app.get("/patient/dashboard", async (req, res) => {
     res.render("patient/dashboard", {
         style: "p-dashboard.css",
         patient,
-        timeSeries,
         averageTimeseries,
         dateArray,
         endDateArray,
@@ -164,7 +160,7 @@ function getAvergaeValue(timeSeriesList, averageTimeseries, endDateArray) {
             averageTimeseries.exercise += timeSeriesList[i].exercise.value;
         }
         averageTimeseries.bloodGlucose =
-            averageTimeseries.bloodGlucose / timeSeriesList.length;
+            (averageTimeseries.bloodGlucose / timeSeriesList.length).toFixed(2);
         averageTimeseries.insulin =
             averageTimeseries.insulin / timeSeriesList.length;
         averageTimeseries.weight =
