@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const { Patient, TimeSeries } = require("./models/patient");
 const { isSameDay } = require("./public/scripts/js-helpers");
+const { consolelogs } = require("./public/scripts/js-helpers");
 const clinicianRoutes = require("./routers/clinician");
 const patientRoutes = require("./routers/patient");
 

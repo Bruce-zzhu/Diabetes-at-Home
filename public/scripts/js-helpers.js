@@ -3,7 +3,7 @@ function logOut() {
     console.log("User has logged out");
 }
 
-function newEntry() {
+function consolelogs() {
     console.log("User creating new entry");
 }
 
@@ -15,6 +15,6 @@ function isSameDay(d1, d2) {
 
 module.exports = {
     logOut,
-    newEntry,
+    consolelogs,
     isSameDay
 }
