@@ -15,7 +15,6 @@
 }
 
 .module h5 {
-    font-size: 18px;
     font-weight: bold;
 }
 
@@ -165,6 +164,10 @@ thead {
 .full-hist-title {
     font-weight: bold;
     padding-bottom: 1rem;
+}
+
+.ts:hover {
+    cursor: pointer;
 }
 
 @media screen and (max-width: 376px) {
