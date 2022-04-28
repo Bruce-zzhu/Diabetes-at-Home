@@ -122,7 +122,7 @@ grid-template-rows: 100%;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     position: absolute;
     z-index: 1;
     overflow-y: hidden;
@@ -141,7 +141,7 @@ grid-template-rows: 100%;
         position: absolute;
         top: 50%;
         width: 100%;
-        transform: translateY(-50%);
+        /*transform: translateY(-50%);*/
     }
     .content-container{
         border: none;
@@ -169,10 +169,6 @@ grid-template-rows: 100%;
     .comment-icon-container{
         display: flex;
         justify-content: end;
-    }
-    #popup-overlay{
-        background-color: initial;
-        z-index: 0;
     }
 }
 </style>
@@ -206,13 +202,8 @@ grid-template-rows: 100%;
                         <input name="bloodGlucose" type="text" class="data-input" value="{{bloodGlucose.value}}">
                         <span class="unit-label">(nmol/L)</span>   
                         <span class="comment-label">Comments:</span> 
-<<<<<<< Updated upstream
                         <input name="bloodGlucoseComment" type="text" class="comment-input" value="{{bloodGlucose.comment}}">
-                        <a href="#comment-popup-container" class="comment-icon-container"><img src="chat-dots.svg" alt="" class="comment-icon" href="#comment-popup-container"></a>
-=======
-                        <input name="bloodGlucoseComment" type="text" class="comment-input">
                         <a href="#comment-popup-container" class="comment-icon-container"><img src="https://uxwing.com/wp-content/themes/uxwing/download/37-communication-chat-call/talk-bubble.svg" alt="" class="comment-icon" href="#comment-popup-container"></a>
->>>>>>> Stashed changes
                         
                     </div>
                 </div>                
@@ -222,13 +213,8 @@ grid-template-rows: 100%;
                         <input name="weight" type="text" class="data-input" value="{{weight.value}}">
                         <span class="unit-label">(kg)</span>   
                         <span class="comment-label">Comments:</span> 
-<<<<<<< Updated upstream
                         <input name="weightComment" type="text" class="comment-input" value="{{weight.comment}}">  
-                        <img src="chat-dots.svg" alt="" class="comment-icon">
-=======
-                        <input name="weightComment" type="text" class="comment-input">  
                         <img src="https://uxwing.com/wp-content/themes/uxwing/download/37-communication-chat-call/talk-bubble.svg" alt="" class="comment-icon">
->>>>>>> Stashed changes
                     </div>
                 </div>
                 <div class="data-form-row"> <!-- insulin doses entry -->
@@ -237,13 +223,8 @@ grid-template-rows: 100%;
                         <input name="insulin" type="text" class="data-input" value="{{insulin.value}}">
                         <span class="unit-label">(doses)</span>   
                         <span class="comment-label">Comments:</span> 
-<<<<<<< Updated upstream
                         <input name="insulinComment" type="text" class="comment-input" value="{{insulin.comment}}">  
-                        <img src="chat-dots.svg" alt="" class="comment-icon">
-=======
-                        <input name="insulinComment" type="text" class="comment-input">  
                         <img src="https://uxwing.com/wp-content/themes/uxwing/download/37-communication-chat-call/talk-bubble.svg" alt="" class="comment-icon">
->>>>>>> Stashed changes
                     </div>
                 </div>
                 <div class="data-form-row"> <!-- step count entry  -->
@@ -252,13 +233,8 @@ grid-template-rows: 100%;
                         <input name="step" type="text" class="data-input" value="{{exercise.value}}">
                         <span class="unit-label">(steps)</span>   
                         <span class="comment-label">Comments:</span> 
-<<<<<<< Updated upstream
                         <input name="stepComment" type="text" class="comment-input" value="{{exercise.comment}}">
-                        <img src="chat-dots.svg" alt="" class="comment-icon">  
-=======
-                        <input name="stepComment" type="text" class="comment-input">
                         <img src="https://uxwing.com/wp-content/themes/uxwing/download/37-communication-chat-call/talk-bubble.svg" alt="" class="comment-icon">  
->>>>>>> Stashed changes
                     </div>
                 </div>
                 <div class="buttons">
