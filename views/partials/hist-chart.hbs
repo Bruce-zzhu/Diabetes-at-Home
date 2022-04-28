@@ -1,34 +1,13 @@
-<link rel="stylesheet" href="/css/hist-chart.css" />
-<script src="https://cdn.plot.ly/plotly-2.11.1.min.js"></script>
-<h5>Recent Data (Chart)</h5>
-<div id={{chartId}}></div>
-<script>
-    var upBound = {} /* SAMPLE {
-        type: "scatter",
-        mode: "lines",
-        x: [1, 5],
-        y: [bloodGlucose.upperBound, bloodGlucose.upperBound],
-        line: {'dash': 'dash', color: "#d91616"}
-    } */;
-    var lowBound = {} /* SAMPLE {
-        type: "scatter",
-        mode: "lines",
-        x: [1, 5],
-        y: [bloodGlucose.lowerBound, bloodGlucose.lowerBound],
-        line: {'dash': 'dash', color: "#d91616"}
-    }*/;
-    var data = {};
+<h5>Recent Data</h5>
 
-	CHART = document.getElementById("{{chartId}}");
-	Plotly.newPlot(
-        CHART, // element
-        [upBound, lowBound, data], // dadta
-        { // layout
-            margin: { t: 0 }
-        },
-        { // mode
-            displayModeBar: false,
-            staticPlot: true
-        }
-    );
+<div>
+  <canvas id="myChart"></canvas>
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    var histData = {{{histData}}}
 </script>
+<script src="/scripts/hist-chart.js"></script>

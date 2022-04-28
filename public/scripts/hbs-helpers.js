@@ -17,6 +17,11 @@ var register = function(Handlebars) {
             const day = date.getDate();
 
             return `${day}/${month}/${year}`
+        },
+
+        // pass hbs variable into script
+        json: function (content) {
+            return JSON.stringify(content);
         }
         
     }

@@ -60,7 +60,7 @@
             {{>averagehistTable averageTimeseries startDateArray=startDateArray endDateArray=endDateArray}}
 
         </div>
-        <div id="hist-chart" class="module">{{> hist-chart timeSeriesList chartId="p-dashboard-chart"}}</div>
+        <div id="hist-chart" class="module">{{>hist-chart histData=histData}}</div>
 
     </div>
 
@@ -121,6 +121,7 @@
 </div>
 
 <script>
+
     function tableToggleComment(cell) {
         var comment = cell.querySelector(".tb-comm"); 
         var value = cell.querySelector(".tb-value");
