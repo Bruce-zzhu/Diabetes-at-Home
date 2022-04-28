@@ -90,27 +90,27 @@
                 {{#each timeSeriesList}}
                 <tr class="align-middle">
                     <th scope="row">{{idx @index}}</th>                      
-                    <td>                       
+                    <td class="tb-date">                       
                         {{getDate date}}                      
                     </td>
                     
-                        <td onclick="tableToggleComment(this)" class="blood ts">
-                            <div class="tb-value">{{bloodGlucose.value}}{{#if bloodGlucose.isRequired}}*{{/if}}</div>
-                            <div class="tb-comm">{{bloodGlucose.comment}}</div>
-                        </td>
-                    
-                        <td onclick="tableToggleComment(this)" class="weight ts">
-                            <div class="tb-value">{{weight.value}}{{#if weight.isRequired}}*{{/if}}</div>
-                            <div class="tb-comm">{{weight.comment}}</div>
-                        </td>
-                        <td onclick="tableToggleComment(this)" class="insulin ts">
-                            <div class="tb-value">{{insulin.value}}{{#if insulin.isRequired}}*{{/if}}</div>
-                            <div class="tb-comm">{{insulin.comment}}</div>
-                        </td>
-                        <td onclick="tableToggleComment(this)" class="exercise ts">
-                            <div class="tb-value">{{exercise.value}}{{#if exercise.isRequired}}*{{/if}}</div>
-                            <div class="tb-comm">{{exercise.comment}}</div>
-                        </td>
+                    <td onclick="tableToggleComment(this)" class="blood ts">
+                        <div class="tb-value">{{bloodGlucose.value}}{{#if bloodGlucose.isRequired}}*{{/if}}</div>
+                        <div class="tb-comm">{{bloodGlucose.comment}}</div>
+                    </td>
+                
+                    <td onclick="tableToggleComment(this)" class="weight ts">
+                        <div class="tb-value">{{weight.value}}{{#if weight.isRequired}}*{{/if}}</div>
+                        <div class="tb-comm">{{weight.comment}}</div>
+                    </td>
+                    <td onclick="tableToggleComment(this)" class="insulin ts">
+                        <div class="tb-value">{{insulin.value}}{{#if insulin.isRequired}}*{{/if}}</div>
+                        <div class="tb-comm">{{insulin.comment}}</div>
+                    </td>
+                    <td onclick="tableToggleComment(this)" class="exercise ts">
+                        <div class="tb-value">{{exercise.value}}{{#if exercise.isRequired}}*{{/if}}</div>
+                        <div class="tb-comm">{{exercise.comment}}</div>
+                    </td>
             
                     
                 </tr>

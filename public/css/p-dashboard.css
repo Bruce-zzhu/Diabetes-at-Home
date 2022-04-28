@@ -150,6 +150,10 @@
     padding: 0;;
 }
 
+.table .tb-date {
+    padding: 0 5px 0 5px;
+}
+
 .tb-value {
     display: block;
 }
@@ -174,9 +178,8 @@ span {
     margin-top: -0.5rem;
 }
 
-.table-striped>tbody>tr:nth-of-type(odd)>* {
-    --bs-table-accent-bg: var(--tertiary-color) !important;
-    
+.table-striped>tbody>tr:nth-of-type(odd)>*, .table-striped>tbody>tr:nth-of-type(even)>* {
+    --bs-table-accent-bg: transparent;
 }
 
 thead {
