@@ -12,7 +12,7 @@ function withValue(){
 
 <section class="login-page patient">
     <div class="buffer"></div>
-    <div class="container">
+    <div class="login-container">
         <h1>
             D
             <img class="login-logo" src="/images/logo.svg" alt="logo" />
@@ -27,10 +27,10 @@ function withValue(){
                 Patient Login
             </strong>
         </h3>
-        <form onchange="withValue()">
+        <form onchange="withValue()" class="login-form">
             <input type="text" id="email" name="email" placeholder="user@email.com"> <br>
             <input type="password" id="password" name="password" placeholder="Password"> <br> <br>
-            <input type="submit" id="login-submit" value="LOG IN">
+            <input type="button" id="login-submit" value="LOG IN" onclick="location.href='/patient/dashboard';">
         </form>
         
         <a href="/login_c" id="switch-login"> Login as clinician </a>

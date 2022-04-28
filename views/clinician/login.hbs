@@ -12,7 +12,7 @@ function withValue(){
 
 <section class="login-page clinician">
     <div class="buffer"></div>
-    <div class="container">
+    <div class="login-container">
         <h1>
             D
             <img class="login-logo" src="/images/logo.svg" alt="logo" />
@@ -28,10 +28,10 @@ function withValue(){
             </strong>
         </h3>
         <h4>Error: Clinician Login only available on desktop</h4>
-        <form onchange="withValue()">
+        <form onchange="withValue()" class="login-form">
             <input type="text" id="email" name="email" placeholder="user@email.com"> <br>
             <input type="password" id="password" name="password" placeholder="Password"> <br> <br>
-            <input type="submit" id="login-submit" value="LOG IN" href = "/clinician/dashboard">
+            <input type="button" id="login-submit" value="LOG IN" href = "/clinician/dashboard" onclick="location.href='/clinician/dashboard';">
         </form>
         
         <a href="/login_p" id="switch-login"> Login as patient </a>

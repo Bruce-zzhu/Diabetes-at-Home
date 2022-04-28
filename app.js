@@ -79,9 +79,16 @@ app.get("/login_p", (req, res) => {
 });
 
 // forgot password page
-app.get("/forgot_password", (req, res) => {
-    res.render("forgot-password", {
-        style: "login.css",
+app.get('/forgot_password', (req, res) => {
+    res.render('forgot-password', {
+        style: 'forgot-password.css'
+    });
+})
+
+// reset password page
+app.get('/reset_password', (req, res) => {
+    res.render('reset-password', {
+        style: 'forgot-password.css'
     });
 });
 
