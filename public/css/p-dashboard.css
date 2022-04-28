@@ -22,7 +22,6 @@
 }
 
 .module h5 {
-    font-size: 18px;
     font-weight: bold;
 }
 
@@ -169,7 +168,18 @@ thead {
     color: white;
 }
 
+
+.full-hist-title {
+    font-weight: bold;
+    padding-bottom: 1rem;
+}
+
+.ts:hover {
+    cursor: pointer;
+}
+
 @media screen and (max-width: 375px) {
+
     .home-container {
         display: flex;
         flex-direction: column;
