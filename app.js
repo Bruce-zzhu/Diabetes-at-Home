@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const port = 3000;
 const path = require("path");
 const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
@@ -11,7 +12,7 @@ const clinicianRoutes = require("./routers/clinician");
 const patientRoutes = require("./routers/patient");
 
 require("dotenv").config();
-const port = process.env.PORT || 3000;
+
 const connectionURL =
     process.env.MONGO_URL || "mongodb://localhost:27017/diabetes-at-home";
 mongoose.connect(connectionURL);
@@ -249,6 +250,6 @@ function getAvergaeValue(timeSeriesList, averageTimeseries, endDateArray) {
 //     res.render("partials/message-box");
 // });
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
     console.log(`Listen on http://localhost:${port}`);
 });
