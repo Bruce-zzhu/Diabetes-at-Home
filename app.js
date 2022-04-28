@@ -142,7 +142,7 @@ app.get("/patient/dashboard", async (req, res) => {
         var d = new Date(b.date);
         return d - c;
     });
-
+    
     // start date for avg
     const startDateArray = [
         timeSeriesList[timeSeriesList.length - 1].date.getDate(),
@@ -153,23 +153,26 @@ app.get("/patient/dashboard", async (req, res) => {
     getAvergaeValue(timeSeriesList, averageTimeseries, endDateArray);
 
     var datesArray = []
-    var date = []
     for (ts of timeSeriesList) {
+        var date = []
         date.push(ts.date.getDate());
         date.push(ts.date.getMonth()+1);
         date.push(ts.date.getFullYear());
         datesArray.push(date)
     }
-
+    
     histData = []
-    for (var i = 0; i < timeSeriesList.length; i++) {
-        histData.push({
-            date: datesArray[i],
-            timeSeries: timeSeriesList[i]
+    if (timeSeriesList.length > 1) {
+        for (var i = 1; i < timeSeriesList.length; i++) {
+            histData.push({
+                date: datesArray[i],
+                timeSeries: timeSeriesList[i]
+                
+            })
             
-        })
-        
+        }
     }
+    
     
 
     res.render("patient/dashboard", {
@@ -181,7 +184,7 @@ app.get("/patient/dashboard", async (req, res) => {
         startDateArray,
         endDateArray,
         timeSeriesList,
-        histData
+        histData: JSON.stringify(histData)
     });
 });
 

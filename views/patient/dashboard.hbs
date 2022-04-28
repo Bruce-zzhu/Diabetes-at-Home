@@ -60,7 +60,7 @@
             {{>averagehistTable averageTimeseries startDateArray=startDateArray endDateArray=endDateArray}}
 
         </div>
-        <div id="hist-chart" class="module">{{> hist-chart}}</div>
+        <div id="hist-chart" class="module">{{>hist-chart histData=histData}}</div>
 
     </div>
 
@@ -144,7 +144,6 @@
     //ts.addEventListener('click', () => {
     //    console.log('hey')
     //})
-
     function seeComment(ts) {
         console.log('hey')
         const commentRow = document.querySelector('.full-hist-comment');
