@@ -185,9 +185,17 @@ thead {
         position: relative;
     }
 
-    .full-history {
-        display: none;
+    .full-history tr th {
+       font-size: 0.8rem;
     }
+
+    .full-history tbody td {
+        font-size: 0.8rem;
+     }
+
+     .full-history {
+         width: 90%;
+     }
 
 }
 
@@ -208,6 +216,7 @@ thead {
         width: 100%;
         height: 180px;
     }
+    
 }
 
 @media screen and (max-width: 1024px) and (min-width: 376px) {
