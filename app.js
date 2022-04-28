@@ -152,6 +152,24 @@ app.get("/patient/dashboard", async (req, res) => {
 
     getAvergaeValue(timeSeriesList, averageTimeseries, endDateArray);
 
+    var datesArray = []
+    var date = []
+    for (ts of timeSeriesList) {
+        date.push(ts.date.getDate());
+        date.push(ts.date.getMonth()+1);
+        date.push(ts.date.getFullYear());
+        datesArray.push(date)
+    }
+
+    histData = []
+    for (var i = 0; i < timeSeriesList.length; i++) {
+        histData.push({
+            date: datesArray[i],
+            timeSeries: timeSeriesList[i]
+            
+        })
+        
+    }
     
 
     res.render("patient/dashboard", {
@@ -163,6 +181,7 @@ app.get("/patient/dashboard", async (req, res) => {
         startDateArray,
         endDateArray,
         timeSeriesList,
+        histData
     });
 });
 
