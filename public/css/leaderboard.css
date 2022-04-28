@@ -37,8 +37,8 @@ h1 {
         height: 190px;
     }
 }
-@media screen and (min-width: 1024px){
+@media screen and (min-width: 1025px){
     div.scroll{
-        height: 230px;
+        height: 290px;
     }
 }
