@@ -1,9 +1,9 @@
 document.getElementById("nav-back").setAttribute('href', document.referrer);
+var pathname = window.location.pathname;
 
-if (window.location.pathname.startsWith("/about") || 
-window.location.pathname.startsWith("/settings")) {
-    document.getElementById("normal-nav").remove()
-} else {
+if (pathname === "/" ||
+    pathname.startsWith("/patient") ||
+    pathname.startsWith("/clinician")) {
     document.getElementById("simple-nav").remove()
     if (window.location.pathname.startsWith("/patient")) {
         const clinLinks = document.getElementsByClassName("nav-clinician");
@@ -16,6 +16,8 @@ window.location.pathname.startsWith("/settings")) {
             patLinks[i].style.display = "none";
         }
     }
+} else {
+    document.getElementById("normal-nav").remove()
 }
 
 const names = document.getElementsByClassName("nav-name");
