@@ -78,7 +78,7 @@
         </div>
         <p>Remember to fill out ALL the necessary fields each day!</p>
     </div>
-    <div class="message">
+    <div class="message unread">
         <div class="message-details">
             <span class="message-name-send">[clinician]:</span>
             <span class="message-time">10:06am 21/03</span>
@@ -92,7 +92,7 @@
         </div>
         <p>I'll see you next Monday. Good luck!</p>
     </div>
-    <div class="message unread">
+    <div class="message">
         <div class="message-details">
             <span class="message-name-send">[clinician]:</span>
             <span class="message-time">2:00am 12/03</span>
@@ -101,9 +101,4 @@
     </div>
 </div>
 </div>
-<script>
-    var unread = document.getElementsByClassName("unread");
-    if (unread.length === 0) {
-        document.getElementById("unread-notif").remove();
-    }
-</script>
+<script src="/scripts/message-box.js"></script>
