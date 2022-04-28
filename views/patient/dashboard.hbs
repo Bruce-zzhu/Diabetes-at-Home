@@ -1,48 +1,118 @@
-<div class="home-container">
-    {{!-- <div id="profile" class="module">{{> patientProfile patient}}</div> --}}
-    <div id="profile" class="module">
-        <div id="p-container">
-            <div class="profile-img">
-                <img
-                    class="profile-pic"
-                    src="/images/patientProfile.jpg"
-                    alt="profile"
-                />
-                <img
-                    class="profile-badge"
-                    src="/images/badge.svg"
-                    alt="badge"
-                />
-            </div>
-            {{#with patient}}
-            <div class="profile-text">
-                <h3 class="pname">{{firstName}} {{lastName}}</h3>
-                <div class="pinfo">Nickname:
-                    {{nickName}}
-                    <br />Age:
-                    {{age}}
-                    <br />Gender:
-                    {{gender}}
+<div id="dashboard-body">
+    <div class="home-container">
+        <div id="profile" class="module">
+            <div id="p-container">
+                <div class="profile-img">
+                    <img
+                        class="profile-pic"
+                        src="/images/patientProfile.jpg"
+                        alt="profile"
+                    />
+                    <img
+                        class="profile-badge"
+                        src="/images/badge.svg"
+                        alt="badge"
+                    />
                 </div>
-                
+                {{#with patient}}
+                <div class="profile-text">
+                    <h3 class="pname">{{firstName}} {{lastName}}</h3>
+                    <div class="pinfo">Nickname:
+                        {{nickName}}
+                        <br />Age:
+                        {{age}}
+                        <br />Gender:
+                        {{gender}}
+                    </div>
+                    
+                </div>
+                {{/with}}  
             </div>
-            {{/with}}  
+            <div class="engagement">
+                <h5>Engagement: </h5>
+                <div class="progress">
+                    <div
+                        class="progress-bar"
+                        role="progressbar"
+                        style="width: 80%; background-color: var(--green-color);"
+                        aria-valuenow="80"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                    >80%</div>
+                </div>
+            </div>  
+            
         </div>
-        <div class="engagement">
-            <h5>Engagement: </h5>
-            <div class="progress">
-                <div
-                    class="progress-bar"
-                    role="progressbar"
-                    style="width: 80%; background-color: var(--green-color);"
-                    aria-valuenow="80"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                >80%</div>
-            </div>
-        </div>  
-        
+        <div id="leaderboard" class="module">
+            {{>leaderboard}}
+        </div>
+        <div id="messages" class="module">
+            {{>message-box}}
+        </div>
+        <div id="hist-today" class="module">
+            {{>histTable todayTimeSeries todayArray=todayArray}}
+        </div>
+        <div id="hist-7days" class="module">
+            {{>averagehistTable averageTimeseries startDateArray=startDateArray endDateArray=endDateArray}}
+
+        </div>
+        <div id="hist-chart" class="module">{{> hist-chart}}</div>
+
     </div>
+
+    <div class="full-history">
+        <div class="table-info">
+            <div>
+                <h2 class="full-hist-title">Full History</h2>
+            </div>
+            <div class="label">
+                <p>* required time-series</p>
+            </div>
+        </div>
+        
+
+        <table class="table table-striped text-center">
+            <thead class="align-middle">
+                
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Blood GLucose<br /><span>nmol/L</span></th>
+                    <th scope="col">Weight<br /><span>kg</span></th>
+                    <th scope="col">Insulin Taken<br /><span>doses</span></th>
+                    <th scope="col">Exercise Completed<br /><span>steps</span></th>
+                </tr>
+                
+            </thead>
+            <tbody>
+                {{#each timeSeriesList}}
+                <tr class="align-middle">
+                    <th scope="row">{{idx @index}}</th>                      
+                    <td>                       
+                        {{getDate date}}                      
+                    </td>
+                        
+                    <td>
+                        {{bloodGlucose.value}}{{#if bloodGlucose.isRequired}}*{{/if}}
+                    </td>
+                    
+                    <td>
+                        {{weight.value}}{{#if weight.isRequired}}*{{/if}}
+                    </td>
+                    <td>
+                        {{insulin.value}}{{#if insulin.isRequired}}*{{/if}}
+                    </td>
+                    <td>
+                        {{exercise.value}}{{#if exercise.isRequired}}*{{/if}}
+                    </td>
+            
+                    
+                </tr>
+                {{/each}}
+            </tbody>
+    </table>
+    </div>
+<<<<<<< HEAD
     <div id="leaderboard" class="module">text</div>
     <div id="messages" class="module">
         {{>message-box}}
@@ -53,4 +123,6 @@
     <div id="hist-7days" class="module">text</div>
     {{!-- <div id="hist-chart" class="module">{{> hist-chart chartId="p-dash-chart"}}</div> --}}
     <div id="hist-chart" class="module">Chart</div>
+=======
+>>>>>>> 56fa270b9e755c0d11eea6fcd1cdb9a52f741ffb
 </div>

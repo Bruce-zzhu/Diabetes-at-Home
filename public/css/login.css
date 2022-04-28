@@ -28,6 +28,7 @@ h3 {
     width: 8vw;
 }
 
+/*
 input[type=submit] {
     background-color: var(--brown-color);
     border: var(--bg-color) solid;
@@ -35,8 +36,9 @@ input[type=submit] {
     border-radius: 0.5rem;
     padding: 0.5rem 1rem;
 }
+*/
 
-.container {
+.login-container {
     align-content: center;
     padding-left: 5%;
     padding-right: 5%;
@@ -44,14 +46,15 @@ input[type=submit] {
     padding-bottom: 5%;
     width: 50%;
     height: 80%;
-    /*margin-bottom: 5%;*/
+    margin-bottom: 5%;
     background-color: var(--primary-color);
     color: var(--bg-color);
     text-align: center;
     border-radius: 3rem;
+    margin: auto;
 }
 
-.container a{
+.login-container a{
     padding: 1rem;
     color: var(--bg-color);
     display: inline;
@@ -96,6 +99,13 @@ h4 {
     background-size: cover;
     
 }
+#login-submit {
+    background-color: var(--brown-color);
+    border: var(--bg-color) solid;
+    cursor:default;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+}
 
 .desktop-background {
     min-height: 100%;
@@ -135,9 +145,12 @@ input[type=button] {
     .login-page {
         background-color: var(--primary-color);
     }
-    .container{
+    .login-container{
         width: 100%;
         height: 100%;
+    }
+    .clinician .login-form, .clinician #forgot-password {
+        display: none;
     }
     #forgot-password{
         align-content: center;
@@ -159,14 +172,11 @@ input[type=button] {
     h4 {
         display: block;
     }
+    
 }    
 
 @media screen and (max-width: 375px) {
     .about-buttons {
-        /*border-radius: 0.5rem;
-        font-size: 1rem;
-        align-content: center;
-        align-self: center;*/
         text-align: center;
         display: block;
         left: 50%;

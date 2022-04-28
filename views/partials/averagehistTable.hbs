@@ -86,72 +86,72 @@ span {
 
 <div id='table-container'>
     <div class="title-area">
-        <h5 class="title-text">Today's Data</h5>
+        <h5 class="title-text">7 day's average</h5>
     </div>
     <div class="data-container">
         <div class="date-area">
-            <h1 class="first date-text">{{todayArray.[0]}}</h1>
-            <h4 class="date-text">{{todayArray.[1]}}</h4>
-            <h5 class="date-text">{{todayArray.[2]}}</h5>
+            <h1 class="first date-text-a-b">{{startDateArray.[0]}}</h1>
+            <h4 class="date-text-a">{{startDateArray.[1]}}</h4>
+            <h5 class="date-text-a-b">{{startDateArray.[2]}}</h5>
+            <h5 class="--"> - </h5>
+            <h1 class="first date-text-a-b">{{endDateArray.[0]}}</h1>
+            <h4 class="date-text-a">{{endDateArray.[1]}}</h4>
+            <h5 class="date-text-a-b">{{endDateArray.[2]}}</h5>
         </div>
 
-        <div class="data-stacks">             
-            <button onclick="toggleComment(this)" class="stack blood">
+        <div class="data-stacks">
+                
+            <div class="stack blood">
                 <span class="stack-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16.248" height="23.462" viewBox="0 0 16.248 23.462">
                         <path id="Icon_ionic-ios-water" data-name="Icon ionic-ios-water" d="M19.748,8.924a24.3,24.3,0,0,0-4.61-5.448.4.4,0,0,0-.528-.006,24,24,0,0,0-4.6,5.442,18.277,18.277,0,0,0-3.26,9.638c0,.068-.005.141-.005.209A8.074,8.074,0,0,0,7.3,21.7,8.133,8.133,0,0,0,23,18.76,18.371,18.371,0,0,0,19.748,8.924ZM15.382,23.83h-.025a.5.5,0,0,1-.132-.964,6.647,6.647,0,0,0,4.387-4.557.437.437,0,0,1,.853.175v.079A5.183,5.183,0,0,1,15.382,23.83Z" transform="translate(-6.75 -3.374)" fill="#d91616"/>
                     </svg>
                 </span>
-                <span class="stack-name">Blood <br>Glucose{{#if bloodGlucose.isRequired}}*{{/if}}</span>
-            
+                <span class="stack-name">Blood <br>Glucose</span>
                 <span class="stack-value">
-                    <span>{{bloodGlucose.value}} </span>
+                    <span>{{bloodGlucose}} </span>
                     <span>nmol/L</span>
                 </span>
-                <div class="stack-comment">{{bloodGlucose.comment}}</div>
-            </button>
+            </div>
                
-            <button onclick="toggleComment(this)" class="stack weight">
+            <div class="stack weight">
                 <span class="stack-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24.105" height="24.105" viewBox="0 0 24.105 24.105">
                         <path id="Icon_awesome-weight" data-name="Icon awesome-weight" d="M21.092,3.013H19.868A9.035,9.035,0,1,1,3.013,7.533a8.971,8.971,0,0,1,1.223-4.52H3.013A3.016,3.016,0,0,0,0,6.026V21.092A3.016,3.016,0,0,0,3.013,24.1H21.092A3.016,3.016,0,0,0,24.1,21.092V6.026A3.016,3.016,0,0,0,21.092,3.013ZM12.052,15.065A7.533,7.533,0,1,0,4.52,7.533,7.532,7.532,0,0,0,12.052,15.065Zm-.014-7.153,1.581-3.689a.754.754,0,0,1,1.386.593l-1.585,3.7a1.875,1.875,0,1,1-1.382-.6Z" fill="#ffba00"/>
                     </svg>
                 </span>
-                <span class="stack-name">Weight{{#if weight.isRequired}}*{{/if}}</span>
+                <span class="stack-name">Weight</span>
                 <span class="stack-value">
-                    <span>{{weight.value}} </span>
+                    <span>{{weight}} </span>
                     <span>kg</span>
                 </span>
-                <div class="stack-comment">{{weight.comment}}</div>
-            </button>
+            </div>
 
-            <button onclick="toggleComment(this)" class="stack insulin">
+            <div class="stack insulin">
                 <span class="stack-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="26.937" height="26.306" viewBox="0 0 26.937 26.306">
                         <path id="Icon_metro-injection" data-name="Icon metro-injection" d="M25.861,10.8a.931.931,0,0,1,0,1.318l-.66.659.66.659a1.865,1.865,0,0,1,0,2.637l-9.886,9.884a1.863,1.863,0,0,1-2.637,0l-.659-.659-2.636,2.638,1.318,1.318a.932.932,0,0,1-1.318,1.318L4.771,25.3a.932.932,0,0,1,1.318-1.318L7.406,25.3l2.637-2.636-.659-.659a1.862,1.862,0,0,1,0-2.636L19.27,9.485a1.862,1.862,0,0,1,2.636,0l.659.659.659-.659a.931.931,0,0,1,1.318,0l.33.33,5.273-5.273V5.859l-4.614,4.614.33.331Zm-4.614-.659a.931.931,0,0,0-1.318,0l-1.977,1.977,1.318,1.318-.659.659-1.318-1.318-1.977,1.977,1.318,1.319-.659.659-1.319-1.319L14,16.077l2.637,2.636-.659.659-2.637-2.636-1.975,1.975L14,21.347l-.659.659L10.7,19.371l-.659.659a.931.931,0,0,0,0,1.318L14,25.3a.93.93,0,0,0,1.319,0L25.2,15.418a.929.929,0,0,0,0-1.318l-3.953-3.955Zm-2.636,1.318.659-.659,2.636,2.636-.659.659Zm0,5.272L15.976,14.1l.659-.659,2.636,2.637Zm-6.591,1.319.659-.659L14,18.712l-.659.659Zm19.414-7.077a1.265,1.265,0,0,1-2.531,0,9.006,9.006,0,0,1,1.266-2.611A9.021,9.021,0,0,1,31.435,10.976Z" transform="translate(-4.498 -4.541)" fill="#ab3bd5"/>
                     </svg>
                 </span>
-                <span class="stack-name">Insulin <br>Taken{{#if insulin.isRequired}}*{{/if}}</span>
+                <span class="stack-name">Insulin <br>Taken</span>
                 <span class="stack-value">
-                    <span>{{insulin.value}} </span>
+                    <span>{{insulin}} </span>
                     <span>doses</span>
                 </span>
-                <div class="stack-comment">{{insulin.comment}}</div>
-            </button>
+            </div>
 
-            <button onclick="toggleComment(this)" class="stack exercise">
+            <div class="stack exercise">
                 <span class="stack-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="21.347" height="26.272" viewBox="0 0 21.347 26.272">
                         <path id="Icon_awesome-running" data-name="Icon awesome-running" d="M13.957,4.926a2.463,2.463,0,1,0-2.463-2.463A2.463,2.463,0,0,0,13.957,4.926ZM5.834,16.291l-.759,1.771H1.642a1.642,1.642,0,1,0,0,3.284H5.616A2.458,2.458,0,0,0,7.88,19.853L8.331,18.8l-.548-.323a4.886,4.886,0,0,1-1.949-2.186Zm13.871-4.8H17.445L16.108,8.761a4.924,4.924,0,0,0-3.17-2.614L9.29,5.063a4.905,4.905,0,0,0-4.148.88L3.107,7.5a1.642,1.642,0,1,0,2,2.606l2.037-1.56a1.6,1.6,0,0,1,1.3-.315l.754.224L7.27,12.941a3.293,3.293,0,0,0,1.35,4.121l4.361,2.574-1.41,4.5a1.642,1.642,0,1,0,3.134.981l1.624-5.186a2.473,2.473,0,0,0-1.11-2.791l-3.142-1.854,1.607-4.017,1.04,2.126a2.478,2.478,0,0,0,2.212,1.38H19.7a1.642,1.642,0,1,0,0-3.284Z" fill="#239651"/>
                     </svg>
                 </span>
-                <span class="stack-name">Exercise{{#if exercise.isRequired}}*{{/if}}</span>
+                <span class="stack-name">Exercise</span>
                 <span class="stack-value">
-                    <span>{{exercise.value}} </span>
+                    <span>{{exercise}} </span>
                     <span>steps</span>
                 </span>
-                <div class="stack-comment">{{exercise.comment}}</div>
-            </button>
+            </div>
         </div>
     </div>
 </div>

@@ -1,6 +1,54 @@
 const { Patient, TimeSeries } = require('../models/patient');
 const {isSameDay} = require('../public/scripts/js-helpers');
 
+const getTodayTimeSeries = async (patient) => {
+    try {
+        var today = new Date();
+        const timeSeries = await TimeSeries.find({patient: patient._id}).populate('patient').lean();
+        // check if it's today's timeseries
+        for (ts of timeSeries) {
+            if (isSameDay(today, ts.date)) {
+                // today's timeseries found
+                return ts;
+            } 
+        }
+        
+        return null;
+        
+    } catch(e) {
+        console.log(e);
+    }
+    
+}
+
+const createTodayTimeSeries = async (patient) => {
+    var today = new Date()
+    const newTimeseries = new TimeSeries({
+        patient: patient._id,
+        date: new Date(today.getTime() - today.getTimezoneOffset() * 60000),
+        bloodGlucose: {
+            isRequired: true,
+            upperBound: 10,
+            lowerBound: 6
+        },
+        insulin: {
+            isRequired: true,
+            upperBound: 3,
+            lowerBound: 0
+        },
+        weight: {
+            isRequired: false,
+            upperBound: 100,
+            lowerBound: 50
+        },
+        exercise: {
+            isRequired: false,
+            upperBound: 100000,
+            lowerBound: 0
+        }
+    })
+    await newTimeseries.save();
+}
 
 const getDashboardData = async (req, res) => {
     try {
@@ -9,13 +57,13 @@ const getDashboardData = async (req, res) => {
         var timeSeriesList = [];
         var today = new Date();
         for (p of patients) {
-            const timeSeries = await TimeSeries.findOne({patient: p._id}).populate('patient').lean();
-            // check if it's today's timeseries
-            if (isSameDay(today, timeSeries.date)) {
+            const timeSeries = await getTodayTimeSeries(p).then(data => data);
+            if (timeSeries) {
                 // today's timeseries found
                 timeSeriesList.push(timeSeries)
             } else {
                 // create today's timeseries
+                await createTodayTimeSeries(p);
             }
         } 
         res.render('clinician/dashboard', {
@@ -43,5 +91,7 @@ const renderPatientProfile = async (req, res) => {
 
 module.exports = {
     getDashboardData,
-    renderPatientProfile
+    renderPatientProfile,
+    getTodayTimeSeries,
+    createTodayTimeSeries
 }
