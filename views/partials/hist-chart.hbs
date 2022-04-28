@@ -3,25 +3,26 @@
 <h5>Recent Data (Chart)</h5>
 <div id={{chartId}}></div>
 <script>
-    var upBound = {
+    var upBound = {} /* SAMPLE {
         type: "scatter",
         mode: "lines",
         x: [1, 5],
-        y: [5, 5],
+        y: [bloodGlucose.upperBound, bloodGlucose.upperBound],
         line: {'dash': 'dash', color: "#d91616"}
-    };
-    var lowBound = {
+    } */;
+    var lowBound = {} /* SAMPLE {
         type: "scatter",
         mode: "lines",
         x: [1, 5],
-        y: [1, 1],
+        y: [bloodGlucose.lowerBound, bloodGlucose.lowerBound],
         line: {'dash': 'dash', color: "#d91616"}
-    };
+    }*/;
+    var data = {};
 
 	CHART = document.getElementById("{{chartId}}");
 	Plotly.newPlot(
         CHART, // element
-        [upBound, lowBound], // dadta
+        [upBound, lowBound, data], // dadta
         { // layout
             margin: { t: 0 }
         },
