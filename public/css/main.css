@@ -11,6 +11,7 @@
     --tertiary-color: #e9ecf2;
     --deepBlue-color: #124b8e;
     --brown-color: #5c5c5c;
+    --red-color: #d91616;
     --green-color: #239651;
     --purple-color: #ab3bd5;
     --yellow-color: #ffba00;
@@ -28,6 +29,8 @@ body {
     background-color: var(--bg-color);
     font-family: var(--font-text);
     min-height: 100vh;
+    position: relative;
+    padding-bottom: 45px;
 
     /* display: grid;
     grid-template-rows: auto 1fr auto;
