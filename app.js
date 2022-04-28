@@ -102,10 +102,11 @@ const {
 app.get("/patient/dashboard", async (req, res) => {
     const patient = await Patient.findOne({ firstName: "Pat" }).lean();
 
-    const todayTimeSeries = await getTodayTimeSeries(patient);
+    var todayTimeSeries = await getTodayTimeSeries(patient);
     // create timeSeries for each patient every day
     if (!todayTimeSeries) {
         await createTodayTimeSeries(patient);
+        todayTimeSeries = await getTodayTimeSeries(patient);
     }
 
     const todayArray = [
