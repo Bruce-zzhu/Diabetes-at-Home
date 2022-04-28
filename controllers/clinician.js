@@ -22,9 +22,10 @@ const getTodayTimeSeries = async (patient) => {
 }
 
 const createTodayTimeSeries = async (patient) => {
+    var today = new Date()
     const newTimeseries = new TimeSeries({
         patient: patient._id,
-        date: new Date(),
+        date: new Date(today.getTime() - today.getTimezoneOffset() * 60000),
         bloodGlucose: {
             isRequired: true,
             upperBound: 10,
