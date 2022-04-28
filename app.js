@@ -39,6 +39,7 @@ app.use(express.static(path.join(__dirname, "/public")));
 // process incoming request
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
 // routes
 app.use("/clinician", clinicianRoutes);
 app.use("/patient", patientRoutes);
@@ -109,11 +110,11 @@ const {
 app.get("/patient/dashboard", async (req, res) => {
     const patient = await Patient.findOne({ firstName: "Pat" }).lean();
 
-    var todayTimeSeries = await getTodayTimeSeries(patient);
+    var todayTimeSeries = await getTodayTimeSeries(patient).then(data => data);
     // create timeSeries for each patient every day
     if (!todayTimeSeries) {
         await createTodayTimeSeries(patient);
-        todayTimeSeries = await getTodayTimeSeries(patient);
+        todayTimeSeries = await getTodayTimeSeries(patient).then(data => data);
     }
 
     const todayArray = [
@@ -155,6 +156,7 @@ app.get("/patient/dashboard", async (req, res) => {
     res.render("patient/dashboard", {
         style: "p-dashboard.css",
         patient,
+        todayTimeSeries,
         todayArray,
         averageTimeseries,
         startDateArray,
@@ -213,9 +215,10 @@ function getAvergaeValue(timeSeriesList, averageTimeseries, endDateArray) {
     }
 }
 
+
 // Add New Entry page and process new entry forms
 // app.get("/patient/new-entry", (req, res) => {
-//     res.render("patient/new-entry");
+//     res.render("partials/new-entry");
 // });
 
 // Message Box
