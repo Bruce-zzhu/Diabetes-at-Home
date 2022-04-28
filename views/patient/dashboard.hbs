@@ -114,26 +114,6 @@
             
                     
                 </tr>
-                {{!-- <tr class="full-hist-comment align-middle" style="display: none">
-                    <div>
-                        <td>                           
-                        </td>
-                        <td>                           
-                        </td>
-                        <td class="each-comment blood-comment" style="display: none">
-                            {{bloodGlucose.comment}}
-                        </td>
-                        <td class="each-comment weight-comment" style="display: none">
-                            {{weight.comment}}
-                        </td>
-                        <td class="each-comment insulin-comment" style="display: none">
-                            {{insulib.comment}}
-                        </td>
-                        <td class="each-comment exercise-comment" style="display: none">
-                            {{exercise.comment}}
-                        </td>
-                    </div>
-                </tr> --}}
                 {{/each}}
             </tbody>
     </table>
@@ -141,12 +121,6 @@
 </div>
 
 <script>
-
-    //const ts = document.querySelector('.ts');
-    //ts.addEventListener('click', () => {
-    //    console.log('hey')
-    //})
-
     function tableToggleComment(cell) {
         var comment = cell.querySelector(".tb-comm"); 
         var value = cell.querySelector(".tb-value");
@@ -164,38 +138,4 @@
             cell.style.borderRight = "0";
         }
     }
-
-    /*
-    function tableToggleComment(ts) {
-        console.log('hey')
-        const commentRow = document.querySelector('.full-hist-comment');
-        const tsName = ts.className;
-
-        if (commentRow.style.display === 'none') {
-            commentRow.style.display = 'block';
-            const tsComment;
-            switch (tsName) {
-                case 'blood':
-                    tsComment = document.querySelector('.blood-comment');
-                    tsComment.display = 'block';
-                case 'weight':
-                    tsComment = document.querySelector('.weight-comment');
-                case 'insulin':
-                    tsComment = document.querySelector('.insulin-comment');
-                case 'exercise':
-                    tsComment = document.querySelector('.exercise-comment');
-            }
-            tsComment.display = 'block'
-
-        } else {
-            commentRow.style.display = 'none';
-            const comments = document.querySelector('.each-comment');
-            for (c in comments) {
-                if (c.display !== 'none') {
-                    c.display = 'none'
-                }
-            }
-        }
-    }
-    */
 </script>
