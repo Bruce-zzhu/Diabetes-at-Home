@@ -98,8 +98,6 @@
     padding-left: 2rem;
 }
 
-<<<<<<< HEAD
-=======
 .full-history {
     padding-top: 5rem;
     width: 80%;
@@ -169,7 +167,6 @@ thead {
     padding-bottom: 1rem;
 }
 
->>>>>>> 56fa270b9e755c0d11eea6fcd1cdb9a52f741ffb
 @media screen and (max-width: 376px) {
     .home-container {
         display: flex;
