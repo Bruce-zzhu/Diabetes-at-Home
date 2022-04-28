@@ -1,8 +1,9 @@
 <nav id="normal-nav">
-    <div id="nav-entry-div" class="tablet mobile post-login">
+    <div id="nav-entry-div" class="desktop tablet mobile nav-patient post-login">
         <button id="new-entry-button-header" class="new-entry-button-header btn btn-outline-light icon nav-new-entry"><span
                 class="material-icons"
             >create</span></button>
+        <div class="spacer desktop"></div>
     </div>
 
     <a class="nav-name" href="/">
@@ -149,8 +150,14 @@
             pre_login[i].remove();
             pre_login[i].innerHTML = "";
         }
-        for (i=0; i<names.length; i++) {
-            names[i].href = "/dashboard"
+        if (window.location.pathname.startsWith("/patient")) {
+            for (i=0; i<names.length; i++) {
+                names[i].href = "/patient/dashboard"
+            }
+        } else {
+            for (i=0; i<names.length; i++) {
+                names[i].href = "/clinician/dashboard"
+            }
         }
     } else {
         const post_login = document.getElementsByClassName("post-login");
