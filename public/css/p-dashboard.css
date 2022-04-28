@@ -14,28 +14,33 @@
     box-shadow: 2px 2px 5px var(--brown-color);
 }
 
+.module h5 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
 #profile {
-    grid-area: profile;
+    grid-area: m1;
 }
 
 #leaderboard {
-    grid-area: leaderboard;
+    grid-area: m2;
 }
 
 #messages {
-    grid-area: messages;
+    grid-area: m3;
 }
 
 #hist-today {
-    grid-area: hist-today;
+    grid-area: m1;
 }
 
 #hist-7days {
-    grid-area: hist-7days;
+    grid-area: m2;
 }
 
 #hist-chart {
-    grid-area: hist-chart;
+    grid-area: m3;
 }
 
 #p-container {
@@ -177,6 +182,7 @@ thead {
         width: 100%;
         height: 225px;
         margin-bottom: 1rem;
+        position: relative;
     }
 
     .full-history {
@@ -189,11 +195,10 @@ thead {
     .home-container {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 2fr 2fr;
+        grid-template-rows: 4fr;
         grid-gap: 2rem;
         grid-template-areas:
-            "profile leaderboard messages"
-            "hist-today hist-7days hist-chart";
+            "m1 m2 m3";
         grid-auto-columns: auto;
         grid-auto-rows: auto;
 

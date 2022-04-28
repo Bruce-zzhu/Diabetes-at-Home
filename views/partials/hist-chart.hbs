@@ -1,3 +1,33 @@
 <link rel="stylesheet" href="/css/hist-chart.css" />
-<h5>Recent Data</h5>
-<p>chart</p>
+<script src="https://cdn.plot.ly/plotly-2.11.1.min.js"></script>
+<h5>Recent Data (Chart)</h5>
+<div id={{chartId}}></div>
+<script>
+    var upBound = {
+        type: "scatter",
+        mode: "lines",
+        x: [1, 5],
+        y: [5, 5],
+        line: {'dash': 'dash', color: "#d91616"}
+    };
+    var lowBound = {
+        type: "scatter",
+        mode: "lines",
+        x: [1, 5],
+        y: [1, 1],
+        line: {'dash': 'dash', color: "#d91616"}
+    };
+
+	CHART = document.getElementById("{{chartId}}");
+	Plotly.newPlot(
+        CHART, // element
+        [upBound, lowBound], // dadta
+        { // layout
+            margin: { t: 0 }
+        },
+        { // mode
+            displayModeBar: false,
+            staticPlot: true
+        }
+    );
+</script>

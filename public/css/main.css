@@ -30,7 +30,7 @@ body {
     font-family: var(--font-text);
     min-height: 100vh;
     position: relative;
-    padding-bottom: 45px;
+    padding-bottom: 65px;
 
     /* display: grid;
     grid-template-rows: auto 1fr auto;

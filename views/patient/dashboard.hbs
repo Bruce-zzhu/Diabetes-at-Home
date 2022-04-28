@@ -1,4 +1,5 @@
 <div id="dashboard-body">
+    <h3>Dashboard</h3>
     <div class="home-container">
         <div id="profile" class="module">
             <div id="p-container">
@@ -49,6 +50,9 @@
         <div id="messages" class="module">
             {{>message-box}}
         </div>
+    </div>
+    <h3>Recent History</h3>
+    <div class="home-container">
         <div id="hist-today" class="module">
             {{>histTable todayTimeSeries todayArray=todayArray}}
         </div>
@@ -112,4 +116,14 @@
             </tbody>
     </table>
     </div>
+    <div id="leaderboard" class="module">text</div>
+    <div id="messages" class="module">
+        {{>message-box}}
+    </div>
+    <div id="hist-today" class="module">
+        {{>histTable timeSeries dateArray=dateArray}}
+    </div>
+    <div id="hist-7days" class="module">text</div>
+    {{!-- <div id="hist-chart" class="module">{{> hist-chart chartId="p-dash-chart"}}</div> --}}
+    <div id="hist-chart" class="module">Chart</div>
 </div>
