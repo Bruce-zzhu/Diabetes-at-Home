@@ -65,13 +65,8 @@
             <div>
                 <h2 class="full-hist-title">Full History</h2>
             </div>
-
             <div class="label">
                 <p>* required time-series</p>
-                <div>
-                    <div class="red-rec"></div>
-                    <p>data outside healthy thresholds</p>
-                </div>
             </div>
         </div>
         
@@ -92,41 +87,22 @@
             <tbody>
                 {{#each timeSeriesList}}
                 <tr class="align-middle">
-                    <th scope="row">{{idx @index}}</th>
-                        
-                    <td>
-                        
-                        {{getDate date}}
-                        
+                    <th scope="row">{{idx @index}}</th>                      
+                    <td>                       
+                        {{getDate date}}                      
                     </td>
                         
-                    <td 
-                    {{#if (isNotBounded bloodGlucose.value bloodGlucose.upperBound bloodGlucose.lowerBound)}}
-                    style="color: red"
-                    {{/if}}
-                    >
+                    <td>
                         {{bloodGlucose.value}}{{#if bloodGlucose.isRequired}}*{{/if}}
                     </td>
                     
-                    <td 
-                    {{#if (isNotBounded weight.value weight.upperBound weight.lowerBound)}}
-                    style="color: red"
-                    {{/if}}
-                    >
+                    <td>
                         {{weight.value}}{{#if weight.isRequired}}*{{/if}}
                     </td>
-                    <td 
-                    {{#if (isNotBounded insulin.value insulin.upperBound insulin.lowerBound)}}
-                    style="color: red"
-                    {{/if}}
-                    >
+                    <td>
                         {{insulin.value}}{{#if insulin.isRequired}}*{{/if}}
                     </td>
-                    <td 
-                    {{#if (isNotBounded exercise.value exercise.upperBound exercise.lowerBound)}}
-                    style="color: red"
-                    {{/if}}
-                    >
+                    <td>
                         {{exercise.value}}{{#if exercise.isRequired}}*{{/if}}
                     </td>
             
