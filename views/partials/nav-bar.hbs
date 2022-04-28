@@ -144,7 +144,7 @@
     }
 
     const names = document.getElementsByClassName("nav-name");
-    if ({{login}}) {
+    if (window.location.pathname != ("/")) {
         const pre_login = document.getElementsByClassName("pre-login");
         for (var i=0; i<pre_login.length; i++) {
             pre_login[i].remove();
