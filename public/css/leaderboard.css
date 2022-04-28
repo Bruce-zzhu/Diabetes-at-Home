@@ -1,3 +1,44 @@
-.container{
-    min-height: 100%;
+.scroll {
+    padding:4px;
+        background-color: initial;
+        overflow-x: hidden;
+        overflow-y: auto;
+        text-align:justify;
+        width: auto;
+        height: 150px;
+}
+
+.medal {
+    transform: scale(0.5);
+}
+/*
+.placing {
+    display: inline;
+}*/
+
+h1 {
+    color:Green;
+}
+
+.scroll > *{
+    padding-bottom: 10px;
+}
+
+.unread > *{
+    font-weight: bold;
+    color: black;
+}
+.read{
+    font-weight: 1;
+}
+
+@media screen and (max-width: 375px){
+    div.scroll{
+        height: 190px;
+    }
+}
+@media screen and (min-width: 1024px){
+    div.scroll{
+        height: 230px;
+    }
 }

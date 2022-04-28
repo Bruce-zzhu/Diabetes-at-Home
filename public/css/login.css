@@ -28,6 +28,7 @@ h3 {
     width: 8vw;
 }
 
+/*
 input[type=submit] {
     background-color: var(--brown-color);
     border: var(--bg-color) solid;
@@ -35,6 +36,7 @@ input[type=submit] {
     border-radius: 0.5rem;
     padding: 0.5rem 1rem;
 }
+*/
 
 .login-container {
     align-content: center;
