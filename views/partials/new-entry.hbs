@@ -202,10 +202,10 @@ grid-template-rows: 100%;
                 <div class="data-form-row"> <!-- blood glucose entry -->
                     <label for="bloodGlucose">My blood glucose levels are:</label>
                     <div class="grid"> 
-                        <input name="bloodGlucose" type="text" class="data-input">
+                        <input name="bloodGlucose" type="text" class="data-input" value="{{bloodGlucose.value}}">
                         <span class="unit-label">(nmol/L)</span>   
                         <span class="comment-label">Comments:</span> 
-                        <input name="bloodGlucoseComment" type="text" class="comment-input">
+                        <input name="bloodGlucoseComment" type="text" class="comment-input" value="{{bloodGlucose.comment}}">
                         <a href="#comment-popup-container" class="comment-icon-container"><img src="chat-dots.svg" alt="" class="comment-icon" href="#comment-popup-container"></a>
                         
                     </div>
@@ -213,30 +213,30 @@ grid-template-rows: 100%;
                 <div class="data-form-row"> <!-- weight entry -->
                     <label for="weight">My current weight is:</label>
                     <div class="grid"> 
-                        <input name="weight" type="text" class="data-input">
+                        <input name="weight" type="text" class="data-input" value="{{weight.value}}">
                         <span class="unit-label">(kg)</span>   
                         <span class="comment-label">Comments:</span> 
-                        <input name="weightComment" type="text" class="comment-input">  
+                        <input name="weightComment" type="text" class="comment-input" value="{{weight.comment}}">  
                         <img src="chat-dots.svg" alt="" class="comment-icon">
                     </div>
                 </div>
                 <div class="data-form-row"> <!-- insulin doses entry -->
                     <label for="insulin">I took this many doses of insulin:</label>
                     <div class="grid"> 
-                        <input name="insulin" type="text" class="data-input">
+                        <input name="insulin" type="text" class="data-input" value="{{insulin.value}}">
                         <span class="unit-label">(doses)</span>   
                         <span class="comment-label">Comments:</span> 
-                        <input name="insulinComment" type="text" class="comment-input">  
+                        <input name="insulinComment" type="text" class="comment-input" value="{{insulin.comment}}">  
                         <img src="chat-dots.svg" alt="" class="comment-icon">
                     </div>
                 </div>
                 <div class="data-form-row"> <!-- step count entry  -->
                     <label for="step">I've walked this many steps:</label>
                     <div class="grid"> 
-                        <input name="step" type="text" class="data-input">
+                        <input name="step" type="text" class="data-input" value="{{exercise.value}}">
                         <span class="unit-label">(steps)</span>   
                         <span class="comment-label">Comments:</span> 
-                        <input name="stepComment" type="text" class="comment-input">
+                        <input name="stepComment" type="text" class="comment-input" value="{{exercise.comment}}">
                         <img src="chat-dots.svg" alt="" class="comment-icon">  
                     </div>
                 </div>
