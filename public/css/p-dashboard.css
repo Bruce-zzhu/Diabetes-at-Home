@@ -142,6 +142,22 @@
     border: 1px grey solid;
 }
 
+.table tbody tr {
+    background-color: var(--tertiary-color);
+}
+
+.table td {
+    padding: 0;;
+}
+
+.tb-value {
+    display: block;
+}
+
+.tb-comm {
+    display: none;
+}
+
 span {
     font-weight: normal;
 }

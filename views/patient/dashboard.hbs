@@ -79,7 +79,7 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Date</th>
-                    <th scope="col">Blood GLucose<br /><span>nmol/L</span></th>
+                    <th scope="col">Blood Glucose<br /><span>nmol/L</span></th>
                     <th scope="col">Weight<br /><span>kg</span></th>
                     <th scope="col">Insulin Taken<br /><span>doses</span></th>
                     <th scope="col">Exercise Completed<br /><span>steps</span></th>
@@ -94,23 +94,27 @@
                         {{getDate date}}                      
                     </td>
                     
-                        <td onclick="seeComment(this)" class="blood ts">
-                            {{bloodGlucose.value}}{{#if bloodGlucose.isRequired}}*{{/if}}
+                        <td onclick="tableToggleComment(this)" class="blood ts">
+                            <div class="tb-value">{{bloodGlucose.value}}{{#if bloodGlucose.isRequired}}*{{/if}}</div>
+                            <div class="tb-comm">{{bloodGlucose.comment}}</div>
                         </td>
                     
-                        <td onclick="seeComment(this)" class="weight ts">
-                            {{weight.value}}{{#if weight.isRequired}}*{{/if}}
+                        <td onclick="tableToggleComment(this)" class="weight ts">
+                            <div class="tb-value">{{weight.value}}{{#if weight.isRequired}}*{{/if}}</div>
+                            <div class="tb-comm">{{weight.comment}}</div>
                         </td>
-                        <td onclick="seeComment(this)" class="insulin ts">
-                            {{insulin.value}}{{#if insulin.isRequired}}*{{/if}}
+                        <td onclick="tableToggleComment(this)" class="insulin ts">
+                            <div class="tb-value">{{insulin.value}}{{#if insulin.isRequired}}*{{/if}}</div>
+                            <div class="tb-comm">{{insulin.comment}}</div>
                         </td>
-                        <td onclick="seeComment(this)" class="exercise ts">
-                            {{exercise.value}}{{#if exercise.isRequired}}*{{/if}}
+                        <td onclick="tableToggleComment(this)" class="exercise ts">
+                            <div class="tb-value">{{exercise.value}}{{#if exercise.isRequired}}*{{/if}}</div>
+                            <div class="tb-comm">{{exercise.comment}}</div>
                         </td>
             
                     
                 </tr>
-                <tr class="full-hist-comment align-middle" style="display: none">
+                {{!-- <tr class="full-hist-comment align-middle" style="display: none">
                     <div>
                         <td>                           
                         </td>
@@ -129,7 +133,7 @@
                             {{exercise.comment}}
                         </td>
                     </div>
-                </tr>
+                </tr> --}}
                 {{/each}}
             </tbody>
     </table>
@@ -143,7 +147,26 @@
     //    console.log('hey')
     //})
 
-    function seeComment(ts) {
+    function tableToggleComment(cell) {
+        var comment = cell.querySelector(".tb-comm"); 
+        var value = cell.querySelector(".tb-value");
+        if (comment.style.display === "none") {
+            comment.style.display = "block";
+            value.style.display = "none";
+            cell.style.background = "white";
+            cell.style.borderLeft = "1px solid var(--brown-color)";
+            cell.style.borderRight = "1px solid var(--brown-color)";
+        } else {
+            comment.style.display = "none";
+            value.style.display = "block";
+            cell.style.background = "var(--tertiary-color)";
+            cell.style.borderLeft = "0";
+            cell.style.borderRight = "0";
+        }
+    }
+
+    /*
+    function tableToggleComment(ts) {
         console.log('hey')
         const commentRow = document.querySelector('.full-hist-comment');
         const tsName = ts.className;
@@ -174,4 +197,5 @@
             }
         }
     }
+    */
 </script>
