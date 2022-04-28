@@ -178,10 +178,6 @@ span {
     margin-top: -0.5rem;
 }
 
-.table-striped>tbody>tr:nth-of-type(odd)>*, .table-striped>tbody>tr:nth-of-type(even)>* {
-    --bs-table-accent-bg: transparent;
-}
-
 thead {
     background-color: var(--primary-color) !important;
     color: white;
