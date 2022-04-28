@@ -1,4 +1,5 @@
 <div id="dashboard-body">
+    <h3>Dashboard</h3>
     <div class="home-container">
         <div id="profile" class="module">
             <div id="p-container">
@@ -49,6 +50,9 @@
         <div id="messages" class="module">
             {{>message-box}}
         </div>
+    </div>
+    <h3>Recent History</h3>
+    <div class="home-container">
         <div id="hist-today" class="module">
             {{>histTable todayTimeSeries todayArray=todayArray}}
         </div>
