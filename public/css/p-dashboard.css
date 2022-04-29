@@ -199,6 +199,10 @@ thead {
 
 @media screen and (max-width: 375px) {
 
+    #dashboard-body h2 {
+        padding-left: 5%;
+     }
+
     .home-container {
         display: flex;
         flex-direction: column;
