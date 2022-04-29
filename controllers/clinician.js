@@ -7,10 +7,6 @@ const getTodayTimeSeries = async (patient) => {
         const timeSeries = await TimeSeries.find({patient: patient._id}).populate('patient').lean({virtuals: true});
         // check if it's today's timeseries
         for (ts of timeSeries) {
-            console.log("today: ", today)
-            console.log(ts.date)
-            console.log(ts.localDate)
-            console.log(ts)
             if (isSameDay(today, ts.date)) {
                 // today's timeseries found
                 return ts;
@@ -27,10 +23,9 @@ const getTodayTimeSeries = async (patient) => {
 
 const createTodayTimeSeries = async (patient) => {
     try {
-        var today = new Date();
         const newTimeseries = new TimeSeries({
             patient: patient._id,
-            date: new Date(), //new Date(today.getTime() - today.getTimezoneOffset() * 60000),
+            date: new Date(), 
             bloodGlucose: {
                 isRequired: true,
                 upperBound: 10,

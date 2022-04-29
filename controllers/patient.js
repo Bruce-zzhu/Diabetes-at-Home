@@ -50,7 +50,7 @@ const renderPatientDashboard = async (req, res) => {
             await createTodayTimeSeries(patient);
             todayTimeSeries = await getTodayTimeSeries(patient).then((data) => data);
         }
-        console.log(todayTimeSeries)
+
         const todayArray = getDateInfo(todayTimeSeries.localDate);
         const timeSeriesList = await TimeSeries.find({
             patient: patient._id,
@@ -72,9 +72,13 @@ const renderPatientDashboard = async (req, res) => {
         });
 
         // start date for avg
-        console.log(timeSeriesList[timeSeriesList.length - 1])
         const startDateArray = getDateInfo(timeSeriesList[timeSeriesList.length - 1].localDate);
 
+        if (timeSeriesList.length === 1) {
+            endDateArray = startDateArray;
+        }
+        console.log(timeSeriesList)
+        
         getAvergaeValue(timeSeriesList, averageTimeseries, endDateArray);
 
         var datesArray = [];
