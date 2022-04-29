@@ -1,3 +1,4 @@
+// display/hide a stack's comment/name & value
 function stackToggleComment(stack) {
     var comment = stack.querySelector(".stack-comment");
     var name = stack.querySelector(".stack-name");
