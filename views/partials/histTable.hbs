@@ -1,9 +1,15 @@
 <style>
 .title-area {
     height: 13%;
+    display: flex;
+    justify-content: space-between;
 }
 .title-text {
     font-weight: bold;
+}
+.required-text {
+    margin-top: 1rem;
+    font-size: 0.8rem;
 }
 .data-container {
     height: 87%;
@@ -86,6 +92,7 @@ span {
 <div id='table-container'>
     <div class="title-area">
         <h5 class="title-text">Today's Data</h5>
+        <p class="required-text">* required time-series</p>
     </div>
     <div class="data-container">
         <div class="date-area">
