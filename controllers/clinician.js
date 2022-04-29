@@ -4,7 +4,7 @@ const { isSameDay } = require('../public/scripts/js-helpers');
 const getTodayTimeSeries = async (patient) => {
     try {
         var today = new Date();
-        const timeSeries = await TimeSeries.find({patient: patient._id}).populate('patient').lean({virtuals: true});
+        const timeSeries = await TimeSeries.find({patient: patient._id}).populate('patient').lean();
         // check if it's today's timeseries
         for (ts of timeSeries) {
             if (isSameDay(today, ts.date)) {

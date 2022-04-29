@@ -22,7 +22,6 @@
     "express": "^4.17.3",
     "express-handlebars": "^6.0.3",
     "mongoose": "^6.3.0",
-    "mongoose-lean-virtuals": "^0.9.1",
     "node": "^17.7.2"
   }
 }

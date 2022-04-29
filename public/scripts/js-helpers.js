@@ -17,9 +17,10 @@ function isSameDay(d1, d2) {
 }
 
 function getDateInfo(dateString) {
-    var year = dateString.slice(0, 4);
-    var month = dateString.slice(5, 7);
-    var day = dateString.slice(8, 10);
+    var localDate = new Date(dateString.getTime() - dateString.getTimezoneOffset() * 60000).toISOString();
+    var year = localDate.slice(0, 4);
+    var month = localDate.slice(5, 7);
+    var day = localDate.slice(8, 10);
 
     return [day, month, year]
 }

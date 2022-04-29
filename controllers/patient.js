@@ -51,10 +51,10 @@ const renderPatientDashboard = async (req, res) => {
             todayTimeSeries = await getTodayTimeSeries(patient).then((data) => data);
         }
 
-        const todayArray = getDateInfo(todayTimeSeries.localDate);
+        const todayArray = getDateInfo(todayTimeSeries.date);
         const timeSeriesList = await TimeSeries.find({
             patient: patient._id,
-        }).populate('patient').lean({virtuals: true});
+        }).populate('patient').lean();
 
         var averageTimeseries = {
             bloodGlucose: 0,
@@ -72,24 +72,24 @@ const renderPatientDashboard = async (req, res) => {
         });
 
         // start date for avg
-        const startDateArray = getDateInfo(timeSeriesList[timeSeriesList.length - 1].localDate);
+        const startDateArray = getDateInfo(timeSeriesList[timeSeriesList.length - 1].date);
 
         if (timeSeriesList.length === 1) {
             endDateArray = startDateArray;
         }
-        console.log(timeSeriesList)
         
         getAvergaeValue(timeSeriesList, averageTimeseries, endDateArray);
-
+        
         var datesArray = [];
         for (ts of timeSeriesList) {
-            var date = getDateInfo(ts.localDate);
+            var date = getDateInfo(ts.date);
             datesArray.push(date);
         }
 
         histData = [];
         if (timeSeriesList.length > 1) {
             for (var i = 1; i < timeSeriesList.length; i++) {
+                
                 histData.push({
                     date: datesArray[i],
                     timeSeries: timeSeriesList[i],
@@ -117,9 +117,10 @@ const renderPatientDashboard = async (req, res) => {
 function getAvergaeValue(timeSeriesList, averageTimeseries, endDateArray) {
     // calculate average value until yesterday
     if (timeSeriesList.length > 1) {
-        endDateArray = getDateInfo(timeSeriesList[1].localDate);
+        endDateArray.push(...getDateInfo(timeSeriesList[1].date));
+        
     } else {
-        endDateArray = getDateInfo(timeSeriesList[0].localDate);
+        endDateArray.push(...getDateInfo(timeSeriesList[0].date));
     }
 
     // in case there is not enough value for one week
