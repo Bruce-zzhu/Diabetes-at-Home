@@ -1,11 +1,64 @@
+<style>
+    .scroll {
+        padding:4px;
+        background-color: initial;
+        overflow-x: hidden;
+        overflow-y: auto;
+        text-align:justify;
+        width: auto;
+        height: 150px;
+    }
+
+    p {
+        text-align: right;
+    }
+    .medal {
+        width: 10px;
+
+    }
+
+    .placing {
+        display: flex;
+        
+    }
+
+    h1 {
+        color:Green;
+    }
+
+    .scroll > *{
+        padding-bottom: 10px;
+    }
+
+    .unread > *{
+        font-weight: bold;
+        color: black;
+    }
+    .read{
+        font-weight: 1;
+    }
+
+    @media screen and (max-width: 375px){
+        div.scroll{
+            height: 190px;
+        }
+    }
+    @media screen and (min-width: 1024px){
+        div.scroll{
+            height: 230px;
+        }
+    }
+
+</style>
+
 <section class="leaderboard-container">
     <h5>Leaderboard</h5>
     <div class="scroll">
         <div class="user-place">
             <p>You are 1st!</p>
         </div>
-        <div class="first placing">
-            <img class="medal" src="https://uxwing.com/wp-content/themes/uxwing/download/24-sport-and-awards/gold-medal.svg">
+        <div class="placing">
+            <img class="medal place-number" alt="gold medal" src="https://uxwing.com/wp-content/themes/uxwing/download/24-sport-and-awards/gold-medal.svg">
             <p>Pat</p>
         </div>
         <div class="second placing">
