@@ -20,12 +20,12 @@ h4 {
     font-weight: bold;
 }
 
-/* .red-rec {
+.red-rec {
     background-color: red;
     height: 0.8rem;
     width: 0.8rem;
     display: inline-block;
-} */
+}
 
 .label > div > p {
     display: inline-block;
