@@ -5,11 +5,9 @@ const path = require("path");
 const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const { Patient, TimeSeries } = require("./models/patient");
-const { isSameDay } = require("./public/scripts/js-helpers");
-const { consolelogs } = require("./public/scripts/js-helpers");
 const clinicianRoutes = require("./routers/clinician");
 const patientRoutes = require("./routers/patient");
+const generalRoutes = require("./routers/general");
 
 require("dotenv").config();
 
@@ -45,6 +43,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // routes
 app.use("/clinician", clinicianRoutes);
 app.use("/patient", patientRoutes);
+app.use("/", generalRoutes);
 
 // hero page
 app.get("/", async (req, res) => {
@@ -53,47 +52,7 @@ app.get("/", async (req, res) => {
     });
 });
 
-// aboutUs page
-app.get("/about-us", (req, res) => {
-    res.render("about/aboutUs", {
-        style: "about.css",
-    });
-});
 
-// aboutDiabetes page
-app.get("/about-diabetes", (req, res) => {
-    res.render("about/aboutDiabetes", {
-        style: "about.css",
-    });
-});
-
-// Clinician Login page
-app.get("/login-c", (req, res) => {
-    res.render("clinician/login", {
-        style: "login.css",
-    });
-});
-
-// Patient Login page
-app.get("/login-p", (req, res) => {
-    res.render("patient/login", {
-        style: "login.css",
-    });
-});
-
-// forgot password page
-app.get('/forgot-password', (req, res) => {
-    res.render('forgotPassword', {
-        style: 'forgotPassword.css'
-    });
-})
-
-// reset password page
-app.get('/reset-password', (req, res) => {
-    res.render('resetPassword', {
-        style: 'forgotPassword.css'
-    });
-});
 
 // leaderboard page
 app.get("/patient/leaderboard", (req, res) => {
