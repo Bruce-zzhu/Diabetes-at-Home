@@ -1,5 +1,8 @@
 #dashboard-body {
-    padding-top: 70px
+    padding-top: 70px;
+    margin: auto;
+    left: 0px;
+    right: 0px;
 }
 
 #dashboard-body h2 {
