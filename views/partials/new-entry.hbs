@@ -201,13 +201,9 @@ grid-template-rows: 100%;
                         <input name="bloodGlucose" type="text" class="data-input" value="{{bloodGlucose.value}}">
                         <span class="unit-label">(nmol/L)</span>   
                         <span class="comment-label">Comments:</span> 
-                        <input name="bloodGlucose-comment" id="bloodGlucose-comment" type="text" class="comment-input" value="{{bloodGlucose.comment}}">
+                        <input name="bloodGlucoseComment" id="bloodGlucose-comment" type="text" class="comment-input" value="{{bloodGlucose.comment}}">
                         <img id="bloodGlucose.comment" onclick="mobileCommentPrompt(id)" src="https://uxwing.com/wp-content/themes/uxwing/download/37-communication-chat-call/talk-bubble.svg" type="button" class="comment-icon">
-                        {{!-- <span> 
-                            <a href="#weight-comment-popup-container" class="comment-icon-container">
-                                <img src="https://uxwing.com/wp-content/themes/uxwing/download/37-communication-chat-call/talk-bubble.svg" category="bloodGlucose.comment" type="button" class="comment-icon">
-                            </a>
-                        </span> --}}
+                      
                         
                         
                     </div>
@@ -257,10 +253,9 @@ grid-template-rows: 100%;
 
 <script>
 function mobileCommentPrompt(id) {
-  let category = id;
-  let comment = prompt("Please enter a " + category, "new " + category);
+  let new_id= id.replace(".","-");
+  let comment = prompt("Please enter a " + new_id);
   if (comment != null) {
-      new_id= category.replace(".","-");
       console.log(new_id);
     document.getElementById(new_id).value = 
     comment ;
