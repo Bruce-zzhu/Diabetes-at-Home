@@ -101,6 +101,7 @@ h4 {
 }
 #login-submit {
     background-color: var(--brown-color);
+    color: white;
     border: var(--bg-color) solid;
     cursor:default;
     border-radius: 0.5rem;

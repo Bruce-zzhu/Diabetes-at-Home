@@ -1,9 +1,10 @@
 function logOut() {
     login = false;
     console.log("User has logged out");
+    window.location.replace(window.location.origin + "/");
 }
 
-function newEntry() {
+function consolelogs() {
     console.log("User creating new entry");
 }
 
@@ -15,6 +16,6 @@ function isSameDay(d1, d2) {
 
 module.exports = {
     logOut,
-    newEntry,
+    consolelogs,
     isSameDay
 }

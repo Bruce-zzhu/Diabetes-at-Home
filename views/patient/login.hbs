@@ -1,14 +1,4 @@
-<script>
-function withValue(){
-    if ((document.getElementById("email").value != "") && (document.getElementById("password").value != "")){
-        document.getElementById("login-submit").style.backgroundColor = "var(--deepBlue-color)"
-        document.getElementById("login-submit").style.cursor = "pointer"
-    } else{
-        document.getElementById("login-submit").style.backgroundColor = "var(--brown-color)"
-        document.getElementById("login-submit").style.cursor = "default"
-    }
-}
-</script>
+<script src="/scripts/login.js"></script>
 
 <section class="login-page patient">
     <div class="buffer"></div>
@@ -33,9 +23,9 @@ function withValue(){
             <input type="button" id="login-submit" value="LOG IN" onclick="location.href='/patient/dashboard';">
         </form>
         
-        <a href="/login_c" id="switch-login"> Login as clinician </a>
+        <a href="/login-c" id="switch-login"> Login as clinician </a>
         
-        <a href="/forgot_password" id="forgot-password">Forgot Password?</a>
+        <a href="/forgot-password" id="forgot-password">Forgot Password?</a>
 
         <div class="about-buttons">
             <form>

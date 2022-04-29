@@ -1,11 +1,23 @@
+@import "./histTable.css";
+
+#dashboard-body {
+    padding-top: 70px;
+    margin: auto;
+    left: 0px;
+    right: 0px;
+}
+
+#dashboard-body h2 {
+    font-weight: bold;
+}
+
 .home-container {
-    top: 5rem;
     background-color: var(--bg-color);
     display: none;
     position: relative;
-    padding-bottom: 5rem;
     width: 80%;
     margin: auto;
+    padding: 15px 0 30px 0;
 }
 
 .module {
@@ -14,35 +26,39 @@
     box-shadow: 2px 2px 5px var(--brown-color);
 }
 
+.module h5 {
+    font-weight: bold;
+}
+
 #profile {
-    grid-area: profile;
+    grid-area: m1;
 }
 
 #leaderboard {
-    grid-area: leaderboard;
+    grid-area: m2;
 }
 
 #messages {
-    grid-area: messages;
+    grid-area: m3;
 }
 
 #hist-today {
-    grid-area: hist-today;
+    grid-area: m1;
 }
 
 #hist-7days {
-    grid-area: hist-7days;
+    grid-area: m2;
 }
 
 #hist-chart {
-    grid-area: hist-chart;
+    grid-area: m3;
 }
 
 #p-container {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    height: 70%;
+    height: 50%;
     margin-top: 0.5rem;
 }
 
@@ -79,33 +95,26 @@
     background-color: white;
     border: 1px solid var(--brown-color);
     border-radius: 10px;
-    width: 50%;
-    margin-left: 1rem;
+    width: 90%;
 }
 
 .engagement h5 {
-    display: inline-block;
     font-family: var(--font-text);
+    margin-bottom: 7%;
 }
 
 .engagement {
-    padding-top: 2rem;
+    padding-top: 5%;
     padding-left: 2rem;
 }
 
 .full-history {
-    padding-top: 5rem;
+    padding-top: 5px;
     width: 80%;
     margin: auto;
     padding-bottom: 5rem;
 }
 
-.red-rec {
-    background-color: red;
-    height: 0.8rem;
-    width: 0.8rem;
-    display: inline-block;
-}
 
 .label > div > p {
     display: inline-block;
@@ -131,6 +140,26 @@
     border: 1px grey solid;
 }
 
+.table tbody tr {
+    background-color: var(--tertiary-color);
+}
+
+.table td {
+    padding: 0;;
+}
+
+.table .tb-date {
+    padding: 0 5px 0 5px;
+}
+
+.tb-value {
+    display: block;
+}
+
+.tb-comm {
+    display: none;
+}
+
 span {
     font-weight: normal;
 }
@@ -140,16 +169,16 @@ span {
 
 .date-text-a-b {
     font-size: 1.2rem;
+    font-weight: normal !important;
 }
 
-.-- {
-    margin-bottom: -1rem;
+.last {
+    padding-bottom: 0.5rem;
+}
+
+.to {
+    margin-bottom: -0.5rem;
     margin-top: -0.5rem;
-}
-
-.table-striped>tbody>tr:nth-of-type(odd)>* {
-    --bs-table-accent-bg: var(--tertiary-color) !important;
-    
 }
 
 thead {
@@ -157,12 +186,26 @@ thead {
     color: white;
 }
 
+
 .full-hist-title {
     font-weight: bold;
     padding-bottom: 1rem;
 }
 
-@media screen and (max-width: 376px) {
+.ts:hover {
+    cursor: pointer;
+}
+
+#dashboard-body h2 {
+   padding-left: 10%;
+}
+
+@media screen and (max-width: 375px) {
+
+    #dashboard-body h2 {
+        padding-left: 5%;
+     }
+
     .home-container {
         display: flex;
         flex-direction: column;
@@ -175,25 +218,37 @@ thead {
 
     .module {
         width: 100%;
-        height: 225px;
+        height: 234px;
         margin-bottom: 1rem;
+        position: relative;
+        overflow: hidden;
     }
 
-    .full-history {
-        display: none;
+    .engagement {
+        padding-top: 10%;
     }
 
+    .full-history tr th {
+       font-size: 0.8rem;
+    }
+
+    .full-history tbody td {
+        font-size: 0.8rem;
+     }
+
+     .full-history {
+         width: 90%;
+     }
 }
 
 @media screen and (min-width: 376px) {
     .home-container {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 2fr 2fr;
-        grid-gap: 2rem;
+        grid-template-rows: 4fr;
+        grid-gap: 20px;
         grid-template-areas:
-            "profile leaderboard messages"
-            "hist-today hist-7days hist-chart";
+            "m1 m2 m3";
         grid-auto-columns: auto;
         grid-auto-rows: auto;
 
@@ -203,14 +258,15 @@ thead {
         width: 100%;
         height: 180px;
     }
+    
 }
 
 @media screen and (max-width: 1024px) and (min-width: 376px) {
     html {
         font-size: 60% !important;
     }
-    .home-container {
-        top: 8rem;
+    .engagement {
+        padding-top: 10%;
     }
 }
 
@@ -218,7 +274,6 @@ thead {
 @media screen and (min-width: 1025px) {
     .module {
         width: 100%;
-        height: 272px;
+        height: 346px;
     }
 }
-

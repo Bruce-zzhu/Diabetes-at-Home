@@ -13,7 +13,7 @@
         padding-bottom: 10px;
     }
     .message-box-container{
-        margin:auto;
+        margin: auto;
         left: auto;
         right: auto;
     }
@@ -48,22 +48,21 @@
 }
 @media screen and (min-width: 1025px){
     div.scroll{
-        height: 230px;
+        height: 290px;
     }
 }
 
 .message-box-container h5 {
     position: relative;
-    font-weight: bold;
 }
 
 #unread-notif {
     position: absolute;
     float: right;
-    border-radius: 4px;
-    padding: 3px 4px 3px 4px;
+    border-radius: 0.15em;
+    padding: 0.15em 0.3em 0.1em 0.3em;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 0.8em;
     right: 5px;
     background-color: #f94d44;
     color: white;
@@ -79,7 +78,7 @@
         </div>
         <p>Remember to fill out ALL the necessary fields each day!</p>
     </div>
-    <div class="message">
+    <div class="message unread">
         <div class="message-details">
             <span class="message-name-send">[clinician]:</span>
             <span class="message-time">10:06am 21/03</span>
@@ -93,7 +92,7 @@
         </div>
         <p>I'll see you next Monday. Good luck!</p>
     </div>
-    <div class="message unread">
+    <div class="message">
         <div class="message-details">
             <span class="message-name-send">[clinician]:</span>
             <span class="message-time">2:00am 12/03</span>
@@ -102,3 +101,4 @@
     </div>
 </div>
 </div>
+<script src="/scripts/message-box.js"></script>

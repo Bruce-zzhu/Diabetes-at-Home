@@ -1,16 +1,18 @@
 const express = require("express");
 const app = express();
-const port = process.env.port || 3000;
+const port = 3000;
 const path = require("path");
 const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const { Patient, TimeSeries } = require("./models/patient");
 const { isSameDay } = require("./public/scripts/js-helpers");
+const { consolelogs } = require("./public/scripts/js-helpers");
 const clinicianRoutes = require("./routers/clinician");
 const patientRoutes = require("./routers/patient");
 
 require("dotenv").config();
+
 const connectionURL =
     process.env.MONGO_URL || "mongodb://localhost:27017/diabetes-at-home";
 mongoose.connect(connectionURL);
@@ -39,6 +41,7 @@ app.use(express.static(path.join(__dirname, "/public")));
 // process incoming request
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
 // routes
 app.use("/clinician", clinicianRoutes);
 app.use("/patient", patientRoutes);
@@ -65,30 +68,30 @@ app.get("/about-diabetes", (req, res) => {
 });
 
 // Clinician Login page
-app.get("/login_c", (req, res) => {
+app.get("/login-c", (req, res) => {
     res.render("clinician/login", {
         style: "login.css",
     });
 });
 
 // Patient Login page
-app.get("/login_p", (req, res) => {
+app.get("/login-p", (req, res) => {
     res.render("patient/login", {
         style: "login.css",
     });
 });
 
 // forgot password page
-app.get('/forgot_password', (req, res) => {
-    res.render('forgot-password', {
-        style: 'forgot-password.css'
+app.get('/forgot-password', (req, res) => {
+    res.render('forgotPassword', {
+        style: 'forgotPassword.css'
     });
 })
 
 // reset password page
-app.get('/reset_password', (req, res) => {
-    res.render('reset-password', {
-        style: 'forgot-password.css'
+app.get('/reset-password', (req, res) => {
+    res.render('resetPassword', {
+        style: 'forgotPassword.css'
     });
 });
 
@@ -109,11 +112,11 @@ const {
 app.get("/patient/dashboard", async (req, res) => {
     const patient = await Patient.findOne({ firstName: "Pat" }).lean();
 
-    var todayTimeSeries = await getTodayTimeSeries(patient);
+    var todayTimeSeries = await getTodayTimeSeries(patient).then(data => data);
     // create timeSeries for each patient every day
     if (!todayTimeSeries) {
         await createTodayTimeSeries(patient);
-        todayTimeSeries = await getTodayTimeSeries(patient);
+        todayTimeSeries = await getTodayTimeSeries(patient).then(data => data);
     }
 
     const todayArray = [
@@ -140,7 +143,7 @@ app.get("/patient/dashboard", async (req, res) => {
         var d = new Date(b.date);
         return d - c;
     });
-
+    
     // start date for avg
     const startDateArray = [
         timeSeriesList[timeSeriesList.length - 1].date.getDate(),
@@ -150,16 +153,39 @@ app.get("/patient/dashboard", async (req, res) => {
 
     getAvergaeValue(timeSeriesList, averageTimeseries, endDateArray);
 
+    var datesArray = []
+    for (ts of timeSeriesList) {
+        var date = []
+        date.push(ts.date.getDate());
+        date.push(ts.date.getMonth()+1);
+        date.push(ts.date.getFullYear());
+        datesArray.push(date)
+    }
+    
+    histData = []
+    if (timeSeriesList.length > 1) {
+        for (var i = 1; i < timeSeriesList.length; i++) {
+            histData.push({
+                date: datesArray[i],
+                timeSeries: timeSeriesList[i]
+                
+            })
+            
+        }
+    }
+    
     
 
     res.render("patient/dashboard", {
         style: "p-dashboard.css",
         patient,
+        todayTimeSeries,
         todayArray,
         averageTimeseries,
         startDateArray,
         endDateArray,
         timeSeriesList,
+        histData: JSON.stringify(histData)
     });
 });
 
@@ -213,9 +239,10 @@ function getAvergaeValue(timeSeriesList, averageTimeseries, endDateArray) {
     }
 }
 
+
 // Add New Entry page and process new entry forms
 // app.get("/patient/new-entry", (req, res) => {
-//     res.render("patient/new-entry");
+//     res.render("partials/new-entry");
 // });
 
 // Message Box
@@ -223,6 +250,6 @@ function getAvergaeValue(timeSeriesList, averageTimeseries, endDateArray) {
 //     res.render("partials/message-box");
 // });
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
     console.log(`Listen on http://localhost:${port}`);
 });

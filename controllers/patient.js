@@ -18,21 +18,21 @@ const addEntryData = async (req, res) => {
     const timeSeries = await getTodayTimeSeries(patient).then(data => data);
 
     if (timeSeries) {
-        TimeSeries.findOne({id: timeSeries._id}, (err, obj) => {
-            obj.bloodGlucose.value = blood;
-            obj.bloodGlucose.comment = bloodComment;
-            obj.weight.value = weight;
-            obj.weight.comment = weightComment;
-            obj.insulin.value = insulin;
-            obj.insulin.comment = insulinComment;
-            obj.exercise.value = exercise;
-            obj.exercise.comment = exerciseComment;
-            obj.save();
+        TimeSeries.findOne({_id: timeSeries._id}, (err, doc) => {
+            doc.bloodGlucose.value = blood;
+            doc.bloodGlucose.comment = bloodComment;
+            doc.weight.value = weight;
+            doc.weight.comment = weightComment;
+            doc.insulin.value = insulin;
+            doc.insulin.comment = insulinComment;
+            doc.exercise.value = exercise;
+            doc.exercise.comment = exerciseComment;
+            doc.save();
         })
-        
+                
     } else {
         // create timeseries
-        createTodayTimeSeries(patient);
+        await createTodayTimeSeries(patient);
     }
     
     res.redirect('/patient/dashboard');
