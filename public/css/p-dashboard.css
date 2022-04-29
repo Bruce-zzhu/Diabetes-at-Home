@@ -1,3 +1,5 @@
+@import "./histTable.css";
+
 #dashboard-body {
     padding-top: 70px;
     margin: auto;
