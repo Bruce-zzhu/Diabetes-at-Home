@@ -1,3 +1,4 @@
+// display/hide a data table cell's comment/value
 function tableToggleComment(cell) {
     var comment = cell.querySelector(".tb-comm"); 
     var value = cell.querySelector(".tb-value");

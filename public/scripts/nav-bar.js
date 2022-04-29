@@ -1,11 +1,16 @@
 document.getElementById("nav-back").setAttribute('href', document.referrer);
 var pathname = window.location.pathname;
 
+// show simplified nav unless on landing/patient/clinician pages
 if (pathname === "/" ||
     pathname.startsWith("/patient") ||
     pathname.startsWith("/clinician")) {
     document.getElementById("simple-nav").remove()
-    if (window.location.pathname.startsWith("/patient")) {
+
+    // depending on logged-in status/user type, change nav bar buttons/links
+    if (pathname === "/") {
+        document.getElementById("nav-entry-div").remove();
+    } else if (pathname.startsWith("/patient")) {
         const clinLinks = document.getElementsByClassName("nav-clinician");
         for (var i=0; i<clinLinks.length; i++) {
             clinLinks[i].style.display = "none";
@@ -20,18 +25,19 @@ if (pathname === "/" ||
     document.getElementById("normal-nav").remove()
 }
 
+// link logo <a> href to landing//patient/client dashboard depending on user type
 const names = document.getElementsByClassName("nav-name");
-if (window.location.pathname != ("/")) {
+if (pathname != ("/")) {
     const pre_login = document.getElementsByClassName("pre-login");
     for (var i=0; i<pre_login.length; i++) {
         pre_login[i].remove();
         pre_login[i].innerHTML = "";
     }
-    if (document.referrer.startsWith(window.location.origin + "/patient") || window.location.pathname.startsWith("/patient")) {
+    if (document.referrer.startsWith(window.location.origin + "/patient") || pathname.startsWith("/patient")) {
         for (i=0; i<names.length; i++) {
             names[i].href = "/patient/dashboard"
         }
-    } else if (document.referrer.startsWith("/clinician") || window.location.pathname.startsWith("/clinician")) {
+    } else if (document.referrer.startsWith("/clinician") || pathname.startsWith("/clinician")) {
         for (i=0; i<names.length; i++) {
             names[i].href = "/clinician/dashboard"
         }
@@ -45,10 +51,6 @@ if (window.location.pathname != ("/")) {
     for (i=0; i<names.length; i++) {
         names[i].href = "/"
     }
-}
-
-if (window.location.pathname == "/") {
-    document.getElementById("nav-entry-div").remove();
 }
 
 // New Entry Header Button Clicked
