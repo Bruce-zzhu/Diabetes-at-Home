@@ -1,7 +1,7 @@
 function tableToggleComment(cell) {
     var comment = cell.querySelector(".tb-comm"); 
     var value = cell.querySelector(".tb-value");
-    if (comment.style.display === "none") {
+    if (comment.style.display != "block") {
         comment.style.display = "block";
         value.style.display = "none";
         cell.style.background = "white";

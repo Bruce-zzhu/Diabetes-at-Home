@@ -58,7 +58,7 @@ var popup = document.getElementById("popup-overlay");
     // Fix dashboard body when popup is open
     dbBody.style.position = "fixed";
     // Show Popup Body and shader-overlay background
-    if (popup.style.display === "none") {
+    if (popup.style.display != "block") {
         popup.style.display = "block";
     } 
     else {

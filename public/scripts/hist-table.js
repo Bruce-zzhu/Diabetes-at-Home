@@ -2,7 +2,7 @@ function stackToggleComment(stack) {
     var comment = stack.querySelector(".stack-comment");
     var name = stack.querySelector(".stack-name");
     var value = stack.querySelector(".stack-value");
-    if (comment.style.display === "none") {
+    if (comment.style.display != "block") {
         stack.style.gridTemplateColumns = "1.5fr 4fr";
         stack.style.gridTemplateAreas = '"st-icon st-comment"';
         comment.style.display = "block";
