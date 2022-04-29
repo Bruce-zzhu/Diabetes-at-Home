@@ -172,6 +172,10 @@ span {
     font-weight: normal !important;
 }
 
+h1.date-text-a-b {
+    font-size: 1.6rem;
+}
+
 .last {
     padding-bottom: 0.5rem;
 }
@@ -239,6 +243,10 @@ thead {
      .full-history {
          width: 90%;
      }
+
+     .date-text-a-b.first {
+         padding-top: 13.5%;
+     }
 }
 
 @media screen and (min-width: 376px) {
@@ -267,6 +275,10 @@ thead {
     }
     .engagement {
         padding-top: 10%;
+    }
+
+    .date-text-a-b.first {
+        padding-top: 15%;
     }
 }
 
