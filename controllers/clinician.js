@@ -1,12 +1,16 @@
 const { Patient, TimeSeries } = require('../models/patient');
-const {isSameDay} = require('../public/scripts/js-helpers');
+const { isSameDay } = require('../public/scripts/js-helpers');
 
 const getTodayTimeSeries = async (patient) => {
     try {
         var today = new Date();
-        const timeSeries = await TimeSeries.find({patient: patient._id}).populate('patient').lean();
+        const timeSeries = await TimeSeries.find({patient: patient._id}).populate('patient').lean({virtuals: true});
         // check if it's today's timeseries
         for (ts of timeSeries) {
+            console.log("today: ", today)
+            console.log(ts.date)
+            console.log(ts.localDate)
+            console.log(ts)
             if (isSameDay(today, ts.date)) {
                 // today's timeseries found
                 return ts;
@@ -22,59 +26,60 @@ const getTodayTimeSeries = async (patient) => {
 }
 
 const createTodayTimeSeries = async (patient) => {
-    var today = new Date()
-    const newTimeseries = new TimeSeries({
-        patient: patient._id,
-        date: new Date(today.getTime() - today.getTimezoneOffset() * 60000),
-        bloodGlucose: {
-            isRequired: true,
-            upperBound: 10,
-            lowerBound: 6
-        },
-        insulin: {
-            isRequired: true,
-            upperBound: 3,
-            lowerBound: 0
-        },
-        weight: {
-            isRequired: false,
-            upperBound: 100,
-            lowerBound: 50
-        },
-        exercise: {
-            isRequired: false,
-            upperBound: 100000,
-            lowerBound: 0
-        }
-    })
-    await newTimeseries.save();
-}
+    try {
+        var today = new Date();
+        const newTimeseries = new TimeSeries({
+            patient: patient._id,
+            date: new Date(), //new Date(today.getTime() - today.getTimezoneOffset() * 60000),
+            bloodGlucose: {
+                isRequired: true,
+                upperBound: 10,
+                lowerBound: 6,
+            },
+            insulin: {
+                isRequired: true,
+                upperBound: 3,
+                lowerBound: 0,
+            },
+            weight: {
+                isRequired: false,
+                upperBound: 100,
+                lowerBound: 50,
+            },
+            exercise: {
+                isRequired: false,
+                upperBound: 100000,
+                lowerBound: 0,
+            },
+        });
+        await newTimeseries.save();
+    } catch (e) {
+        console.log(e);
+    }
+};
 
 const getDashboardData = async (req, res) => {
     try {
-        // .lean() is to solve the handlebars access error
         const patients = await Patient.find({}).lean();
         var timeSeriesList = [];
-        var today = new Date();
         for (p of patients) {
-            const timeSeries = await getTodayTimeSeries(p).then(data => data);
+            const timeSeries = await getTodayTimeSeries(p).then((data) => data);
             if (timeSeries) {
                 // today's timeseries found
-                timeSeriesList.push(timeSeries)
+                timeSeriesList.push(timeSeries);
             } else {
                 // create today's timeseries
                 await createTodayTimeSeries(p);
             }
-        } 
+        }
         res.render('clinician/dashboard', {
             style: 'dashboard.css',
-            timeSeriesList
+            timeSeriesList,
         });
-    } catch(e) {
+    } catch (e) {
         console.log(e);
     }
-}
-
+};
 
 const renderPatientProfile = async (req, res) => {
     try {
@@ -87,11 +92,11 @@ const renderPatientProfile = async (req, res) => {
     } catch (e) {
         console.log(e);
     }
-}
+};
 
 module.exports = {
     getDashboardData,
     renderPatientProfile,
     getTodayTimeSeries,
-    createTodayTimeSeries
-}
+    createTodayTimeSeries,
+};

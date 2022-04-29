@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const mongooseLeanVirtuals = require('mongoose-lean-virtuals');
 
 const patientSchema = new Schema(
     {
@@ -76,6 +77,17 @@ const timeSeriesSchema = new Schema({
     }
 
 });
+
+timeSeriesSchema.set('toObject', { virtuals: true })
+timeSeriesSchema.set('toJSON', { virtuals: true })
+
+timeSeriesSchema.plugin(mongooseLeanVirtuals);
+
+timeSeriesSchema.virtual('localDate').get(function () {
+    var today = new Date();
+    var localTime = new Date(today.getTime() - today.getTimezoneOffset() * 60000)
+    return localTime.toISOString();
+})
 
 const Patient = mongoose.model("Patient", patientSchema);
 const TimeSeries = mongoose.model("TimeSeries", timeSeriesSchema);
