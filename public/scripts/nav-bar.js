@@ -53,10 +53,12 @@ if (window.location.pathname == "/") {
 
 // New Entry Header Button Clicked
 document.getElementById("new-entry-button-header").onclick = function changeContent() {
-var dbBody = document.getElementById("dashboard-body");
-var popup = document.getElementById("popup-overlay");
-    // Fix dashboard body when popup is open
+    var dbBody = document.getElementById("dashboard-body");
+    var popup = document.getElementById("popup-overlay");
+    var ftr = document.getElementById("simple-footer");
+    // Fix dashboard body and hide footer when popup is open
     dbBody.style.position = "fixed";
+    ftr.style.display = "none";
     // Show Popup Body and shader-overlay background
     if (popup.style.display != "block") {
         popup.style.display = "block";
@@ -71,9 +73,11 @@ var popup = document.getElementById("popup-overlay");
 window.onload = function() {
     // Escape By clicking outside popup window
     (document.getElementById("escape-popup").onclick = function closePopup() {
-    var dbBody = document.getElementById("dashboard-body");
-    var popup = document.getElementById("popup-overlay");
-        // Fix dashboard body when popup is open
+        var dbBody = document.getElementById("dashboard-body");
+        var popup = document.getElementById("popup-overlay");
+        var ftr = document.getElementById("simple-footer");
+        // Fix dashboard body & footer when popup is open
+        ftr.style.display = "initial";
         dbBody.style.position = "initial";
         // Show Popup Body and shader-overlay background
         if (popup.style.display === "none") {
@@ -87,16 +91,18 @@ window.onload = function() {
     (document.getElementById("cancel-button").onclick = function closePopup() {
         var dbBody = document.getElementById("dashboard-body");
         var popup = document.getElementById("popup-overlay");
-            // Fix dashboard body when popup is open
-            dbBody.style.position = "initial";
-            // Show Popup Body and shader-overlay background
-            if (popup.style.display === "none") {
-                popup.style.display = "block";
-            } 
-            else {
-                popup.style.display = "none";
-            }
-        });
+        var ftr = document.getElementById("simple-footer");
+        // Fix dashboard body & footer when popup is open
+        dbBody.style.position = "initial";
+        ftr.style.display = "initial";
+        // Show Popup Body and shader-overlay background
+        if (popup.style.display === "none") {
+            popup.style.display = "block";
+        } 
+        else {
+            popup.style.display = "none";
+        }
+    });
     // Comment Prompt
     // (document.getElementById("bloodGlucose.comment").onclick = function commentPrompt() {
     //     let comment = prompt("Please enter a comment")
