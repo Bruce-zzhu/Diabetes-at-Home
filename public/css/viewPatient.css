@@ -1,6 +1,26 @@
 @import "./c-patientProfile.css";
 @import "./fullHistTable.css";
 
+/* viewPatientNav styles */
+.nav-buttons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.nav-links {
+    background-color: white;
+    border-radius: 50%;
+    width: 4.5rem;
+    height: 4.5rem;
+    border: 1px solid var(--brown-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.nav-icons {
+    width: 2.2rem;
+}
+
 #view-container {
     width: 80%;
     margin: auto;
@@ -87,23 +107,16 @@ input {
     padding-bottom: 5rem;
 }
 
+thead {
+    background-color: var(--tertiary-color) !important;
+    color: inherit;
+}
 
-/* viewPatientNav styles */
-.nav-buttons {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+tbody tr {
+    background-color: white !important;
 }
-.nav-links {
-    background-color: white;
-    border-radius: 50%;
-    width: 4.5rem;
-    height: 4.5rem;
-    border: 1px solid var(--brown-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.nav-icons {
-    width: 2.2rem;
+
+h2 {
+    font-weight: bold;
+    text-align: center;
 }
