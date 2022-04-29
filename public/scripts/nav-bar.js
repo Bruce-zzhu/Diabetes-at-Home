@@ -66,7 +66,8 @@ var popup = document.getElementById("popup-overlay");
     }
 };
 
-// Window onload Close Popup functions
+
+// Window onload functions
 window.onload = function() {
     // Escape By clicking outside popup window
     (document.getElementById("escape-popup").onclick = function closePopup() {
@@ -96,21 +97,8 @@ window.onload = function() {
                 popup.style.display = "none";
             }
         });
+    // Comment Prompt
+    // (document.getElementById("bloodGlucose.comment").onclick = function commentPrompt() {
+    //     let comment = prompt("Please enter a comment")
+    // });
 };
-
-
-/*window.onload = function() {
-    document.getElementById("cancel-button").onclick = function closePopup2() {
-    var dbBody = document.getElementById("dashboard-body");
-    var popup = document.getElementById("popup-overlay");
-        // Fix dashboard body when popup is open
-        dbBody.style.position = "initial";
-        // Show Popup Body and shader-overlay background
-        if (popup.style.display === "none") {
-            popup.style.display = "block";
-        } 
-        else {
-            popup.style.display = "none";
-        }
-    };
-};*/
