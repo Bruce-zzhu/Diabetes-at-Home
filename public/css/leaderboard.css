@@ -1,0 +1,65 @@
+.scroll {
+    padding:4px;
+    background-color: initial;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align:justify;
+    width: auto;
+    height: 150px;
+}
+
+p {
+    text-align: center;
+}
+
+/* Ensure medals have consistent sizing with 4th and 5th place */
+.medal {
+    width: 1.25rem;
+    align-items: center;
+    justify-items: center;
+}
+
+/* Align all medals/place numbers */
+.placing {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    top:50%;
+    vertical-align: middle;
+}
+
+h5 .place-number {
+    font-size: 1rem;
+}
+
+p .leaderboard-nickname {
+    font-size: 1rem;
+}
+
+.user-place {
+    padding-bottom: 1%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.25rem;
+}
+
+.scroll > *{
+    padding-bottom: 10px;
+}
+
+/* Adjust height of box when on mobile view */
+@media screen and (max-width: 375px){
+    div.scroll{
+        height: 190px;
+    }
+}
+
+/* Adjust height of box when on tablet view */
+@media screen and (min-width: 1025px){
+    div.scroll{
+        height: 290px;
+    }
+}
