@@ -128,6 +128,30 @@
     font-weight: normal !important;
 }
 
+h1.date-text-a-b {
+    font-size: 1.6rem;
+}
+
+.last {
+    padding-bottom: 0.5rem;
+}
+
+.to {
+    margin-bottom: -0.5rem;
+    margin-top: -0.5rem;
+}
+
+thead {
+    background-color: var(--primary-color) !important;
+    color: white;
+}
+
+
+.full-hist-title {
+    font-weight: bold;
+    padding-bottom: 1rem;
+}
+
 .ts:hover {
     cursor: pointer;
 }
@@ -175,6 +199,10 @@
      .full-history {
          width: 90%;
      }
+
+     .date-text-a-b.first {
+         padding-top: 13.5%;
+     }
 }
 
 @media screen and (min-width: 376px) {
@@ -203,6 +231,10 @@
     }
     .engagement {
         padding-top: 10%;
+    }
+
+    .date-text-a-b.first {
+        padding-top: 15%;
     }
 }
 
