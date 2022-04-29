@@ -87,10 +87,23 @@ input {
     padding-bottom: 5rem;
 }
 
-.table>:not(caption)>*>* {
-    box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg) !important;
-}
 
-.table-striped>tbody>tr:nth-of-type(odd)>* {
-    --bs-table-accent-bg: var(--tertiary-color) !important;
+/* viewPatientNav styles */
+.nav-buttons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.nav-links {
+    background-color: white;
+    border-radius: 50%;
+    width: 4.5rem;
+    height: 4.5rem;
+    border: 1px solid var(--brown-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.nav-icons {
+    width: 2.2rem;
 }
