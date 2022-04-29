@@ -1,5 +1,4 @@
 function logOut() {
-    login = false;
     console.log('User has logged out');
     window.location.replace(window.location.origin + '/');
 }
