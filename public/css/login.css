@@ -130,6 +130,10 @@ input[type=button] {
     margin-right: auto;
 }
 
+#login-submit:hover {
+    cursor: pointer;
+}
+
 /* When in desktop view, show a background image depending on patient or clinician login */
 @media screen and (min-width: 1025px) {
     .login-page.patient {

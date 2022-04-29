@@ -1,7 +1,4 @@
 {{!-- base patient dashboard layout, with empty frames to be occupied by features (e.g. history) --}}
-<head>
-    <link rel="stylesheet" href="/css/leaderboard.css" />
-</head>
 <div id="dashboard-body">
     <h2>Dashboard</h2>
     <div class="home-container">
@@ -67,61 +64,8 @@
         <div id="hist-chart" class="module">{{>hist-chart histData=histData}}</div>
 
     </div>
-
-    <h2>Full History</h2>
-    <div class="full-history">
-        <div class="table-info">
-            <div class="label">
-                <p>* required time-series</p>
-            </div>
-        </div>
-        
-        {{!-- a table of measurement values. cells
-        can be toggled to show comment for entry. --}}
-        <table class="table text-center">
-            <thead class="align-middle">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Blood Glucose<br /><span>nmol/L</span></th>
-                    <th scope="col">Weight<br /><span>kg</span></th>
-                    <th scope="col">Insulin Taken<br /><span>doses</span></th>
-                    <th scope="col">Exercise Completed<br /><span>steps</span></th>
-                </tr>
-                
-            </thead>
-            <tbody>
-                {{#each timeSeriesList}}
-                <tr class="align-middle">
-                    <th scope="row">{{idx @index}}</th>                      
-                    <td class="tb-date">                       
-                        {{getDate date}}                      
-                    </td>
-                    
-                    <td onclick="tableToggleComment(this)" class="blood ts">
-                        <div class="tb-value">{{bloodGlucose.value}}{{#if bloodGlucose.isRequired}}*{{/if}}</div>
-                        <div class="tb-comm">{{bloodGlucose.comment}}</div>
-                    </td>
-                
-                    <td onclick="tableToggleComment(this)" class="weight ts">
-                        <div class="tb-value">{{weight.value}}{{#if weight.isRequired}}*{{/if}}</div>
-                        <div class="tb-comm">{{weight.comment}}</div>
-                    </td>
-                    <td onclick="tableToggleComment(this)" class="insulin ts">
-                        <div class="tb-value">{{insulin.value}}{{#if insulin.isRequired}}*{{/if}}</div>
-                        <div class="tb-comm">{{insulin.comment}}</div>
-                    </td>
-                    <td onclick="tableToggleComment(this)" class="exercise ts">
-                        <div class="tb-value">{{exercise.value}}{{#if exercise.isRequired}}*{{/if}}</div>
-                        <div class="tb-comm">{{exercise.comment}}</div>
-                    </td>
-            
-                    
-                </tr>
-                {{/each}}
-            </tbody>
-    </table>
-    </div>
+    {{>fullHistTable timeSeriesList=timeSeriesList}}
+    
 </div>
 
 <script src="/scripts/p-dashboard.js"></script>

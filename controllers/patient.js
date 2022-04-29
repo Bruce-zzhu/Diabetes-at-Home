@@ -1,5 +1,5 @@
 const { Patient, TimeSeries } = require('../models/patient');
-const { getTodayTimeSeries, createTodayTimeSeries } = require('./clinician');
+const { getTodayTimeSeries, createTodayTimeSeries, getPatientTimeSeriesList } = require('./clinician');
 const { getDateInfo } = require('../public/scripts/js-helpers');
 
 const addEntryData = async (req, res) => {
@@ -40,6 +40,8 @@ const addEntryData = async (req, res) => {
     }
 };
 
+
+
 const renderPatientDashboard = async (req, res) => {
     try {
         const patient = await Patient.findOne({ firstName: 'Pat' }).lean();
@@ -52,9 +54,7 @@ const renderPatientDashboard = async (req, res) => {
         }
 
         const todayArray = getDateInfo(todayTimeSeries.date);
-        const timeSeriesList = await TimeSeries.find({
-            patient: patient._id,
-        }).populate('patient').lean();
+        const timeSeriesList = await getPatientTimeSeriesList(patient);
 
         var averageTimeseries = {
             bloodGlucose: 0,
@@ -62,34 +62,35 @@ const renderPatientDashboard = async (req, res) => {
             weight: 0,
             exercise: 0,
         };
+
+        
+        // start date for avg recent data
+        var startDateArray;
+        if (timeSeriesList.length <= 8) {
+            startDateArray = getDateInfo(timeSeriesList[timeSeriesList.length - 1].date);
+        } else {
+            startDateArray = getDateInfo(timeSeriesList[7].date);
+        }
+
+        // start is the end if there is only one
         var endDateArray = [];
-
-        // sort with descending order by the date
-        timeSeriesList.sort(function (a, b) {
-            var c = new Date(a.date);
-            var d = new Date(b.date);
-            return d - c;
-        });
-
-        // start date for avg
-        const startDateArray = getDateInfo(timeSeriesList[timeSeriesList.length - 1].date);
-
         if (timeSeriesList.length === 1) {
             endDateArray = startDateArray;
         }
         
-        getAvergaeValue(timeSeriesList, averageTimeseries, endDateArray);
+        getAverageValue(timeSeriesList, averageTimeseries, endDateArray);
         
+        // get all the date data to display
         var datesArray = [];
         for (ts of timeSeriesList) {
             var date = getDateInfo(ts.date);
             datesArray.push(date);
         }
-
-        histData = [];
+        
+        // combine date data with timeseries
+        var histData = [];
         if (timeSeriesList.length > 1) {
             for (var i = 1; i < timeSeriesList.length; i++) {
-                
                 histData.push({
                     date: datesArray[i],
                     timeSeries: timeSeriesList[i],
@@ -114,7 +115,7 @@ const renderPatientDashboard = async (req, res) => {
 };
 
 // calculate 7 day's avarage values
-function getAvergaeValue(timeSeriesList, averageTimeseries, endDateArray) {
+function getAverageValue(timeSeriesList, averageTimeseries, endDateArray) {
     // calculate average value until yesterday
     if (timeSeriesList.length > 1) {
         endDateArray.push(...getDateInfo(timeSeriesList[1].date));
