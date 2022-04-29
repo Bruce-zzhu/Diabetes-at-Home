@@ -55,15 +55,6 @@ span {
 }
 
 
-.last {
-    padding-bottom: 0.5rem;
-}
-
-.to {
-    margin-bottom: -0.5rem;
-    margin-top: -0.5rem;
-}
-
 thead {
     background-color: var(--primary-color) !important;
     color: white;

@@ -1,5 +1,6 @@
 @import "./histTable.css";
 @import "./fullHistTable.css";
+@import "./leaderboard.css";
 
 #dashboard-body {
     padding-top: 70px;
@@ -109,7 +110,14 @@
     padding-left: 2rem;
 }
 
+.last {
+    padding-bottom: 0.5rem;
+}
 
+.to {
+    margin-bottom: -0.5rem;
+    margin-top: -0.5rem;
+}
 
 .date-text-a {
     font-size: 0.9rem;

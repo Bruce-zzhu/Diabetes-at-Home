@@ -45,6 +45,7 @@ app.use("/clinician", clinicianRoutes);
 app.use("/patient", patientRoutes);
 app.use("/", generalRoutes);
 
+
 // hero page
 app.get("/", async (req, res) => {
     res.render("landing", {
@@ -53,26 +54,6 @@ app.get("/", async (req, res) => {
 });
 
 
-
-// leaderboard page
-app.get("/patient/leaderboard", (req, res) => {
-    res.render("patient/leaderboard", {
-        style: "leaderboard.css",
-    });
-});
-
-
-
-
-// Add New Entry page and process new entry forms
-// app.get("/patient/new-entry", (req, res) => {
-//     res.render("partials/new-entry");
-// });
-
-// Message Box
-// app.get("/message-box", async (req, res) => {
-//     res.render("partials/message-box");
-// });
 
 app.listen(process.env.PORT || port, () => {
     console.log(`Listen on http://localhost:${port}`);
