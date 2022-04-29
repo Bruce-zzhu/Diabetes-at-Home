@@ -6,137 +6,155 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-  }
+}
 
-  
-  .sub-nav a {
+
+.sub-nav a {
     color: black;
     text-decoration: none;
     font-weight: bold;
     font-style: italic;
-  }
-  
-  .banner {
+}
+
+.banner {
     position: relative;
     background-color: #86C9E2;
     width: 100%;
     height: 30rem;
     overflow: hidden;
-  }
-  
-  .banner-img {
-    float: right; 
+}
+
+.banner-img {
+    float: right;
     display: block;
     margin-left: auto;
     margin-right: auto;
     max-width: 100%;
     max-height: 100%;
-  }
-  
-  .banner-content {
+}
+
+.banner-content {
     position: absolute;
     padding-left: 10%;
     padding-right: 10%;
-  
+
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 7fr 2fr;
     grid-gap: 0;
-    grid-template-areas: 
-      "welcome space"
-      "login space";
-  }
-  
-  .welcome {
+    grid-template-areas:
+        "welcome space"
+        "login space";
+}
+
+.welcome {
     grid-area: welcome;
     margin: auto;
     text-align: center;
-  }
-  
-  .welcome h1 {
+}
+
+.welcome h1 {
     color: black;
     font-family: var(--font-text);
-  }
-  
-  .login {
+}
+
+.login {
     grid-area: login;
     display: flex;
     flex-direction: column;
-  }
-  
-  .login h3 {
+}
+
+.login h3 {
     text-align: center;
     color: black;
     font-family: var(--font-text);
     padding-bottom: 0.25em;
-  }
-  
-  .btn-list {
+}
+
+.btn-list {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-  }
-  
-  .btn-list button {
+}
+
+.btn-list button {
     background-color: var(--primary-color);
     color: white;
     border: 1.5px solid white;
     border-radius: 0.5rem;
     font-size: 1.25rem;
     width: 5em;
-  }
-  
-  .space {
+}
+
+.space {
     grid-area: space;
-  }
-  
-  .feature-list {
+}
+
+.features {
+    padding-bottom: 65px;
+}
+
+.feature-list {
     display: flex;
     justify-content: space-between;
     background-color: var(--bg-color);
-  }
-  
-  .feature {
+}
+
+.feature {
     display: flex;
     flex-direction: column;
     text-align: center;
-  }
-  
-  .feature img {
+}
+
+.feature img {
     height: 7.5em;
-  }
-  
-  
-  @media screen and (min-width: 1024px) {
-  
+}
+
+.feature-list h4 {
+    padding: 10px;
+}
+
+@media screen and (min-width: 376px) {
+
     .banner-content {
-      top: 0;
-      grid-template-areas: 
-        "welcome space"
-        "login space";
+        top: 0;
+        grid-template-areas:
+            "welcome space"
+            "login space";
     }
-  
+
     .banner-img {
-      display: block;
+        display: block;
     }
+
     .feature-list {
-  
-      flex-direction: row;
+        flex-direction: row;
     }
-  }
-  
-  @media screen and (max-width: 1024px) {
+}
+
+@media screen and (max-width: 375px) {
     .banner-content {
-      grid-template-areas: 
-        "welcome welcome"
-        "login login";
+        grid-template-areas:
+            "welcome welcome"
+            "login login";
     }
-  
+
     .banner-img {
-      display: none;
+        display: none;
     }
+
     .feature-list {
-      flex-direction: column;
+        flex-direction: column;
     }
-  
-  }  
+
+}
+
+@media screen and (min-width: 1025px) {
+    .features {
+        padding-top: 80px;
+    }
+
+    .feature img {
+        height: 10em;
+    }
+}
