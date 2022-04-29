@@ -15,12 +15,12 @@ db.once("open", () => {
 
 // sample data
 const newPatient = new Patient({
-    firstName: "Jon",
-    lastName: "Snow",
-    nickName: "King in the North",
-    age: "25",
+    firstName: "Pat",
+    lastName: "Smith",
+    nickName: "Pat",
+    age: 30,
     gender: "male",
-    email: "jon@diabetemail.com",
+    email: "pat@diabetemail.com",
 });
 const newClinician = new Clinician({
     firstName: "Chris",
@@ -62,12 +62,12 @@ const newTimeseries = new TimeSeries({
 const loadDataToDB = async () => {
     // delete the old data
     // await Patient.deleteMany({});
-    // await TimeSeries.deleteMany({});
+    await TimeSeries.deleteMany({});
     // await Clinician.deleteMany({});
 
     // await newPatient.save();
     // await newClinician.save();
-    // await newTimeseries.save();
+    await newTimeseries.save();
 };
 
 loadDataToDB().then(() => {
