@@ -1,0 +1,76 @@
+.full-history {
+    padding-top: 5px;
+    width: 80%;
+    margin: auto;
+    padding-bottom: 5rem;
+}
+
+
+.label > div > p {
+    display: inline-block;
+    margin-bottom: 0.2rem;
+}
+
+.label > p {
+    margin-bottom: 0;
+}
+
+.table-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.label {
+    bottom: 1px;
+    font-size: 0.8rem;
+}
+
+.table {
+    border: 1px grey solid;
+}
+
+.table tbody tr {
+    background-color: var(--tertiary-color);
+}
+
+.table td {
+    padding: 0;;
+}
+
+.table .tb-date {
+    padding: 0 5px 0 5px;
+}
+
+.tb-value {
+    display: block;
+}
+
+.tb-comm {
+    display: none;
+}
+
+span {
+    font-weight: normal;
+}
+
+
+.last {
+    padding-bottom: 0.5rem;
+}
+
+.to {
+    margin-bottom: -0.5rem;
+    margin-top: -0.5rem;
+}
+
+thead {
+    background-color: var(--primary-color) !important;
+    color: white;
+}
+
+
+.full-hist-title {
+    font-weight: bold;
+    padding-bottom: 1rem;
+}

@@ -76,13 +76,39 @@ const getDashboardData = async (req, res) => {
     }
 };
 
+// get history data
+const getPatientTimeSeriesList = async (patient) => {
+    try {
+        const timeSeriesList = await TimeSeries.find({
+            patient: patient._id,
+        }).populate('patient').lean();
+
+        // sort with descending order by the date
+        timeSeriesList.sort(function (a, b) {
+            var c = new Date(a.date);
+            var d = new Date(b.date);
+            return d - c;
+        });
+        return timeSeriesList;
+
+    } catch(e) {
+        console.log(e)
+    }
+    
+    
+}
+
 const renderPatientProfile = async (req, res) => {
     try {
         const pid = req.params.id;
         const patient = await Patient.findById(pid).lean();
+
+        const timeSeriesList = await getPatientTimeSeriesList(patient).then(data => data);
+
         res.render('clinician/viewPatient', {
             style: 'viewPatient.css',
             patient,
+            timeSeriesList
         });
     } catch (e) {
         console.log(e);
@@ -94,4 +120,5 @@ module.exports = {
     renderPatientProfile,
     getTodayTimeSeries,
     createTodayTimeSeries,
+    getPatientTimeSeriesList
 };
