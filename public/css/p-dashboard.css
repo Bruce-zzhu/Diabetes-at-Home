@@ -1,5 +1,10 @@
+@import "./histTable.css";
+
 #dashboard-body {
-    padding-top: 70px
+    padding-top: 70px;
+    margin: auto;
+    left: 0px;
+    right: 0px;
 }
 
 #dashboard-body h2 {
@@ -53,7 +58,7 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    height: 70%;
+    height: 50%;
     margin-top: 0.5rem;
 }
 
@@ -90,17 +95,16 @@
     background-color: white;
     border: 1px solid var(--brown-color);
     border-radius: 10px;
-    width: 50%;
-    margin-left: 1rem;
+    width: 90%;
 }
 
 .engagement h5 {
-    display: inline-block;
     font-family: var(--font-text);
+    margin-bottom: 7%;
 }
 
 .engagement {
-    padding-top: 2rem;
+    padding-top: 5%;
     padding-left: 2rem;
 }
 
@@ -111,12 +115,6 @@
     padding-bottom: 5rem;
 }
 
-.red-rec {
-    background-color: red;
-    height: 0.8rem;
-    width: 0.8rem;
-    display: inline-block;
-}
 
 .label > div > p {
     display: inline-block;
@@ -171,10 +169,15 @@ span {
 
 .date-text-a-b {
     font-size: 1.2rem;
+    font-weight: normal !important;
 }
 
-.-- {
-    margin-bottom: -1rem;
+.last {
+    padding-bottom: 0.5rem;
+}
+
+.to {
+    margin-bottom: -0.5rem;
     margin-top: -0.5rem;
 }
 
@@ -221,6 +224,10 @@ thead {
         overflow: hidden;
     }
 
+    .engagement {
+        padding-top: 10%;
+    }
+
     .full-history tr th {
        font-size: 0.8rem;
     }
@@ -257,6 +264,9 @@ thead {
 @media screen and (max-width: 1024px) and (min-width: 376px) {
     html {
         font-size: 60% !important;
+    }
+    .engagement {
+        padding-top: 10%;
     }
 }
 

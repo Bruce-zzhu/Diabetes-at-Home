@@ -68,30 +68,30 @@ app.get("/about-diabetes", (req, res) => {
 });
 
 // Clinician Login page
-app.get("/login_c", (req, res) => {
+app.get("/login-c", (req, res) => {
     res.render("clinician/login", {
         style: "login.css",
     });
 });
 
 // Patient Login page
-app.get("/login_p", (req, res) => {
+app.get("/login-p", (req, res) => {
     res.render("patient/login", {
         style: "login.css",
     });
 });
 
 // forgot password page
-app.get('/forgot_password', (req, res) => {
-    res.render('forgot-password', {
-        style: 'forgot-password.css'
+app.get('/forgot-password', (req, res) => {
+    res.render('forgotPassword', {
+        style: 'forgotPassword.css'
     });
 })
 
 // reset password page
-app.get('/reset_password', (req, res) => {
-    res.render('reset-password', {
-        style: 'forgot-password.css'
+app.get('/reset-password', (req, res) => {
+    res.render('resetPassword', {
+        style: 'forgotPassword.css'
     });
 });
 

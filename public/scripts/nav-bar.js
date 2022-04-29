@@ -66,25 +66,11 @@ var popup = document.getElementById("popup-overlay");
     }
 };
 
-// Close Popup
-window.onload = function() {
-    document.getElementById("escape-popup").onclick = function closePopup() {
-    var dbBody = document.getElementById("dashboard-body");
-    var popup = document.getElementById("popup-overlay");
-        // Fix dashboard body when popup is open
-        dbBody.style.position = "initial";
-        // Show Popup Body and shader-overlay background
-        if (popup.style.display === "none") {
-            popup.style.display = "block";
-        } 
-        else {
-            popup.style.display = "none";
-        }
-    };
-};
 
+// Window onload functions
 window.onload = function() {
-    document.getElementById("cancel-button").onclick = function closePopup() {
+    // Escape By clicking outside popup window
+    (document.getElementById("escape-popup").onclick = function closePopup() {
     var dbBody = document.getElementById("dashboard-body");
     var popup = document.getElementById("popup-overlay");
         // Fix dashboard body when popup is open
@@ -96,20 +82,23 @@ window.onload = function() {
         else {
             popup.style.display = "none";
         }
-    };
+    });
+    // Escape by clicking cancel button
+    (document.getElementById("cancel-button").onclick = function closePopup() {
+        var dbBody = document.getElementById("dashboard-body");
+        var popup = document.getElementById("popup-overlay");
+            // Fix dashboard body when popup is open
+            dbBody.style.position = "initial";
+            // Show Popup Body and shader-overlay background
+            if (popup.style.display === "none") {
+                popup.style.display = "block";
+            } 
+            else {
+                popup.style.display = "none";
+            }
+        });
+    // Comment Prompt
+    // (document.getElementById("bloodGlucose.comment").onclick = function commentPrompt() {
+    //     let comment = prompt("Please enter a comment")
+    // });
 };
-/*window.onload = function() {
-    document.getElementById("cancel-button").onclick = function closePopup2() {
-    var dbBody = document.getElementById("dashboard-body");
-    var popup = document.getElementById("popup-overlay");
-        // Fix dashboard body when popup is open
-        dbBody.style.position = "initial";
-        // Show Popup Body and shader-overlay background
-        if (popup.style.display === "none") {
-            popup.style.display = "block";
-        } 
-        else {
-            popup.style.display = "none";
-        }
-    };
-};*/

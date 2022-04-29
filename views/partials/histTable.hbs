@@ -1,91 +1,7 @@
-<style>
-.title-area {
-    height: 13%;
-}
-.title-text {
-    font-weight: bold;
-}
-.data-container {
-    height: 87%;
-    display: flex;
-    border: 1px solid var(--brown-color);
-}
-.date-area {
-    height: 100%;
-    width: 25%;
-    background-color: var(--primary-color);
-    color: white;
-    border-right: 1px solid var(--brown-color);
-    text-align: center;
-}
-.date-text {
-    font-family: var(--font-text);
-}
-.first {
-    padding-top: 20%;
-}
-.data-stacks {
-    width: 75%;
-}
-
-.stack {
-    height: calc(25% + 0.25px);
-    width: 100%;
-    background-color: var(--tertiary-color);
-    border: 0;
-    border-bottom: 1px solid var(--brown-color);
-    display: grid;
-    grid-template-columns: 1.5fr 2fr 2fr;
-    grid-template-rows: 1fr;
-    grid-gap: 0;
-    grid-template-areas:
-        "st-icon st-name st-value";
-    align-items: center;
-    padding: 0;
-    position: relative;
-}
-
-.stack-icon {
-    grid-area: st-icon;
-    text-align: center;
-}
-
-.stack-name {
-    font-weight: bold;
-    grid-area: st-name;
-    text-align: left;
-}
-
-.stack-value {
-    display: block;
-    text-align: center;
-    grid-area: st-value;
-    font-size: calc(1 * var(--bs-body-font-size));
-}
-
-.stack-comment {
-    display: none;
-    grid-area: st-comment;
-    height: 100%;
-    background-color: white;
-    border-left: 1px solid var(--brown-color);
-    font-size: calc(0.8 * var(--bs-body-font-size));
-    text-align: left;
-    padding: 5px;
-}
-
-/*
-span {
-    width: 20%;
-}
-*/
-
-</style>
-
-
 <div id='table-container'>
     <div class="title-area">
         <h5 class="title-text">Today's Data</h5>
+        <p class="required-text">* required time-series</p>
     </div>
     <div class="data-container">
         <div class="date-area">
@@ -104,7 +20,7 @@ span {
                 <span class="stack-name">Blood <br>Glucose{{#if bloodGlucose.isRequired}}*{{/if}}</span>
             
                 <span class="stack-value">
-                    <span>{{bloodGlucose.value}} </span>
+                    <span class="value-text">{{bloodGlucose.value}} </span>
                     <span>nmol/L</span>
                 </span>
                 <div class="stack-comment">{{bloodGlucose.comment}}</div>
@@ -118,7 +34,7 @@ span {
                 </span>
                 <span class="stack-name">Weight{{#if weight.isRequired}}*{{/if}}</span>
                 <span class="stack-value">
-                    <span>{{weight.value}} </span>
+                    <span class="value-text">{{weight.value}} </span>
                     <span>kg</span>
                 </span>
                 <div class="stack-comment">{{weight.comment}}</div>
@@ -132,7 +48,7 @@ span {
                 </span>
                 <span class="stack-name">Insulin <br>Taken{{#if insulin.isRequired}}*{{/if}}</span>
                 <span class="stack-value">
-                    <span>{{insulin.value}} </span>
+                    <span class="value-text">{{insulin.value}} </span>
                     <span>doses</span>
                 </span>
                 <div class="stack-comment">{{insulin.comment}}</div>
@@ -146,7 +62,7 @@ span {
                 </span>
                 <span class="stack-name">Exercise{{#if exercise.isRequired}}*{{/if}}</span>
                 <span class="stack-value">
-                    <span>{{exercise.value}} </span>
+                    <span class="value-text">{{exercise.value}} </span>
                     <span>steps</span>
                 </span>
                 <div class="stack-comment">{{exercise.comment}}</div>

@@ -174,13 +174,12 @@ grid-template-rows: 100%;
 </style>
 <div id="popup-overlay"> <!-- Background that shades the whole page -->
     <div id="escape-popup"></div>
-    <div id="comment-popup-container" class="overlay"> <!-- Add comment to data entry Popup  -->
+    <div id="weight-comment-popup-container" class="comment-popup-container overlay"> <!-- Add comment to data entry Popup  -->
         <div class="popup">
-        <form action="/file.php"> <!-- change to database -->
-            <label for="w3review">Comment regarding ____ on dd/mm: </label>
+        <form action="/patient/new-entry" name="data-entry-form" method="post" class="data-form">
+            <label for="w3review">Weight Comment: </label>
             <br>
-            <textarea class="textbox" name="_____" rows="1" cols="150">Placeholder text
-            </textarea> <!-- make 'name' variable based on data   -->
+            <input name="weight" type="text" class="data-input" value="{{weight.value}}">
             <br><br>
             <input type="submit" value="Submit">
         </form>
@@ -202,8 +201,10 @@ grid-template-rows: 100%;
                         <input name="bloodGlucose" type="text" class="data-input" value="{{bloodGlucose.value}}">
                         <span class="unit-label">(nmol/L)</span>   
                         <span class="comment-label">Comments:</span> 
-                        <input name="bloodGlucoseComment" type="text" class="comment-input" value="{{bloodGlucose.comment}}">
-                        <a href="#comment-popup-container" class="comment-icon-container"><img src="https://uxwing.com/wp-content/themes/uxwing/download/37-communication-chat-call/talk-bubble.svg" alt="" class="comment-icon" href="#comment-popup-container"></a>
+                        <input name="bloodGlucoseComment" id="bloodGlucose-comment" type="text" class="comment-input" value="{{bloodGlucose.comment}}">
+                        <img id="bloodGlucose.comment" onclick="mobileCommentPrompt(id)" src="https://uxwing.com/wp-content/themes/uxwing/download/37-communication-chat-call/talk-bubble.svg" type="button" class="comment-icon">
+                      
+                        
                         
                     </div>
                 </div>                
@@ -213,8 +214,8 @@ grid-template-rows: 100%;
                         <input name="weight" type="text" class="data-input" value="{{weight.value}}">
                         <span class="unit-label">(kg)</span>   
                         <span class="comment-label">Comments:</span> 
-                        <input name="weightComment" type="text" class="comment-input" value="{{weight.comment}}">  
-                        <img src="https://uxwing.com/wp-content/themes/uxwing/download/37-communication-chat-call/talk-bubble.svg" alt="" class="comment-icon">
+                        <input id="weight-comment" name="weightComment" type="text" class="comment-input" value="{{weight.comment}}">  
+                        <img id="weight.comment" onclick="mobileCommentPrompt(id)" src="https://uxwing.com/wp-content/themes/uxwing/download/37-communication-chat-call/talk-bubble.svg" type="button" class="comment-icon">
                     </div>
                 </div>
                 <div class="data-form-row"> <!-- insulin doses entry -->
@@ -223,8 +224,8 @@ grid-template-rows: 100%;
                         <input name="insulin" type="text" class="data-input" value="{{insulin.value}}">
                         <span class="unit-label">(doses)</span>   
                         <span class="comment-label">Comments:</span> 
-                        <input name="insulinComment" type="text" class="comment-input" value="{{insulin.comment}}">  
-                        <img src="https://uxwing.com/wp-content/themes/uxwing/download/37-communication-chat-call/talk-bubble.svg" alt="" class="comment-icon">
+                        <input id="insulin-comment" name="insulinComment" type="text" class="comment-input" value="{{insulin.comment}}">  
+                        <img id="insulin.comment" onclick="mobileCommentPrompt(id)" src="https://uxwing.com/wp-content/themes/uxwing/download/37-communication-chat-call/talk-bubble.svg" type="button" class="comment-icon">
                     </div>
                 </div>
                 <div class="data-form-row"> <!-- step count entry  -->
@@ -233,8 +234,8 @@ grid-template-rows: 100%;
                         <input name="step" type="text" class="data-input" value="{{exercise.value}}">
                         <span class="unit-label">(steps)</span>   
                         <span class="comment-label">Comments:</span> 
-                        <input name="stepComment" type="text" class="comment-input" value="{{exercise.comment}}">
-                        <img src="https://uxwing.com/wp-content/themes/uxwing/download/37-communication-chat-call/talk-bubble.svg" alt="" class="comment-icon">  
+                        <input id="exercise-comment" name="stepComment" type="text" class="comment-input" value="{{exercise.comment}}">
+                        <img id="exercise.comment" onclick="mobileCommentPrompt(id)" src="https://uxwing.com/wp-content/themes/uxwing/download/37-communication-chat-call/talk-bubble.svg" type="button" class="comment-icon">
                     </div>
                 </div>
                 <div class="buttons">
@@ -249,3 +250,15 @@ grid-template-rows: 100%;
         </div>
     </div>
 </div>
+
+<script>
+function mobileCommentPrompt(id) {
+  let new_id= id.replace(".","-");
+  let comment = prompt("Please enter a " + new_id);
+  if (comment != null) {
+      console.log(new_id);
+    document.getElementById(new_id).value = 
+    comment ;
+  }
+}
+</script>

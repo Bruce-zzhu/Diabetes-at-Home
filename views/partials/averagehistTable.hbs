@@ -1,102 +1,16 @@
-<style>
-.title-area {
-    height: 13%;
-}
-.title-text {
-    font-weight: bold;
-}
-.data-container {
-    height: 87%;
-    display: flex;
-    border: 1px solid var(--brown-color);
-}
-.date-area {
-    height: 100%;
-    width: 25%;
-    background-color: var(--primary-color);
-    color: white;
-    border-right: 1px solid var(--brown-color);
-    text-align: center;
-}
-.date-text {
-    font-family: var(--font-text);
-}
-.first {
-    padding-top: 20%;
-}
-.data-stacks {
-    width: 75%;
-}
-
-.stack {
-    height: calc(25% + 0.25px);
-    width: 100%;
-    background-color: var(--tertiary-color);
-    border: 0;
-    border-bottom: 1px solid var(--brown-color);
-    display: grid;
-    grid-template-columns: 1.5fr 2fr 2fr;
-    grid-template-rows: 1fr;
-    grid-gap: 0;
-    grid-template-areas:
-        "st-icon st-name st-value";
-    align-items: center;
-    padding: 0;
-    position: relative;
-}
-
-.stack-icon {
-    grid-area: st-icon;
-    text-align: center;
-}
-
-.stack-name {
-    font-weight: bold;
-    grid-area: st-name;
-    text-align: left;
-}
-
-.stack-value {
-    display: block;
-    flex-direction: column;
-    text-align: center;
-    grid-area: st-value;
-    font-size: calc(1 * var(--bs-body-font-size));
-}
-
-.stack-comment {
-    display: none;
-    grid-area: st-comment;
-    height: 100%;
-    background-color: white;
-    border-left: 1px solid var(--brown-color);
-    font-size: calc(0.8 * var(--bs-body-font-size));
-    text-align: left;
-    padding: 5px;
-}
-
-/*
-span {
-    width: 20%;
-}
-*/
-
-</style>
-
-
 <div id='table-container'>
     <div class="title-area">
         <h5 class="title-text">7 day's average</h5>
     </div>
     <div class="data-container">
         <div class="date-area">
-            <h1 class="first date-text-a-b">{{startDateArray.[0]}}</h1>
-            <h4 class="date-text-a">{{startDateArray.[1]}}</h4>
-            <h5 class="date-text-a-b">{{startDateArray.[2]}}</h5>
-            <h5 class="--"> - </h5>
-            <h1 class="first date-text-a-b">{{endDateArray.[0]}}</h1>
-            <h4 class="date-text-a">{{endDateArray.[1]}}</h4>
-            <h5 class="date-text-a-b">{{endDateArray.[2]}}</h5>
+            <h1 class="date-text first date-text-a-b">{{startDateArray.[0]}}</h1>
+            <h4 class="date-text date-text-a">{{startDateArray.[1]}}</h4>
+            <h5 class="date-text last date-text-a-b">{{startDateArray.[2]}}</h5>
+            <p class="to"> to </p>
+            <h1 class="date-text first date-text-a-b">{{endDateArray.[0]}}</h1>
+            <h4 class="date-text date-text-a">{{endDateArray.[1]}}</h4>
+            <h5 class="date-text date-text-a-b">{{endDateArray.[2]}}</h5>
         </div>
 
         <div class="data-stacks">
@@ -109,7 +23,7 @@ span {
                 </span>
                 <span class="stack-name">Blood <br>Glucose</span>
                 <span class="stack-value">
-                    <span>{{bloodGlucose}} </span>
+                    <span class="value-text">{{bloodGlucose}} </span>
                     <span>nmol/L</span>
                 </span>
             </div>
@@ -122,7 +36,7 @@ span {
                 </span>
                 <span class="stack-name">Weight</span>
                 <span class="stack-value">
-                    <span>{{weight}} </span>
+                    <span class="value-text">{{weight}} </span>
                     <span>kg</span>
                 </span>
             </div>
@@ -135,7 +49,7 @@ span {
                 </span>
                 <span class="stack-name">Insulin <br>Taken</span>
                 <span class="stack-value">
-                    <span>{{insulin}} </span>
+                    <span class="value-text">{{insulin}} </span>
                     <span>doses</span>
                 </span>
             </div>
@@ -148,7 +62,7 @@ span {
                 </span>
                 <span class="stack-name">Exercise</span>
                 <span class="stack-value">
-                    <span>{{exercise}} </span>
+                    <span class="value-text">{{exercise}} </span>
                     <span>steps</span>
                 </span>
             </div>
