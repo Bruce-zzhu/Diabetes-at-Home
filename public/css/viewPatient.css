@@ -107,15 +107,6 @@ input {
     padding-bottom: 5rem;
 }
 
-thead {
-    background-color: var(--tertiary-color) !important;
-    color: inherit;
-}
-
-tbody tr {
-    background-color: white !important;
-}
-
 h2 {
     font-weight: bold;
     text-align: center;

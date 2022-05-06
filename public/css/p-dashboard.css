@@ -141,12 +141,6 @@ h1.date-text-a-b {
     margin-top: -0.5rem;
 }
 
-thead {
-    background-color: var(--primary-color) !important;
-    color: white;
-}
-
-
 .full-hist-title {
     font-weight: bold;
     padding-bottom: 1rem;
