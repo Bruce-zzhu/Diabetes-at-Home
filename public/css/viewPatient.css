@@ -33,6 +33,7 @@
 .head {
     display: flex;
     justify-content: space-between;
+    padding-bottom: 4rem;
 }
 
 .profile {
@@ -44,13 +45,7 @@
     margin: auto;
 }
 
-.requirement {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
-    
-}
-
-.re-container {
+.require-container {
     border: 1px solid var(--brown-color);
     padding-left: 0;
     padding-right: 0;
@@ -104,6 +99,7 @@ input {
 .full-history {
     width: 100%;
     margin: auto;
+    padding-top: 4rem;
     padding-bottom: 5rem;
 }
 

@@ -150,10 +150,6 @@ h1.date-text-a-b {
     cursor: pointer;
 }
 
-#dashboard-body h2 {
-   padding-left: 10%;
-}
-
 @media screen and (max-width: 375px) {
 
     #dashboard-body h2 {
