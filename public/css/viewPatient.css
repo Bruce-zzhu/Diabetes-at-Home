@@ -45,13 +45,17 @@
     margin: auto;
 }
 
-.require-container {
+#require-container, #message-container, #notes-container {
     border: 1px solid var(--brown-color);
     padding-left: 0;
     padding-right: 0;
     width: 100% !important;
     position: relative;
     height: 15rem;
+}
+
+#message-container, #notes-container {
+    display: none;
 }
 
 .header {
