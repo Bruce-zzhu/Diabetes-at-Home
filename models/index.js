@@ -62,12 +62,12 @@ const newTimeseries = new TimeSeries({
 const loadDataToDB = async () => {
     // delete the old data
     // await Patient.deleteMany({});
-    await TimeSeries.deleteMany({});
-    // await Clinician.deleteMany({});
+    // await TimeSeries.deleteMany({});
+    // // await Clinician.deleteMany({});
 
     // await newPatient.save();
     // await newClinician.save();
-    await newTimeseries.save();
+    // await newTimeseries.save();
 };
 
 loadDataToDB().then(() => {
