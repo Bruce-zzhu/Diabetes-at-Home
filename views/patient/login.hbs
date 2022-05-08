@@ -17,9 +17,9 @@
                 Patient Login
             </strong>
         </h3>
-        <form onchange="withValue()" class="login-form">
-            <input type="text" id="email" name="email" placeholder="user@email.com"> <br>
-            <input type="password" id="password" name="password" placeholder="Password"> <br> <br>
+        <form name="login-entry-form" action="/login-p" method="POST" onchange="withValue()" class="login-form">
+            <input type="text" id="email" name="loginEmail" placeholder="user@email.com"> <br>
+            <input type="password" id="password" name="loginPassword" placeholder="Password"> <br> <br>
             <input type="button" id="login-submit" value="LOG IN" onclick="location.href='/patient/dashboard';">
         </form>
         

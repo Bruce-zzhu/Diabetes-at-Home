@@ -1,6 +1,15 @@
 const { Patient, TimeSeries } = require('../models/patient');
 const { getTodayTimeSeries, createTodayTimeSeries, getPatientTimeSeriesList } = require('./clinician');
 const { getDateInfo } = require('../public/scripts/js-helpers');
+const req = require('express/lib/request');
+
+// Hardcoded Patient Email
+const patientEmail = 'pat@diabetemail.com';
+// const loginEmailEntry = async(req, res) => {
+//     const patientEmail = req.body.loginEmail;
+// }
+
+
 
 const addEntryData = async (req, res) => {
     const blood = req.body.bloodGlucose;
@@ -13,7 +22,7 @@ const addEntryData = async (req, res) => {
     const exerciseComment = req.body.stepComment;
 
     try {
-        const patient = await Patient.findOne({ firstName: 'Pat' });
+        const patient = await Patient.findOne({ email: patientEmail });
         const timeSeries = await getTodayTimeSeries(patient).then((data) => data);
         
         if (timeSeries) {
@@ -44,7 +53,7 @@ const addEntryData = async (req, res) => {
 
 const renderPatientDashboard = async (req, res) => {
     try {
-        const patient = await Patient.findOne({ firstName: 'Pat' }).lean();
+        const patient = await Patient.findOne({ email: patientEmail }).lean();
 
         var todayTimeSeries = await getTodayTimeSeries(patient).then((data) => data);
         // create timeSeries for each patient every day
