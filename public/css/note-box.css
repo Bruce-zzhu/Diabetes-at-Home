@@ -1,0 +1,22 @@
+.note {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid var(--brown-color);
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.note-topic {
+    font-weight: bold;
+    font-size: 1.25em;
+}
+
+.note-details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+.note-time {
+    font-style: italic;
+    margin-bottom: 0;
+}

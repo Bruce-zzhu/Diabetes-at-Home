@@ -11,6 +11,7 @@
 
 #dashboard-body h2 {
     font-weight: bold;
+    margin-left: 10%;
 }
 
 .home-container {
@@ -141,12 +142,6 @@ h1.date-text-a-b {
     margin-top: -0.5rem;
 }
 
-thead {
-    background-color: var(--primary-color) !important;
-    color: white;
-}
-
-
 .full-hist-title {
     font-weight: bold;
     padding-bottom: 1rem;
@@ -156,14 +151,10 @@ thead {
     cursor: pointer;
 }
 
-#dashboard-body h2 {
-   padding-left: 10%;
-}
-
 @media screen and (max-width: 375px) {
 
     #dashboard-body h2 {
-        padding-left: 5%;
+        margin-left: 5%;
      }
 
     .home-container {

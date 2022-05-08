@@ -48,7 +48,7 @@ h4 {
 }
 
 .table {
-    border: 1px grey solid;
+    border: 1px var(--brown-color) solid;
 }
 
 span {
