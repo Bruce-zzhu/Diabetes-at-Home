@@ -10,6 +10,7 @@ const patientSchema = new Schema(
         gender: { type: String, enum: ["male", "female"], required: true },
         engagementRate: Number,
         email: { type: String, required: true, unique: true },
+        password: {type: String, required: true, default: 'password'},
     },
     {
         timestamps: { createdAt: "createTime", updatedAt: "updateTime" },

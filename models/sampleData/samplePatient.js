@@ -2,9 +2,9 @@ const samplePatients = [
     {
         id: 1,
         firstName: "Pat",
-        lastName: "K",
+        lastName: "Smith",
         nickName: "Pat",
-        age: 30,
+        age: 25,
         engagementRate: 0.8,
         gender: "male",
         email: "pat@diabetemail.com",
