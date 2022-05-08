@@ -113,6 +113,10 @@ input {
     bottom: 0.375em;
 }
 
+#view-container .scroll {
+    height: calc(11rem - 6px);
+}
+
 .full-history {
     width: 100%;
     margin: auto;
@@ -122,8 +126,4 @@ input {
 h2 {
     font-weight: bold;
     text-align: center;
-}
-
-.msg-to-pnt {
-    background-color: white;
 }
