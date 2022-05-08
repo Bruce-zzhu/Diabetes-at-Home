@@ -1,29 +1,9 @@
-<div class="message unread">
+{{!-- TODO: message read/unread, clin firstname, time, details --}}
+{{#if true}}<div class="message unread">{{else}}<div class="message">{{/if}}
     <div class="message-details">
         {{#if viewAsPatient}}<span class="message-name-send">[clinician]:</span>{{/if}}
         <span class="message-time">12:34am 22/03</span>
     </div>
     <p>Remember to fill out ALL the necessary fields each day!</p>
-</div>
-<div class="message unread">
-    <div class="message-details">
-        {{#if viewAsPatient}}<span class="message-name-send">[clinician]:</span>{{/if}}
-        <span class="message-time">10:06am 21/03</span>
-    </div>
-    <p>Great work!</p>
-</div>
-<div class="message">
-    <div class="message-details">
-        {{#if viewAsPatient}}<span class="message-name-send">[clinician]:</span>{{/if}}
-        <span class="message-time">3:58am 17/03</span>
-    </div>
-    <p>I'll see you next Monday. Good luck!</p>
-</div>
-<div class="message">
-    <div class="message-details">
-        {{#if viewAsPatient}}<span class="message-name-send">[clinician]:</span>{{/if}}
-        <span class="message-time">2:00am 12/03</span>
-    </div>
-    <p>Been super consistent of late, keep up the good work!</p>
 </div>
 <script src="/scripts/message-box.js"></script>
