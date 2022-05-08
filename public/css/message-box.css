@@ -7,9 +7,7 @@ div.scroll {
     width: auto;
     height: 150px;
 }
-.scroll > *{
-    padding-bottom: 10px;
-}
+
 .message-box-container{
     margin: auto;
     left: auto;
@@ -17,7 +15,7 @@ div.scroll {
 }
 .message{
     background-color: rgb(255, 255, 255);
-    border: 1px solid grey;
+    border: 1px solid var(--brown-color);
     padding: 10px;
     margin-bottom: 10px;
 }

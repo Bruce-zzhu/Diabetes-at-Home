@@ -49,7 +49,14 @@
             {{>leaderboard}}
         </div>
         <div id="messages" class="module">
-            {{>message-box}}
+            <div class="message-box-container">
+                <h5>Message Box<span id="unread-notif">NEW!</span></h5>
+                <div class="scroll">
+                    {{#each patient}} {{!-- TODO: insert message variable into hbs for each msg --}}
+                        {{>message-box viewAsPatient=true}} 
+                    {{/each}}
+                </div>
+            </div>
         </div>
     </div>
     <h2>Recent History</h2>
@@ -64,8 +71,16 @@
         <div id="hist-chart" class="module">{{>hist-chart histData=histData}}</div>
 
     </div>
+    <h2>Full History</h2>
     {{>fullHistTable timeSeriesList=timeSeriesList}}
     
 </div>
+
+<style>
+    .blood {
+        display: none;
+    }
+
+</style>
 
 <script src="/scripts/p-dashboard.js"></script>
