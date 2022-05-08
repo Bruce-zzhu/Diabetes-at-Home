@@ -68,8 +68,8 @@
             <h1 class="header-text">Support Messages<button class="add-btn">Send Message</button></h1>
         </div>
         <div class="scroll">
-            <div class="input-group">
-                <input id="new-message" type="text" class="form-control" placeholder="New message" aria-label="New message" aria-describedby="basic-addon2">
+            <div id="new-message" class="input-group new-text-entry">
+                <input type="text" class="form-control" placeholder="New message" aria-label="New message" aria-describedby="basic-addon2">
                 <div class="input-group-append">
                     <button class="btn btn-outline-danger" type="button"><span class="material-icons">close</span></button>
                     <button class="btn btn-outline-success" type="button"><span class="material-icons">send</span></button>
@@ -86,12 +86,15 @@
             <h1 class="header-text">Notes on Patient<button class="add-btn">Edit Note</button></h1>
         </div>
         <div class="scroll">
-            <div class="input-group">
-                <input id="new-note" type="text" class="form-control" placeholder="New note" aria-label="New note" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-danger" type="button"><span class="material-icons">close</span></button>
-                    <button class="btn btn-outline-success" type="button"><span class="material-icons">done</span></button>
+            <div id="new-note" class="new-text-entry">
+                <div class="input-group">
+                    <input id="new-note-topic" type="text" class="form-control" placeholder="New note topic" aria-label="New note" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-danger" type="button"><span class="material-icons">close</span></button>
+                        <button class="btn btn-outline-success" type="button"><span class="material-icons">done</span></button>
+                    </div>
                 </div>
+                <input id="new-note-body" class="form-control" type="text" placeholder="Note body"></input>
             </div>
             {{#each patient}} {{!-- TODO: insert note variable into hbs for each note --}}
                 {{>note-box}}
