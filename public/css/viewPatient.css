@@ -65,16 +65,29 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
+.add-btn {
+    float: right;
+    position: absolute;
+    right: 1em;
+    font-size: 0.75em;
+    top: calc(50% - 0.625em);
+    background: none;
+    border: 0;
+}
 
 .header-text {
     font-size: 1.7rem;
     font-weight: bold;
+    margin-top: initial;
+    margin-bottom: 0;
 }
 
 .row {
     font-size: 1rem;
+    margin-top: 0;
 }
 
 input {
@@ -96,18 +109,21 @@ input {
     display: flex;
     flex:1;
     position: absolute;
-    right: 1rem;
-    bottom: 0;
+    right: 0.625em;
+    bottom: 0.375em;
 }
 
 .full-history {
     width: 100%;
     margin: auto;
-    padding-top: 4rem;
     padding-bottom: 5rem;
 }
 
 h2 {
     font-weight: bold;
     text-align: center;
+}
+
+.msg-to-pnt {
+    background-color: white;
 }

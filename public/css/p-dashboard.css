@@ -11,6 +11,7 @@
 
 #dashboard-body h2 {
     font-weight: bold;
+    margin-left: 10%;
 }
 
 .home-container {
@@ -153,7 +154,7 @@ h1.date-text-a-b {
 @media screen and (max-width: 375px) {
 
     #dashboard-body h2 {
-        padding-left: 5%;
+        margin-left: 5%;
      }
 
     .home-container {

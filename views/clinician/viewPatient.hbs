@@ -13,7 +13,7 @@
 
     <div id="require-container">
         <div class="header">
-            <h1 class="header-text">Time-series Requirements</h1>
+            <h1 class="header-text">Time-series Requirements<button class="add-btn">Save</button></h1>
         </div>
         <div class="row g-2">
             <div class="col-5 offset-1">
@@ -65,16 +65,20 @@
 
     <div id="message-container">
         <div class="header">
-            <h1 class="header-text">Support Messages</h1>
+            <h1 class="header-text">Support Messages<button class="add-btn">New Message</button></h1>
+        </div>
+        <div class="scroll">
+            {{>message-box}}
         </div>
     </div>
 
     <div id="notes-container">
         <div class="header">
-            <h1 class="header-text">Patient Notes</h1>
+            <h1 class="header-text">Notes on Patient<button class="add-btn">Edit Note</button></h1>
         </div>
     </div>
 
+    <h2 style="padding-top: 3rem;">Full History</h2>
     {{>fullHistTable timeSeriesList=timeSeriesList}}
 </div>
 

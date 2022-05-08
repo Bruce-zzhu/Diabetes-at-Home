@@ -49,7 +49,12 @@
             {{>leaderboard}}
         </div>
         <div id="messages" class="module">
-            {{>message-box}}
+            <div class="message-box-container">
+                <h5>Message Box<span id="unread-notif">NEW!</span></h5>
+                <div class="scroll">
+                    {{>message-box}}
+                </div>
+            </div>
         </div>
     </div>
     <h2>Recent History</h2>
@@ -64,6 +69,7 @@
         <div id="hist-chart" class="module">{{>hist-chart histData=histData}}</div>
 
     </div>
+    <h2>Full History</h2>
     {{>fullHistTable timeSeriesList=timeSeriesList}}
     
 </div>
