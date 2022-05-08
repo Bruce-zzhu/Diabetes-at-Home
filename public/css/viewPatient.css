@@ -127,3 +127,9 @@ h2 {
     font-weight: bold;
     text-align: center;
 }
+
+#new-message {
+    margin-right: 5px;
+    border-radius: 0;
+    border: 1px solid var(--brown-color);
+}
