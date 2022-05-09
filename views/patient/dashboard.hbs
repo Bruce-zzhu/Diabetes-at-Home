@@ -76,11 +76,13 @@
     
 </div>
 
-<style>
-    .blood {
-        display: none;
+<script>
+    var required = {
+        "blood": {{todayTimeSeries.bloodGlucose.isRequired}},
+        "weight": {{todayTimeSeries.weight.isRequired}},
+        "insulin": {{todayTimeSeries.insulin.isRequired}},
+        "exercise": {{todayTimeSeries.exercise.isRequired}}
     }
-
-</style>
+</script>
 
 <script src="/scripts/p-dashboard.js"></script>
