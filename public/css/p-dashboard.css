@@ -111,37 +111,6 @@
     padding-left: 2rem;
 }
 
-.last {
-    padding-bottom: 0.5rem;
-}
-
-.to {
-    margin-bottom: -0.5rem;
-    margin-top: -0.5rem;
-}
-
-.date-text-a {
-    font-size: 0.9rem;
-} 
-
-.date-text-a-b {
-    font-size: 1.2rem;
-    font-weight: normal !important;
-}
-
-h1.date-text-a-b {
-    font-size: 1.6rem;
-}
-
-.last {
-    padding-bottom: 0.5rem;
-}
-
-.to {
-    margin-bottom: -0.5rem;
-    margin-top: -0.5rem;
-}
-
 .full-hist-title {
     font-weight: bold;
     padding-bottom: 1rem;
@@ -169,10 +138,13 @@ h1.date-text-a-b {
 
     .module {
         width: 100%;
-        height: 234px;
         margin-bottom: 1rem;
         position: relative;
         overflow: hidden;
+    }
+
+    #hc1.module {
+        height: 234px;
     }
 
     .engagement {
@@ -190,10 +162,6 @@ h1.date-text-a-b {
      .full-history {
          width: 90%;
      }
-
-     .date-text-a-b.first {
-         padding-top: 13.5%;
-     }
 }
 
 @media screen and (min-width: 376px) {
@@ -209,11 +177,14 @@ h1.date-text-a-b {
 
         margin: auto;
     }
+    
     .module {
         width: 100%;
-        height: 180px;
     }
     
+    #hc1.module {
+        height: 180px;
+    }
 }
 
 @media screen and (max-width: 1024px) and (min-width: 376px) {
@@ -223,16 +194,15 @@ h1.date-text-a-b {
     .engagement {
         padding-top: 10%;
     }
-
-    .date-text-a-b.first {
-        padding-top: 15%;
-    }
 }
 
 
 @media screen and (min-width: 1025px) {
     .module {
         width: 100%;
+    }
+
+    #hc1.module {
         height: 346px;
     }
 }
