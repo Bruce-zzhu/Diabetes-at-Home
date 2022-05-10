@@ -3,18 +3,22 @@
     display: flex;
     justify-content: space-between;
 }
+
 .title-text {
     font-weight: bold;
 }
+
 .required-text {
     margin-top: 1rem;
     font-size: 0.8rem;
 }
+
 .data-container {
     height: 87%;
     display: flex;
     border: 1px solid var(--brown-color);
 }
+
 .date-area {
     height: 100%;
     width: 25%;
@@ -22,13 +26,32 @@
     color: white;
     border-right: 1px solid var(--brown-color);
     text-align: center;
+    padding: 0.5em 0;
 }
-.date-text {
-    font-family: var(--font-text);
+
+.date-area p {
+    margin: 0.25em;
+    font-weight: bold;
+    line-height: 1;
 }
-.first {
-    padding-top: 20%;
+
+.date-day {
+    font-size: 2em;
 }
+
+.date-month {
+    font-size: 1.25em;
+}
+
+.date-year {
+    font-size: 1em;
+}
+
+#date-text-to {
+    margin: 0.75em 0 0.75em 0;
+    font-weight: normal;
+}
+
 .data-stacks {
     width: 75%;
 }
