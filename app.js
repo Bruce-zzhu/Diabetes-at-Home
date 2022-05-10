@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+const flash = require('express-flash' ) // Used for showing login error messages
+const session = require('express-session') // Used for managing user sessions
 const port = 3000;
 const path = require('path');
 const exphbs = require('express-handlebars');
@@ -33,6 +35,29 @@ app.engine(
     })
 );
 app.set('view engine', 'hbs');
+
+// Login Sessions setup - see week 10 tute for explanation of code
+app.use(
+    session({
+    // The decret used to sign session cookies (ADD ENV VAR)
+        secret: process.env.SESSION_SECRET || 'keyboard cat',
+        name: 'demo', // The cookie name (CHANGE THIS)
+        saveUninitialized: false,
+        resave: false,
+        proxy: process.env.NODE_ENV === 'production', // to work on Heroku
+        cookie: {
+            sameSite: 'strict',
+            httponly: true,
+            secure: process.env.NODE_ENV === 'production',
+            maxAge: 300000 // sessions expire after 5 minutes
+        },
+    })
+)
+
+// use PASSPORT
+const passport = require('./passport.js')
+app.use(passport.authenticate('session'))
+
 // link views to views directory
 app.set('views', path.join(__dirname, '/views'));
 // link static files to public directory
