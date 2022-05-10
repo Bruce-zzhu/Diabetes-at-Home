@@ -1,7 +1,7 @@
 {{!-- base patient dashboard layout, with empty frames to be occupied by features (e.g. history) --}}
 <div id="dashboard-body">
     <h2>Dashboard</h2>
-    <div class="home-container">
+    <div class="home-container" id="hc1">
         <div id="profile" class="module">
             <div id="p-container">
                 <div class="profile-img">
@@ -60,7 +60,7 @@
         </div>
     </div>
     <h2>Recent History</h2>
-    <div class="home-container">
+    <div class="home-container" id="hc2">
         <div id="hist-today" class="module">
             {{>histTable todayTimeSeries todayArray=todayArray}}
         </div>

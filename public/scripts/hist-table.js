@@ -17,3 +17,11 @@ function stackToggleComment(stack) {
         value.style.display = "block";
     }
 }
+
+function adjust_histTable(req_count) {
+    var stacks = document.getElementsByClassName("stack");
+    console.log(stacks);
+    for (var i=0; i<stacks.length; i++) {
+        stacks[i].style.height = "calc(" + 100/req_count + "% + 0.25px)";
+    }
+}

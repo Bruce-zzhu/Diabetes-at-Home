@@ -13,3 +13,7 @@ for (var stat in required) {
         }
     }
 }
+
+var req_count = Object.values(required).reduce((req_count, stat) => (req_count += stat));
+
+adjust_histTable(req_count);
