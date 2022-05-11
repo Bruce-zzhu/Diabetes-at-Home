@@ -32,6 +32,7 @@ nav {
 
 .nav-new-entry {
     border-radius: 50%;
+    border-width: 2px;
 }
 
 .nav-new-entry span {
