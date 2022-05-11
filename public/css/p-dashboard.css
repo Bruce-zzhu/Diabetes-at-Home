@@ -151,15 +151,15 @@
         padding-top: 10%;
     }
 
-    .full-history tr th {
+    #full-history tr th {
        font-size: 0.8rem;
     }
 
-    .full-history tbody td {
+    #full-history tbody td {
         font-size: 0.8rem;
      }
 
-     .full-history {
+     #full-history {
          width: 90%;
      }
 }
