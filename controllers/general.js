@@ -15,10 +15,10 @@ const renderLoginPatient = (req, res) => {
 };
 
 const newFunction1 = (req, res) => {
-    const patientEmail = req.body;
-    // console.log(patientEmail)
-    res.send(patientEmail);
-    console.log("hi");
+    const patientEmail = req.body.loginEmail;
+    console.log(patientEmail)
+    //res.send(req.body);
+    res.redirect('/patient/dashboard');
 };
 
 const renderLoginClinician = (req, res) => {
