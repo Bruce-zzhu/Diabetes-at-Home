@@ -4,17 +4,20 @@
     </div>
     <div class="data-container">
         <div class="date-area">
-            <h1 class="date-text first date-text-a-b">{{startDateArray.[0]}}</h1>
-            <h4 class="date-text date-text-a">{{startDateArray.[1]}}</h4>
-            <h5 class="date-text last date-text-a-b">{{startDateArray.[2]}}</h5>
-            <p class="to"> to </p>
-            <h1 class="date-text first date-text-a-b">{{endDateArray.[0]}}</h1>
-            <h4 class="date-text date-text-a">{{endDateArray.[1]}}</h4>
-            <h5 class="date-text date-text-a-b">{{endDateArray.[2]}}</h5>
+            <div class="date-from">
+                <p class="date-day">{{startDateArray.[0]}}</h1>
+                <p class="date-month">{{startDateArray.[1]}}</h4>
+                <p class="date-year">{{startDateArray.[2]}}</h5>
+            </div>
+            <div class="date-to">
+                <p id="date-text-to"> to </p>
+                <p class="date-day">{{endDateArray.[0]}}</h1>
+                <p class="date-month">{{endDateArray.[1]}}</h4>
+                <p class="date-year">{{endDateArray.[2]}}</h5>
+            </div>
         </div>
 
         <div class="data-stacks">
-                
             <div class="stack blood">
                 <span class="stack-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16.248" height="23.462" viewBox="0 0 16.248 23.462">
