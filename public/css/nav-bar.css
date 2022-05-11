@@ -118,7 +118,7 @@ nav .btn-outline-light:hover {
     position: fixed;
     background-color: var(--primary-color);
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 8px 16px 0px var(--border-color);
     z-index: 5;
 }
 
