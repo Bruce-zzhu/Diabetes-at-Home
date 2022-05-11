@@ -4,17 +4,24 @@
 :root {
     --font-text: "Lexend", sans-serif;
     --font-heading: "Inter", sans-serif;
-
-    --bg-color: #f6f8fa;
-    --primary-color: #488adc;
-    --secondary-color: #a8bce2;
-    --tertiary-color: #e9ecf2;
+    
+    --blue-color: #488adc;
+    --lightBlue-color: #a8bce2;
+    --offGrey-color: #e9ecf2;
+    --offWhite-color: #f6f8fa;
     --deepBlue-color: #124b8e;
     --brown-color: #5c5c5c;
     --red-color: #d91616;
     --green-color: #239651;
     --purple-color: #ab3bd5;
     --yellow-color: #ffba00;
+
+    --bg-color: var(--offWhite-color);
+    --border-color: var(--brown-color);
+    --text-color: black;
+    --primary-color: var(--blue-color);
+    --secondary-color: var(--lightBlue-color);
+    --tertiary-color: var(--offGrey-color);
 }
 
 * {
@@ -30,11 +37,11 @@ body {
     font-family: var(--font-text);
     min-height: 100vh;
     position: relative;
-    /* padding-bottom: 65px; */
+    color: var(--text-color);
+}
 
-    /* display: grid;
-    grid-template-rows: auto 1fr auto;
-    grid-gap: 0; */
+button, .table-info, .table {
+    color: var(--text-color);
 }
 
 h1, h2, h3, h4, h5, h6 {

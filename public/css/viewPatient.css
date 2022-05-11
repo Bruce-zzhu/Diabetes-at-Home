@@ -12,7 +12,7 @@
     border-radius: 50%;
     width: 4.5rem;
     height: 4.5rem;
-    border: 1px solid var(--brown-color);
+    border: 1px solid var(--border-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -46,7 +46,7 @@
 }
 
 #require-container, #message-container, #notes-container {
-    border: 1px solid var(--brown-color);
+    border: 1px solid var(--border-color);
     padding-left: 0;
     padding-right: 0;
     width: 100% !important;
@@ -61,7 +61,7 @@
 .header {
     height: 4rem;
     background-color: var(--tertiary-color);
-    border-bottom: 1px solid var(--brown-color);
+    border-bottom: 1px solid var(--border-color);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -136,7 +136,7 @@ h2 {
 .form-control {
     margin-right: 4px;
     border-radius: 0;
-    border: 1px solid var(--brown-color);
+    border: 1px solid var(--border-color);
 }
 
 .form-control:first-child {
@@ -158,7 +158,7 @@ h2 {
 
 #view-container hr {
     width: 35%;
-    border-top: 1px solid var(--brown-color);
+    border-top: 1px solid var(--border-color);
     margin: 10px auto 0px auto;
     opacity: 0.75;
 }

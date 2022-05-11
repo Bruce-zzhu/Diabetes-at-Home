@@ -30,7 +30,7 @@ h3 {
 
 /*
 input[type=submit] {
-    background-color: var(--brown-color);
+    background-color: var(--border-color);
     border: var(--bg-color) solid;
     cursor:default;
     border-radius: 0.5rem;
@@ -100,7 +100,7 @@ h4 {
     
 }
 #login-submit {
-    background-color: var(--brown-color);
+    background-color: var(--border-color);
     color: white;
     border: var(--bg-color) solid;
     cursor:default;

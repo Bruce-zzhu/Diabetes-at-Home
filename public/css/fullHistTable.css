@@ -27,7 +27,7 @@
 }
 
 .table {
-    border: 1px var(--brown-color) solid;
+    border: 1px var(--border-color) solid;
 }
 
 .table tbody tr {
