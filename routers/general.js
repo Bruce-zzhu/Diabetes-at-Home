@@ -15,7 +15,7 @@ router.get("/login-c", general.renderLoginClinician);
 // Patient Login page
 
 router.get("/login-p", general.renderLoginPatient);
-router.post('/', general.newFunction1);
+router.post('/login-p', general.newFunction1);
     // passport.authenticate ('local', { failureRedirect: '/login', failureFlash: true }), // if bad login, send user back to login page
     // (reg, res) => {
     //     res.redirect('/') // login was successful, send user to home page
