@@ -48,20 +48,42 @@ function setTheme(themeName) {
     switch (themeName) {
         case "default":
             rootStyle.setProperty("--bg-color", "var(--offWhite-color)");
-            rootStyle.setProperty("--border-color", "var(--brown-color)");
+            rootStyle.setProperty("--border-color", "var(--grey-color)");
             rootStyle.setProperty("--text-color", "black");
+            rootStyle.setProperty("--alt-text-color", "white");
             rootStyle.setProperty("--primary-color", "var(--blue-color)");
             rootStyle.setProperty("--secondary-color", "var(--lightBlue-color)");
             rootStyle.setProperty("--tertiary-color", "var(--offGrey-color)");
+            var logos = document.getElementsByClassName("logo");
+            for (var i=0; i<logos.length; i++) {
+                logos[i].src = "/images/logo-white.svg"
+            }
             break;
         case "dark":
-            rootStyle.setProperty("--bg-color", "var(--brown-color)");
+            rootStyle.setProperty("--bg-color", "var(--grey-color)");
             rootStyle.setProperty("--border-color", "var(--offWhite-color)");
             rootStyle.setProperty("--text-color", "white");
+            rootStyle.setProperty("--alt-text-color", "white");
             rootStyle.setProperty("--primary-color", "var(--offBlack-color");
-            rootStyle.setProperty("--secondary-color", "var(--brown-color)");
+            rootStyle.setProperty("--secondary-color", "var(--grey-color)");
             rootStyle.setProperty("--tertiary-color", "var(--lightGrey-color)");
+            var logos = document.getElementsByClassName("logo");
+            for (var i=0; i<logos.length; i++) {
+                logos[i].src = "/images/logo-white.svg"
+            }
             break;
+        case "light":
+            rootStyle.setProperty("--bg-color", "white");
+            rootStyle.setProperty("--border-color", "var(--grey-color)");
+            rootStyle.setProperty("--text-color", "black");
+            rootStyle.setProperty("--alt-text-color", "black");
+            rootStyle.setProperty("--primary-color", "white");
+            rootStyle.setProperty("--secondary-color", "white");
+            rootStyle.setProperty("--tertiary-color", "var(--offWhite-color)");
+            var logos = document.getElementsByClassName("logo");
+            for (var i=0; i<logos.length; i++) {
+                logos[i].src = "/images/logo-black.svg"
+            }
     }
 
     
