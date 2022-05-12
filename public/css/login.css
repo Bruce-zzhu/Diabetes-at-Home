@@ -48,7 +48,7 @@ input[type=submit] {
     height: 80%;
     margin-bottom: 5%;
     background-color: var(--primary-color);
-    color: var(--bg-color);
+    color: var(--alt-text-color);
     text-align: center;
     border-radius: 3rem;
     margin: auto;
@@ -56,7 +56,7 @@ input[type=submit] {
 
 .login-container a{
     padding: 1rem;
-    color: var(--bg-color);
+    color: var(--alt-text-color);
     display: inline;
     font-size: 1rem;
 }
