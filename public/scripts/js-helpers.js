@@ -94,11 +94,17 @@ function setTheme(themeName) {
     // TODO: change patient theme val in db
 }
 
+function calcEngagement(patient) {
+    // TODO logic
+    return 80;
+}
+
 module.exports = {
     logOut,
     consolelogs,
     isSameDay,
     getDateInfo,
     tableToggleComment,
-    setTheme
+    setTheme,
+    calcEngagement
 };

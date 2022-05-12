@@ -19,18 +19,19 @@
     position: relative;
     display: grid;
 }
-.profile-pic {
+#profile-pic {
     width: 4rem;
     grid-column: 4 / -1;
     grid-row: 1;
     margin-left: 0.8rem;
 }
-.profile-badge {
+#profile-badge {
     width: 1.5rem;
     grid-row: 1;
     grid-column: 1 / span 8;
     z-index: 1;
     padding-top: 55%;
+    position: absolute;
 }
 #engagement h5 {
     font-family: var(--font-text);
