@@ -49,6 +49,7 @@
 #profile-img {
     grid-area: pfp;
     position: relative;
+    padding-right: 6rem;
 }
 
 .profile-pic {
@@ -156,7 +157,7 @@
     }
 
     #engagement {
-        padding: 15% 0 5% 0;
+        padding: 15% 0 5% 5%;
     }
 
     #full-history tr th {
