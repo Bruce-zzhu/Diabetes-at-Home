@@ -56,8 +56,8 @@ span {
 
 
 thead {
-    background-color: var(--primary-color) !important;
-    color: white;
+    background-color: var(--primary-color);
+    color: var(--alt-text-color);
 }
 
 

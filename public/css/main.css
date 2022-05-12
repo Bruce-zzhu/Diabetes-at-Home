@@ -21,6 +21,7 @@
     --bg-color: var(--offWhite-color);
     --border-color: var(--grey-color);
     --text-color: black;
+    --alt-text-color: white;
     --primary-color: var(--blue-color);
     --secondary-color: var(--lightBlue-color);
     --tertiary-color: var(--offGrey-color);
