@@ -67,8 +67,8 @@ function setTheme(themeName) {
             rootStyle.setProperty("--alt-text-color", "white");
             rootStyle.setProperty("--button-color", "var(--grey-color)");
             rootStyle.setProperty("--primary-color", "var(--offBlack-color");
-            rootStyle.setProperty("--secondary-color", "var(--lightGrey-color)");
-            rootStyle.setProperty("--tertiary-color", "var(--grey-color)");
+            rootStyle.setProperty("--secondary-color", "var(--grey-color)");
+            rootStyle.setProperty("--tertiary-color", "var(--lightGrey-color)");
             var logos = document.getElementsByClassName("logo");
             for (var i=0; i<logos.length; i++) {
                 logos[i].src = "/images/logo-white.svg"
