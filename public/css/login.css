@@ -100,10 +100,10 @@ h4 {
     
 }
 #login-submit {
-    background-color: var(--border-color);
+    background-color: var(--grey-color);
     color: white;
-    border: var(--bg-color) solid;
-    cursor:default;
+    border: var(--offWhite-color) solid;
+    cursor: default;
     border-radius: 0.5rem;
     padding: 0.5rem 1rem;
 }
@@ -118,7 +118,7 @@ h4 {
 }
 
 input[type=button] {
-    background-color: var(--secondary-color);
+    background-color: var(--button-color);
     border: solid var(--bg-color);
     border-radius: 0.5rem;
 }
