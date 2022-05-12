@@ -24,6 +24,10 @@ function viewPatient(id) {
 
 function newTextEntry(id) {
     document.getElementById(id).style.display = "block";
+    var scroll = document.getElementsByClassName("scroll");
+    for (var i=0; i<scroll.length; i++) {
+        scroll[i].scrollTop = 0;
+    }
 }
 
 function cancelTextEntry(id) {
