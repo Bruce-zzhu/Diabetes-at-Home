@@ -10,7 +10,7 @@
     --offGrey-color: #e9ecf2;
     --offWhite-color: #f6f8fa;
     --deepBlue-color: #124b8e;
-    --brown-color: #5c5c5c;
+    --grey-color: #5c5c5c;
     --lightGrey-color: #7a7a7a;
     --offBlack-color: #303030;
     --red-color: #d91616;
@@ -19,7 +19,7 @@
     --yellow-color: #ffba00;
 
     --bg-color: var(--offWhite-color);
-    --border-color: var(--brown-color);
+    --border-color: var(--grey-color);
     --text-color: black;
     --primary-color: var(--blue-color);
     --secondary-color: var(--lightBlue-color);
