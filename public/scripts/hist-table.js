@@ -18,10 +18,21 @@ function stackToggleComment(stack) {
     }
 }
 
-function adjust_histTable(req_count) {
+function mobile_adjust_histTable(req_count) {
+    // hide non-required stacks
+    var hc2 = document.getElementById("hc2");
+    for (var stat in required) {
+        // rm stack if the property is not required
+        if (required[stat] === false) {
+            var stat_objs = hc2.getElementsByClassName(stat);
+            for (var i=0; i<stat_objs.length; i++) {
+                stat_objs[i].style.display = "none";
+            }
+        }
+    }
+
     // Adjust stacks height
     var stacks = document.getElementsByClassName("stack");
-    console.log(stacks);
     for (var i=0; i<stacks.length; i++) {
         stacks[i].style.height = "calc(" + 100/req_count + "% + 0.25px)";
     }
@@ -83,5 +94,25 @@ function adjust_histTable(req_count) {
             break;
         default:
 
+    }
+}
+
+function tab_desk_adjust_histTable(req_count) {
+    var hc2 = document.getElementById("hc2");
+    // hide non-required stats
+    for (var stat in required) {
+        // rm stack if the property is not required
+        if (required[stat] === false) {
+            var stat_objs = hc2.getElementsByClassName(stat);
+            for (var i=0; i<stat_objs.length; i++) {
+                stat_objs[i].style.display = "none";
+            }
+        }
+    }
+
+    // Adjust stacks height
+    var stacks = document.getElementsByClassName("stack");
+    for (var i=0; i<stacks.length; i++) {
+        stacks[i].style.height = "calc(" + 100/req_count + "% + 0.25px)";
     }
 }

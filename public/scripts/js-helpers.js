@@ -32,8 +32,8 @@ function tableToggleComment(cell) {
         comment.style.display = "block";
         value.style.display = "none";
         cell.style.background = "white";
-        cell.style.borderLeft = "1px solid var(--brown-color)";
-        cell.style.borderRight = "1px solid var(--brown-color)";
+        cell.style.borderLeft = "1px solid var(--border-color)";
+        cell.style.borderRight = "1px solid var(--border-color)";
     } else {
         comment.style.display = "none";
         value.style.display = "block";
@@ -43,10 +43,37 @@ function tableToggleComment(cell) {
     }
 }
 
+function setTheme(themeName) {
+    var rootStyle = document.documentElement.style;
+    switch (themeName) {
+        case "default":
+            rootStyle.setProperty("--bg-color", "var(--offWhite-color)");
+            rootStyle.setProperty("--border-color", "var(--brown-color)");
+            rootStyle.setProperty("--text-color", "black");
+            rootStyle.setProperty("--primary-color", "var(--blue-color)");
+            rootStyle.setProperty("--secondary-color", "var(--lightBlue-color)");
+            rootStyle.setProperty("--tertiary-color", "var(--offGrey-color)");
+            break;
+        case "dark":
+            rootStyle.setProperty("--bg-color", "var(--brown-color)");
+            rootStyle.setProperty("--border-color", "var(--offWhite-color)");
+            rootStyle.setProperty("--text-color", "var(--offWhite-color)");
+            rootStyle.setProperty("--primary-color", "var(--offBlack-color");
+            rootStyle.setProperty("--secondary-color", "var(--brown-color)");
+            rootStyle.setProperty("--tertiary-color", "var(--lightGrey-color)");
+            break;
+    }
+
+    
+
+    // TODO: change patient theme val in db
+}
+
 module.exports = {
     logOut,
     consolelogs,
     isSameDay,
     getDateInfo,
-    tableToggleComment
+    tableToggleComment,
+    setTheme
 };
