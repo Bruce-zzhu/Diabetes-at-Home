@@ -57,6 +57,10 @@
     grid-area: m3;
 }
 
+#chart-bkg {
+    background-color: var(--offWhite-color);
+}
+
 #p-container {
     display: flex;
     justify-content: space-between;

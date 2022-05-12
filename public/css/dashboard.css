@@ -56,7 +56,8 @@ span {
 }
 
 .table-striped>tbody>tr:nth-of-type(odd)>* {
-    --bs-table-accent-bg: var(--tertiary-color) !important;
+    --bs-table-accent-bg: var(--tertiary-color);
+    color: var(--text-color);
     
 }
 

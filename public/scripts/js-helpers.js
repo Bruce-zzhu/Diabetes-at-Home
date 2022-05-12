@@ -57,10 +57,10 @@ function setTheme(themeName) {
         case "dark":
             rootStyle.setProperty("--bg-color", "var(--brown-color)");
             rootStyle.setProperty("--border-color", "var(--offWhite-color)");
-            rootStyle.setProperty("--text-color", "var(--offWhite-color)");
-            rootStyle.setProperty("--primary-color", "var(--brown-color)");
+            rootStyle.setProperty("--text-color", "white");
+            rootStyle.setProperty("--primary-color", "black");
             rootStyle.setProperty("--secondary-color", "var(--brown-color)");
-            rootStyle.setProperty("--tertiary-color", "var(--brown-color)");
+            rootStyle.setProperty("--tertiary-color", "var(--lightGrey-color)");
             break;
     }
 

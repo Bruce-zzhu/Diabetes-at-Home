@@ -52,6 +52,7 @@
     width: 100% !important;
     position: relative;
     height: 15rem;
+    background-color: var(--tertiary-color);
 }
 
 #message-container, #notes-container {
@@ -60,7 +61,8 @@
 
 .header {
     height: 4rem;
-    background-color: var(--tertiary-color);
+    background-color: var(--primary-color);
+    color: white;
     border-bottom: 1px solid var(--border-color);
     display: flex;
     align-items: center;
@@ -76,6 +78,7 @@
     top: calc(50% - 0.625em);
     background: none;
     border: 0;
+    color: white;
 }
 
 .header-text {
@@ -165,4 +168,9 @@ h2 {
 
 .new-text-entry {
     display: none;
+}
+
+/* remove bootstrap background color */
+.bg-light {
+    background-color: rgba(0, 0, 0, 0)!important;
 }
