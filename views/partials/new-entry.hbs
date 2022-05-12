@@ -1,26 +1,14 @@
 <div id="popup-overlay"> <!-- Background that shades the whole page -->
     <div id="escape-popup"></div>
-    <div id="weight-comment-popup-container" class="comment-popup-container overlay"> <!-- Add comment to data entry Popup  -->
-        <div class="popup">
-        <form action="/patient/new-entry" name="data-entry-form" method="post" class="data-form">
-            <label for="w3review">Weight Comment: </label>
-            <br>
-            <input name="weight" type="text" class="data-input" value="{{weight.value}}">
-            <br><br>
-            <input type="submit" value="Submit">
-        </form>
-        <p>Click the "Submit" button and the form-data will be sent to a page on the 
-        server called "file.php".</p>
-        <a class="close" href="#">&times;</a>
-        </div>
-    </div>
     <div id="popup" class="container"> <!-- Add New Entry Container -->
         <div class="content-container">
         <h5>Add new entry for DD/MM</h5> <!-- change to heading -->
         
         <br>
         <div class="form-container">
+            {{todayTimeSeries}}
             <form action="/patient/new-entry" name="data-entry-form" method="post" class="data-form">
+                {{#if bloodGlucose.isRequired}}
                 <div class="data-form-row"> <!-- blood glucose entry -->
                     <label for="bloodGlucose">My blood glucose levels are:</label>
                     <div class="grid"> 
@@ -31,7 +19,9 @@
                         <img id="bloodGlucose.comment" onclick="mobileCommentPrompt(id)" src="https://uxwing.com/wp-content/themes/uxwing/download/37-communication-chat-call/talk-bubble.svg" type="button" class="comment-icon">
                   
                     </div>
-                </div>                
+                </div> 
+                {{/if}}
+                {{#if weight.isRequired}}               
                 <div class="data-form-row"> <!-- weight entry -->
                     <label for="weight">My current weight is:</label>
                     <div class="grid"> 
@@ -42,6 +32,8 @@
                         <img id="weight.comment" onclick="mobileCommentPrompt(id)" src="https://uxwing.com/wp-content/themes/uxwing/download/37-communication-chat-call/talk-bubble.svg" type="button" class="comment-icon">
                     </div>
                 </div>
+                {{/if}}
+                {{#if insulin.isRequired}}
                 <div class="data-form-row"> <!-- insulin doses entry -->
                     <label for="insulin">I took this many doses of insulin:</label>
                     <div class="grid"> 
@@ -52,6 +44,8 @@
                         <img id="insulin.comment" onclick="mobileCommentPrompt(id)" src="https://uxwing.com/wp-content/themes/uxwing/download/37-communication-chat-call/talk-bubble.svg" type="button" class="comment-icon">
                     </div>
                 </div>
+                {{/if}}
+                {{#if exercise.isRequired}}
                 <div class="data-form-row"> <!-- step count entry  -->
                     <label for="step">I've walked this many steps:</label>
                     <div class="grid"> 
@@ -62,6 +56,7 @@
                         <img id="exercise.comment" onclick="mobileCommentPrompt(id)" src="https://uxwing.com/wp-content/themes/uxwing/download/37-communication-chat-call/talk-bubble.svg" type="button" class="comment-icon">
                     </div>
                 </div>
+                {{/if}}
                 <div class="buttons">
                     <button class="button" id="cancel-button" type="button">Cancel</button>
                     <button class="button">Save</button> {{!-- Keep or discard?? --}}
@@ -76,14 +71,17 @@
 </div>
 
 <script>
+
+
 function mobileCommentPrompt(id) {
   let new_id= id.replace(".","-");
   let category =id.replace("."," ");
   let comment = prompt("Please enter a " + category);
   if (comment != null) {
-      console.log(new_id);
     document.getElementById(new_id).value = 
     comment ;
   }
 }
+
+
 </script>

@@ -13,6 +13,14 @@ const renderLoginPatient = (req, res) => {
         style: "login.css",
     });
 };
+
+const newFunction1 = (req, res) => {
+    const patientEmail = req.body.loginEmail;
+    console.log(patientEmail)
+    //res.send(req.body);
+    res.redirect('/patient/dashboard');
+};
+
 const renderLoginClinician = (req, res) => {
     res.render("clinician/login", {
         style: "login.css",
@@ -36,4 +44,5 @@ module.exports = {
     renderLoginClinician,
     renderForgotPassword,
     renderResetPassword,
+    newFunction1
 };

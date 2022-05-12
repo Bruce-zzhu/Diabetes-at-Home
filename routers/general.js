@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const general = require('../controllers/general');
+const req = require('express/lib/request')
 
 // aboutUs page
 router.get("/about-us", general.renderAboutUs);
@@ -12,8 +13,14 @@ router.get("/about-diabetes", general.renderAboutDiabetes);
 router.get("/login-c", general.renderLoginClinician);
 
 // Patient Login page
-router.get("/login-p", general.renderLoginPatient);
 
+router.get("/login-p", general.renderLoginPatient);
+router.post('/login-p', general.newFunction1);
+    // passport.authenticate ('local', { failureRedirect: '/login', failureFlash: true }), // if bad login, send user back to login page
+    // (reg, res) => {
+    //     res.redirect('/') // login was successful, send user to home page
+    // }
+// )
 // forgot password page
 router.get('/forgot-password', general.renderForgotPassword)
 
@@ -21,3 +28,4 @@ router.get('/forgot-password', general.renderForgotPassword)
 router.get('/reset-password', general.renderResetPassword);
 
 module.exports = router;
+
