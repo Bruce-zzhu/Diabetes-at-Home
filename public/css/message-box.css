@@ -14,7 +14,7 @@ div.scroll {
     right: auto;
 }
 
-.message{
+.message {
     background-color: var(--tertiary-color);
     border: 1px solid var(--border-color);
     padding: 10px;

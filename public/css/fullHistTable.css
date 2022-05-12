@@ -31,7 +31,7 @@
 }
 
 .table tbody tr {
-    background-color: var(--tertiary-color);
+    background-color: var(--secondary-color);
 }
 
 .table td {

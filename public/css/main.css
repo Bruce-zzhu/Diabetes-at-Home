@@ -11,7 +11,7 @@
     --offWhite-color: #f6f8fa;
     --deepBlue-color: #124b8e;
     --grey-color: #5c5c5c;
-    --lightGrey-color: #7a7a7a;
+    --lightGrey-color: #6d6d6d;
     --offBlack-color: #303030;
     --red-color: #d91616;
     --green-color: #239651;
@@ -22,9 +22,10 @@
     --border-color: var(--grey-color);
     --text-color: black;
     --alt-text-color: white;
+    --button-color: var(--lightBlue-color);
     --primary-color: var(--blue-color);
-    --secondary-color: var(--lightBlue-color);
-    --tertiary-color: var(--offGrey-color);
+    --secondary-color: var(--offGrey-color);
+    --tertiary-color: white;
 }
 
 * {

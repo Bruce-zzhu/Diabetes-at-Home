@@ -37,7 +37,7 @@ function tableToggleComment(cell) {
     } else {
         comment.style.display = "none";
         value.style.display = "block";
-        cell.style.background = "var(--tertiary-color)";
+        cell.style.background = "var(--secondary-color)";
         cell.style.borderLeft = "0";
         cell.style.borderRight = "0";
     }
@@ -51,9 +51,10 @@ function setTheme(themeName) {
             rootStyle.setProperty("--border-color", "var(--grey-color)");
             rootStyle.setProperty("--text-color", "black");
             rootStyle.setProperty("--alt-text-color", "white");
+            rootStyle.setProperty("--button-color", "var(--lightBlue-color)");
             rootStyle.setProperty("--primary-color", "var(--blue-color)");
-            rootStyle.setProperty("--secondary-color", "var(--lightBlue-color)");
-            rootStyle.setProperty("--tertiary-color", "var(--offGrey-color)");
+            rootStyle.setProperty("--secondary-color", "var(--offGrey-color)");
+            rootStyle.setProperty("--tertiary-color", "white");
             var logos = document.getElementsByClassName("logo");
             for (var i=0; i<logos.length; i++) {
                 logos[i].src = "/images/logo-white.svg"
@@ -64,6 +65,7 @@ function setTheme(themeName) {
             rootStyle.setProperty("--border-color", "var(--offWhite-color)");
             rootStyle.setProperty("--text-color", "white");
             rootStyle.setProperty("--alt-text-color", "white");
+            rootStyle.setProperty("--button-color", "var(--grey-color)");
             rootStyle.setProperty("--primary-color", "var(--offBlack-color");
             rootStyle.setProperty("--secondary-color", "var(--grey-color)");
             rootStyle.setProperty("--tertiary-color", "var(--lightGrey-color)");
@@ -77,9 +79,10 @@ function setTheme(themeName) {
             rootStyle.setProperty("--border-color", "var(--grey-color)");
             rootStyle.setProperty("--text-color", "black");
             rootStyle.setProperty("--alt-text-color", "black");
+            rootStyle.setProperty("--button-color", "white");
             rootStyle.setProperty("--primary-color", "white");
-            rootStyle.setProperty("--secondary-color", "white");
-            rootStyle.setProperty("--tertiary-color", "var(--offWhite-color)");
+            rootStyle.setProperty("--secondary-color", "var(--offWhite-color)");
+            rootStyle.setProperty("--tertiary-color", "white");
             var logos = document.getElementsByClassName("logo");
             for (var i=0; i<logos.length; i++) {
                 logos[i].src = "/images/logo-black.svg"
@@ -91,11 +94,17 @@ function setTheme(themeName) {
     // TODO: change patient theme val in db
 }
 
+function calcEngagement(patient) {
+    // TODO logic
+    return 80;
+}
+
 module.exports = {
     logOut,
     consolelogs,
     isSameDay,
     getDateInfo,
     tableToggleComment,
-    setTheme
+    setTheme,
+    calcEngagement
 };

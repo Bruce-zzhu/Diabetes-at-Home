@@ -36,10 +36,6 @@
     padding-bottom: 4rem;
 }
 
-.profile {
-    width: 70%;
-}
-
 .view-nav {
     width: 25%;
     margin: auto;
@@ -61,7 +57,7 @@
 
 .header {
     height: 4rem;
-    background-color: var(--tertiary-color);
+    background-color: var(--secondary-color);
     border-bottom: 1px solid var(--border-color);
     display: flex;
     align-items: center;
@@ -77,7 +73,7 @@
     top: calc(50% - 0.625em);
     background: none;
     border: 0;
-    color: white;
+    color: var(--text-color);
 }
 
 .header-text {
