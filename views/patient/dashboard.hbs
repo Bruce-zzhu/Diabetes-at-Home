@@ -3,47 +3,7 @@
     <h2>Dashboard</h2>
     <div class="home-container" id="hc1">
         <div id="profile" class="module">
-            <div id="p-container">
-                <div class="profile-img">
-                    <img
-                        class="profile-pic"
-                        src="/images/patientProfile.jpg"
-                        alt="profile"
-                    />
-                    <img
-                        class="profile-badge"
-                        src="/images/badge.svg"
-                        alt="badge"
-                    />
-                </div>
-                {{#with patient}}
-                <div class="profile-text">
-                    <h3 class="pname">{{firstName}} {{lastName}}</h3>
-                    <div class="pinfo">Nickname:
-                        {{nickName}}
-                        <br />Age:
-                        {{age}}
-                        <br />Gender:
-                        {{gender}}
-                    </div>
-                    
-                </div>
-                {{/with}}  
-            </div>
-            <div class="engagement">
-                <h5>Engagement: </h5>
-                <div class="progress">
-                    <div
-                        class="progress-bar"
-                        role="progressbar"
-                        style="width: 80%; background-color: var(--green-color);"
-                        aria-valuenow="80"
-                        aria-valuemin="0"
-                        aria-valuemax="100"
-                    >80%</div>
-                </div>
-            </div>  
-            
+            {{>patientProfile patient}}
         </div>
         <div id="leaderboard" class="module">
             {{>leaderboard}}

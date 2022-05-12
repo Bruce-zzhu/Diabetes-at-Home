@@ -35,6 +35,51 @@
 
 #profile {
     grid-area: m1;
+    display: grid;
+    grid-template-areas:
+        "pfp pfp pfp pname"
+        "pfp pfp pfp pinfo"
+        "pfp pfp pfp pinfo"
+        "egmt egmt egmt egmt"
+        "egmt egmt egmt egmt"
+    ;
+    padding: 1rem 1rem 0 1rem;
+}
+
+#profile-img {
+    grid-area: pfp;
+    position: relative;
+}
+
+.profile-pic {
+    width: 10rem;
+    position: absolute;
+    left: 1rem;
+}
+.profile-badge {
+    width: 2.7rem;
+    position: absolute;
+    top: 7.5rem;
+}
+
+#pname {
+    grid-area: pname;
+    font-weight: bold;
+}
+
+#pinfo {
+    font-size: 1.2rem;
+    grid-area: pinfo;
+}
+
+#engagement {
+    grid-area: egmt;
+    padding-left: 2rem;
+}
+
+#engagement h5 {
+    font-family: var(--font-text);
+    margin-bottom: 7%;
 }
 
 #leaderboard {
@@ -61,40 +106,9 @@
     background-color: var(--offWhite-color);
 }
 
-#p-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    height: 50%;
-    margin-top: 0.5rem;
-}
-
-.profile-img {
-    position: relative;
-}
-.profile-pic {
-    width: 10rem;
-    position: absolute;
-    left: 1rem;
-}
-.profile-badge {
-    width: 2.7rem;
-    position: absolute;
-    top: 7.5rem;
-}
-
 .profile-text {
     width: 60%;
     padding-left: 15%;
-}
-
-.pname {
-    padding-bottom: 1.5rem;
-    font-weight: bold;
-}
-
-.pinfo {
-    font-size: 1.2rem;
 }
 
 .progress {
@@ -103,16 +117,6 @@
     border: 1px solid var(--border-color);
     border-radius: 10px;
     width: 90%;
-}
-
-.engagement h5 {
-    font-family: var(--font-text);
-    margin-bottom: 7%;
-}
-
-.engagement {
-    padding-top: 5%;
-    padding-left: 2rem;
 }
 
 .full-hist-title {
@@ -151,8 +155,8 @@
         height: 234px;
     }
 
-    .engagement {
-        padding-top: 10%;
+    #engagement {
+        padding: 15% 0 5% 0;
     }
 
     #full-history tr th {
@@ -195,8 +199,8 @@
     html {
         font-size: 60% !important;
     }
-    .engagement {
-        padding-top: 10%;
+    #engagement {
+        padding-top: 5%;
     }
 }
 
