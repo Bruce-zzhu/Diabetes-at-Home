@@ -32,15 +32,71 @@ function tableToggleComment(cell) {
         comment.style.display = "block";
         value.style.display = "none";
         cell.style.background = "white";
-        cell.style.borderLeft = "1px solid var(--brown-color)";
-        cell.style.borderRight = "1px solid var(--brown-color)";
+        cell.style.borderLeft = "1px solid var(--border-color)";
+        cell.style.borderRight = "1px solid var(--border-color)";
     } else {
         comment.style.display = "none";
         value.style.display = "block";
-        cell.style.background = "var(--tertiary-color)";
+        cell.style.background = "var(--secondary-color)";
         cell.style.borderLeft = "0";
         cell.style.borderRight = "0";
     }
+}
+
+function setTheme(themeName) {
+    var rootStyle = document.documentElement.style;
+    switch (themeName) {
+        case "default":
+            rootStyle.setProperty("--bg-color", "var(--offWhite-color)");
+            rootStyle.setProperty("--border-color", "var(--grey-color)");
+            rootStyle.setProperty("--text-color", "black");
+            rootStyle.setProperty("--alt-text-color", "white");
+            rootStyle.setProperty("--button-color", "var(--lightBlue-color)");
+            rootStyle.setProperty("--primary-color", "var(--blue-color)");
+            rootStyle.setProperty("--secondary-color", "var(--offGrey-color)");
+            rootStyle.setProperty("--tertiary-color", "white");
+            var logos = document.getElementsByClassName("logo");
+            for (var i=0; i<logos.length; i++) {
+                logos[i].src = "/images/logo-white.svg"
+            }
+            break;
+        case "dark":
+            rootStyle.setProperty("--bg-color", "var(--grey-color)");
+            rootStyle.setProperty("--border-color", "var(--offWhite-color)");
+            rootStyle.setProperty("--text-color", "white");
+            rootStyle.setProperty("--alt-text-color", "white");
+            rootStyle.setProperty("--button-color", "var(--grey-color)");
+            rootStyle.setProperty("--primary-color", "var(--offBlack-color");
+            rootStyle.setProperty("--secondary-color", "var(--lightGrey-color)");
+            rootStyle.setProperty("--tertiary-color", "var(--grey-color)");
+            var logos = document.getElementsByClassName("logo");
+            for (var i=0; i<logos.length; i++) {
+                logos[i].src = "/images/logo-white.svg"
+            }
+            break;
+        case "light":
+            rootStyle.setProperty("--bg-color", "white");
+            rootStyle.setProperty("--border-color", "var(--grey-color)");
+            rootStyle.setProperty("--text-color", "black");
+            rootStyle.setProperty("--alt-text-color", "black");
+            rootStyle.setProperty("--button-color", "white");
+            rootStyle.setProperty("--primary-color", "white");
+            rootStyle.setProperty("--secondary-color", "var(--offWhite-color)");
+            rootStyle.setProperty("--tertiary-color", "white");
+            var logos = document.getElementsByClassName("logo");
+            for (var i=0; i<logos.length; i++) {
+                logos[i].src = "/images/logo-black.svg"
+            }
+    }
+
+    
+
+    // TODO: change patient theme val in db
+}
+
+function calcEngagement(patient) {
+    // TODO logic
+    return 80;
 }
 
 module.exports = {
@@ -48,5 +104,7 @@ module.exports = {
     consolelogs,
     isSameDay,
     getDateInfo,
-    tableToggleComment
+    tableToggleComment,
+    setTheme,
+    calcEngagement
 };

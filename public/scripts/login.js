@@ -3,7 +3,7 @@ function withValue(){
         document.getElementById("login-submit").style.backgroundColor = "var(--deepBlue-color)"
         document.getElementById("login-submit").style.cursor = "pointer"
     } else{
-        document.getElementById("login-submit").style.backgroundColor = "var(--brown-color)"
+        document.getElementById("login-submit").style.backgroundColor = "var(--border-color)"
         document.getElementById("login-submit").style.cursor = "default"
     }
 }

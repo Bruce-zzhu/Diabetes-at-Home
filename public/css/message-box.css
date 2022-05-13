@@ -13,15 +13,15 @@ div.scroll {
     left: auto;
     right: auto;
 }
+
 .message{
-    background-color: rgb(255, 255, 255);
-    border: 1px solid var(--brown-color);
+    background-color: var(--secondary-color);
+    border: 1px solid var(--border-color);
     padding: 10px;
     margin-bottom: 10px;
 }
 .unread > *{
     font-weight: bold;
-    color: black;
 }
 
 .read{

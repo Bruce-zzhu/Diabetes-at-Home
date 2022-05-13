@@ -3,7 +3,7 @@ function emailWithValue(){
         document.getElementById("email-submit").style.backgroundColor = "var(--green-color)"
         document.getElementById("email-submit").style.cursor = "pointer"
     } else{
-        document.getElementById("email-submit").style.backgroundColor = "var(--brown-color)"
+        document.getElementById("email-submit").style.backgroundColor = "var(--border-color)"
         document.getElementById("email-submit").style.cursor = "default"
     }
 }
@@ -15,7 +15,7 @@ function passwordWithValue(){
         document.getElementById("reset-submit").style.backgroundColor = "var(--green-color)"
         document.getElementById("reset-submit").style.cursor = "pointer"
     } else {
-        document.getElementById("reset-submit").style.backgroundColor = "var(--brown-color)"
+        document.getElementById("reset-submit").style.backgroundColor = "var(--border-color)"
         document.getElementById("reset-submit").style.cursor = "default"
     }
 }

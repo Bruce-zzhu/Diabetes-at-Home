@@ -1,4 +1,4 @@
-.full-history {
+#full-history {
     padding-top: 5px;
     width: 80%;
     margin: auto;
@@ -27,11 +27,11 @@
 }
 
 .table {
-    border: 1px var(--brown-color) solid;
+    border: 1px var(--border-color) solid;
 }
 
 .table tbody tr {
-    background-color: var(--tertiary-color);
+    background-color: var(--secondary-color);
 }
 
 .table td {
@@ -56,8 +56,8 @@ span {
 
 
 thead {
-    background-color: var(--primary-color) !important;
-    color: white;
+    background-color: var(--primary-color);
+    color: var(--alt-text-color);
 }
 
 

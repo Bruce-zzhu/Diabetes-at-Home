@@ -1,34 +1,38 @@
-#p-container {
+.progress {
+    background-color: white;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+}
+
+.profile {
+    width: 70%;
+    background-color: var(--secondary-color);
+    border: 1px solid var(--border-color);
     display: flex;
-    width: 100%;
+    flex-direction: row;
     height: 6rem;
     justify-content: space-evenly;
     align-items: center;
-    background-color: var(--tertiary-color);
-    border: 1px solid var(--brown-color);
 }
-.progress {
-    background-color: white;
-    border: 1px solid var(--brown-color);
-    border-radius: 10px;
-}
-.profile-img {
+
+#profile-img {
     position: relative;
     display: grid;
 }
-.profile-pic {
+#profile-pic {
     width: 4rem;
     grid-column: 4 / -1;
     grid-row: 1;
     margin-left: 0.8rem;
 }
-.profile-badge {
+#profile-badge {
     width: 1.5rem;
     grid-row: 1;
     grid-column: 1 / span 8;
     z-index: 1;
     padding-top: 55%;
+    position: absolute;
 }
-.engagement h5 {
+#engagement h5 {
     font-family: var(--font-text);
 }

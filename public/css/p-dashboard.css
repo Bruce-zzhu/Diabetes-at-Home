@@ -24,9 +24,9 @@
 }
 
 .module {
-    border: 1px solid var(--brown-color);
+    border: 1px solid var(--border-color);
     padding: 0.5rem;
-    box-shadow: 2px 2px 5px var(--brown-color);
+    box-shadow: 2px 2px 5px var(--border-color);
 }
 
 .module h5 {
@@ -35,6 +35,52 @@
 
 #profile {
     grid-area: m1;
+    display: grid;
+    grid-template-areas:
+        "pfp pfp pfp pname"
+        "pfp pfp pfp pinfo"
+        "pfp pfp pfp pinfo"
+        "egmt egmt egmt egmt"
+        "egmt egmt egmt egmt"
+    ;
+    padding: 1rem 1rem 0 1rem;
+}
+
+#profile-img {
+    grid-area: pfp;
+    position: relative;
+    padding-right: 6rem;
+}
+
+#profile-pic {
+    width: 10rem;
+    position: absolute;
+    left: 1rem;
+}
+#profile-badge {
+    width: 2.7rem;
+    position: absolute;
+    top: 7.5rem;
+}
+
+#pname {
+    grid-area: pname;
+    font-weight: bold;
+}
+
+#pinfo {
+    font-size: 1.2rem;
+    grid-area: pinfo;
+}
+
+#engagement {
+    grid-area: egmt;
+    padding-left: 2rem;
+}
+
+#engagement h5 {
+    font-family: var(--font-text);
+    margin-bottom: 7%;
 }
 
 #leaderboard {
@@ -57,26 +103,8 @@
     grid-area: m3;
 }
 
-#p-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    height: 50%;
-    margin-top: 0.5rem;
-}
-
-.profile-img {
-    position: relative;
-}
-.profile-pic {
-    width: 10rem;
-    position: absolute;
-    left: 1rem;
-}
-.profile-badge {
-    width: 2.7rem;
-    position: absolute;
-    top: 7.5rem;
+#chart-bkg {
+    background-color: var(--offWhite-color);
 }
 
 .profile-text {
@@ -84,31 +112,12 @@
     padding-left: 15%;
 }
 
-.pname {
-    padding-bottom: 1.5rem;
-    font-weight: bold;
-}
-
-.pinfo {
-    font-size: 1.2rem;
-}
-
 .progress {
     display: inline-block;
     background-color: white;
-    border: 1px solid var(--brown-color);
+    border: 1px solid var(--border-color);
     border-radius: 10px;
     width: 90%;
-}
-
-.engagement h5 {
-    font-family: var(--font-text);
-    margin-bottom: 7%;
-}
-
-.engagement {
-    padding-top: 5%;
-    padding-left: 2rem;
 }
 
 .full-hist-title {
@@ -147,19 +156,19 @@
         height: 234px;
     }
 
-    .engagement {
-        padding-top: 10%;
+    #engagement {
+        padding: 15% 0 5% 5%;
     }
 
-    .full-history tr th {
+    #full-history tr th {
        font-size: 0.8rem;
     }
 
-    .full-history tbody td {
+    #full-history tbody td {
         font-size: 0.8rem;
      }
 
-     .full-history {
+     #full-history {
          width: 90%;
      }
 }
@@ -191,8 +200,8 @@
     html {
         font-size: 60% !important;
     }
-    .engagement {
-        padding-top: 10%;
+    #engagement {
+        padding-top: 5%;
     }
 }
 

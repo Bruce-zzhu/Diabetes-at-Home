@@ -1,21 +1,17 @@
-:root {
-    --nav-alt-color: white;
-}
-
 nav {
     width: 100%;
     overflow: visible;
     background-color: var(--primary-color);
-    color: var(--nav-alt-color);
+    color: var(--alt-text-color);
     position: fixed;
-    z-index: 1;
+    z-index: 5;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 16px;
     height: 48px;
     margin: auto;
-    box-shadow: 0 1.5px 0 var(--bg-color);
+    box-shadow: 0 1.5px 0 var(--alt-text-color);
     font-size: 16px;
 }
 
@@ -32,6 +28,7 @@ nav {
 
 .nav-new-entry {
     border-radius: 50%;
+    border-width: 2px;
 }
 
 .nav-new-entry span {
@@ -41,7 +38,7 @@ nav {
 nav a,
 nav a:hover {
     text-decoration: none;
-    color: var(--nav-alt-color);
+    color: var(--alt-text-color);
 }
 
 .nav-name {
@@ -51,11 +48,11 @@ nav a:hover {
 nav .btn-light {
     border-radius: 3px;
     padding: 0 8px 0 8px;
-    border: 2px solid var(--brown-color)
+    border: 2px solid var(--border-color)
 }
 
 nav .btn-outline-light:hover {
-    color: var(--brown-color);
+    color: var(--border-color);
 }
 
 .nav-name div,
@@ -94,13 +91,13 @@ nav .btn-outline-light:hover {
 .dropdown {
     float: left;
     overflow: hidden;
-    z-index: 1;
+    z-index: 5;
 }
 
 .dropdown .dropbtn {
     border: none;
     outline: none;
-    color: var(--nav-alt-color);
+    color: var(--alt-text-color);
     background-color: inherit;
     font-family: inherit;
     margin: 0;
@@ -108,7 +105,7 @@ nav .btn-outline-light:hover {
 
 #nav-links a:hover,
 .dropdown:hover .dropbtn {
-    background-color: var(--nav-alt-color);
+    background-color: var(--alt-text-color);
     color: var(--primary-color);
 }
 .dropdown-content {
@@ -117,8 +114,8 @@ nav .btn-outline-light:hover {
     position: fixed;
     background-color: var(--primary-color);
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
+    box-shadow: 0px 8px 16px 0px var(--border-color);
+    z-index: 5;
 }
 
 .dropdown-content a {
@@ -129,7 +126,7 @@ nav .btn-outline-light:hover {
     text-align: left;
 }
 .dropdown-content a:hover {
-    background-color: var(--nav-alt-color);
+    background-color: var(--alt-text-color);
     color: var(--primary-color);
 }
 .dropdown:hover .dropdown-content {
@@ -183,6 +180,11 @@ nav .tablet {
 }
 nav .desktop {
     display: none;
+}
+
+.btn-outline-light {
+    color: var(--alt-text-color);
+    border-color: var(--alt-text-color);
 }
 
 @media screen and (max-width: 376px) {
