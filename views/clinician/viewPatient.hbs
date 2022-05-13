@@ -12,51 +12,52 @@
     
 
     <div id="require-container">
-        <div class="header">
-            <h1 class="header-text">Time-series Requirements<button class="add-btn">Save</button></h1>
-        </div>
-        <div class="row g-2">
-            <div class="col-5 offset-1">
-                <div class="p-3 bg-light">Blood Glucose Level:
-                    <input class="from" type="number" />
-                    to
-                    <input class="to" type="number" />
-                    nmol/L
-                    <input
-                        class="checkbox"
-                        type="checkbox"
-                        checked="checked"
-                    />
+        <form action="/clinician/view-patient/{{patient._id}}" method="POST">
+            <div class="header">
+                <div class="header-text-wrapper">
+                    <h1 class="header-text">Time-series Requirements<button type="submit" class="add-btn">Save</button></h1>
+                    <p class="header-reminder">Changes will be shown to the patient on the following day</p>
                 </div>
             </div>
-            <div class="col-5 offset-1">
-                <div class="p-3 bg-light">Weight:
-                    <input class="from" type="number" />
-                    to
-                    <input class="to" type="number" />
-                    kg
-                    <input class="checkbox" type="checkbox" />
+            <div class="row g-2">
+                <div class="col-5 offset-1">
+                    <div class="p-3 bg-light">Blood Glucose Level:
+                        <input class="from" name="bloodLow" type="number" value="{{patient.requirements.bloodGlucose.lowerBound}}" />
+                        to
+                        <input class="to" name="bloodHigh" type="number" value="{{patient.requirements.bloodGlucose.upperBound}}" />
+                        nmol/L
+                        <input class="checkbox" type="checkbox" name="bloodRequired" {{#if patient.requirements.bloodGlucose.isRequired}}checked="checked"{{/if}} />
+                    </div>
+                </div>
+                <div class="col-5 offset-1">
+                    <div class="p-3 bg-light">Weight:
+                        <input class="from" name="weightLow" type="number" value="{{patient.requirements.weight.lowerBound}}" />
+                        to
+                        <input class="to" name="weightHigh" type="number" value="{{patient.requirements.weight.upperBound}}" />
+                        kg
+                        <input class="checkbox" type="checkbox" name="weightRequired" {{#if patient.requirements.weight.isRequired}}checked="checked"{{/if}} />
+                    </div>
+                </div>
+                <div class="col-5 offset-1">
+                    <div class="p-3 bg-light">Insulin Taken:
+                        <input class="from" name="insulinLow" type="number" value="{{patient.requirements.insulin.lowerBound}}" />
+                        to
+                        <input class="to" name="insulinHigh" type="number" value="{{patient.requirements.insulin.upperBound}}" />
+                        doses
+                        <input class="checkbox" type="checkbox" name="insulinRequired" {{#if patient.requirements.insulin.isRequired}}checked="checked"{{/if}} />
+                    </div>
+                </div>
+                <div class="col-5 offset-1">
+                    <div class="p-3 bg-light">Exercise:
+                        <input class="from" name="exerciseLow" type="number" value="{{patient.requirements.exercise.lowerBound}}" />
+                        to
+                        <input class="to" name="exerciseHigh" type="number" value="{{patient.requirements.exercise.upperBound}}" />
+                        steps
+                        <input class="checkbox" type="checkbox" name="exerciseRequired" {{#if patient.requirements.exercise.isRequired}}checked="checked"{{/if}}/>
+                    </div>
                 </div>
             </div>
-            <div class="col-5 offset-1">
-                <div class="p-3 bg-light">Insulin Taken:
-                    <input class="from" type="number" />
-                    to
-                    <input class="to" type="number" />
-                    doses
-                    <input class="checkbox" type="checkbox" />
-                </div>
-            </div>
-            <div class="col-5 offset-1">
-                <div class="p-3 bg-light">Exercise:
-                    <input class="from" type="number" />
-                    to
-                    <input class="to" type="number" />
-                    steps
-                    <input class="checkbox" type="checkbox" />
-                </div>
-            </div>
-        </div>
+        </form>
         <div class="require-text">
             <span class="material-icons">done</span>
             <div>Required to record</div>

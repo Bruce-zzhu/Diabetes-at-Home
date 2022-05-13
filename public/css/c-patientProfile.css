@@ -15,6 +15,10 @@
     align-items: center;
 }
 
+#pname {
+    font-weight: bold;
+}
+
 #profile-img {
     position: relative;
     display: grid;
