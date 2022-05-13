@@ -6,7 +6,9 @@ const clinician = require('../controllers/clinician');
 router.get('/dashboard', clinician.getDashboardData);
 
 // view patient page
-router.get('/view-patient/:id/overview', clinician.renderPatientProfile);
+router.route('/view-patient/:id')
+    .get(clinician.renderPatientProfile)
+    .post(clinician.submitRequirement)
 
 
 module.exports = router;

@@ -11,6 +11,10 @@ const patientSchema = new Schema(
         engagementRate: Number,
         email: { type: String, required: true, unique: true },
         password: {type: String, required: true, default: 'password'},
+        requirements: {
+            type: Schema.Types.ObjectId,
+            ref: "TimeSeries"
+        }
     },
     {
         timestamps: { createdAt: "createTime", updatedAt: "updateTime" },
@@ -21,8 +25,8 @@ const timeSeriesSchema = new Schema({
     patient: {
         type: Schema.Types.ObjectId,
         ref: "Patient",
-        required: true,
     },
+    clinicianUse: {type: Boolean, default: false},
     date: { 
         type: Date, 
         required: true 

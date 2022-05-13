@@ -14,6 +14,35 @@ db.once("open", () => {
 });
 
 // sample data
+const requirements = new TimeSeries({
+    clinicianUse: true,
+    date: new Date(),
+    bloodGlucose: {
+        isRequired: false,
+        value: 0,
+        upperBound: 0,
+        lowerBound: 0
+    },
+    insulin: {
+        isRequired: false,
+        value: 0,
+        upperBound: 0,
+        lowerBound: 0
+    },
+    weight: {
+        isRequired: false,
+        value: 0,
+        upperBound: 0,
+        lowerBound: 0
+    },
+    exercise: {
+        isRequired: false,
+        value: 0,
+        upperBound: 0,
+        lowerBound: 0
+    }
+});
+
 const newPatient = new Patient({
     firstName: "Pat",
     lastName: "Smith",
@@ -21,7 +50,9 @@ const newPatient = new Patient({
     age: 30,
     gender: "male",
     email: "pat@diabetemail.com",
+    requirements: requirements._id
 });
+
 const newClinician = new Clinician({
     firstName: "Chris",
     lastName: " Lee",
@@ -61,13 +92,14 @@ const newTimeseries = new TimeSeries({
 // load sample data into mongodb
 const loadDataToDB = async () => {
     // delete the old data
-    // await Patient.deleteMany({});
-    // await TimeSeries.deleteMany({});
-    // // await Clinician.deleteMany({});
+    await Patient.deleteMany({});
+    await TimeSeries.deleteMany({});
+    // await Clinician.deleteMany({});
 
-    // await newPatient.save();
+    await requirements.save();
+    await newPatient.save();
+    await newTimeseries.save();
     // await newClinician.save();
-    // await newTimeseries.save();
 };
 
 loadDataToDB().then(() => {
