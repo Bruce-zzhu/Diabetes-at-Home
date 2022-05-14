@@ -1,11 +1,13 @@
 const renderAboutUs = (req, res) => {
     res.render('about/aboutUs', {
         style: 'about.css',
+        theme: req.session.theme
     });
 };
 const renderAboutDiabetes = (req, res) => {
     res.render("about/aboutDiabetes", {
         style: "about.css",
+        theme: req.session.theme
     });
 };
 const renderLoginPatient = (req, res) => {
@@ -28,12 +30,14 @@ const renderLoginClinician = (req, res) => {
 };
 const renderForgotPassword = (req, res) => {
     res.render('forgotPassword', {
-        style: 'forgotPassword.css'
+        style: 'forgotPassword.css',
+        theme: req.session.theme
     });
 };
 const renderResetPassword = (req, res) => {
     res.render('resetPassword', {
-        style: 'forgotPassword.css'
+        style: 'forgotPassword.css',
+        theme: req.session.theme
     });
 };
 

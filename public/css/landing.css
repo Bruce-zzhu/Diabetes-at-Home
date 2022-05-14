@@ -10,7 +10,7 @@
 
 
 .sub-nav a {
-    color: black;
+    color: var(--text-color);
     text-decoration: none;
     font-weight: bold;
     font-style: italic;
