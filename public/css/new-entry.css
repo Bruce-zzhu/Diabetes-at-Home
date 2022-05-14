@@ -9,9 +9,9 @@
     width: 100%;
 }
 .content-container {
-    background-color: white;
+    background-color: var(--tertiary-color);
     padding: 5%;
-    border: 1px solid #5c5c5c;
+    border: 1px solid var(--border-color);
     max-width: 700px;
     max-height: 700px;
     margin: auto;
@@ -54,12 +54,13 @@ grid-template-rows: 100%;
 .comment-icon{
     display: none;
 }
-.buttons{
+#popup-overlay .buttons{
     display: flex;
     justify-content: center;
 }
-.buttons > *{
+#popup-overlay .buttons > *{
     margin: 0% 15px 0% 15px;
+    color: initial;
 }
 .box {
     width: 70%;
