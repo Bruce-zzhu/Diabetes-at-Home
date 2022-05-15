@@ -1,7 +1,7 @@
 {{!-- TODO: message read/unread, clin firstname, time, details --}}
 {{#if true}}<div class="message unread">{{else}}<div class="message">{{/if}}
     <div class="message-details">
-        {{#if viewAsPatient}}<span class="message-name-send">{{clinician.firstName}}:</span>{{/if}}
+        {{#if viewAsPatient}}<span class="message-name-send">{{clinician}}:</span>{{/if}}
         <span class="message-time">{{toMelbTimestamp time}}</span>
     </div>
     <p>{{body}}</p>
