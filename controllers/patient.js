@@ -42,6 +42,16 @@ const addEntryData = async (req, res) => {
             // create timeseries
             await createTodayTimeSeries(patient);
         }
+
+        // Re-calculate engagement
+        var today = new Date();
+        const allTS = await TimeSeries.find({ patient: patient._id, clinicianUse: false }).lean();
+        var daysActive = allTS.length;
+        var totalDays = Math.ceil((today.getTime() - patient.createTime.getTime())/86400000)
+        await Patient.findOneAndUpdate(
+            {_id: patient._id},
+            { engagementRate: daysActive/totalDays }
+        );
         
         res.redirect('/patient/dashboard');
     } catch (e) {
@@ -116,6 +126,7 @@ const renderPatientDashboard = async (req, res) => {
 
         res.render('patient/dashboard', {
             style: 'p-dashboard.css',
+            theme: req.session.theme,
             patient,
             todayTimeSeries,
             todayArray,
@@ -125,7 +136,9 @@ const renderPatientDashboard = async (req, res) => {
             timeSeriesList,
             histData: JSON.stringify(histData),
             messages
-        });
+        })
+        
+        req.session.theme = patient.theme;
     } catch (e) {
         console.log(e);
     }

@@ -3,7 +3,6 @@
 
 
 body {
-  color: #707070;
   margin: 0;
   width: 100vw;
   min-width: 100vw;
@@ -102,6 +101,14 @@ section {
   margin-right: auto;
   max-width: 896px;
   padding: 32px;
+}
+
+.about-sect {
+  padding-bottom: 50px;
+}
+
+.about-sect > * {
+  color: var(--border-color);
 }
 
 .ytVid-container {

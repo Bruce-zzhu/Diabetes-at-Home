@@ -88,6 +88,23 @@ nav .btn-outline-light:hover {
     text-decoration: none;
 }
 
+#nav-entry-div {
+    position: fixed;
+    right: 3rem;
+    bottom: 3rem;
+}
+
+#new-entry-button-header {
+    background-color: var(--primary-color);
+    padding: 1rem;
+    box-shadow: 3px 3px 5px var(--border-color);
+    border-width: 2.5px;
+}
+
+#new-entry-button-header > * {
+    font-size: 4rem;
+}
+
 .dropdown {
     float: left;
     overflow: hidden;
@@ -187,13 +204,22 @@ nav .desktop {
     border-color: var(--alt-text-color);
 }
 
-@media screen and (max-width: 376px) {
+@media screen and (max-width: 375px) {
     nav .mobile {
         display: flex;
     }
     
     #simple-nav .nav-name div {
         display: none;
+    }
+
+    #nav-entry-div {
+        right: 1rem;
+        bottom: 1rem;
+    }
+    
+    #new-entry-button-header > * {
+        font-size: 2rem;
     }
 }
 
