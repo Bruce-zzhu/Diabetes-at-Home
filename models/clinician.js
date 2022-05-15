@@ -28,7 +28,23 @@ const noteSchema = new Schema({
     time: Date
 })
 
+const messageSchema = new Schema({
+    clinician: {
+        type: Schema.Types.ObjectId,
+        ref: "Clinician"
+    },
+    patient: {
+        type: Schema.Types.ObjectId,
+        ref: "Patient"
+    },
+    body: String,
+    time: Date
+})
+
 
 const Clinician = mongoose.model("Clinician", clinicianSchema);
 const Note = mongoose.model("Note", noteSchema);
-module.exports = { Clinician, Note };
+const Message = mongoose.model("Message", messageSchema);
+
+
+module.exports = { Clinician, Note, Message };

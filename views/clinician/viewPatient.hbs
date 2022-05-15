@@ -100,17 +100,19 @@
         <div class="content-body">
             <div class="scroll">
                 <div id="new-message" class="new-text-entry">
-                    <div class="input-group">
-                        <input id="new-msg-text" type="text" class="form-control" placeholder="New message" aria-label="New message" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button onclick="cancelTextEntry('new-message')" class="btn btn-outline-danger" type="button"><span class="material-icons">close</span></button>
-                            <button onclick="sendMsg('new-msg-text')" class="btn btn-outline-success" type="button"><span class="material-icons">send</span></button>
+                    <form action="/clinician/view-patient/{{patient._id}}/message" method="POST">
+                        <div class="input-group">
+                            <input name="body" id="new-msg-text" type="text" class="form-control" placeholder="New message" aria-label="New message" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button onclick="cancelTextEntry('new-message')" class="btn btn-outline-danger" type="button"><span class="material-icons">close</span></button>
+                                <button onclick="sendMsg('new-msg-text')" class="btn btn-outline-success" type="submit"><span class="material-icons">send</span></button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 <hr>
                 </div>
-                {{#each patient}} {{!-- TODO: insert message variable into hbs for each msg --}}
-                    {{>message-box}}
+                {{#each messages}} {{!-- TODO: insert message variable into hbs for each msg --}}
+                    {{>message-box this}}
                 {{/each}}
             </div>
         </div>

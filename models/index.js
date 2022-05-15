@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const { Patient, TimeSeries } = require("./patient");
-const { Clinician, Note } = require("./clinician");
+const { Clinician, Note, Message } = require("./clinician");
 
 require("dotenv").config();
 const connectionURL = process.env.MONGO_URL || "mongodb://localhost:27017/diabetes-at-home";
@@ -96,6 +96,12 @@ const newNote = new Note({
     time: Date()
 })
 
+const newMessage = new Message({
+    clinician: newClinician._id,
+    patient: newPatient._id,
+    body: "",
+    time: Date()
+})
 
 // load sample data into mongodb
 const loadDataToDB = async () => {
@@ -103,13 +109,15 @@ const loadDataToDB = async () => {
     // await Patient.deleteMany({});
     // await TimeSeries.deleteMany({});
     // await Clinician.deleteMany({});
-    await Note.deleteMany({});
+    // await Note.deleteMany({});
+    await Message.deleteMany({});
 
     // await requirements.save();
     // await newPatient.save();
     // await newTimeseries.save();
     // await newClinician.save();
-    await newNote.save();
+    // await newNote.save();
+    await newMessage.save();
 };
 
 loadDataToDB().then(() => {

@@ -10,7 +10,8 @@ router.route('/view-patient/:id')
     .get(clinician.renderPatientProfile)
     .post(clinician.submitRequirement)
 
-router.route('/view-patient/:id/note')
-    .post(clinician.addNote)
+router.post('/view-patient/:id/note', clinician.addNote)
+
+router.post('/view-patient/:id/message', clinician.addMessage)
 
 module.exports = router;
