@@ -18,7 +18,8 @@ const patientSchema = new Schema(
         requirements: {
             type: Schema.Types.ObjectId,
             ref: "TimeSeries"
-        }
+        },
+        messages: []
     },
     {
         timestamps: { createdAt: "createTime", updatedAt: "updateTime" },

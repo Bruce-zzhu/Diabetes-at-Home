@@ -1,5 +1,5 @@
 const { Patient, TimeSeries } = require('../models/patient');
-const { Note } = require('../models/clinician');
+const { Note, Message } = require('../models/clinician');
 const { isSameDay } = require('../public/scripts/js-helpers');
 
 const getTodayTimeSeries = async (patient) => {
@@ -123,11 +123,19 @@ const renderPatientProfile = async (req, res) => {
             return d - c;
         });
 
+        const messages = await Message.find({patient: patient._id, clinician: patient.clinician._id}).lean();
+        messages.sort(function (a, b) {
+            var c = new Date(a.time);
+            var d = new Date(b.time);
+            return d - c;
+        });
+        
         res.render('clinician/viewPatient', {
             style: 'viewPatient.css',
             patient,
             timeSeriesList,
-            notes
+            notes,
+            messages
         });
     } catch (e) {
         console.log(e);
@@ -219,7 +227,27 @@ const addNote = async (req, res) => {
     
 }
 
+const addMessage = async (req, res) => {
+    try {
+        const pid = req.params.id;
+        const patient = await Patient.findById(pid).lean();
 
+        const body = req.body.body;
+        console.log(req.body)
+        
+        const newMessage = new Message({
+            clinician: patient.clinician._id,
+            patient: patient._id,
+            body: body,
+            time: Date()
+        })
+        await newMessage.save()
+
+        res.redirect(`/clinician/view-patient/${pid}`)
+    } catch(e) {
+        console.log(e)
+    }
+}
 
 
 module.exports = {
@@ -229,5 +257,6 @@ module.exports = {
     createTodayTimeSeries,
     getPatientTimeSeriesList,
     submitRequirement,
-    addNote
+    addNote,
+    addMessage
 };
