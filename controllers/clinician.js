@@ -1,4 +1,5 @@
 const { Patient, TimeSeries } = require('../models/patient');
+const { Note } = require('../models/clinician');
 const { isSameDay } = require('../public/scripts/js-helpers');
 
 const getTodayTimeSeries = async (patient) => {
@@ -114,10 +115,19 @@ const renderPatientProfile = async (req, res) => {
             timeSeriesList.push(todayTimeSeries)
         }
 
+        const notes = await Note.find({patient: patient._id, clinician: patient.clinician._id}).lean();
+        // sort with descending order by the time
+        notes.sort(function (a, b) {
+            var c = new Date(a.time);
+            var d = new Date(b.time);
+            return d - c;
+        });
+
         res.render('clinician/viewPatient', {
             style: 'viewPatient.css',
             patient,
             timeSeriesList,
+            notes
         });
     } catch (e) {
         console.log(e);
@@ -178,11 +188,39 @@ const submitRequirement = async (req, res) => {
             { _id: patient.requirements._id, clinicianUse: true },
             update
         );
-        res.redirect('/clinician/view-patient/' + pid);
+        res.redirect(`/clinician/view-patient/${pid}`);
     } catch (e) {
         console.log(e);
     }
 };
+
+
+const addNote = async (req, res) => {
+    try {
+        const pid = req.params.id;
+        const patient = await Patient.findById(pid).lean();
+
+        const title = req.body.title;
+        const body = req.body.body;
+        
+        const newNote = new Note({
+            clinician: patient.clinician._id,
+            patient: patient._id,
+            title: title,
+            body: body,
+            time: Date()
+        })
+        await newNote.save()
+
+        res.redirect(`/clinician/view-patient/${pid}`)
+    } catch(e) {
+        console.log(e)
+    }
+    
+}
+
+
+
 
 module.exports = {
     getDashboardData,
@@ -191,4 +229,5 @@ module.exports = {
     createTodayTimeSeries,
     getPatientTimeSeriesList,
     submitRequirement,
+    addNote
 };

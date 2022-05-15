@@ -5,7 +5,36 @@
             {{>patientProfile patient}}
         </div>
         <div class="view-nav">
-            {{>viewPatientNav}}
+            <div class="nav-buttons">
+                <button class="nav-links">
+                    <img
+                        class="nav-icons"
+                        src="https://uxwing.com/wp-content/themes/uxwing/download/21-medical-science-lab/diagnostic-pulse.svg?fbclid=IwAR1zaDg8YWbt1LRrpu-2IynV1cZh296G-nxhCZfb2leP_v4WbXJRVmpaUSc"
+                        alt="require"
+                        id="require"
+                        onclick="viewPatient(id)"
+                        
+                    />
+                </button>
+                <button class="nav-links">
+                    <img
+                        class="nav-icons"
+                        src="https://uxwing.com/wp-content/themes/uxwing/download/37-communication-chat-call/talk-bubble.svg?fbclid=IwAR2uTjZfSTihT5gGssLKvyiWhx-gUMphHcptNEcjUs7hPWT3abiHRm_RDqg"
+                        alt="message"
+                        id="message"
+                        onclick="viewPatient(id)"
+                    />
+                </button>
+                <button class="nav-links">
+                    <img
+                        class="nav-icons"
+                        src="https://uxwing.com/wp-content/themes/uxwing/download/03-editing-user-action/notebook-pen.svg?fbclid=IwAR1HYmoODkyjNK9OCZzQwiiwBj3aTYrJ5d2x8c0JGge4EAg7aVEOGLGEG_c"
+                        alt="note"
+                        id="note"
+                        onclick="viewPatient(id)"
+                    />
+                </button>
+            </div>
         </div>
         
     </div>
@@ -87,26 +116,30 @@
         </div>
     </div>
 
-    <div id="notes-container">
+    <div id="note-container">
         <div class="header">
             <h1 class="header-text">Notes on Patient<button onclick="newTextEntry('new-note')" class="add-btn">Add Note</button></h1>
         </div>
         <div class="content-body">
             <div class="scroll">
                 <div id="new-note" class="new-text-entry">
-                    <div class="input-group">
-                        <input id="new-note-topic" type="text" class="form-control" placeholder="New note topic" aria-label="New note" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button onclick="cancelTextEntry('new-note')" class="btn btn-outline-danger" type="button"><span class="material-icons">close</span></button>
-                            <button onclick="addNote('new-note-topic', 'new-note-body')" class="btn btn-outline-success" type="button"><span class="material-icons">save</span></button>
+                    <form action="/clinician/view-patient/{{patient._id}}/note" method="POST">
+                        <div class="input-group">
+                            <input name="title" id="new-note-topic" type="text" class="form-control" placeholder="New note topic" aria-label="New note" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button onclick="cancelTextEntry('new-note')" class="btn btn-outline-danger" type="button"><span class="material-icons">close</span></button>
+                                <button onclick="addNote('new-note-topic', 'new-note-body')" class="btn btn-outline-success" type="submit"><span class="material-icons">save</span></button>
+                            </div>
                         </div>
-                    </div>
-                    <input id="new-note-body" class="form-control" type="text" placeholder="Note body"></input>
-                <hr>
+                        <input name="body" d="new-note-body" class="form-control" type="text" placeholder="Note body"></input>
+                    </form>
+                    <hr>
                 </div>
-                {{#each patient}} {{!-- TODO: insert note variable into hbs for each note --}}
-                    {{>note-box}}
+                {{!-- TODO: insert note variable into hbs for each note --}}
+                {{#each notes}}
+                {{>note-box this}}
                 {{/each}}
+                
             </div>
         </div>
     </div>

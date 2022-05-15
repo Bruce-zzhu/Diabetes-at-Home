@@ -41,7 +41,7 @@
     margin: auto;
 }
 
-#require-container, #message-container, #notes-container {
+#require-container, #message-container, #note-container {
     border: 1px solid var(--border-color);
     padding-left: 0;
     padding-right: 0;
@@ -50,7 +50,7 @@
     background-color: var(--bg-color);
 }
 
-#message-container, #notes-container {
+#message-container, #note-container {
     display: none;
 }
 
@@ -63,7 +63,7 @@
     height: 15rem;
 }
 
-#notes-container .content-body {
+#note-container .content-body {
     height: 30rem;
 }
 
