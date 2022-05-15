@@ -27,7 +27,7 @@ var register = function(Handlebars) {
 
         // date with time
         toMelbTimestamp: function (date) {
-            return date.toLocaleString("en-AU", {"timeZone": "Australia/Melbourne"})
+            return new Date(date).toLocaleString("en-AU", {"timeZone": "Australia/Melbourne"})
         }
         
     }
