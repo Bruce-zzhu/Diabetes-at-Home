@@ -45,9 +45,23 @@ const addEntryData = async (req, res) => {
 
         // Re-calculate engagement
         var today = new Date();
-        const allTS = await TimeSeries.find({ patient: patient._id, clinicianUse: false }).lean();
-        var daysActive = allTS.length;
+        const allTS = await TimeSeries.find({
+            patient: patient._id, clinicianUse: false,}).lean();
+        var daysActive = 0;
+        for (var i=0; i<allTS.length; i++) {
+            var dayTS = allTS[i];
+            if ((dayTS.bloodGlucose.isRequired && dayTS.bloodGlucose.value == null) ||
+                (dayTS.weight.isRequired && dayTS.weight.value == null) ||
+                (dayTS.insulin.isRequired && dayTS.insulin.value == null) ||
+                (dayTS.exercise.isRequired && dayTS.exercise.value == null)
+            ) {
+                continue;
+            } else {
+                daysActive++;
+            }
+        }
         var totalDays = Math.ceil((today.getTime() - patient.createTime.getTime())/86400000)
+        console.log(today, patient.createTime);
         await Patient.findOneAndUpdate(
             {_id: patient._id},
             { engagementRate: daysActive/totalDays }
