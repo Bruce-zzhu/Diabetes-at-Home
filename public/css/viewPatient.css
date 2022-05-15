@@ -47,12 +47,24 @@
     padding-right: 0;
     width: 100% !important;
     position: relative;
-    height: 15rem;
     background-color: var(--bg-color);
 }
 
 #message-container, #notes-container {
     display: none;
+}
+
+#require-container {
+    height: 15rem;
+}
+
+
+#message-container .content-body {
+    height: 15rem;
+}
+
+#notes-container .content-body {
+    height: 30rem;
 }
 
 .header {
@@ -122,7 +134,7 @@ input {
 }
 
 #view-container .scroll {
-    height: calc(11rem - 6px);
+    height: 99%;
     padding: 10px;
 }
 
