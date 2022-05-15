@@ -13,5 +13,22 @@ const clinicianSchema = new Schema({
     ]
 });
 
+
+const noteSchema = new Schema({
+    clinician: {
+        type: Schema.Types.ObjectId,
+        ref: "Clinician"
+    },
+    patient: {
+        type: Schema.Types.ObjectId,
+        ref: "Patient"
+    },
+    title: String,
+    body: String,
+    time: Date
+})
+
+
 const Clinician = mongoose.model("Clinician", clinicianSchema);
-module.exports = { Clinician };
+const Note = mongoose.model("Note", noteSchema);
+module.exports = { Clinician, Note };

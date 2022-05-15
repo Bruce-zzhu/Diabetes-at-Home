@@ -17,6 +17,17 @@ var register = function(Handlebars) {
             const day = date.getDate();
 
             return `${day}/${month}/${year}`
+        },
+
+        // change mongodb default time to melbourne date without time
+        toMelbDate: function (date) {
+            const timestamp = date.toLocaleString("en-AU", {"timeZone": "Australia/Melbourne"})
+            return timestamp.slice(0, 10)
+        },
+
+        // date with time
+        toMelbTimestamp: function (date) {
+            return date.toLocaleString("en-AU", {"timeZone": "Australia/Melbourne"})
         }
         
     }

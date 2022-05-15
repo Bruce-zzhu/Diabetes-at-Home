@@ -3,6 +3,10 @@ const Schema = mongoose.Schema;
 
 const patientSchema = new Schema(
     {
+        clinician: {
+            type: Schema.Types.ObjectId,
+            ref: "Clinician"
+        },
         firstName: { type: String, required: true },
         lastName: { type: String, required: true },
         nickName: { type: String, required: true, unique: true },
