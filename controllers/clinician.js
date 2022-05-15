@@ -123,13 +123,14 @@ const renderPatientProfile = async (req, res) => {
             return d - c;
         });
 
-        const messages = await Message.find({patient: patient._id, clinician: patient.clinician._id}).lean();
+        const messages = await Message.find({patient: patient._id, clinician: patient.clinician._id}).populate('clinician').lean();
         messages.sort(function (a, b) {
             var c = new Date(a.time);
             var d = new Date(b.time);
             return d - c;
         });
         
+        // console.log(messages)
         res.render('clinician/viewPatient', {
             style: 'viewPatient.css',
             patient,
@@ -233,7 +234,6 @@ const addMessage = async (req, res) => {
         const patient = await Patient.findById(pid).lean();
 
         const body = req.body.body;
-        console.log(req.body)
         
         const newMessage = new Message({
             clinician: patient.clinician._id,

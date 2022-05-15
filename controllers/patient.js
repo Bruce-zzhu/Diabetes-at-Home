@@ -1,4 +1,5 @@
 const { Patient, TimeSeries } = require('../models/patient');
+const { Message } = require('../models/clinician');
 const { getTodayTimeSeries, createTodayTimeSeries, getPatientTimeSeriesList } = require('./clinician');
 const { getDateInfo } = require('../public/scripts/js-helpers');
 
@@ -113,6 +114,13 @@ const renderPatientDashboard = async (req, res) => {
             }
         }
 
+        const messages = await Message.find({patient: patient._id, clinician: patient.clinician._id}).populate('clinician').lean();
+        messages.sort(function (a, b) {
+            var c = new Date(a.time);
+            var d = new Date(b.time);
+            return d - c;
+        });
+
         res.render('patient/dashboard', {
             style: 'p-dashboard.css',
             patient,
@@ -123,6 +131,7 @@ const renderPatientDashboard = async (req, res) => {
             endDateArray,
             timeSeriesList,
             histData: JSON.stringify(histData),
+            messages
         });
     } catch (e) {
         console.log(e);
