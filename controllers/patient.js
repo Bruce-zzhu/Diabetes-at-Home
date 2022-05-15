@@ -43,12 +43,16 @@ const addEntryData = async (req, res) => {
             await createTodayTimeSeries(patient);
         }
 
-        // Re-calculate engagement
+        // Re-calculate 
         var today = new Date();
         const allTS = await TimeSeries.find({ patient: patient._id, clinicianUse: false }).lean();
         var daysActive = allTS.length;
         var totalDays = Math.ceil((today.getTime() - patient.createTime.getTime())/86400000)
-        // TODO: save egmt as daysActive / totalDays;
+        await Patient.findOneAndUpdate(
+            {_id: patient._id},
+            { engagementRate: daysActive/totalDays },
+            { new: true }
+        );
         
         res.redirect('/patient/dashboard');
     } catch (e) {
