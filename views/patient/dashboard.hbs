@@ -12,8 +12,8 @@
             <div class="message-box-container">
                 <h5>Message Box<span id="unread-notif">NEW!</span></h5>
                 <div class="scroll">
-                    {{#each patient}} {{!-- TODO: insert message variable into hbs for each msg --}}
-                        {{>message-box viewAsPatient=true}} 
+                    {{#each messages}} {{!-- TODO: insert message variable into hbs for each msg --}}
+                        {{>message-box this viewAsPatient=true}} 
                     {{/each}}
                 </div>
             </div>
