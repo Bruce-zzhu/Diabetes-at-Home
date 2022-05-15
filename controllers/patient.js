@@ -1,5 +1,5 @@
 const { Patient, TimeSeries } = require('../models/patient');
-const { Clinician, Message } = require('../models/clinician');
+const { Message } = require('../models/clinician');
 const { getTodayTimeSeries, createTodayTimeSeries, getPatientTimeSeriesList } = require('./clinician');
 const { getDateInfo } = require('../public/scripts/js-helpers');
 
@@ -115,17 +115,12 @@ const renderPatientDashboard = async (req, res) => {
         }
 
         const messages = await Message.find({patient: patient._id}).lean();
+        console.log(messages);
         messages.sort(function (a, b) {
             var c = new Date(a.time);
             var d = new Date(b.time);
             return d - c;
         });
-
-        var clinIds = new Set();
-        for (var i=0; i<messages.length; i++) {
-            var msgClin = await Clinician.findOne({'_id': messages[i].clinician});
-            messages[i].clinician = msgClin.firstName;
-        }
 
         res.render('patient/dashboard', {
             style: 'p-dashboard.css',
