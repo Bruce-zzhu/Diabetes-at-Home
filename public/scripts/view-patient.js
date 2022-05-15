@@ -39,7 +39,7 @@ function sendMsg(msgInput) {
     var msg = document.getElementById(msgInput).value;
     // TODO: add msg - pntId, clinId, msg, date
     // TODO: refresh scroll box
-    cancelTextEntry("new-message");
+    // cancelTextEntry("new-message");
 }
 
 function addNote(topicInput, bodyInput) {
