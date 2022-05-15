@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const { Patient, TimeSeries } = require("./patient");
-const { Clinician } = require("./clinician");
+const { Clinician, Note } = require("./clinician");
 
 require("dotenv").config();
 const connectionURL = process.env.MONGO_URL || "mongodb://localhost:27017/diabetes-at-home";
@@ -14,6 +14,35 @@ db.once("open", () => {
 });
 
 // sample data
+const requirements = new TimeSeries({
+    clinicianUse: true,
+    date: new Date(),
+    bloodGlucose: {
+        isRequired: false,
+        value: 0,
+        upperBound: 0,
+        lowerBound: 0
+    },
+    insulin: {
+        isRequired: false,
+        value: 0,
+        upperBound: 0,
+        lowerBound: 0
+    },
+    weight: {
+        isRequired: false,
+        value: 0,
+        upperBound: 0,
+        lowerBound: 0
+    },
+    exercise: {
+        isRequired: false,
+        value: 0,
+        upperBound: 0,
+        lowerBound: 0
+    }
+});
+
 const newPatient = new Patient({
     firstName: "Pat",
     lastName: "Smith",
@@ -21,7 +50,9 @@ const newPatient = new Patient({
     age: 30,
     gender: "male",
     email: "pat@diabetemail.com",
+    requirements: requirements._id
 });
+
 const newClinician = new Clinician({
     firstName: "Chris",
     lastName: " Lee",
@@ -57,17 +88,28 @@ const newTimeseries = new TimeSeries({
     }
 })
 
+const newNote = new Note({
+    clinician: newClinician._id,
+    patient: newPatient._id,
+    title: "",
+    body: "",
+    time: Date()
+})
+
 
 // load sample data into mongodb
 const loadDataToDB = async () => {
     // delete the old data
     // await Patient.deleteMany({});
     // await TimeSeries.deleteMany({});
-    // // await Clinician.deleteMany({});
+    // await Clinician.deleteMany({});
+    await Note.deleteMany({});
 
+    // await requirements.save();
     // await newPatient.save();
-    // await newClinician.save();
     // await newTimeseries.save();
+    // await newClinician.save();
+    await newNote.save();
 };
 
 loadDataToDB().then(() => {

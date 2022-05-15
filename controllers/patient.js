@@ -1,7 +1,6 @@
 const { Patient, TimeSeries } = require('../models/patient');
 const { getTodayTimeSeries, createTodayTimeSeries, getPatientTimeSeriesList } = require('./clinician');
 const { getDateInfo } = require('../public/scripts/js-helpers');
-const req = require('express/lib/request');
 
 // Hardcoded Patient Email
 const patientEmail = 'pat@diabetemail.com';

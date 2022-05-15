@@ -1,7 +1,7 @@
 function viewPatient(id) {
     var reqCon = document.getElementById("require-container");
     var msgCon = document.getElementById("message-container");
-    var ntsCon = document.getElementById("notes-container");
+    var ntsCon = document.getElementById("note-container");
 
     switch (id) {
         case "require":
@@ -14,7 +14,7 @@ function viewPatient(id) {
             msgCon.style.display = "block";
             ntsCon.style.display = "none";
             break;
-        case "notes":
+        case "note":
             reqCon.style.display = "none";
             msgCon.style.display = "none";
             ntsCon.style.display = "block";

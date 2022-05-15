@@ -5,58 +5,88 @@
             {{>patientProfile patient}}
         </div>
         <div class="view-nav">
-            {{>viewPatientNav}}
+            <div class="nav-buttons">
+                <button class="nav-links">
+                    <img
+                        class="nav-icons"
+                        src="https://uxwing.com/wp-content/themes/uxwing/download/21-medical-science-lab/diagnostic-pulse.svg?fbclid=IwAR1zaDg8YWbt1LRrpu-2IynV1cZh296G-nxhCZfb2leP_v4WbXJRVmpaUSc"
+                        alt="require"
+                        id="require"
+                        onclick="viewPatient(id)"
+                        
+                    />
+                </button>
+                <button class="nav-links">
+                    <img
+                        class="nav-icons"
+                        src="https://uxwing.com/wp-content/themes/uxwing/download/37-communication-chat-call/talk-bubble.svg?fbclid=IwAR2uTjZfSTihT5gGssLKvyiWhx-gUMphHcptNEcjUs7hPWT3abiHRm_RDqg"
+                        alt="message"
+                        id="message"
+                        onclick="viewPatient(id)"
+                    />
+                </button>
+                <button class="nav-links">
+                    <img
+                        class="nav-icons"
+                        src="https://uxwing.com/wp-content/themes/uxwing/download/03-editing-user-action/notebook-pen.svg?fbclid=IwAR1HYmoODkyjNK9OCZzQwiiwBj3aTYrJ5d2x8c0JGge4EAg7aVEOGLGEG_c"
+                        alt="note"
+                        id="note"
+                        onclick="viewPatient(id)"
+                    />
+                </button>
+            </div>
         </div>
         
     </div>
     
 
     <div id="require-container">
-        <div class="header">
-            <h1 class="header-text">Time-series Requirements<button class="add-btn">Save</button></h1>
-        </div>
-        <div class="row g-2">
-            <div class="col-5 offset-1">
-                <div class="p-3 bg-light">Blood Glucose Level:
-                    <input class="from" type="number" />
-                    to
-                    <input class="to" type="number" />
-                    nmol/L
-                    <input
-                        class="checkbox"
-                        type="checkbox"
-                        checked="checked"
-                    />
+        <form action="/clinician/view-patient/{{patient._id}}" method="POST">
+            <div class="header">
+                <div class="header-text-wrapper">
+                    <h1 class="header-text">Time-series Requirements<button type="submit" class="add-btn">Save</button></h1>
+                    <p class="header-reminder">Changes will be shown to the patient on the following day</p>
                 </div>
             </div>
-            <div class="col-5 offset-1">
-                <div class="p-3 bg-light">Weight:
-                    <input class="from" type="number" />
-                    to
-                    <input class="to" type="number" />
-                    kg
-                    <input class="checkbox" type="checkbox" />
+            <div class="row g-2">
+                <div class="col-5 offset-1">
+                    <div class="p-3 bg-light">Blood Glucose Level:
+                        <input class="from" name="bloodLow" type="number" value="{{patient.requirements.bloodGlucose.lowerBound}}" />
+                        to
+                        <input class="to" name="bloodHigh" type="number" value="{{patient.requirements.bloodGlucose.upperBound}}" />
+                        nmol/L
+                        <input class="checkbox" type="checkbox" name="bloodRequired" {{#if patient.requirements.bloodGlucose.isRequired}}checked="checked"{{/if}} />
+                    </div>
+                </div>
+                <div class="col-5 offset-1">
+                    <div class="p-3 bg-light">Weight:
+                        <input class="from" name="weightLow" type="number" value="{{patient.requirements.weight.lowerBound}}" />
+                        to
+                        <input class="to" name="weightHigh" type="number" value="{{patient.requirements.weight.upperBound}}" />
+                        kg
+                        <input class="checkbox" type="checkbox" name="weightRequired" {{#if patient.requirements.weight.isRequired}}checked="checked"{{/if}} />
+                    </div>
+                </div>
+                <div class="col-5 offset-1">
+                    <div class="p-3 bg-light">Insulin Taken:
+                        <input class="from" name="insulinLow" type="number" value="{{patient.requirements.insulin.lowerBound}}" />
+                        to
+                        <input class="to" name="insulinHigh" type="number" value="{{patient.requirements.insulin.upperBound}}" />
+                        doses
+                        <input class="checkbox" type="checkbox" name="insulinRequired" {{#if patient.requirements.insulin.isRequired}}checked="checked"{{/if}} />
+                    </div>
+                </div>
+                <div class="col-5 offset-1">
+                    <div class="p-3 bg-light">Exercise:
+                        <input class="from" name="exerciseLow" type="number" value="{{patient.requirements.exercise.lowerBound}}" />
+                        to
+                        <input class="to" name="exerciseHigh" type="number" value="{{patient.requirements.exercise.upperBound}}" />
+                        steps
+                        <input class="checkbox" type="checkbox" name="exerciseRequired" {{#if patient.requirements.exercise.isRequired}}checked="checked"{{/if}}/>
+                    </div>
                 </div>
             </div>
-            <div class="col-5 offset-1">
-                <div class="p-3 bg-light">Insulin Taken:
-                    <input class="from" type="number" />
-                    to
-                    <input class="to" type="number" />
-                    doses
-                    <input class="checkbox" type="checkbox" />
-                </div>
-            </div>
-            <div class="col-5 offset-1">
-                <div class="p-3 bg-light">Exercise:
-                    <input class="from" type="number" />
-                    to
-                    <input class="to" type="number" />
-                    steps
-                    <input class="checkbox" type="checkbox" />
-                </div>
-            </div>
-        </div>
+        </form>
         <div class="require-text">
             <span class="material-icons">done</span>
             <div>Required to record</div>
@@ -67,42 +97,50 @@
         <div class="header">
             <h1 class="header-text">Support Messages<button onclick="newTextEntry('new-message')" class="add-btn">Send Message</button></h1>
         </div>
-        <div class="scroll">
-            <div id="new-message" class="new-text-entry">
-                <div class="input-group">
-                    <input id="new-msg-text" type="text" class="form-control" placeholder="New message" aria-label="New message" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                        <button onclick="cancelTextEntry('new-message')" class="btn btn-outline-danger" type="button"><span class="material-icons">close</span></button>
-                        <button onclick="sendMsg('new-msg-text')" class="btn btn-outline-success" type="button"><span class="material-icons">send</span></button>
+        <div class="content-body">
+            <div class="scroll">
+                <div id="new-message" class="new-text-entry">
+                    <div class="input-group">
+                        <input id="new-msg-text" type="text" class="form-control" placeholder="New message" aria-label="New message" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button onclick="cancelTextEntry('new-message')" class="btn btn-outline-danger" type="button"><span class="material-icons">close</span></button>
+                            <button onclick="sendMsg('new-msg-text')" class="btn btn-outline-success" type="button"><span class="material-icons">send</span></button>
+                        </div>
                     </div>
+                <hr>
                 </div>
-            <hr>
+                {{#each patient}} {{!-- TODO: insert message variable into hbs for each msg --}}
+                    {{>message-box}}
+                {{/each}}
             </div>
-            {{#each patient}} {{!-- TODO: insert message variable into hbs for each msg --}}
-                {{>message-box}}
-            {{/each}}
         </div>
     </div>
 
-    <div id="notes-container">
+    <div id="note-container">
         <div class="header">
             <h1 class="header-text">Notes on Patient<button onclick="newTextEntry('new-note')" class="add-btn">Add Note</button></h1>
         </div>
-        <div class="scroll">
-            <div id="new-note" class="new-text-entry">
-                <div class="input-group">
-                    <input id="new-note-topic" type="text" class="form-control" placeholder="New note topic" aria-label="New note" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                        <button onclick="cancelTextEntry('new-note')" class="btn btn-outline-danger" type="button"><span class="material-icons">close</span></button>
-                        <button onclick="addNote('new-note-topic', 'new-note-body')" class="btn btn-outline-success" type="button"><span class="material-icons">save</span></button>
-                    </div>
+        <div class="content-body">
+            <div class="scroll">
+                <div id="new-note" class="new-text-entry">
+                    <form action="/clinician/view-patient/{{patient._id}}/note" method="POST">
+                        <div class="input-group">
+                            <input name="title" id="new-note-topic" type="text" class="form-control" placeholder="New note topic" aria-label="New note" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button onclick="cancelTextEntry('new-note')" class="btn btn-outline-danger" type="button"><span class="material-icons">close</span></button>
+                                <button onclick="addNote('new-note-topic', 'new-note-body')" class="btn btn-outline-success" type="submit"><span class="material-icons">save</span></button>
+                            </div>
+                        </div>
+                        <textarea name="body" d="new-note-body" class="form-control" type="text" placeholder="Note body" rows="5"></textarea>
+                    </form>
+                    <hr>
                 </div>
-                <input id="new-note-body" class="form-control" type="text" placeholder="Note body"></input>
-            <hr>
+                {{!-- TODO: insert note variable into hbs for each note --}}
+                {{#each notes}}
+                {{>note-box this}}
+                {{/each}}
+                
             </div>
-            {{#each patient}} {{!-- TODO: insert note variable into hbs for each note --}}
-                {{>note-box}}
-            {{/each}}
         </div>
     </div>
 
