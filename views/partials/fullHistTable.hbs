@@ -2,6 +2,10 @@
     <div class="table-info">
         <div class="label">
             <p>* required time-series</p>
+            <div>
+                <div class="red-rec"></div>
+                <p>data outside healthy thresholds</p>
+            </div>
         </div>
     </div>
     
@@ -24,28 +28,60 @@
             <tr class="align-middle">
                 <th scope="row">{{idx @index}}</th>                      
                 <td class="tb-date">                       
-                    {{getDate date}}                      
+                    {{toMelbDate date}}                      
                 </td>
                 
                 <td onclick="tableToggleComment(this)" class="blood ts">
-                    <div class="tb-value">{{#if bloodGlucose.value}}{{bloodGlucose.value}}{{else}}&mdash;{{/if}}
-                        {{#if bloodGlucose.isRequired}}*{{/if}}</div>
+                    <div class="tb-value"
+                    {{#if (isNotBounded bloodGlucose.value bloodGlucose.upperBound bloodGlucose.lowerBound)}}
+                    {{#if bloodGlucose.isRequired}}
+                    style="color: red"
+                    {{/if}}
+                    {{/if}}
+                    >
+                        {{#if bloodGlucose.value}}{{bloodGlucose.value}}{{else}}&mdash;{{/if}}
+                        {{#if bloodGlucose.isRequired}}*{{/if}}
+                    </div>
                     <div class="tb-comm">{{bloodGlucose.comment}}</div>
                 </td>
             
                 <td onclick="tableToggleComment(this)" class="weight ts">
-                    <div class="tb-value">{{#if weight.value}}{{weight.value}}{{else}}&mdash;{{/if}}
-                        {{#if weight.isRequired}}*{{/if}}</div>
+                    <div class="tb-value"
+                    {{#if (isNotBounded weight.value weight.upperBound weight.lowerBound)}}
+                    {{#if weight.isRequired}}
+                    style="color: red"
+                    {{/if}}
+                    {{/if}}
+                    >
+                        {{#if weight.value}}{{weight.value}}{{else}}&mdash;{{/if}}
+                        {{#if weight.isRequired}}*{{/if}}
+                    </div>
                     <div class="tb-comm">{{weight.comment}}</div>
                 </td>
                 <td onclick="tableToggleComment(this)" class="insulin ts">
-                    <div class="tb-value">{{#if insulin.value}}{{insulin.value}}{{else}}&mdash;{{/if}}
-                        {{#if insulin.isRequired}}*{{/if}}</div>
+                    <div class="tb-value"
+                    {{#if (isNotBounded insulin.value insulin.upperBound insulin.lowerBound)}}
+                    {{#if insulin.isRequired}}
+                    style="color: red"
+                    {{/if}}
+                    {{/if}}
+                    >
+                        {{#if insulin.value}}{{insulin.value}}{{else}}&mdash;{{/if}}
+                        {{#if insulin.isRequired}}*{{/if}}
+                    </div>
                     <div class="tb-comm">{{insulin.comment}}</div>
                 </td>
                 <td onclick="tableToggleComment(this)" class="exercise ts">
-                    <div class="tb-value">{{#if exercise.value}}{{exercise.value}}{{else}}&mdash;{{/if}}
-                        {{#if exercise.isRequired}}*{{/if}}</div>
+                    <div class="tb-value"
+                    {{#if (isNotBounded exercise.value exercise.upperBound exercise.lowerBound)}}
+                    {{#if exercise.isRequired}}
+                    style="color: red"
+                    {{/if}}
+                    {{/if}}
+                    >
+                        {{#if exercise.value}}{{exercise.value}}{{else}}&mdash;{{/if}}
+                        {{#if exercise.isRequired}}*{{/if}}
+                    </div>
                     <div class="tb-comm">{{exercise.comment}}</div>
                 </td>
         
