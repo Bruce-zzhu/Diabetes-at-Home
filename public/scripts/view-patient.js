@@ -54,6 +54,9 @@ function addNote(topicInput, bodyInput) {
     cancelTextEntry("new-note");
 }
 
+
+
+
 module.exports = {
     viewPatient,
     newTextEntry,

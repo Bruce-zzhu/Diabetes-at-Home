@@ -167,6 +167,14 @@ h2 {
     margin-top: 3px;
 }
 
+.emojionearea, .emojionearea.form-control {
+    width: 80%;
+}
+
+.emojionearea .emojionearea-editor {
+    min-height: 0 !important;
+}
+
 .input-group>:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
     margin-left: 0;
 }
