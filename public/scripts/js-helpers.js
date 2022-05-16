@@ -91,7 +91,7 @@ function getTheme(themeName) {
 }
 
 function setTheme(patient, themeName) {
-    const patient = Patient.findOneAndUpdate();
+    Patient.findOneAndUpdate( {_id: patient._id}, {theme: themeName});
     getTheme();
 }
 
