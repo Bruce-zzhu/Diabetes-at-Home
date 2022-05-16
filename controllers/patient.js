@@ -135,6 +135,11 @@ const renderPatientDashboard = async (req, res) => {
             var d = new Date(b.time);
             return d - c;
         });
+
+        var allPatEgmts = await (Patient.find({}, "nickName engagementRate"));
+        allPatEgmts.sort((a,b) => b.engagementRate - a.engagementRate);
+        allPatEgmts = allPatEgmts.slice(0, 5);
+        allPatEgmts = JSON.stringify(allPatEgmts);
         
         req.session.theme = JSON.stringify(await Theme.findOne({ themeName: patient.theme }).lean());
 
@@ -149,7 +154,8 @@ const renderPatientDashboard = async (req, res) => {
             endDateArray,
             timeSeriesList,
             histData: JSON.stringify(histData),
-            messages
+            messages,
+            allPatEgmts
         })
     } catch (e) {
         console.log(e);
