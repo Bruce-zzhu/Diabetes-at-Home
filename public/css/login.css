@@ -135,7 +135,7 @@ input[type=button] {
 }
 
 /* When in desktop view, show a background image depending on patient or clinician login */
-@media screen and (min-width: 1020px) {
+@media screen and (min-width: 1030px) {
     .login-page.patient {
         background-image: url(https://post-phinf.pstatic.net/MjAxODA3MTZfMTkz/MDAxNTMxNzI3OTYyMDAz.TOz1mdltXgjJd54JFdH4UStRDVvSHAZ6x2W77fKFk9kg.KR0kJySZ0GNl4mFOYWNYj5kvKadaLauAdMHXGjW-pTQg.JPEG/GettyImages-990008836.jpg);
     }

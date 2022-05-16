@@ -42,7 +42,7 @@ div.scroll{
     height: 190px;
 }
 }
-@media screen and (min-width: 1020px){
+@media screen and (min-width: 1030px){
 div.scroll{
     height: 290px;
 }
