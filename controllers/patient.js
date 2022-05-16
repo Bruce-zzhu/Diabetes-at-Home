@@ -1,4 +1,4 @@
-const { Patient, TimeSeries } = require('../models/patient');
+const { Patient, TimeSeries, Theme } = require('../models/patient');
 const { Message } = require('../models/clinician');
 const { getTodayTimeSeries, createTodayTimeSeries, getPatientTimeSeriesList } = require('./clinician');
 const { getDateInfo } = require('../public/scripts/js-helpers');
@@ -73,8 +73,6 @@ const addEntryData = async (req, res) => {
     }
 };
 
-
-
 const renderPatientDashboard = async (req, res) => {
     try {
         const patient = await Patient.findOne({ email: patientEmail }).lean();
@@ -138,7 +136,7 @@ const renderPatientDashboard = async (req, res) => {
             return d - c;
         });
         
-        req.session.theme = patient.theme;
+        req.session.theme = JSON.stringify(await Theme.findOne({ themeName: patient.theme }).lean());
 
         res.render('patient/dashboard', {
             style: 'p-dashboard.css',

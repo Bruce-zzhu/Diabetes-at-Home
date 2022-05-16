@@ -65,13 +65,6 @@ app.use(express.static(path.join(__dirname, '/public')));
 // process incoming request
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(function (req, res, next) {
-    if (!req.session.theme) {
-        req.session.theme = "default";
-    }
-    next();
-})
-
 // routes
 app.use('/clinician', clinicianRoutes);
 app.use('/patient', patientRoutes);
