@@ -43,7 +43,7 @@ function tableToggleComment(cell) {
     }
 }
 
-function setTheme(themeName) {
+function getTheme(themeName) {
     var rootStyle = document.documentElement.style;
     switch (themeName) {
         case "default":
@@ -88,10 +88,11 @@ function setTheme(themeName) {
                 logos[i].src = "/images/logo-black.svg"
             }
     }
+}
 
-    
-
-    // TODO: change patient theme val in db
+function setTheme(patient, themeName) {
+    const patient = Patient.findOneAndUpdate();
+    getTheme();
 }
 
 module.exports = {
@@ -100,5 +101,6 @@ module.exports = {
     isSameDay,
     getDateInfo,
     tableToggleComment,
+    getTheme,
     setTheme
 };
