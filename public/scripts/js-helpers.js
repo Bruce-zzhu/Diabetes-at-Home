@@ -32,8 +32,8 @@ function tableToggleComment(cell) {
         comment.style.display = "block";
         value.style.display = "none";
         cell.style.background = "white";
-        cell.style.borderLeft = "1px solid var(--border-color)";
-        cell.style.borderRight = "1px solid var(--border-color)";
+        cell.style.borderLeft = "1px solid var(--grey-color)";
+        cell.style.borderRight = "1px solid var(--grey-color)";
     } else {
         comment.style.display = "none";
         value.style.display = "block";
