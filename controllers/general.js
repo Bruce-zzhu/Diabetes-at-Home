@@ -48,6 +48,19 @@ const renderResetPassword = (req, res) => {
     });
 };
 
+const renderSettings = (req, res) => {
+    if (req.session.theme) {
+        res.render("settings", {
+            style: "settings.css",
+            theme: req.session.theme
+        });
+    } else {
+        res.render("settings", {
+            style: "settings.css"
+        });
+    }
+}
+
 module.exports = {
     renderAboutUs,
     renderAboutDiabetes,
@@ -55,5 +68,6 @@ module.exports = {
     renderLoginClinician,
     renderForgotPassword,
     renderResetPassword,
+    renderSettings,
     newFunction1
 };
