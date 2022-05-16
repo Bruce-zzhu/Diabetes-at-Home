@@ -135,6 +135,8 @@ const renderPatientDashboard = async (req, res) => {
             var d = new Date(b.time);
             return d - c;
         });
+
+        const allPatEgmts = JSON.stringify(await (Patient.find({}, "nickName engagementRate")));
         
         req.session.theme = JSON.stringify(await Theme.findOne({ themeName: patient.theme }).lean());
 
@@ -149,7 +151,8 @@ const renderPatientDashboard = async (req, res) => {
             endDateArray,
             timeSeriesList,
             histData: JSON.stringify(histData),
-            messages
+            messages,
+            allPatEgmts
         })
     } catch (e) {
         console.log(e);

@@ -46,7 +46,6 @@ function tableToggleComment(cell) {
 function getTheme(theme) {
     if (!theme) {return;}
 
-    console.log(theme.colors);
     var rootStyle = document.documentElement.style;
 
     for (var key in theme.colors) {
