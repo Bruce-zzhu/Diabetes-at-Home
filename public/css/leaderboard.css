@@ -51,14 +51,14 @@ p .leaderboard-nickname {
 }
 
 /* Adjust height of box when on mobile view */
-@media screen and (max-width: 375px){
+@media screen and (max-width: 380px){
     div.scroll{
         height: 190px;
     }
 }
 
 /* Adjust height of box when on tablet view */
-@media screen and (min-width: 1025px){
+@media screen and (min-width: 1020px){
     div.scroll{
         height: 290px;
     }

@@ -37,12 +37,12 @@ div.scroll {
     font-style: italic;
 }
 
-@media screen and (max-width: 375px){
+@media screen and (max-width: 380px){
 div.scroll{
     height: 190px;
 }
 }
-@media screen and (min-width: 1025px){
+@media screen and (min-width: 1020px){
 div.scroll{
     height: 290px;
 }

@@ -114,7 +114,7 @@
     padding: 10px;
 }
 
-@media screen and (min-width: 376px) {
+@media screen and (min-width: 381px) {
 
     .banner-content {
         top: 0;
@@ -132,7 +132,7 @@
     }
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 380px) {
     .banner-content {
         grid-template-areas:
             "welcome welcome"
@@ -149,7 +149,7 @@
 
 }
 
-@media screen and (min-width: 1025px) {
+@media screen and (min-width: 1020px) {
     .features {
         padding-top: 80px;
     }

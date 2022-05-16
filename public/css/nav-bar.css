@@ -4,7 +4,7 @@ nav {
     background-color: var(--primary-color);
     color: var(--altText-color);
     position: fixed;
-    z-index: 5;
+    z-index: 50;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -13,6 +13,10 @@ nav {
     margin: auto;
     box-shadow: 0 1.5px 0 var(--altText-color);
     font-size: 16px;
+}
+
+nav * {
+    z-index: 50;
 }
 
 #nav-back {
@@ -109,7 +113,6 @@ nav .btn-outline-light:hover {
     position: relative;
     float: left;
     overflow: hidden;
-    z-index: 5;
 }
 
 .dropdown .dropbtn {
@@ -132,8 +135,7 @@ nav .btn-outline-light:hover {
     position: fixed;
     background-color: var(--primary-color);
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px var(--border-color);
-    z-index: 5;
+    box-shadow: 0px 10px 16px 0px var(--border-color);
 }
 
 .dropdown-content a {
@@ -205,7 +207,7 @@ nav .desktop {
     border-color: var(--altText-color);
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 380px) {
     nav .mobile {
         display: flex;
     }
@@ -224,13 +226,13 @@ nav .desktop {
     }
 }
 
-@media screen and (min-width: 376px) and (max-width: 1024px) {
+@media screen and (min-width: 381px) and (max-width: 1029px) {
     nav .tablet {
         display: flex;
     }
 }
 
-@media screen and (min-width: 1025px) {
+@media screen and (min-width: 1020px) {
     nav .desktop {
         display: flex;
     }
