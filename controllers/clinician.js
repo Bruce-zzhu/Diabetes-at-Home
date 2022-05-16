@@ -1,12 +1,15 @@
-const { Patient, TimeSeries } = require('../models/patient');
-const { Note, Message } = require('../models/clinician');
-const { isSameDay } = require('../public/scripts/js-helpers');
+const { Patient, TimeSeries } = require("../models/patient");
+const { Note, Message } = require("../models/clinician");
+const { isSameDay } = require("../public/scripts/js-helpers");
 
 const getTodayTimeSeries = async (patient) => {
     try {
         var today = new Date();
-        const timeSeries = await TimeSeries.find({ patient: patient._id, clinicianUse: false })
-            .populate('patient')
+        const timeSeries = await TimeSeries.find({
+            patient: patient._id,
+            clinicianUse: false,
+        })
+            .populate("patient")
             .lean();
         // check if it's today's timeseries
         for (ts of timeSeries) {
@@ -57,7 +60,7 @@ const createTodayTimeSeries = async (patient) => {
 
 const getDashboardData = async (req, res) => {
     try {
-        const patients = await Patient.find({}).populate('requirements').lean();
+        const patients = await Patient.find({}).populate("requirements").lean();
         var timeSeriesList = [];
         for (p of patients) {
             const timeSeries = await getTodayTimeSeries(p).then((data) => data);
@@ -69,8 +72,8 @@ const getDashboardData = async (req, res) => {
                 await createTodayTimeSeries(p);
             }
         }
-        res.render('clinician/dashboard', {
-            style: 'dashboard.css',
+        res.render("clinician/dashboard", {
+            style: "dashboard.css",
             timeSeriesList,
         });
     } catch (e) {
@@ -83,11 +86,10 @@ const getPatientTimeSeriesList = async (patient) => {
     try {
         const timeSeriesList = await TimeSeries.find({
             patient: patient._id,
-            clinicianUse: false
+            clinicianUse: false,
         })
-            .populate('patient')
+            .populate("patient")
             .lean();
-        
 
         // sort with descending order by the date
         timeSeriesList.sort(function (a, b) {
@@ -104,18 +106,27 @@ const getPatientTimeSeriesList = async (patient) => {
 const renderPatientProfile = async (req, res) => {
     try {
         const pid = req.params.id;
-        const patient = await Patient.findById(pid).populate('requirements').lean();
+        const patient = await Patient.findById(pid)
+            .populate("requirements")
+            .lean();
 
-        const timeSeriesList = await getPatientTimeSeriesList(patient).then((data) => data);
+        const timeSeriesList = await getPatientTimeSeriesList(patient).then(
+            (data) => data
+        );
 
         // no time series found, create one
         if (timeSeriesList.length === 0) {
             await createTodayTimeSeries(patient);
-            todayTimeSeries = await getTodayTimeSeries(patient).then((data) => data);
-            timeSeriesList.push(todayTimeSeries)
+            todayTimeSeries = await getTodayTimeSeries(patient).then(
+                (data) => data
+            );
+            timeSeriesList.push(todayTimeSeries);
         }
 
-        const notes = await Note.find({patient: patient._id, clinician: patient.clinician._id}).lean();
+        const notes = await Note.find({
+            patient: patient._id,
+            clinician: patient.clinician._id,
+        }).lean();
         // sort with descending order by the time
         notes.sort(function (a, b) {
             var c = new Date(a.time);
@@ -123,20 +134,25 @@ const renderPatientProfile = async (req, res) => {
             return d - c;
         });
 
-        const messages = await Message.find({patient: patient._id, clinician: patient.clinician._id}).populate('clinician').lean();
+        const messages = await Message.find({
+            patient: patient._id,
+            clinician: patient.clinician._id,
+        })
+            .populate("clinician")
+            .lean();
         messages.sort(function (a, b) {
             var c = new Date(a.time);
             var d = new Date(b.time);
             return d - c;
         });
-        
+
         // console.log(messages)
-        res.render('clinician/viewPatient', {
-            style: 'viewPatient.css',
+        res.render("clinician/viewPatient", {
+            style: "viewPatient.css",
             patient,
             timeSeriesList,
             notes,
-            messages
+            messages,
         });
     } catch (e) {
         console.log(e);
@@ -192,7 +208,9 @@ const submitRequirement = async (req, res) => {
     }
 
     try {
-        const patient = await Patient.findById(pid).populate('requirements').lean();
+        const patient = await Patient.findById(pid)
+            .populate("requirements")
+            .lean();
         await TimeSeries.findOneAndUpdate(
             { _id: patient.requirements._id, clinicianUse: true },
             update
@@ -203,7 +221,6 @@ const submitRequirement = async (req, res) => {
     }
 };
 
-
 const addNote = async (req, res) => {
     try {
         const pid = req.params.id;
@@ -211,22 +228,21 @@ const addNote = async (req, res) => {
 
         const title = req.body.title;
         const body = req.body.body;
-        
+
         const newNote = new Note({
             clinician: patient.clinician._id,
             patient: patient._id,
             title: title,
             body: body,
-            time: Date()
-        })
-        await newNote.save()
+            time: Date(),
+        });
+        await newNote.save();
 
-        res.redirect(`/clinician/view-patient/${pid}`)
-    } catch(e) {
-        console.log(e)
+        res.redirect(`/clinician/view-patient/${pid}`);
+    } catch (e) {
+        console.log(e);
     }
-    
-}
+};
 
 const addMessage = async (req, res) => {
     try {
@@ -234,21 +250,34 @@ const addMessage = async (req, res) => {
         const patient = await Patient.findById(pid).lean();
 
         const body = req.body.body;
-        
+
         const newMessage = new Message({
             clinician: patient.clinician._id,
             patient: patient._id,
             body: body,
-            time: Date()
-        })
-        await newMessage.save()
+            time: Date(),
+        });
+        await newMessage.save();
 
-        res.redirect(`/clinician/view-patient/${pid}`)
-    } catch(e) {
-        console.log(e)
+        res.redirect(`/clinician/view-patient/${pid}`);
+    } catch (e) {
+        console.log(e);
     }
-}
-
+};
+const insertData = (req, res) => {
+    var newPatient = new Patient({
+        firstName: req.body.firstName,
+        lastname: req.body.lastname,
+        nickName: req.body.nickName,
+        email: req.body.email,
+        password: req.body.password,
+        gender: req.body.gender,
+        engagementRate: req.body.engagementRate,
+        age: req.body.age,
+        theme: req.body.theme,
+    });
+    newPatient.save();
+};
 
 module.exports = {
     getDashboardData,
@@ -258,5 +287,6 @@ module.exports = {
     getPatientTimeSeriesList,
     submitRequirement,
     addNote,
-    addMessage
+    addMessage,
+    insertData,
 };

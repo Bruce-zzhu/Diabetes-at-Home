@@ -5,7 +5,7 @@ const patientSchema = new Schema(
     {
         clinician: {
             type: Schema.Types.ObjectId,
-            ref: "Clinician"
+            ref: "Clinician",
         },
         firstName: { type: String, required: true },
         lastName: { type: String, required: true },
@@ -13,12 +13,12 @@ const patientSchema = new Schema(
         age: { type: Number, required: true, min: 0, max: 150 },
         gender: { type: String, enum: ["male", "female"], required: true },
         engagementRate: Number,
-        theme: { type: String, required: true, default: 'default' },
+        theme: { type: String, required: true, default: "default" },
         email: { type: String, required: true, unique: true },
-        password: {type: String, required: true, default: 'password'},
+        password: { type: String, required: true, default: "password" },
         requirements: {
             type: Schema.Types.ObjectId,
-            ref: "TimeSeries"
+            ref: "TimeSeries",
         },
     },
     {
@@ -31,10 +31,10 @@ const timeSeriesSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Patient",
     },
-    clinicianUse: {type: Boolean, default: false},
-    date: { 
-        type: Date, 
-        required: true 
+    clinicianUse: { type: Boolean, default: false },
+    date: {
+        type: Date,
+        required: true,
     },
     bloodGlucose: {
         isRequired: {
@@ -83,26 +83,23 @@ const timeSeriesSchema = new Schema({
         unit: { type: String, default: "steps" },
         comment: { type: String, default: "" },
         createdAt: Date,
-    }
-
+    },
 });
 
-const themeSchema = new Schema(
-    {
-        themeName: { type: String, required: true, unique: true },
-        logoPath: { type: String, required: true },
-        colors: {
-            border: { type: String, required: true },
-            bg: { type: String, required: true },
-            text: { type: String, required: true },
-            altText: { type: String, required: true },
-            button: { type: String, required: true },
-            primary: { type: String, required: true },
-            secondary: { type: String, required: true },
-            tertiary: { type: String, required: true },
-        }
+const themeSchema = new Schema({
+    themeName: { type: String, required: true, unique: true },
+    logoPath: { type: String, required: true },
+    colors: {
+        border: { type: String, required: true },
+        bg: { type: String, required: true },
+        text: { type: String, required: true },
+        altText: { type: String, required: true },
+        button: { type: String, required: true },
+        primary: { type: String, required: true },
+        secondary: { type: String, required: true },
+        tertiary: { type: String, required: true },
     },
-);
+});
 
 const Patient = mongoose.model("Patient", patientSchema);
 const TimeSeries = mongoose.model("TimeSeries", timeSeriesSchema);
