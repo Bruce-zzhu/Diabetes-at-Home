@@ -106,6 +106,7 @@ nav .btn-outline-light:hover {
 }
 
 .dropdown {
+    position: relative;
     float: left;
     overflow: hidden;
     z-index: 5;
