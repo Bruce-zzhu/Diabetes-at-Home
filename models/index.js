@@ -110,14 +110,14 @@ const loadDataToDB = async () => {
     // await TimeSeries.deleteMany({});
     // await Clinician.deleteMany({});
     // await Note.deleteMany({});
-    await Message.deleteMany({});
+    // await Message.deleteMany({});
 
-    // await requirements.save();
+    await requirements.save();
     // await newPatient.save();
     // await newTimeseries.save();
     // await newClinician.save();
     // await newNote.save();
-    await newMessage.save();
+    // await newMessage.save();
 };
 
 loadDataToDB().then(() => {
