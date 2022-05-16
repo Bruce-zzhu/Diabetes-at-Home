@@ -2,7 +2,7 @@ nav {
     width: 100%;
     overflow: visible;
     background-color: var(--primary-color);
-    color: var(--alt-text-color);
+    color: var(--altText-color);
     position: fixed;
     z-index: 5;
     display: flex;
@@ -11,7 +11,7 @@ nav {
     padding: 16px;
     height: 48px;
     margin: auto;
-    box-shadow: 0 1.5px 0 var(--alt-text-color);
+    box-shadow: 0 1.5px 0 var(--altText-color);
     font-size: 16px;
 }
 
@@ -38,7 +38,7 @@ nav {
 nav a,
 nav a:hover {
     text-decoration: none;
-    color: var(--alt-text-color);
+    color: var(--altText-color);
 }
 
 .nav-name {
@@ -106,6 +106,7 @@ nav .btn-outline-light:hover {
 }
 
 .dropdown {
+    position: relative;
     float: left;
     overflow: hidden;
     z-index: 5;
@@ -114,7 +115,7 @@ nav .btn-outline-light:hover {
 .dropdown .dropbtn {
     border: none;
     outline: none;
-    color: var(--alt-text-color);
+    color: var(--altText-color);
     background-color: inherit;
     font-family: inherit;
     margin: 0;
@@ -122,7 +123,7 @@ nav .btn-outline-light:hover {
 
 #nav-links a:hover,
 .dropdown:hover .dropbtn {
-    background-color: var(--alt-text-color);
+    background-color: var(--altText-color);
     color: var(--primary-color);
 }
 .dropdown-content {
@@ -143,7 +144,7 @@ nav .btn-outline-light:hover {
     text-align: left;
 }
 .dropdown-content a:hover {
-    background-color: var(--alt-text-color);
+    background-color: var(--altText-color);
     color: var(--primary-color);
 }
 .dropdown:hover .dropdown-content {
@@ -177,7 +178,7 @@ nav .pre-login {
 }
 
 nav .spacer {
-    width: 50px;
+    width: 1px;
 }
 
 nav .simple-spacer {
@@ -200,8 +201,8 @@ nav .desktop {
 }
 
 .btn-outline-light {
-    color: var(--alt-text-color);
-    border-color: var(--alt-text-color);
+    color: var(--altText-color);
+    border-color: var(--altText-color);
 }
 
 @media screen and (max-width: 375px) {

@@ -5,10 +5,17 @@ const renderAboutUs = (req, res) => {
     });
 };
 const renderAboutDiabetes = (req, res) => {
-    res.render("about/aboutDiabetes", {
-        style: "about.css",
-        theme: req.session.theme
-    });
+    if (req.session.theme) {
+        res.render("about/aboutDiabetes", {
+            style: "about.css",
+            theme: req.session.theme
+        });
+    } else {
+        res.render("about/aboutDiabetes", {
+            style: "about.css"
+        });
+    }
+
 };
 const renderLoginPatient = (req, res) => {
     res.render("patient/login", {

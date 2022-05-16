@@ -108,7 +108,7 @@ section {
 }
 
 .about-sect > * {
-  color: var(--border-color);
+  color: var(--text-color);
 }
 
 .ytVid-container {

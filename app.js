@@ -15,7 +15,7 @@ if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
 }
 
-const connectionURL = process.env.MONGO_URL || 'mongodb://localhost:27017/diabetes-at-home';
+const connectionURL = process.env.MONGO_URL || 'mongodb://localhost:27017/d-a-h';
 mongoose.connect(connectionURL);
 
 const db = mongoose.connection;
@@ -64,13 +64,6 @@ app.set('views', path.join(__dirname, '/views'));
 app.use(express.static(path.join(__dirname, '/public')));
 // process incoming request
 app.use(bodyParser.urlencoded({ extended: true }));
-
-app.use(function (req, res, next) {
-    if (!req.session.theme) {
-        req.session.theme = "default";
-    }
-    next();
-})
 
 // routes
 app.use('/clinician', clinicianRoutes);
