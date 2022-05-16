@@ -43,50 +43,19 @@ function tableToggleComment(cell) {
     }
 }
 
-function getTheme(themeName) {
+function getTheme(theme) {
+    if (!theme) {return;}
+
+    console.log(theme.colors);
     var rootStyle = document.documentElement.style;
-    switch (themeName) {
-        case "default":
-            rootStyle.setProperty("--bg-color", "var(--offWhite-color)");
-            rootStyle.setProperty("--border-color", "var(--grey-color)");
-            rootStyle.setProperty("--text-color", "black");
-            rootStyle.setProperty("--altText-color", "white");
-            rootStyle.setProperty("--button-color", "var(--lightBlue-color)");
-            rootStyle.setProperty("--primary-color", "var(--blue-color)");
-            rootStyle.setProperty("--secondary-color", "var(--offGrey-color)");
-            rootStyle.setProperty("--tertiary-color", "white");
-            var logos = document.getElementsByClassName("logo");
-            for (var i=0; i<logos.length; i++) {
-                logos[i].src = "/images/logo-white.svg"
-            }
-            break;
-        case "dark":
-            rootStyle.setProperty("--bg-color", "var(--grey-color)");
-            rootStyle.setProperty("--border-color", "var(--offWhite-color)");
-            rootStyle.setProperty("--text-color", "white");
-            rootStyle.setProperty("--altText-color", "white");
-            rootStyle.setProperty("--button-color", "var(--grey-color)");
-            rootStyle.setProperty("--primary-color", "var(--offBlack-color");
-            rootStyle.setProperty("--secondary-color", "var(--lightGrey-color)");
-            rootStyle.setProperty("--tertiary-color", "var(--grey-color)");
-            var logos = document.getElementsByClassName("logo");
-            for (var i=0; i<logos.length; i++) {
-                logos[i].src = "/images/logo-white.svg"
-            }
-            break;
-        case "light":
-            rootStyle.setProperty("--bg-color", "white");
-            rootStyle.setProperty("--border-color", "var(--grey-color)");
-            rootStyle.setProperty("--text-color", "black");
-            rootStyle.setProperty("--altText-color", "black");
-            rootStyle.setProperty("--button-color", "white");
-            rootStyle.setProperty("--primary-color", "white");
-            rootStyle.setProperty("--secondary-color", "var(--offWhite-color)");
-            rootStyle.setProperty("--tertiary-color", "white");
-            var logos = document.getElementsByClassName("logo");
-            for (var i=0; i<logos.length; i++) {
-                logos[i].src = "/images/logo-black.svg"
-            }
+
+    for (var key in theme.colors) {
+        rootStyle.setProperty("--"+key+"-color", theme.colors[key]);
+    }
+
+    var logos = document.getElementsByClassName("logo");
+    for (var i=0; i<logos.length; i++) {
+        logos[i].src = theme.logoPath;
     }
 }
 
