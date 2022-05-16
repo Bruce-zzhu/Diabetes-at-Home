@@ -56,7 +56,6 @@ app.use(
 
 // use PASSPORT
 const passport = require('./passport.js');
-const { setTheme } = require('./public/scripts/js-helpers');
 app.use(passport.authenticate('session'))
 
 // link views to views directory

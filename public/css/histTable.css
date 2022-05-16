@@ -23,7 +23,7 @@
     height: 100%;
     width: 25%;
     background-color: var(--primary-color);
-    color: var(--alt-text-color);
+    color: var(--altText-color);
     border-right: 1px solid var(--border-color);
     text-align: center;
     padding: 0.5em 0;

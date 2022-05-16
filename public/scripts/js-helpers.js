@@ -43,14 +43,14 @@ function tableToggleComment(cell) {
     }
 }
 
-function setTheme(themeName) {
+function getTheme(themeName) {
     var rootStyle = document.documentElement.style;
     switch (themeName) {
         case "default":
             rootStyle.setProperty("--bg-color", "var(--offWhite-color)");
             rootStyle.setProperty("--border-color", "var(--grey-color)");
             rootStyle.setProperty("--text-color", "black");
-            rootStyle.setProperty("--alt-text-color", "white");
+            rootStyle.setProperty("--altText-color", "white");
             rootStyle.setProperty("--button-color", "var(--lightBlue-color)");
             rootStyle.setProperty("--primary-color", "var(--blue-color)");
             rootStyle.setProperty("--secondary-color", "var(--offGrey-color)");
@@ -64,7 +64,7 @@ function setTheme(themeName) {
             rootStyle.setProperty("--bg-color", "var(--grey-color)");
             rootStyle.setProperty("--border-color", "var(--offWhite-color)");
             rootStyle.setProperty("--text-color", "white");
-            rootStyle.setProperty("--alt-text-color", "white");
+            rootStyle.setProperty("--altText-color", "white");
             rootStyle.setProperty("--button-color", "var(--grey-color)");
             rootStyle.setProperty("--primary-color", "var(--offBlack-color");
             rootStyle.setProperty("--secondary-color", "var(--lightGrey-color)");
@@ -78,7 +78,7 @@ function setTheme(themeName) {
             rootStyle.setProperty("--bg-color", "white");
             rootStyle.setProperty("--border-color", "var(--grey-color)");
             rootStyle.setProperty("--text-color", "black");
-            rootStyle.setProperty("--alt-text-color", "black");
+            rootStyle.setProperty("--altText-color", "black");
             rootStyle.setProperty("--button-color", "white");
             rootStyle.setProperty("--primary-color", "white");
             rootStyle.setProperty("--secondary-color", "var(--offWhite-color)");
@@ -88,10 +88,11 @@ function setTheme(themeName) {
                 logos[i].src = "/images/logo-black.svg"
             }
     }
+}
 
-    
-
-    // TODO: change patient theme val in db
+function setTheme(patient, themeName) {
+    Patient.findOneAndUpdate( {_id: patient._id}, {theme: themeName});
+    getTheme();
 }
 
 module.exports = {
@@ -100,5 +101,6 @@ module.exports = {
     isSameDay,
     getDateInfo,
     tableToggleComment,
+    getTheme,
     setTheme
 };
