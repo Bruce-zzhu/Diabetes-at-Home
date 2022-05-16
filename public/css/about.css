@@ -46,7 +46,7 @@ https://developers.google.com/fonts/docs/material_icons */
   font-feature-settings: "liga";
 }
 
-.ref-a {
+sup a {
   text-decoration: none;
 }
 
@@ -101,6 +101,16 @@ section {
   margin-right: auto;
   max-width: 896px;
   padding: 32px;
+}
+
+section:nth-child(3) {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+section:nth-child(4) {
+  margin-top: -32px;
+  padding-bottom: 64px;
 }
 
 .about-sect {
