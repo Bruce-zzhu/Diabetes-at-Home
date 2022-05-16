@@ -57,7 +57,7 @@ const createTodayTimeSeries = async (patient) => {
 
 const getDashboardData = async (req, res) => {
     try {
-        const patients = await Patient.find({}).lean();
+        const patients = await Patient.find({}).populate('requirements').lean();
         var timeSeriesList = [];
         for (p of patients) {
             const timeSeries = await getTodayTimeSeries(p).then((data) => data);
