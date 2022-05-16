@@ -38,7 +38,8 @@ const messageSchema = new Schema({
         ref: "Patient"
     },
     body: String,
-    time: Date
+    time: Date,
+    unread: { type: Boolean, required: true, default: true }
 })
 
 
