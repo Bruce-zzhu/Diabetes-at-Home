@@ -137,6 +137,8 @@ const renderPatientDashboard = async (req, res) => {
             var d = new Date(b.time);
             return d - c;
         });
+        
+        req.session.theme = patient.theme;
 
         res.render('patient/dashboard', {
             style: 'p-dashboard.css',
@@ -151,8 +153,6 @@ const renderPatientDashboard = async (req, res) => {
             histData: JSON.stringify(histData),
             messages
         })
-        
-        req.session.theme = patient.theme;
     } catch (e) {
         console.log(e);
     }
