@@ -129,7 +129,7 @@
     cursor: pointer;
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 380px) {
 
     #dashboard-body h2 {
         margin-left: 5%;
@@ -173,7 +173,7 @@
      }
 }
 
-@media screen and (min-width: 376px) {
+@media screen and (min-width: 381px) {
     .home-container {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
@@ -196,7 +196,7 @@
     }
 }
 
-@media screen and (max-width: 1024px) and (min-width: 376px) {
+@media screen and (max-width: 1029px) and (min-width: 381px) {
     html {
         font-size: 60% !important;
     }
@@ -206,7 +206,7 @@
 }
 
 
-@media screen and (min-width: 1025px) {
+@media screen and (min-width: 1030px) {
     .module {
         width: 100%;
     }
