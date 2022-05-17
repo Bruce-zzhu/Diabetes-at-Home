@@ -157,7 +157,12 @@ const renderPatientDashboard = async (req, res) => {
 
         var allPatEgmts = await Patient.find({}, "nickName engagementRate");
         allPatEgmts.sort((a, b) => b.engagementRate - a.engagementRate);
-        allPatEgmts = JSON.stringify(allPatEgmts);
+        for (var i=0; i<allPatEgmts.length; i++) {
+            allPatEgmts[i] = {
+                nickName: allPatEgmts[i].nickName,
+                egmtRate: allPatEgmts[i].engagementRate * 100
+            }
+        }
 
         req.session.theme = JSON.stringify(
             await Theme.findOne({ themeName: patient.theme }).lean()
@@ -175,7 +180,7 @@ const renderPatientDashboard = async (req, res) => {
             timeSeriesList,
             histData: JSON.stringify(histData),
             messages,
-            allPatEgmts,
+            allPatEgmts
         });
     } catch (e) {
         console.log(e);
