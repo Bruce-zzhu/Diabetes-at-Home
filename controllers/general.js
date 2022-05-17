@@ -51,18 +51,18 @@ const renderResetPassword = (req, res) => {
     });
 };
 
-const renderSettings = (req, res) => {
+const renderSettings = async (req, res) => {
 
     // TODO not hardcode pat
-    // const patient = await Patient.findOne
+    const patient = await Patient.findOne({_id: "628208b8f2e1e34162d3b1df"});
 
     var tempUser = {
         userType: "patient",
-        userId: "628208b8f2e1e34162d3b1df",
-        firstName: "Settings",
-        lastName: "Tester",
-        email: "rllypoggers@pmail.com",
-        nickName: "s-name",
+        userId: patient._id,
+        firstName: patient.firstName,
+        lastName: patient.lastName,
+        email: patient.email,
+        nickName: patient.nickName,
     }
     req.session.user = tempUser;
 
@@ -93,6 +93,16 @@ const setTheme = async (req, res) => {
     res.redirect("/settings");
 }
 
+const setNickname = async (req, res) => {
+    try {
+        var newNick = req.body.newName;
+        await Patient.findOneAndUpdate( {_id: req.session.user.userId }, { nickName: newNick }, { new: true } );
+    } catch (e) {
+        console.log(e);
+    }
+    res.redirect("/settings");
+}
+
 module.exports = {
     renderAboutUs,
     renderAboutDiabetes,
@@ -102,5 +112,6 @@ module.exports = {
     renderResetPassword,
     renderSettings,
     setTheme,
+    setNickname,
     newFunction1
 };

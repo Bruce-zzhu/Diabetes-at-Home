@@ -20,13 +20,13 @@
         <div id="s-change-info" class="s-info">
             <a class="btn-theme field-btn" href="/reset-password">Change password</a>
             <button onclick="showChgNick()" class="btn-theme field-btn set-patient">Change nickname</button>
-            <form method="post" id="chg-nick" class="set-patient">
-                <input type="text"></input><button id="nick-btn" class="btn-theme">Save</button>
+            <form action="/settings/nickname" method="post" id="chg-nick" class="set-patient">
+                <input name="newName" type="text"></input><button id="nick-btn" class="btn-theme">Save</button>
             </form>
         </div>
     </div>
     <h2 class="set-patient">Color theme</h2>
-    <form method="post" class="set-patient set-item">
+    <form action="/settings/theme" method="post" class="set-patient set-item">
         <button type="submit" name="themeChosen" value="default" style="background-color: var(--blue-color);" class="s-color"></button>
         <button type="submit" name="themeChosen" value="dark" style="background-color: var(--offBlack-color);" class="s-color"></button>
         <button type="submit" name="themeChosen" value="light" style="background-color: white;" class="s-color"></button>
