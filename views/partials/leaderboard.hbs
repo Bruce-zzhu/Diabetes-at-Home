@@ -1,11 +1,22 @@
+
+
 <section class="leaderboard-container">
     <h5>Leaderboard</h5>
     <div class="scroll">
         <div class="user-place">
-            <p>Pat -- 80.00%</p>
-            {{engagementRate}}
-            <p>4.50% behind Naomi!</p>
+            <p>{{nickName}} -- <span id="egmt-val-ldrbd"></span> </p>
+            <p>   4.50% behind Naomi!</p>
         </div>
+        {{!
+        #each
+            <div>
+                nickName -- <span class="egmt-vals"></span>
+            </div>
+            
+
+        /each
+        }}
+        
         <div class="placing">
             <img class="medal place-number" alt="gold medal" src="https://uxwing.com/wp-content/themes/uxwing/download/24-sport-and-awards/gold-medal.svg">
             <p class="leaderboard-nickname">Naomi -- 84.50%</p>
@@ -28,3 +39,12 @@
         </div>
     </div>
 </section>
+
+<script>
+    var egmt = {{engagementRate}}*100;
+    document.getElementByClassId("egmt-val-ldrbd").innerHTML = egmt + "%";
+</script>
+<script>
+    const list = document.getElementsByClassName("egmt-vals");
+    .innerHTML = egmt + "%";
+</script>
