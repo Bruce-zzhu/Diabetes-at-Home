@@ -95,6 +95,11 @@ const setNickname = async (req, res) => {
     res.redirect("/settings");
 }
 
+const logOut = (req, res) => {
+    req.session.destroy();
+    res.redirect("/");
+}
+
 module.exports = {
     renderAboutUs,
     renderAboutDiabetes,
@@ -105,5 +110,6 @@ module.exports = {
     renderSettings,
     setTheme,
     setNickname,
+    logOut,
     newFunction1
 };

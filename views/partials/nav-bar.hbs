@@ -44,10 +44,9 @@ links and functions change depending on login status/user type. --}}
                                     src="https://uxwing.com/wp-content/themes/uxwing/download/12-peoples-avatars/no-profile-picture.svg"
                                 />
                                 <p><strong>{{user.firstName}} {{user.lastName}}</strong><br/>{{user.email}}</p>
-                                <p><button
-                                        onclick="logOut()"
-                                        class="btn btn-theme"
-                                    >Log out</button></p>
+                                <form action="/log-out" method="post">
+                                    <button class="btn btn-theme">Log out</button>
+                                </form>
                             </div>
                             <a href="/settings">Settings</a>
                         </div>

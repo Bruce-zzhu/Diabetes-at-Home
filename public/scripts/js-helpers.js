@@ -1,9 +1,3 @@
-function logOut() {
-    console.log('User has logged out');
-    window.location.replace(window.location.origin + '/');
-    // TODO: clear session cookie
-}
-
 function consolelogs() {
     console.log('User creating new entry');
 }
@@ -60,7 +54,6 @@ function getTheme(theme) {
 }
 
 module.exports = {
-    logOut,
     consolelogs,
     isSameDay,
     getDateInfo,

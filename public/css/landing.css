@@ -79,7 +79,7 @@
 
 .btn-list button {
     background-color: var(--primary-color);
-    color: white;
+    color: var(--altText-color);
     border: 1.5px solid white;
     border-radius: 0.5rem;
     font-size: 1.25rem;
