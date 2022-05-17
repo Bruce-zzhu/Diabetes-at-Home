@@ -157,7 +157,6 @@ const renderPatientDashboard = async (req, res) => {
 
         var allPatEgmts = await Patient.find({}, "nickName engagementRate");
         allPatEgmts.sort((a, b) => b.engagementRate - a.engagementRate);
-        allPatEgmts = allPatEgmts.slice(0, 5);
         allPatEgmts = JSON.stringify(allPatEgmts);
 
         req.session.theme = JSON.stringify(
