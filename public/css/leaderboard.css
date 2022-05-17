@@ -1,9 +1,9 @@
 .scroll {
-    padding:4px;
+    padding: 4px;
     background-color: initial;
     overflow-x: hidden;
     overflow-y: auto;
-    text-align:justify;
+    text-align: justify;
     width: auto;
     height: 150px;
 }
@@ -27,7 +27,7 @@
     padding-right: 15%;
     padding-top: 1%;
     padding-bottom: 1%;
-    top:50%;
+    top: 50%;
     vertical-align: middle;
 }
 
@@ -35,7 +35,7 @@ h5 .place-number {
     font-size: 1rem;
 }
 
-p .leaderboard-nickname {
+p .place-text {
     font-size: 1rem;
 }
 
@@ -46,20 +46,20 @@ p .leaderboard-nickname {
     font-size: 1.25rem;
 }
 
-.scroll > *{
+.scroll > * {
     padding-bottom: 10px;
 }
 
 /* Adjust height of box when on mobile view */
-@media screen and (max-width: 380px){
-    div.scroll{
+@media screen and (max-width: 380px) {
+    div.scroll {
         height: 190px;
     }
 }
 
 /* Adjust height of box when on tablet view */
-@media screen and (min-width: 1030px){
-    div.scroll{
+@media screen and (min-width: 1030px) {
+    div.scroll {
         height: 290px;
     }
 }
