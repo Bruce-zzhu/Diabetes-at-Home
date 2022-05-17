@@ -8,6 +8,10 @@
     margin-top: 2rem;
 }
 
+#settings-container button {
+    border: 1px solid var(--border-color);
+}
+
 .set-item {
     background-color: var(--secondary-color);
     border: 1px solid var(--border-color);
@@ -100,5 +104,12 @@
     }
     #s-profile {
         display: grid;
+    }
+    #s-change-info button {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+    #s-change-info button:first-child {
+        margin-bottom: 0.5rem;
     }
 }
