@@ -33,13 +33,15 @@
                 
                 <td onclick="tableToggleComment(this)" class="blood ts">
                     <div class="tb-value"
-                    {{#if (isNotBounded bloodGlucose.value bloodGlucose.upperBound bloodGlucose.lowerBound)}}
+                    {{#if (recorded bloodGlucose.value)}}
                     {{#if bloodGlucose.isRequired}}
+                    {{#if (isNotBounded bloodGlucose.value bloodGlucose.upperBound bloodGlucose.lowerBound)}}
                     style="color: red"
                     {{/if}}
                     {{/if}}
+                    {{/if}}
                     >
-                        {{#if bloodGlucose.value}}{{bloodGlucose.value}}{{else}}&mdash;{{/if}}
+                        {{#if (recorded bloodGlucose.value)}}{{bloodGlucose.value}}{{else}}&mdash;{{/if}}
                         {{#if bloodGlucose.isRequired}}*{{/if}}
                     </div>
                     <div class="tb-comm">{{bloodGlucose.comment}}</div>
@@ -47,39 +49,45 @@
             
                 <td onclick="tableToggleComment(this)" class="weight ts">
                     <div class="tb-value"
-                    {{#if (isNotBounded weight.value weight.upperBound weight.lowerBound)}}
+                    {{#if (recorded weight.value)}}
                     {{#if weight.isRequired}}
+                    {{#if (isNotBounded weight.value weight.upperBound weight.lowerBound)}}
                     style="color: red"
                     {{/if}}
                     {{/if}}
+                    {{/if}}
                     >
-                        {{#if weight.value}}{{weight.value}}{{else}}&mdash;{{/if}}
+                        {{#if (recorded weight.value)}}{{weight.value}}{{else}}&mdash;{{/if}}
                         {{#if weight.isRequired}}*{{/if}}
                     </div>
                     <div class="tb-comm">{{weight.comment}}</div>
                 </td>
                 <td onclick="tableToggleComment(this)" class="insulin ts">
                     <div class="tb-value"
-                    {{#if (isNotBounded insulin.value insulin.upperBound insulin.lowerBound)}}
+                    {{#if (recorded insulin.value)}}
                     {{#if insulin.isRequired}}
+                    {{#if (isNotBounded insulin.value insulin.upperBound insulin.lowerBound)}}
                     style="color: red"
                     {{/if}}
                     {{/if}}
+                    {{/if}}
                     >
-                        {{#if insulin.value}}{{insulin.value}}{{else}}&mdash;{{/if}}
+                        {{#if (recorded insulin.value)}}{{insulin.value}}{{else}}&mdash;{{/if}}
                         {{#if insulin.isRequired}}*{{/if}}
                     </div>
                     <div class="tb-comm">{{insulin.comment}}</div>
                 </td>
                 <td onclick="tableToggleComment(this)" class="exercise ts">
                     <div class="tb-value"
-                    {{#if (isNotBounded exercise.value exercise.upperBound exercise.lowerBound)}}
+                    {{#if (recorded exercise.value)}}
                     {{#if exercise.isRequired}}
+                    {{#if (isNotBounded exercise.value exercise.upperBound exercise.lowerBound)}}
                     style="color: red"
                     {{/if}}
                     {{/if}}
+                    {{/if}}
                     >
-                        {{#if exercise.value}}{{exercise.value}}{{else}}&mdash;{{/if}}
+                        {{#if (recorded exercise.value)}}{{exercise.value}}{{else}}&mdash;{{/if}}
                         {{#if exercise.isRequired}}*{{/if}}
                     </div>
                     <div class="tb-comm">{{exercise.comment}}</div>
