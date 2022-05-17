@@ -1,29 +1,24 @@
 <div id="settings-container">
     <h1>Settings</h1>
     <h2>Account information</h2>
-    <div class="set-item">
+    <div id="s-profile" class="set-item">
         <div id="profile-img">
             <img
                 id="profile-pic"
                 src="/images/patientProfile.jpg"
                 alt="profile"
             />
-            <img
-                id="profile-badge"
-                src="/images/badge.svg"
-                alt="badge"
-            />
+            <button id="pfp-change">
+                <span class="material-icons">add_photo_alternate</span>
+            </button>
         </div>
-        <p id="s-name">{{user.firstName}} {{user.lastName}}</p>
-        <div id="s-info">Email: 
-            {{user.email}}
-            <div class="set-patient">
-                Nickname: 
-                {{user.nickName}}
-            </div>
+        <p class="s-name s-info"><span>{{user.firstName}}</span><span>{{user.lastName}}</span></p>
+        <div class="s-info s-details">
+            <p>Email: {{user.email}}</p>
+            <p class="set-patient">Nickname: {{user.nickName}}</p>
         </div>
-        <div id="s-info-change">
-            <button><a>Change password</a></button><br />
+        <div id="s-change-info" class="s-info">
+            <button><a>Change password</a></button>
             <button class="set-patient"><a>Change nickname</a></button>
         </div>
     </div>
@@ -31,5 +26,6 @@
     <div class="set-patient set-item">
         <p>bbbbbb</p>
     </div>
+    <button class="set-item set-logout" onclick="logOut()"><h3>Log out</h3></button>
 </div>
 <script src="/scripts/settings.js"></script>

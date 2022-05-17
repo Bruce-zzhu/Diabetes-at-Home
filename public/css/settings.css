@@ -1,8 +1,104 @@
 #settings-container {
-    padding: 60px 48px 48px 48px;
+    margin: auto;
+    width: 100vw;
+    overflow: hidden;
+}
+
+#settings-container h2 {
+    margin-top: 2rem;
 }
 
 .set-item {
     background-color: var(--secondary-color);
     border: 1px solid var(--border-color);
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+#s-profile {
+    grid-template-areas:
+        "pfp name"
+        "dets dets"
+        "chng chng"
+    ;
+    grid-gap: 1rem 0;
+}
+
+#profile-img {
+    position: relative;
+    height: 5rem;
+    margin-right: 2rem;
+    grid-area: pfp;
+}
+#profile-pic {
+    width: 5rem;
+    position: absolute;
+}
+#pfp-change {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    position: relative;
+    left: 5rem;
+    top: 5rem;
+    -ms-transform: translate(-75%, -75%);
+    transform: translate(-75%, -75%);
+}
+
+.s-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-bottom: 0;
+}
+
+.s-info * {
+    margin-bottom: 0;
+}
+
+.s-name {
+    font-weight: bold;
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    grid-area: name;
+}
+
+.s-details {
+    grid-area: dets;
+}
+
+#s-change-info {
+    grid-area: chng;
+}
+
+.set-logout {
+    color: var(--red-color);
+    margin: auto;
+    margin-top: 4rem;
+    width: 70%;
+    padding: 10px;
+}
+
+@media screen and (min-width: 1030px) {
+    #settings-container {
+        padding: 96px 15% 48px 15%;
+    }
+}
+
+@media screen and (min-width: 381px) and (max-width: 1029px) {
+    #settings-container {
+        padding: 96px 48px 48px 48px;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    #settings-container {
+        padding: 64px 15px 48px 15px;
+    }
+    #s-profile {
+        display: grid;
+    }
 }
