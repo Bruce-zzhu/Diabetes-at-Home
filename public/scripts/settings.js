@@ -12,3 +12,10 @@ if (document.referrer.startsWith(window.location.origin + ("/patient"))) {
         patSets[i].style.display = "none";
     }
 }
+
+function showChgNick() {
+    var toHide = document.querySelector("#s-change-info .field-btn:nth-child(2)");
+    var toShow = document.querySelector("#s-change-info form");
+    toHide.style.display = "none";
+    toShow.style.display = "flex";
+}

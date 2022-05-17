@@ -8,9 +8,9 @@
                 src="/images/patientProfile.jpg"
                 alt="profile"
             />
-            <button id="pfp-change" class="btn-theme">
+            {{!-- <button id="pfp-change" class="btn-theme">
                 <span class="material-icons">add_photo_alternate</span>
-            </button>
+            </button> --}}
         </div>
         <p class="s-name s-info"><span>{{user.firstName}}</span><span>{{user.lastName}}</span></p>
         <div class="s-info s-details">
@@ -18,8 +18,11 @@
             <p class="set-patient">Nickname: {{user.nickName}}</p>
         </div>
         <div id="s-change-info" class="s-info">
-            <button class="btn-theme"><a>Change password</a></button>
-            <button class="btn-theme set-patient"><a>Change nickname</a></button>
+            <a class="btn-theme field-btn" href="/reset-password">Change password</a>
+            <button onclick="showChgNick()" class="btn-theme field-btn set-patient">Change nickname</button>
+            <form method="post" id="chg-nick" class="set-patient">
+                <input type="text"></input><button id="nick-btn" class="btn-theme">Save</button>
+            </form>
         </div>
     </div>
     <h2 class="set-patient">Color theme</h2>
