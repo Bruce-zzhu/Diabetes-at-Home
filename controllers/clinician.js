@@ -64,6 +64,9 @@ const getDashboardData = async (req, res) => {
 
     // TODO: replace hardcoded chris
     req.session.user.id = "628208b8f2e1e34162d3b1e0";
+    req.session.user.firstName = "Chris";
+    req.session.user.lastName = "Lee";
+    req.session.user.email = "chris@diabetemail.com";
 
     try {
         const patients = await Patient.find({}).populate("requirements").lean();

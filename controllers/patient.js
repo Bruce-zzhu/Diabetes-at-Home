@@ -91,6 +91,9 @@ const renderPatientDashboard = async (req, res) => {
         req.session.user.theme = JSON.stringify(
             await Theme.findOne({ themeName: patient.theme }).lean()
         );
+        req.session.user.firstName = patient.firstName;
+        req.session.user.lastName = patient.lastName;
+        req.session.user.email = patient.email;
 
         var todayTimeSeries = await getTodayTimeSeries(patient).then(
             (data) => data

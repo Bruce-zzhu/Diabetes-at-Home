@@ -45,10 +45,6 @@ nav a:hover {
     color: var(--altText-color);
 }
 
-.nav-name {
-    padding-left: 16px;
-}
-
 nav .btn-theme {
     border-radius: 3px;
     padding: 0 8px 0 8px;
@@ -171,12 +167,6 @@ nav .btn-outline-light:hover {
     max-width: 100%;
     max-height: 100%;
     padding-bottom: 5px;
-}
-
-nav .post-login,
-nav .pre-login {
-    display: flex;
-    flex-direction: row;
 }
 
 nav .spacer {
