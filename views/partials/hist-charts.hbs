@@ -1,0 +1,42 @@
+
+<div id="charts-container">
+
+    <div class='chart-row'>
+        <div id='chart-bkg'>
+            <canvas id='bloodChart'></canvas>
+        </div>
+        <div id='chart-bkg'>
+            <canvas id='weightChart'></canvas>
+        </div>
+    </div>
+
+    <div class='chart-row'>
+        <div id='chart-bkg'>
+            <canvas id='insulinChart'></canvas>
+        </div>
+        <div id='chart-bkg'>
+            <canvas id='exerciseChart'></canvas>
+        </div>
+    </div>
+</div>
+
+<script src='https://cdn.jsdelivr.net/npm/chart.js'></script>
+<script>
+    var histData = {{{histData}}}
+</script>
+<script src='/scripts/hist-charts.js'></script>
+
+<style>
+#charts-container {
+    width: 80%;
+    margin: auto;
+}
+#chart-bkg {
+    width: 45%;
+}
+.chart-row {
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 5rem;
+}
+</style>

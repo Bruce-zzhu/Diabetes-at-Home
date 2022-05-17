@@ -28,11 +28,16 @@
             {{>averagehistTable averageTimeseries startDateArray=startDateArray endDateArray=endDateArray}}
 
         </div>
-        <div id="hist-chart" class="module">{{>hist-chart histData=histData}}</div>
+        <div id="hist-chart" class="module">{{>recent-chart histData=histData}}</div>
 
     </div>
     <h2>Full History</h2>
     {{>fullHistTable timeSeriesList=timeSeriesList}}
+
+    
+    {{>hist-charts histData=histData}}
+
+    
     
 </div>
 
