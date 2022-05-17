@@ -88,18 +88,18 @@
     display: block;
     text-align: center;
     grid-area: st-value;
-    font-size: calc(0.8 * var(--bs-body-font-size));
+    font-size: calc(0.8 * 1rem);
 }
 
 .stack-comment {
     display: none;
     grid-area: st-comment;
     height: 100%;
-    background-color: var(--tertiary-color);
-    border-left: 1px solid var(--border-color);
-    font-size: calc(0.8 * var(--bs-body-font-size));
+    font-size: calc(0.8 * 1rem);
     text-align: left;
     padding: 5px;
+    background-color: var(--tertiary-color);
+    border-left: 1px solid var(--border-color)
 }
 
 .value-text {

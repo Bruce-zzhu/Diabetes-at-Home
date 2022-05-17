@@ -11,11 +11,10 @@
     height: 150px;
 }
 
-/**
-p {
+.leaderboard-container p {
     text-align: center;
 }
-**/
+
 /* Ensure medals have consistent sizing with 4th and 5th place */
 .medal {
     width: 1.25rem;
@@ -57,14 +56,14 @@ p .leaderboard-nickname {
 }
 
 /* Adjust height of box when on mobile view */
-@media screen and (max-width: 375px){
+@media screen and (max-width: 380px){
     div.scroll{
         height: 190px;
     }
 }
 
 /* Adjust height of box when on tablet view */
-@media screen and (min-width: 1025px){
+@media screen and (min-width: 1030px){
     div.scroll{
         height: 290px;
     }

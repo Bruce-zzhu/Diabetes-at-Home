@@ -1,5 +1,5 @@
 
-h1 {
+.login-container h1 {
     font-size: 8vw;
     font-weight: 600;
     text-align: center;
@@ -8,7 +8,7 @@ h1 {
     padding-right: 5%;
 }
 
-h2 {
+.login-container h2 {
     font-size: 3vw;
     font-weight: 400;
     text-align: center;
@@ -16,7 +16,7 @@ h2 {
     padding-bottom: 1rem;
 }
 
-h3 {
+.login-container h3 {
     font-size: 2vw;
     font-weight: 100;
     text-align: center;
@@ -73,7 +73,7 @@ em {
     font-style: italic;
 }
 
-h4 {
+.login-container h4 {
     font-size: 1rem;
     display: none;
     color: #800035;
@@ -135,7 +135,7 @@ input[type=button] {
 }
 
 /* When in desktop view, show a background image depending on patient or clinician login */
-@media screen and (min-width: 1025px) {
+@media screen and (min-width: 1030px) {
     .login-page.patient {
         background-image: url(https://post-phinf.pstatic.net/MjAxODA3MTZfMTkz/MDAxNTMxNzI3OTYyMDAz.TOz1mdltXgjJd54JFdH4UStRDVvSHAZ6x2W77fKFk9kg.KR0kJySZ0GNl4mFOYWNYj5kvKadaLauAdMHXGjW-pTQg.JPEG/GettyImages-990008836.jpg);
     }
@@ -147,7 +147,7 @@ input[type=button] {
 }
 
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1029px) {
     /* When in tablet or mobile view show blue background */
     .login-page {
         background-color: var(--primary-color);
@@ -169,7 +169,7 @@ input[type=button] {
         display: none;
     }
 
-    h4 {
+    .login-container h4 {
         display: block;
     }
 
@@ -195,7 +195,7 @@ input[type=button] {
     
 }    
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 380px) {
     /* In mobile view the about us and about diabetes buttons are stacked */
     .about-buttons {
         text-align: center;
@@ -205,7 +205,7 @@ input[type=button] {
         align-items: center;
     }
     
-    h1 {
+    .login-container h1 {
         display: none;
     }
 
@@ -214,11 +214,11 @@ input[type=button] {
 
     }
 
-    h2 {
+    .login-container h2 {
         display: none;
     }
 
-    h3 {
+    .login-container h3 {
         font-size: 1.2rem;
     }
 

@@ -114,6 +114,11 @@ input {
     width: 5rem;
 }
 
+#new-note input, #new-message textarea {
+    border-radius: 2px;
+    border: 1px solid var(--border-color);
+}
+
 .checkbox {
     height: 1rem;
     width: 3rem;
@@ -155,7 +160,7 @@ h2 {
 
 .form-control {
     margin-right: 4px;
-    border-radius: 0;
+    border-radius: 2px;
     border: 1px solid var(--border-color);
 }
 
@@ -165,6 +170,16 @@ h2 {
 
 #new-note-body {
     margin-top: 3px;
+}
+
+.emojionearea, .emojionearea.form-control {
+    width: 80%;
+    border-radius: 2px;
+    border: 1px solid var(--border-color);
+}
+
+.emojionearea .emojionearea-editor {
+    min-height: 0 !important;
 }
 
 .input-group>:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {

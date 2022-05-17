@@ -1,3 +1,6 @@
+const { Patient, Theme } = require("../models/patient");
+const { Clinician } = require("../models/clinician");
+
 const renderAboutUs = (req, res) => {
     res.render('about/aboutUs', {
         style: 'about.css',
@@ -5,10 +8,17 @@ const renderAboutUs = (req, res) => {
     });
 };
 const renderAboutDiabetes = (req, res) => {
-    res.render("about/aboutDiabetes", {
-        style: "about.css",
-        theme: req.session.theme
-    });
+    if (req.session.theme) {
+        res.render("about/aboutDiabetes", {
+            style: "about.css",
+            theme: req.session.theme
+        });
+    } else {
+        res.render("about/aboutDiabetes", {
+            style: "about.css"
+        });
+    }
+
 };
 const renderLoginPatient = (req, res) => {
     res.render("patient/login", {
@@ -41,6 +51,58 @@ const renderResetPassword = (req, res) => {
     });
 };
 
+const renderSettings = async (req, res) => {
+
+    // TODO not hardcode pat
+    const patient = await Patient.findOne({_id: "628208b8f2e1e34162d3b1df"});
+
+    var tempUser = {
+        userType: "patient",
+        userId: patient._id,
+        firstName: patient.firstName,
+        lastName: patient.lastName,
+        email: patient.email,
+        nickName: patient.nickName,
+    }
+    req.session.user = tempUser;
+
+    if (req.session.theme) {
+        res.render("settings", {
+            style: "settings.css",
+            theme: req.session.theme,
+            user: req.session.user
+        });
+    } else {
+        res.render("settings", {
+            style: "settings.css",
+            user: tempUser
+            // user: req.session.user
+        });
+    }
+}
+
+const setTheme = async (req, res) => {
+
+    try {
+        var themeName = req.body.themeChosen;
+        var patient = await Patient.findOneAndUpdate( {_id: req.session.user.userId }, { theme: themeName }, { new: true } );
+        req.session.theme = JSON.stringify(await Theme.findOne( { themeName: patient.theme } ).lean());
+    } catch (e) {
+        console.log(e);
+    }
+    res.redirect("/settings");
+}
+
+const setNickname = async (req, res) => {
+    try {
+        var newNick = req.body.newName;
+        await Patient.findOneAndUpdate( {_id: req.session.user.userId }, { nickName: newNick }, { new: true } );
+    } catch (e) {
+        console.log(e);
+    }
+    res.redirect("/settings");
+}
+
 module.exports = {
     renderAboutUs,
     renderAboutDiabetes,
@@ -48,5 +110,8 @@ module.exports = {
     renderLoginClinician,
     renderForgotPassword,
     renderResetPassword,
+    renderSettings,
+    setTheme,
+    setNickname,
     newFunction1
 };

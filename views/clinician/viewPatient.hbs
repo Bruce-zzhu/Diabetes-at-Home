@@ -102,7 +102,7 @@
                 <div id="new-message" class="new-text-entry">
                     <form action="/clinician/view-patient/{{patient._id}}/message" method="POST">
                         <div class="input-group">
-                            <input name="body" id="new-msg-text" type="text" class="form-control" placeholder="New message" aria-label="New message" aria-describedby="basic-addon2" >
+                            <textarea name="body" id="new-msg-text" class="form-control" placeholder="New message" aria-label="New message" aria-describedby="basic-addon2" rows="1"></textarea>
                             <div class="input-group-append">
                                 <button onclick="cancelTextEntry('new-message')" class="btn btn-outline-danger" type="button"><span class="material-icons">close</span></button>
                                 <button onclick="sendMsg('new-msg-text')" class="btn btn-outline-success" type="submit"><span class="material-icons">send</span></button>
@@ -146,8 +146,38 @@
         </div>
     </div>
 
-    <h2 style="padding-top: 3rem;">Full History</h2>
+    <h2 style="padding-top: 3rem; font-weight: bold">Full History</h2>
     {{>fullHistTable timeSeriesList=timeSeriesList}}
 </div>
 
+
+
 <script src="/scripts/view-patient.js"></script>
+
+
+<script>
+    $('#new-msg-text').emojioneArea({
+        pickerPosition: 'bottom'
+    });
+
+    
+</script>
+
+{{!-- <script>
+    tinymce.init({
+        selector: 'textarea',
+        height: 300,
+        plugins: 'emoticons',
+        toolbar: 'undo redo | styles | bold italic | ' +
+            'alignleft aligncenter alignright alignjustify | ' +
+            'outdent indent | numlist bullist | emoticons',
+        emoticons_append: {
+            custom_mind_explode: {
+            keywords: ['brain', 'mind', 'explode', 'blown'],
+            char: '🤯'
+            }
+        },
+        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }',
+        tinydrive_token_provider: '/jwt',
+    });
+  </script> --}}

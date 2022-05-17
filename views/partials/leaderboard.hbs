@@ -1,5 +1,6 @@
-
-
+{{!-- <script>
+    var allPatEgmts = {{{allPatEgmts}}};
+</script> --}}
 <section class="leaderboard-container">
     <h5>Leaderboard</h5>
     <div class="scroll">
@@ -7,36 +8,29 @@
             <p>{{nickName}} -- <span id="egmt-val-ldrbd"></span> </p>
             <p>   4.50% behind Naomi!</p>
         </div>
-        {{!
-        #each
-            <div>
-                nickName -- <span class="egmt-vals"></span>
+        {{!-- {{#each allPatEgmts}}
+            <div>{{nickName}}</div>
+        {{/each}} --}}
+            <div class="placing">
+                <img class="medal place-number" alt="gold medal" src="https://uxwing.com/wp-content/themes/uxwing/download/24-sport-and-awards/gold-medal.svg">
+                <p class="leaderboard-nickname">Naomi -- 84.50%</p>
             </div>
-            
-
-        /each
-        }}
-        
-        <div class="placing">
-            <img class="medal place-number" alt="gold medal" src="https://uxwing.com/wp-content/themes/uxwing/download/24-sport-and-awards/gold-medal.svg">
-            <p class="leaderboard-nickname">Naomi -- 84.50%</p>
-        </div>
-        <div class="second placing">
-            <img class="medal place-number" alt="silver medal" src="https://uxwing.com/wp-content/themes/uxwing/download/24-sport-and-awards/silver-medal.svg">
-            <p class="leaderboard-nickname">Pat -- 80.00%</p>
-        </div>
-        <div class="third placing">
-            <img class="medal place-number" alt="bronze medal" src="https://uxwing.com/wp-content/themes/uxwing/download/24-sport-and-awards/bronze-medal.svg">
-            <p class="leaderboard-nickname">Tarkik -- 78.50%</p>
-        </div>
-        <div class="fourth placing">
-            <h5 class="place-number">4th</h5>
-            <p class="leaderboard-nickname">Jon -- 75.00%</p>
-        </div>
-        <div class="fifth placing">
-            <h5 class="place-number">5th</h5>
-            <p class="leaderboard-nickname">Ige -- 70.80%</p>
-        </div>
+            <div class="placing">
+                <img class="medal place-number" alt="silver medal" src="https://uxwing.com/wp-content/themes/uxwing/download/24-sport-and-awards/silver-medal.svg">
+                <p class="leaderboard-nickname">Pat -- 80.00%</p>
+            </div>
+            <div class="placing">
+                <img class="medal place-number" alt="bronze medal" src="https://uxwing.com/wp-content/themes/uxwing/download/24-sport-and-awards/bronze-medal.svg">
+                <p class="leaderboard-nickname">Tarkik -- 78.50%</p>
+            </div>
+            <div class="placing">
+                <h5 class="place-number">4th</h5>
+                <p class="leaderboard-nickname">Jon -- 75.00%</p>
+            </div>
+            <div class="placing">
+                <h5 class="place-number">5th</h5>
+                <p class="leaderboard-nickname">Ige -- 70.80%</p>
+            </div>
     </div>
 </section>
 
