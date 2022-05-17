@@ -49,14 +49,28 @@ const renderResetPassword = (req, res) => {
 };
 
 const renderSettings = (req, res) => {
+
+    var tempUser = {
+        userType: "patient",
+        // userId: ObjectId("628208b8f2e1e34162d3b1df"),
+        firstName: "Settings",
+        lastName: "Tester",
+        email: "rllypoggers@pmail.com",
+        nickName: "s-name",
+    }
+
     if (req.session.theme) {
         res.render("settings", {
             style: "settings.css",
-            theme: req.session.theme
+            theme: req.session.theme,
+            user: tempUser
+            // user: req.session.user
         });
     } else {
         res.render("settings", {
-            style: "settings.css"
+            style: "settings.css",
+            user: tempUser
+            // user: req.session.user
         });
     }
 }

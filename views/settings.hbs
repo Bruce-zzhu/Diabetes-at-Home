@@ -1,4 +1,35 @@
 <div id="settings-container">
     <h1>Settings</h1>
-    <div>Placeholder text</div>
+    <h2>Account information</h2>
+    <div class="set-item">
+        <div id="profile-img">
+            <img
+                id="profile-pic"
+                src="/images/patientProfile.jpg"
+                alt="profile"
+            />
+            <img
+                id="profile-badge"
+                src="/images/badge.svg"
+                alt="badge"
+            />
+        </div>
+        <p id="s-name">{{user.firstName}} {{user.lastName}}</p>
+        <div id="s-info">Email: 
+            {{user.email}}
+            <div class="set-patient">
+                Nickname: 
+                {{user.nickName}}
+            </div>
+        </div>
+        <div id="s-info-change">
+            <button><a>Change password</a></button><br />
+            <button class="set-patient"><a>Change nickname</a></button>
+        </div>
+    </div>
+    <h2 class="set-patient">Color theme</h2>
+    <div class="set-patient set-item">
+        <p>bbbbbb</p>
+    </div>
 </div>
+<script src="/scripts/settings.js"></script>
