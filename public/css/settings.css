@@ -113,12 +113,16 @@
     width: 30px;
 }
 
-.set-logout {
-    color: var(--red-color);
+.set-item:last-child {
     margin: auto;
     margin-top: 4rem;
     width: 70%;
-    padding: 10px;
+    padding: 0;
+}
+
+.set-logout {
+    color: var(--red-color);
+    width: 100%;
 }
 
 @media screen and (min-width: 1030px) {

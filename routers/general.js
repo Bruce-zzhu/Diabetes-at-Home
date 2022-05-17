@@ -13,7 +13,6 @@ router.get("/about-diabetes", general.renderAboutDiabetes);
 router.get("/login-c", general.renderLoginClinician);
 
 // Patient Login page
-
 router.get("/login-p", general.renderLoginPatient);
 router.post('/login-p', general.newFunction1);
     // passport.authenticate ('local', { failureRedirect: '/login', failureFlash: true }), // if bad login, send user back to login page
@@ -31,6 +30,9 @@ router.get('/reset-password', general.renderResetPassword);
 router.get('/settings', general.renderSettings);
 router.post("/settings/theme", general.setTheme);
 router.post("/settings/nickname", general.setNickname);
+
+// log off
+router.post("/log-out", general.logOut);
 
 module.exports = router;
 

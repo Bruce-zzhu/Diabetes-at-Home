@@ -24,7 +24,7 @@ const addEntryData = async (req, res) => {
     const exerciseComment = req.body.stepComment;
 
     try {
-        const patient = await Patient.findOne({ email: patientEmail });
+        const patient = await Patient.findOne({ _id: req.session.user.id });
         const timeSeries = await getTodayTimeSeries(patient).then(
             (data) => data
         );
@@ -85,6 +85,15 @@ const addEntryData = async (req, res) => {
 const renderPatientDashboard = async (req, res) => {
     try {
         const patient = await Patient.findOne({ email: patientEmail }).lean();
+
+        req.session.user.type = "patient";
+        req.session.user.id = patient._id;
+        req.session.user.theme = JSON.stringify(
+            await Theme.findOne({ themeName: patient.theme }).lean()
+        );
+        req.session.user.firstName = patient.firstName;
+        req.session.user.lastName = patient.lastName;
+        req.session.user.email = patient.email;
 
         var todayTimeSeries = await getTodayTimeSeries(patient).then(
             (data) => data
@@ -157,16 +166,17 @@ const renderPatientDashboard = async (req, res) => {
 
         var allPatEgmts = await Patient.find({}, "nickName engagementRate");
         allPatEgmts.sort((a, b) => b.engagementRate - a.engagementRate);
-        allPatEgmts = allPatEgmts.slice(0, 5);
-        allPatEgmts = JSON.stringify(allPatEgmts);
-
-        req.session.theme = JSON.stringify(
-            await Theme.findOne({ themeName: patient.theme }).lean()
-        );
+        for (var i=0; i<allPatEgmts.length; i++) {
+            allPatEgmts[i] = {
+                nickName: allPatEgmts[i].nickName,
+                egmtRate: allPatEgmts[i].engagementRate * 100
+            }
+        }
 
         res.render("patient/dashboard", {
             style: "p-dashboard.css",
-            theme: req.session.theme,
+            theme: req.session.user.theme,
+            user: req.session.user,
             patient,
             todayTimeSeries,
             todayArray,
@@ -176,7 +186,7 @@ const renderPatientDashboard = async (req, res) => {
             timeSeriesList,
             histData: JSON.stringify(histData),
             messages,
-            allPatEgmts,
+            allPatEgmts
         });
     } catch (e) {
         console.log(e);

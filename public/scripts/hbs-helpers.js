@@ -33,6 +33,16 @@ var register = function(Handlebars) {
         // date with time
         toMelbTimestamp: function (date) {
             return new Date(date).toLocaleString("en-AU", {"timeZone": "Australia/Melbourne"})
+        },
+
+        // JSON stringfy
+        jStringify: function (obj) {
+            return JSON.stringify(obj);
+        },
+
+        // check if a user (cookie) is clinician
+        ifClin: function (user, options) {
+            return (user.type == "clinician") ? options.fn(this) : options.inverse(this);
         }
         
     }
