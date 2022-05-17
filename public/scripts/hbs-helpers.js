@@ -10,6 +10,11 @@ var register = function(Handlebars) {
             return parseInt(value) + 1;
         },
 
+        // check if value entry is recorded
+        recorded: function(value) {
+            return (value == 0) || value;
+        },
+
         // extract date info from Date object
         getDate: function (date) {
             const year = date.getFullYear();
