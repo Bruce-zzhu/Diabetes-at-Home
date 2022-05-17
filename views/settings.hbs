@@ -1,35 +1,36 @@
 <div id="settings-container">
     <h1>Settings</h1>
     <h2>Account information</h2>
-    <div class="set-item">
+    <div id="s-profile" class="set-item">
         <div id="profile-img">
             <img
                 id="profile-pic"
                 src="/images/patientProfile.jpg"
                 alt="profile"
             />
-            <img
-                id="profile-badge"
-                src="/images/badge.svg"
-                alt="badge"
-            />
+            {{!-- <button id="pfp-change" class="btn-theme">
+                <span class="material-icons">add_photo_alternate</span>
+            </button> --}}
         </div>
-        <p id="s-name">{{user.firstName}} {{user.lastName}}</p>
-        <div id="s-info">Email: 
-            {{user.email}}
-            <div class="set-patient">
-                Nickname: 
-                {{user.nickName}}
-            </div>
+        <p class="s-name s-info"><span>{{user.firstName}}</span><span>{{user.lastName}}</span></p>
+        <div class="s-info s-details">
+            <p>Email: {{user.email}}</p>
+            <p class="set-patient">Nickname: {{user.nickName}}</p>
         </div>
-        <div id="s-info-change">
-            <button><a>Change password</a></button><br />
-            <button class="set-patient"><a>Change nickname</a></button>
+        <div id="s-change-info" class="s-info">
+            <a class="btn-theme field-btn" href="/reset-password">Change password</a>
+            <button onclick="showChgNick()" class="btn-theme field-btn set-patient">Change nickname</button>
+            <form action="/settings/nickname" method="post" id="chg-nick" class="set-patient">
+                <input name="newName" type="text"></input><button id="nick-btn" class="btn-theme">Save</button>
+            </form>
         </div>
     </div>
     <h2 class="set-patient">Color theme</h2>
-    <div class="set-patient set-item">
-        <p>bbbbbb</p>
-    </div>
+    <form action="/settings/theme" method="post" class="set-patient set-item">
+        <button type="submit" name="themeChosen" value="default" style="background-color: var(--blue-color);" class="s-color"></button>
+        <button type="submit" name="themeChosen" value="dark" style="background-color: var(--offBlack-color);" class="s-color"></button>
+        <button type="submit" name="themeChosen" value="light" style="background-color: white;" class="s-color"></button>
+    </form>
+    <button class="set-item set-logout" onclick="logOut()"><h3>Log out</h3></button>
 </div>
 <script src="/scripts/settings.js"></script>

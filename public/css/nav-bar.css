@@ -49,7 +49,7 @@ nav a:hover {
     padding-left: 16px;
 }
 
-nav .btn-light {
+nav .btn-theme {
     border-radius: 3px;
     padding: 0 8px 0 8px;
     border: 2px solid var(--border-color)

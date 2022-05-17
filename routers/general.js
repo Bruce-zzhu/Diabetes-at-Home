@@ -29,6 +29,8 @@ router.get('/reset-password', general.renderResetPassword);
 
 // settings page
 router.get('/settings', general.renderSettings);
+router.post("/settings/theme", general.setTheme);
+router.post("/settings/nickname", general.setNickname);
 
 module.exports = router;
 
