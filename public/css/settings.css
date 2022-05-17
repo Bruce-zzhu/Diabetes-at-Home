@@ -8,6 +8,10 @@
     margin-top: 2rem;
 }
 
+#settings-container h3 {
+    margin: 0;
+}
+
 #settings-container button {
     border: 1px solid var(--border-color);
 }
@@ -76,6 +80,11 @@
 
 #s-change-info {
     grid-area: chng;
+}
+
+.s-color {
+    height: 30px;
+    width: 30px;
 }
 
 .set-logout {

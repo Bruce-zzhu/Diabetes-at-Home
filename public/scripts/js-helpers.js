@@ -58,17 +58,11 @@ function getTheme(theme) {
     }
 }
 
-function setTheme(patient, themeName) {
-    Patient.findOneAndUpdate( {_id: patient._id}, {theme: themeName});
-    getTheme();
-}
-
 module.exports = {
     logOut,
     consolelogs,
     isSameDay,
     getDateInfo,
     tableToggleComment,
-    getTheme,
-    setTheme
+    getTheme
 };

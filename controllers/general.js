@@ -1,3 +1,6 @@
+const { Patient, Theme } = require("../models/patient");
+const { Clinician } = require("../models/clinician");
+
 const renderAboutUs = (req, res) => {
     res.render('about/aboutUs', {
         style: 'about.css',
@@ -50,21 +53,24 @@ const renderResetPassword = (req, res) => {
 
 const renderSettings = (req, res) => {
 
+    // TODO not hardcode pat
+    // const patient = await Patient.findOne
+
     var tempUser = {
         userType: "patient",
-        // userId: ObjectId("628208b8f2e1e34162d3b1df"),
+        userId: "628208b8f2e1e34162d3b1df",
         firstName: "Settings",
         lastName: "Tester",
         email: "rllypoggers@pmail.com",
         nickName: "s-name",
     }
+    req.session.user = tempUser;
 
     if (req.session.theme) {
         res.render("settings", {
             style: "settings.css",
             theme: req.session.theme,
-            user: tempUser
-            // user: req.session.user
+            user: req.session.user
         });
     } else {
         res.render("settings", {
@@ -75,6 +81,18 @@ const renderSettings = (req, res) => {
     }
 }
 
+const setTheme = async (req, res) => {
+
+    try {
+        var themeName = req.body.themeChosen;
+        var patient = await Patient.findOneAndUpdate( {_id: req.session.user.userId }, { theme: themeName }, { new: true } );
+        req.session.theme = JSON.stringify(await Theme.findOne( { themeName: patient.theme } ).lean());
+    } catch (e) {
+        console.log(e);
+    }
+    res.redirect("/settings");
+}
+
 module.exports = {
     renderAboutUs,
     renderAboutDiabetes,
@@ -83,5 +101,6 @@ module.exports = {
     renderForgotPassword,
     renderResetPassword,
     renderSettings,
+    setTheme,
     newFunction1
 };

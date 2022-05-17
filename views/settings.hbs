@@ -23,9 +23,11 @@
         </div>
     </div>
     <h2 class="set-patient">Color theme</h2>
-    <div class="set-patient set-item">
-        <p>bbbbbb</p>
-    </div>
+    <form method="post" class="set-patient set-item">
+        <button type="submit" name="themeChosen" value="default" style="background-color: var(--blue-color);" class="s-color"></button>
+        <button type="submit" name="themeChosen" value="dark" style="background-color: var(--offBlack-color);" class="s-color"></button>
+        <button type="submit" name="themeChosen" value="light" style="background-color: white;" class="s-color"></button>
+    </form>
     <button class="set-item set-logout" onclick="logOut()"><h3>Log out</h3></button>
 </div>
 <script src="/scripts/settings.js"></script>
