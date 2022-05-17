@@ -50,6 +50,7 @@
     grid-area: pfp;
     position: relative;
     padding-right: 6rem;
+    width: 10rem;
 }
 
 #profile-pic {
@@ -70,12 +71,14 @@
 
 #pinfo {
     font-size: 1.2rem;
-    grid-area: pinfo;
+    padding-left: 15%;
+    width: 15rem;
 }
 
 #engagement {
     grid-area: egmt;
     padding-left: 2rem;
+    margin-top: -2rem;
 }
 
 #engagement h5 {
@@ -157,7 +160,8 @@
     }
 
     #engagement {
-        padding: 15% 0 5% 5%;
+        padding: 0 0 5% 5%;
+        margin-top: 0;
     }
 
     #full-history tr th {
@@ -194,15 +198,14 @@
     #hc1.module {
         height: 180px;
     }
+    
 }
 
 @media screen and (max-width: 1029px) and (min-width: 381px) {
     html {
         font-size: 60% !important;
     }
-    #engagement {
-        padding-top: 5%;
-    }
+
 }
 
 
