@@ -54,10 +54,13 @@ links and functions change depending on login status/user type. --}}
                             />
                             <p class="nav-clinician"><strong>Chris Lee</strong><br/>chris@diabetemail.com</p>
                             <p class="nav-patient"><strong>Pat Smith</strong><br/>pat@diabetemail.com</p>
-                            <p><button
+                            <form method="POST" action="/logout">
+                                <button class="btn btn-light">Log out</button>
+                            </form>     
+                            {{!-- <p><button
                                     onclick="logOut()"
                                     class="btn btn-light"
-                                >Log out</button></p>
+                                >Log out</button></p> --}}
                         </div>
                         <a href="/settings/colour"><span
                                 style="float: left"

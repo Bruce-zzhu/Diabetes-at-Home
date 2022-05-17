@@ -1,7 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const general = require('../controllers/general');
+const passport = require('../passport');
 const req = require('express/lib/request')
+const { Patient, TimeSeries } = require('../models/patient');
 
 // aboutUs page
 router.get("/about-us", general.renderAboutUs);
@@ -15,7 +17,7 @@ router.get("/login-c", general.renderLoginClinician);
 // Patient Login page
 
 router.get("/login-p", general.renderLoginPatient);
-router.post('/login-p', general.newFunction1);
+// router.post('/login-p', passport.PatientLocalStrategy);
     // passport.authenticate ('local', { failureRedirect: '/login', failureFlash: true }), // if bad login, send user back to login page
     // (reg, res) => {
     //     res.redirect('/') // login was successful, send user to home page

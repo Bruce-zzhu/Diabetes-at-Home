@@ -21,7 +21,19 @@ const newPatient = new Patient({
     age: 30,
     gender: "male",
     email: "pat@diabetemail.com",
+    password: "password"
 });
+
+const newPatient2 = new Patient({
+    firstName: "Jeffrey",
+    lastName: "Daniels",
+    nickName: "Jeff",
+    age: 50,
+    gender: "male",
+    email: "jeff@diabetemail.com",
+    password: "words"
+});
+
 const newClinician = new Clinician({
     firstName: "Chris",
     lastName: " Lee",
@@ -63,9 +75,9 @@ const loadDataToDB = async () => {
     // delete the old data
     // await Patient.deleteMany({});
     // await TimeSeries.deleteMany({});
-    // // await Clinician.deleteMany({});
+    // await Clinician.deleteMany({});
 
-    // await newPatient.save();
+    await newPatient.save();
     // await newClinician.save();
     // await newTimeseries.save();
 };
@@ -73,3 +85,5 @@ const loadDataToDB = async () => {
 loadDataToDB().then(() => {
     mongoose.connection.close();
 });
+
+require('./patient');

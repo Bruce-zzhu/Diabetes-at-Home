@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const bcrypt = require('bcryptjs');
 
 const patientSchema = new Schema(
     {
@@ -16,6 +17,39 @@ const patientSchema = new Schema(
         timestamps: { createdAt: "createTime", updatedAt: "updateTime" },
     }
 );
+
+
+
+// Password comparison function
+// Compares the provided password with the stored password
+// Allows us to call user.verifyPassword on any returned objects
+patientSchema.methods.verifyPassword = function (password, callback) {
+    bcrypt.compare(password, this.password, (err, valid) => {
+        // console.log(this.email)
+        // console.log(password, this)
+        callback(err, valid)
+    })
+}
+
+// Password salt factor
+const SALT_FACTOR = 10
+// Hash password before saving
+patientSchema.pre('save', function save(next) {
+    const patient = this
+    // Go to next if password field has not been modified
+    if (!patient.isModified('password')) {
+        return next()
+    }
+    // Automatically generate salt, and calculate hash
+    bcrypt.hash(patient.password, SALT_FACTOR, (err, hash) => {
+        if (err) {
+            return next(err)
+        }
+        // Replace password with hash
+        patient.password = hash
+        next()
+    })
+})
 
 const timeSeriesSchema = new Schema({
     patient: {
@@ -83,4 +117,4 @@ const timeSeriesSchema = new Schema({
 const Patient = mongoose.model("Patient", patientSchema);
 const TimeSeries = mongoose.model("TimeSeries", timeSeriesSchema);
 
-module.exports = { Patient, TimeSeries };
+module.exports = { Patient, TimeSeries};
