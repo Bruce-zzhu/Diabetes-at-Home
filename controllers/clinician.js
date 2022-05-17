@@ -279,6 +279,12 @@ const insertData = (req, res) => {
     newPatient.save();
 };
 
+
+const renderCommentsPage = (req, res) => {
+    res.render('clinician/comments')
+}
+
+
 module.exports = {
     getDashboardData,
     renderPatientProfile,
@@ -289,4 +295,5 @@ module.exports = {
     addNote,
     addMessage,
     insertData,
+    renderCommentsPage
 };
