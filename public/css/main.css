@@ -343,7 +343,6 @@ textarea.form-control {
     display: inline-block;
     font-weight: 400;
     line-height: 1.5;
-    color: #212529;
     text-align: center;
     text-decoration: none;
     vertical-align: middle;
@@ -364,139 +363,47 @@ textarea.form-control {
         transition: none;
     }
 }
-.btn:hover {
-    color: #212529;
+.btn-theme {
+    color: var(--text-color);
+    background-color: var(--tertiary-color);
 }
-.btn-check:focus + .btn,
-.btn:focus {
-    outline: 0;
-    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+.btn-theme:hover, .btn-check:focus + .btn-theme,
+.btn-theme:focus {
+    box-shadow: 0 0 0 0.2rem rgba(211, 212, 213, 0.5);
 }
-.btn.disabled,
-.btn:disabled,
-fieldset:disabled .btn {
-    pointer-events: none;
-    opacity: 0.65;
-}
-.btn-light {
-    color: #000;
-    background-color: #f8f9fa;
-    border-color: #f8f9fa;
-}
-.btn-light:hover {
-    color: #000;
-    background-color: #f9fafb;
-    border-color: #f9fafb;
-}
-.btn-check:focus + .btn-light,
-.btn-light:focus {
-    color: #000;
-    background-color: #f9fafb;
-    border-color: #f9fafb;
-    box-shadow: 0 0 0 0.25rem rgba(211, 212, 213, 0.5);
-}
-.btn-check:active + .btn-light,
-.btn-check:checked + .btn-light,
-.btn-light.active,
-.btn-light:active,
-.show > .btn-light.dropdown-toggle {
-    color: #000;
-    background-color: #f9fafb;
-    border-color: #f9fafb;
-}
-.btn-check:active + .btn-light:focus,
-.btn-check:checked + .btn-light:focus,
-.btn-light.active:focus,
-.btn-light:active:focus,
-.show > .btn-light.dropdown-toggle:focus {
-    box-shadow: 0 0 0 0.25rem rgba(211, 212, 213, 0.5);
-}
-.btn-light.disabled,
-.btn-light:disabled {
-    color: #000;
-    background-color: #f8f9fa;
-    border-color: #f8f9fa;
-}
+
 .btn-outline-success {
-    color: #198754;
-    border-color: #198754;
+    color: var(--green-color);
+    border-color: var(--green-color);
+    background-color: var(--tertiary-color);
 }
 .btn-outline-success:hover {
-    color: #fff;
-    background-color: #198754;
-    border-color: #198754;
+    color: white;
+    background-color: var(--green-color);
 }
-.btn-check:focus + .btn-outline-success,
-.btn-outline-success:focus {
-    box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.5);
-}
-.btn-check:active + .btn-outline-success,
-.btn-check:checked + .btn-outline-success,
-.btn-outline-success.active,
-.btn-outline-success.dropdown-toggle.show,
-.btn-outline-success:active {
-    color: #fff;
-    background-color: #198754;
-    border-color: #198754;
-}
-.btn-check:active + .btn-outline-success:focus,
-.btn-check:checked + .btn-outline-success:focus,
-.btn-outline-success.active:focus,
-.btn-outline-success.dropdown-toggle.show:focus,
-.btn-outline-success:active:focus {
-    box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.5);
-}
-.btn-outline-success.disabled,
-.btn-outline-success:disabled {
-    color: #198754;
-    background-color: transparent;
-}
+
 .btn-outline-danger {
-    color: #dc3545;
-    border-color: #dc3545;
+    color: var(--red-color);
+    border-color: var(--red-color);
+    background-color: var(--tertiary-color);
 }
 .btn-outline-danger:hover {
-    color: #fff;
-    background-color: #dc3545;
-    border-color: #dc3545;
+    color: white;
+    background-color: var(--red-color);
 }
-.btn-check:focus + .btn-outline-danger,
-.btn-outline-danger:focus {
-    box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.5);
-}
-.btn-check:active + .btn-outline-danger,
-.btn-check:checked + .btn-outline-danger,
-.btn-outline-danger.active,
-.btn-outline-danger.dropdown-toggle.show,
-.btn-outline-danger:active {
-    color: #fff;
-    background-color: #dc3545;
-    border-color: #dc3545;
-}
-.btn-check:active + .btn-outline-danger:focus,
-.btn-check:checked + .btn-outline-danger:focus,
-.btn-outline-danger.active:focus,
-.btn-outline-danger.dropdown-toggle.show:focus,
-.btn-outline-danger:active:focus {
-    box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.5);
-}
-.btn-outline-danger.disabled,
-.btn-outline-danger:disabled {
-    color: #dc3545;
-    background-color: transparent;
-}
+
 .btn-outline-light {
-    color: #f8f9fa;
-    border-color: #f8f9fa;
+    color: white;
+    border-color: white;
 }
 .btn-outline-light:hover {
-    color: #000;
-    background-color: #f8f9fa;
-    border-color: #f8f9fa;
+    color: black;
+    background-color: white;
+    border-color: white;
 }
 .btn-check:focus + .btn-outline-light,
 .btn-outline-light:focus {
-    box-shadow: 0 0 0 0.25rem rgba(248, 249, 250, 0.5);
+    box-shadow: 0 0 0 0.2rem rgba(248, 249, 250, 0.5);
 }
 .btn-check:active + .btn-outline-light,
 .btn-check:checked + .btn-outline-light,
