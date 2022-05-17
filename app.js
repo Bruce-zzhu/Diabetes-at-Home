@@ -54,8 +54,17 @@ app.use(
     })
 )
 
+// load blank user
+app.use((req, res, next) => {
+    if (req.session.user == undefined) {
+        req.session.user = {};
+    }
+    next();
+})
+
 // use PASSPORT
 const passport = require('./passport.js');
+const { nextTick } = require('process');
 app.use(passport.authenticate('session'))
 
 // link views to views directory
@@ -74,6 +83,8 @@ app.use('/', generalRoutes);
 app.get('/', async (req, res) => {
     res.render('landing', {
         style: 'landing.css',
+        user: req.session.user,
+        theme: req.session.user.theme,
     });
 });
 

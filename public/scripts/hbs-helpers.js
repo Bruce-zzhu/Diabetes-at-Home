@@ -38,6 +38,11 @@ var register = function(Handlebars) {
         // JSON stringfy
         jStringify: function (obj) {
             return JSON.stringify(obj);
+        },
+
+        // check if a user (cookie) is clinician
+        ifClin: function (user, options) {
+            return (user.type == "clinician") ? options.fn(this) : options.inverse(this);
         }
         
     }

@@ -31,6 +31,6 @@
         <button type="submit" name="themeChosen" value="dark" style="background-color: var(--offBlack-color);" class="s-color"></button>
         <button type="submit" name="themeChosen" value="light" style="background-color: white;" class="s-color"></button>
     </form>
-    <button class="set-item set-logout" onclick="logOut()"><h3>Log out</h3></button>
+    <form action="/log-out" method="post" class="set-item"><button class="set-logout" onclick="logOut()"><h3>Log out</h3></button></form>
 </div>
 <script src="/scripts/settings.js"></script>

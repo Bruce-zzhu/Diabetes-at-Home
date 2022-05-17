@@ -1,8 +1,3 @@
-function logOut() {
-    console.log('User has logged out');
-    window.location.replace(window.location.origin + '/');
-}
-
 function consolelogs() {
     console.log('User creating new entry');
 }
@@ -44,7 +39,7 @@ function tableToggleComment(cell) {
 }
 
 function getTheme(theme) {
-    if (!theme) {return;}
+    if (theme == undefined) {return;}
 
     var rootStyle = document.documentElement.style;
 
@@ -59,7 +54,6 @@ function getTheme(theme) {
 }
 
 module.exports = {
-    logOut,
     consolelogs,
     isSameDay,
     getDateInfo,
