@@ -84,7 +84,7 @@ const addEntryData = async (req, res) => {
 
 const renderPatientDashboard = async (req, res) => {
     try {
-        const patient = await Patient.findOne({ email: patientEmail }).lean();
+        const patient = await Patient.findOne({ email: patientEmail }).populate('requirements').lean();
 
         req.session.user.type = "patient";
         req.session.user.id = patient._id;

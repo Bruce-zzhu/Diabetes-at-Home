@@ -10,12 +10,12 @@ function isSameDay(d1, d2) {
     );
 }
 
-function getDateInfo(dateString) {
-    var localDate = new Date(dateString.getTime() - dateString.getTimezoneOffset() * 60000).toISOString();
-    var year = localDate.slice(0, 4);
-    var month = localDate.slice(5, 7);
-    var day = localDate.slice(8, 10);
-
+function getDateInfo(date) {
+    var localDate = date.toLocaleString("en-AU", {"timeZone": "Australia/Melbourne"});
+    var day = localDate.slice(0, 2);
+    var month = localDate.slice(3, 5);
+    var year = localDate.slice(6, 10);
+    
     return [day, month, year]
 }
 

@@ -1,9 +1,6 @@
 @import "./c-patientProfile.css";
 @import "./fullHistTable.css";
 
-/* #pname, .pinfo-details {
-    display: inline-block !important;
-} */
 
 #pinfo {
     width: 30rem;

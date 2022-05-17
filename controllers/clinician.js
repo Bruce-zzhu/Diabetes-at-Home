@@ -72,13 +72,15 @@ const getDashboardData = async (req, res) => {
         const patients = await Patient.find({}).populate("requirements").lean();
         var timeSeriesList = [];
         for (p of patients) {
-            const timeSeries = await getTodayTimeSeries(p).then((data) => data);
+            var timeSeries = await getTodayTimeSeries(p).then((data) => data);
             if (timeSeries) {
                 // today's timeseries found
                 timeSeriesList.push(timeSeries);
             } else {
                 // create today's timeseries
                 await createTodayTimeSeries(p);
+                timeSeries = await getTodayTimeSeries(p).then((data) => data);
+                timeSeriesList.push(timeSeries);
             }
         }
         res.render("clinician/dashboard", {
