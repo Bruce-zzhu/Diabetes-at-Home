@@ -1,6 +1,7 @@
 function logOut() {
     console.log('User has logged out');
     window.location.replace(window.location.origin + '/');
+    // TODO: clear session cookie
 }
 
 function consolelogs() {
@@ -44,7 +45,7 @@ function tableToggleComment(cell) {
 }
 
 function getTheme(theme) {
-    if (!theme) {return;}
+    if (theme == undefined) {return;}
 
     var rootStyle = document.documentElement.style;
 

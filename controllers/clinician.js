@@ -59,6 +59,12 @@ const createTodayTimeSeries = async (patient) => {
 };
 
 const getDashboardData = async (req, res) => {
+
+    req.session.user.type = "clinician";
+
+    // TODO: replace hardcoded chris
+    req.session.user.id = "628208b8f2e1e34162d3b1e0";
+
     try {
         const patients = await Patient.find({}).populate("requirements").lean();
         var timeSeriesList = [];
@@ -74,6 +80,8 @@ const getDashboardData = async (req, res) => {
         }
         res.render("clinician/dashboard", {
             style: "dashboard.css",
+            theme: req.session.user.theme,
+            user: req.session.user,
             timeSeriesList,
         });
     } catch (e) {
@@ -149,6 +157,8 @@ const renderPatientProfile = async (req, res) => {
         // console.log(messages)
         res.render("clinician/viewPatient", {
             style: "viewPatient.css",
+            user: req.session.user,
+            theme: req.session.user.theme,
             patient,
             timeSeriesList,
             notes,

@@ -4,21 +4,16 @@ const { Clinician } = require("../models/clinician");
 const renderAboutUs = (req, res) => {
     res.render('about/aboutUs', {
         style: 'about.css',
-        theme: req.session.theme
+        user: req.session.user,
+        theme: req.session.user.theme
     });
 };
 const renderAboutDiabetes = (req, res) => {
-    if (req.session.theme) {
-        res.render("about/aboutDiabetes", {
-            style: "about.css",
-            theme: req.session.theme
-        });
-    } else {
-        res.render("about/aboutDiabetes", {
-            style: "about.css"
-        });
-    }
-
+    res.render("about/aboutDiabetes", {
+        style: "about.css",
+        user: req.session.user,
+        theme: req.session.user.theme
+    });
 };
 const renderLoginPatient = (req, res) => {
     res.render("patient/login", {
@@ -41,52 +36,49 @@ const renderLoginClinician = (req, res) => {
 const renderForgotPassword = (req, res) => {
     res.render('forgotPassword', {
         style: 'forgotPassword.css',
-        theme: req.session.theme
+        theme: req.session.user.theme,
+        user: req.session.user,
     });
 };
 const renderResetPassword = (req, res) => {
     res.render('resetPassword', {
         style: 'forgotPassword.css',
-        theme: req.session.theme
+        theme: req.session.user.theme,
+        user: req.session.user,
     });
 };
 
 const renderSettings = async (req, res) => {
 
-    // TODO not hardcode pat
-    const patient = await Patient.findOne({_id: "628208b8f2e1e34162d3b1df"});
+    var user;
 
-    var tempUser = {
-        userType: "patient",
-        userId: patient._id,
-        firstName: patient.firstName,
-        lastName: patient.lastName,
-        email: patient.email,
-        nickName: patient.nickName,
+    if (req.session.user.type == "patient") {
+        user = await Patient.findOne({_id: req.session.user.id });
+    } else if (req.session.user.type == "clinician") {
+        user = await Clinician.findOne({_id: req.session.user.id });
     }
-    req.session.user = tempUser;
 
-    if (req.session.theme) {
-        res.render("settings", {
-            style: "settings.css",
-            theme: req.session.theme,
-            user: req.session.user
-        });
-    } else {
-        res.render("settings", {
-            style: "settings.css",
-            user: tempUser
-            // user: req.session.user
-        });
+    user = {
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        nickName: user.nickName
+        // pfp-path
     }
+
+    res.render("settings", {
+        style: "settings.css",
+        user: req.session.user,
+        theme: req.session.user.theme,
+    });
 }
 
 const setTheme = async (req, res) => {
 
     try {
         var themeName = req.body.themeChosen;
-        var patient = await Patient.findOneAndUpdate( {_id: req.session.user.userId }, { theme: themeName }, { new: true } );
-        req.session.theme = JSON.stringify(await Theme.findOne( { themeName: patient.theme } ).lean());
+        var patient = await Patient.findOneAndUpdate( {_id: req.session.user.id }, { theme: themeName }, { new: true } );
+        req.session.user.theme = JSON.stringify(await Theme.findOne( { themeName: patient.theme } ).lean());
     } catch (e) {
         console.log(e);
     }
@@ -96,7 +88,7 @@ const setTheme = async (req, res) => {
 const setNickname = async (req, res) => {
     try {
         var newNick = req.body.newName;
-        await Patient.findOneAndUpdate( {_id: req.session.user.userId }, { nickName: newNick }, { new: true } );
+        await Patient.findOneAndUpdate( {_id: req.session.user.id }, { nickName: newNick }, { new: true } );
     } catch (e) {
         console.log(e);
     }
