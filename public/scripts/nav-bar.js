@@ -54,21 +54,24 @@ if (pathname != ("/")) {
 }
 
 // New Entry Header Button Clicked
-document.getElementById("new-entry-button-header").onclick = function changeContent() {
-    var dbBody = document.getElementById("dashboard-body");
-    var popup = document.getElementById("popup-overlay");
-    var ftr = document.getElementById("simple-footer");
-    // Fix dashboard body and hide footer when popup is open
-    dbBody.style.position = "fixed";
-    ftr.style.display = "none";
-    // Show Popup Body and shader-overlay background
-    if (popup.style.display != "block") {
-        popup.style.display = "block";
-    } 
-    else {
-        popup.style.display = "none";
-    }
-};
+var newEntryBtn = document.getElementById("new-entry-button-header");
+if (newEntryBtn != undefined) {
+    document.getElementById("new-entry-button-header").onclick = function changeContent() {
+        var dbBody = document.getElementById("dashboard-body");
+        var popup = document.getElementById("popup-overlay");
+        var ftr = document.getElementById("simple-footer");
+        // Fix dashboard body and hide footer when popup is open
+        dbBody.style.position = "fixed";
+        ftr.style.display = "none";
+        // Show Popup Body and shader-overlay background
+        if (popup.style.display != "block") {
+            popup.style.display = "block";
+        } 
+        else {
+            popup.style.display = "none";
+        }
+    };
+}
 
 
 // Window onload functions
