@@ -307,13 +307,27 @@ const insertData = (req, res) => {
         engagementRate: req.body.engagementRate,
         age: req.body.age,
         theme: req.body.theme,
+        bloodHigh: req.body.bloodHigh,
+        bloodLow: req.body.bloodLow,
+        bloodRequired: req.body.bloodRequired,
+        weightHigh: req.body.weightHigh,
+        weightLow: req.body.weightLow,
+        weightRequired: req.body.weightRequired,
+        insulinHigh: req.body.insulinHigh,
+        insulinRequired: req.body.insulinRequired,
+        insulinLow: req.body.insulinLow,
+        exerciseLow: req.body.exerciseLow,
+        exerciseHigh: req.body.exerciseHigh,
+        exerciseRequired: req.body.exerciseRequired,
     });
     newPatient.save();
     res.redirect(`/clinician/register`);
 };
 
 const renderRegister = (req, res) => {
-    res.render("clinician/register");
+    res.render("clinician/register", {
+        style: "register.css",
+    });
 };
 const renderCommentsPage = (req, res) => {
     res.render("clinician/comments");

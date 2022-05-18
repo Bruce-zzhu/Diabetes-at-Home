@@ -1,0 +1,233 @@
+@import "./c-patientProfile.css";
+@import "./fullHistTable.css";
+
+#register-container {
+    width: 85%;
+    margin: auto;
+    padding-top: 5rem;
+}
+
+
+
+#pinfo {
+    width: 30rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.pinfo-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.pinfo-details > p {
+    margin-bottom: 0.4rem;
+}
+
+/* viewPatientNav styles */
+.nav-buttons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.nav-links {
+    background-color: white;
+    border-radius: 50%;
+    width: 4.5rem;
+    height: 4.5rem;
+    border: 1px solid var(--border-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.nav-icons {
+    width: 2.2rem;
+}
+
+#view-container {
+    width: 80%;
+    margin: auto;
+}
+
+.space {
+    padding-top: 5rem;
+}
+
+.head {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 4rem;
+}
+
+.view-nav {
+    width: 25%;
+    margin: auto;
+}
+
+#require-container, #message-container, #note-container {
+    border: 1px solid var(--border-color);
+    padding-left: 0;
+    padding-right: 0;
+    width: 100% !important;
+    position: relative;
+    background-color: var(--bg-color);
+}
+
+#message-container, #note-container {
+    display: none;
+}
+
+#require-container {
+    height: 15rem;
+}
+
+
+#message-container .content-body {
+    height: 15rem;
+}
+
+#note-container .content-body {
+    height: 30rem;
+}
+
+.header {
+    height: 5rem;
+    
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.add-btn {
+    background-color: var(--grey-color);
+    color: white;
+    border: var(--offWhite-color) solid;
+    cursor: default;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    margin-left: 46%;
+}
+
+.header-text-wrapper {
+    text-align: center;
+}
+
+.header-text {
+    font-size: 1.7rem;
+    font-weight: bold;
+    margin-top: initial;
+    margin-bottom: 0.3rem;
+}
+
+.header-reminder {
+    margin-bottom: -1rem;
+    font-size: 0.9rem;
+    color: var(--grey-color);
+}
+
+.row {
+    font-size: 1rem;
+    margin-top: 0;
+}
+
+input {
+    width: 5rem;
+}
+
+#new-note input, #new-message textarea {
+    border-radius: 2px;
+    border: 1px solid var(--border-color);
+}
+
+.checkbox {
+    height: 1rem;
+    width: 3rem;
+    accent-color: var(--green-color);
+}
+
+.require-text > span, .require-text > div{
+    display: inline-block;
+    margin-top: auto;
+}
+
+.require-text {
+    display: flex;
+    flex:1;
+    position: absolute;
+    right: 0.625em;
+    bottom: 0.375em;
+}
+
+#view-container .scroll {
+    height: 99%;
+    padding: 10px;
+}
+
+#full-history {
+    width: 100%;
+    margin: auto;
+    padding-bottom: 5rem;
+}
+
+h2 {
+    font-weight: bold;
+    text-align: center;
+}
+
+.new-text-entry {
+    padding-bottom: 10px;
+}
+
+.form-control {
+    margin-right: 4px;
+    border-radius: 2px;
+    border: 1px solid var(--border-color);
+}
+
+.form-control:first-child {
+    margin-right: 4px;
+}
+
+#new-note-body {
+    margin-top: 3px;
+}
+
+.emojionearea, .emojionearea.form-control {
+    width: 80%;
+    border-radius: 2px;
+    border: 1px solid var(--border-color);
+}
+
+.emojionearea .emojionearea-editor {
+    min-height: 0 !important;
+}
+
+.input-group>:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+    margin-left: 0;
+}
+
+.input-group-append .btn {
+    padding: 0.375rem 0.5rem;
+    border-radius: 2px;
+    background-color: var(--secondary-color);
+}
+
+#view-container hr {
+    width: 35%;
+    border-top: 1px solid var(--border-color);
+    margin: 10px auto 0px auto;
+    opacity: 0.75;
+}
+
+.new-text-entry {
+    display: none;
+}
+
+/* remove bootstrap background color */
+.bg-light {
+    background-color: rgba(0, 0, 0, 0)!important;
+}
