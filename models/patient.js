@@ -4,9 +4,6 @@ const bcrypt = require('bcryptjs');
 
 const patientSchema = new Schema(
     {
-        role: {
-            type: String, required: true, default: "patient"
-        },
         clinician: {
             type: Schema.Types.ObjectId,
             ref: "Clinician",

@@ -64,7 +64,7 @@ const getDashboardData = async (req, res) => {
 
     const clinician = await Clinician.findOne({ email: req.session.user.email }).lean();
 
-    req.session.user.role = clinician.role;
+    req.session.user.role = "clinician";
     req.session.user.id = clinician._id;
     req.session.user.firstName = clinician.firstName;
     req.session.user.lastName = clinician.lastName;
@@ -314,10 +314,16 @@ const insertData = (req, res) => {
 };
 
 const renderRegister = (req, res) => {
-    res.render("clinician/register");
+    res.render("clinician/register", {
+        user: req.session.user,
+        theme: req.session.user.theme,
+    });
 };
 const renderCommentsPage = (req, res) => {
-    res.render("clinician/comments");
+    res.render("clinician/comments", {
+        user: req.session.user,
+        theme: req.session.user.theme,
+    });
 };
 
 module.exports = {
