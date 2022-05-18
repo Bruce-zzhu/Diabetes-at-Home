@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const bcrypt = require('bcryptjs');
+const bcrypt = require("bcryptjs");
 
 const clinicianSchema = new Schema({
     role: {
@@ -12,41 +12,46 @@ const clinicianSchema = new Schema({
     patients: [
         {
             type: Schema.Types.ObjectId,
+<<<<<<< HEAD
             ref: "Patient"
         }
     ],
     password: { type: String, required: true }
+=======
+            ref: "Patient",
+        },
+    ],
+    password: { type: String, required: true },
+>>>>>>> fd3fc31d750ffbe4a45cfbd4f1fe5cab21f84422
 });
 
 clinicianSchema.methods.verifyPassword = function (password, callback) {
     bcrypt.compare(password, this.password, (err, valid) => {
         // console.log(password)
         // console.log(this)
-        callback(err, valid)
-    })
-}
-
+        callback(err, valid);
+    });
+};
 
 // Password salt factor
-const SALT_FACTOR = 10
+const SALT_FACTOR = 10;
 // Hash password before saving
-clinicianSchema.pre('save', function save(next) {
-    const clinician = this
+clinicianSchema.pre("save", function save(next) {
+    const clinician = this;
     // Go to next if password field has not been modified
-    if (!clinician.isModified('password')) {
-        return next()
+    if (!clinician.isModified("password")) {
+        return next();
     }
     // Automatically generate salt, and calculate hash
     bcrypt.hash(clinician.password, SALT_FACTOR, (err, hash) => {
         if (err) {
-            return next(err)
+            return next(err);
         }
         // Replace password with hash
-        clinician.password = hash
-        next()
-    })
-})
-
+        clinician.password = hash;
+        next();
+    });
+});
 
 const noteSchema = new Schema({
     clinician: {

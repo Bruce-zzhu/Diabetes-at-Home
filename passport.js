@@ -12,28 +12,37 @@ const bcrypt = require('bcrypt');
 //const USER = { id: 123, email: 'user', password: 'password', secret: 'info30005' }
 
 // Serialize information to be stored in session/cookie
-passport.serializeUser((patient, done) => {
+passport.serializeUser((user, done) => {
     // Use id to serialize user
-    // console.log(patient)
-    done(undefined, patient._id)
+    // console.log(user)
+
+    done(undefined, user)
 })
 
 // When a request comes in, deserialize/expand the serialized information
 // back to what it was (expand from id to full user)
-passport.deserializeUser((patientId, done) => {
-    // Run database query here to retrieve user information
-    // For now, just return the hardcoded user
-    // if (userId === USER.id) {
-    //     done(undefined, USER)
-    // } else {
-    //     done(new Error('Bad User'), undefined)
-    // }
-    Patient.findById(patientId, {password: 0}, (err, user) => {
-        if (err) {
-            return done(err, undefined)
-        }
+passport.deserializeUser((userId, done) => {
+    
+    var user = Clinician.findById(userId);
+    if (user == undefined) {
+        user = Patient.findById(userId);
         return done(undefined, user)
-    })
+    } else {
+        return done(undefined, user)
+    }
+
+
+    // Clinician.findById(userId, {password: 0}, (err, user) => {
+
+    //     if (user.role == 'clinician'){
+    //         if (err) {
+    //             return done(err, undefined)
+    //         }
+    //         return done(undefined, user)
+    //     }       
+    // })
+
+
 })
 
 // Patient local authentication strategy 
