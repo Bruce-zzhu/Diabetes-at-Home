@@ -21,12 +21,26 @@ const renderLoginPatient = (req, res) => {
     });
 };
 
-const newFunction1 = (req, res) => {
-    const patientEmail = req.body.loginEmail;
-    console.log(patientEmail)
-    //res.send(req.body);
-    res.redirect('/patient/dashboard');
-};
+// const checkLoginDetails = async(req, res) => {
+//     // const patientEmailEntry = req.body.loginEmail;
+//     // console.log(patientEmailEntry);
+//     // // Get Data about user with this email...
+//     // try{
+//     //     const thisUser = await Patient.findOne({ email: patientEmailEntry });
+//     //     console.log(thisUser);
+//     //     // If correct, redirect to patient dashboard, else error
+//     //     if (thisUser != null){
+//     //         res.redirect('/patient/dashboard');
+//     //     }
+//     // } 
+//     //     // Else if email is not in db then print error
+//     // catch(err){
+//     //     console.log(err)
+//     // }
+    
+//     // // Nothing is currently passed to the patient.js controller. Currently hardcoded.
+//     // // Passwords
+// };
 
 const renderLoginClinician = (req, res) => {
     res.render("clinician/login", {
@@ -110,6 +124,5 @@ module.exports = {
     renderSettings,
     setTheme,
     setNickname,
-    logOut,
-    newFunction1
+    logOut
 };

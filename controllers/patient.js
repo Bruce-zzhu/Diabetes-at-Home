@@ -8,7 +8,7 @@ const {
 const { getDateInfo } = require("../public/scripts/js-helpers");
 
 // Hardcoded Patient Email
-const patientEmail = "pat@diabetemail.com";
+const patientEmail = 'harry@potter.email';
 // const loginEmailEntry = async(req, res) => {
 //     const patientEmail = req.body.loginEmail;
 // }

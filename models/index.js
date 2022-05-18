@@ -50,6 +50,7 @@ const newPatient = new Patient({
     age: 30,
     gender: "male",
     email: "pat@diabetemail.com",
+    password: "password",
     requirements: requirements._id
 });
 
@@ -57,7 +58,8 @@ const newClinician = new Clinician({
     firstName: "Chris",
     lastName: " Lee",
     email: "chris@diabetemail.com",
-    patients: [newPatient._id]
+    patients: [newPatient._id],
+    password: "password"
 });
 const newTimeseries = new TimeSeries({
     patient: newPatient._id,
@@ -112,7 +114,7 @@ const loadDataToDB = async () => {
     // await Note.deleteMany({});
     // await Message.deleteMany({});
 
-    await requirements.save();
+    // await requirements.save();
     // await newPatient.save();
     // await newTimeseries.save();
     // await newClinician.save();
@@ -123,3 +125,5 @@ const loadDataToDB = async () => {
 loadDataToDB().then(() => {
     mongoose.connection.close();
 });
+
+require('./patient');
