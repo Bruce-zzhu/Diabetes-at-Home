@@ -166,7 +166,8 @@ const renderPatientDashboard = async (req, res) => {
         for (var i=0; i<allPatEgmts.length; i++) {
             allPatEgmts[i] = {
                 nickName: allPatEgmts[i].nickName,
-                egmtRate: allPatEgmts[i].engagementRate * 100
+                egmtRate: allPatEgmts[i].engagementRate * 100,
+                egmtText: (allPatEgmts[i].engagementRate * 100).toFixed(2)
             }
         }
 
