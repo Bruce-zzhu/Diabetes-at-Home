@@ -48,6 +48,10 @@ router.get('/login-c', (req, res) => {
 
 // Handle Patient login
 router.post('/login-c',
+    function(req, res, next) {
+        req.session.user.email = req.body.username;
+        next()
+    },
     passport.authenticate('clinician-local', {
         successRedirect: 'clinician/dashboard', failureRedirect: '/login-c', failureFlash: true
     })
