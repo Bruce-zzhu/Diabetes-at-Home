@@ -9,13 +9,6 @@ const clinicianSchema = new Schema({
     patients: [
         {
             type: Schema.Types.ObjectId,
-<<<<<<< HEAD
-            ref: "Patient",
-        },
-    ],
-});
-
-=======
             ref: "Patient"
         }
     ],
@@ -52,7 +45,6 @@ clinicianSchema.pre('save', function save(next) {
 })
 
 
->>>>>>> 8b785611792350e941384b59aab1ecde260c9c31
 const noteSchema = new Schema({
     clinician: {
         type: Schema.Types.ObjectId,
