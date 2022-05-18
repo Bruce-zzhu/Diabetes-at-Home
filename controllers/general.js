@@ -82,7 +82,7 @@ const renderSettings = async (req, res) => {
 
     res.render("settings", {
         style: "settings.css",
-        user: req.session.user,
+        user: user,
         theme: req.session.user.theme,
     });
 }

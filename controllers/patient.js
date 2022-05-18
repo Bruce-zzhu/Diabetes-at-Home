@@ -84,16 +84,17 @@ const addEntryData = async (req, res) => {
 
 const renderPatientDashboard = async (req, res) => {
     try {
-        const patient = await Patient.findOne({ email: patientEmail }).populate('requirements').lean();
+        const patient = await Patient.findOne({ email: req.session.user.email }).populate('requirements').lean();
 
         req.session.user.type = "patient";
-        req.session.user.id = patient._id;
         req.session.user.theme = JSON.stringify(
             await Theme.findOne({ themeName: patient.theme }).lean()
         );
         req.session.user.firstName = patient.firstName;
         req.session.user.lastName = patient.lastName;
-        req.session.user.email = patient.email;
+        req.session.user.id = patient._id;
+
+        console.log(req.session);
 
         var todayTimeSeries = await getTodayTimeSeries(patient).then(
             (data) => data
