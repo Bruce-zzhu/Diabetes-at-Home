@@ -1,6 +1,13 @@
 @import "./c-patientProfile.css";
 @import "./fullHistTable.css";
 
+#register-container {
+    width: 85%;
+    margin: auto;
+    padding-top: 5rem;
+}
+
+
 
 #pinfo {
     width: 30rem;
@@ -87,8 +94,8 @@
 
 .header {
     height: 5rem;
-    background-color: var(--secondary-color);
-    border-bottom: 1px solid var(--border-color);
+    
+    
     display: flex;
     align-items: center;
     justify-content: center;
@@ -96,14 +103,13 @@
 }
 
 .add-btn {
-    float: right;
-    position: absolute;
-    right: 1em;
-    font-size: 0.75em;
-    top: calc(50% - 0.625em);
-    background: none;
-    border: 0;
-    color: var(--text-color);
+    background-color: var(--grey-color);
+    color: white;
+    border: var(--offWhite-color) solid;
+    cursor: default;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    margin-left: 46%;
 }
 
 .header-text-wrapper {
@@ -128,7 +134,7 @@
     margin-top: 0;
 }
 
-input {
+#register-container input, #register-container select {
     width: 5rem;
 }
 

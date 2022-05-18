@@ -1,6 +1,6 @@
-const { Patient, TimeSeries } = require("../models/patient");
-const { Note, Message } = require("../models/clinician");
-const { isSameDay } = require("../public/scripts/js-helpers");
+const { Note, Message, Clinician } = require("../models/clinician");
+const { Patient, TimeSeries, Theme } = require("../models/patient");
+const { isSameDay, getDateInfo } = require("../public/scripts/js-helpers");
 
 const getTodayTimeSeries = async (patient) => {
     try {
@@ -59,21 +59,35 @@ const createTodayTimeSeries = async (patient) => {
 };
 
 const getDashboardData = async (req, res) => {
+
+    const clinician = await Clinician.findOne({ email: req.session.user.email }).lean();
+
+    req.session.user.id = clinician._id;
+    req.session.user.firstName = clinician.firstName;
+    req.session.user.lastName = clinician.lastName;
+    req.session.user.theme = JSON.stringify(
+        await Theme.findOne({ themeName: clinician.theme }).lean()
+    );
+
     try {
         const patients = await Patient.find({}).populate("requirements").lean();
         var timeSeriesList = [];
         for (p of patients) {
-            const timeSeries = await getTodayTimeSeries(p).then((data) => data);
+            var timeSeries = await getTodayTimeSeries(p).then((data) => data);
             if (timeSeries) {
                 // today's timeseries found
                 timeSeriesList.push(timeSeries);
             } else {
                 // create today's timeseries
                 await createTodayTimeSeries(p);
+                timeSeries = await getTodayTimeSeries(p).then((data) => data);
+                timeSeriesList.push(timeSeries);
             }
         }
         res.render("clinician/dashboard", {
             style: "dashboard.css",
+            theme: req.session.user.theme,
+            user: req.session.user,
             timeSeriesList,
         });
     } catch (e) {
@@ -146,13 +160,32 @@ const renderPatientProfile = async (req, res) => {
             return d - c;
         });
 
+        var datesArray = [];
+        for (ts of timeSeriesList) {
+            var date = getDateInfo(ts.date);
+            datesArray.push(date);
+        }
+
+        var histData = [];
+        if (timeSeriesList.length > 1) {
+            for (var i = 1; i < timeSeriesList.length; i++) {
+                histData.push({
+                    date: datesArray[i],
+                    timeSeries: timeSeriesList[i],
+                });
+            }
+        }
+
         // console.log(messages)
         res.render("clinician/viewPatient", {
             style: "viewPatient.css",
+            user: req.session.user,
+            theme: req.session.user.theme,
             patient,
             timeSeriesList,
             notes,
             messages,
+            histData: JSON.stringify(histData),
         });
     } catch (e) {
         console.log(e);
@@ -266,18 +299,65 @@ const addMessage = async (req, res) => {
 };
 const insertData = (req, res) => {
     var newPatient = new Patient({
+        createTime: new Date(),
         firstName: req.body.firstName,
-        lastname: req.body.lastname,
+        lastName: req.body.lastName,
         nickName: req.body.nickName,
         email: req.body.email,
         password: req.body.password,
         gender: req.body.gender,
-        engagementRate: req.body.engagementRate,
+        engagementRate: 0,
         age: req.body.age,
-        theme: req.body.theme,
+        theme: "default",
+        bloodHigh: req.body.bloodHigh,
+        bloodLow: req.body.bloodLow,
+        bloodRequired: req.body.bloodRequired,
+        weightHigh: req.body.weightHigh,
+        weightLow: req.body.weightLow,
+        weightRequired: req.body.weightRequired,
+        insulinHigh: req.body.insulinHigh,
+        insulinRequired: req.body.insulinRequired,
+        insulinLow: req.body.insulinLow,
+        exerciseLow: req.body.exerciseLow,
+        exerciseHigh: req.body.exerciseHigh,
+        exerciseRequired: req.body.exerciseRequired,
     });
     newPatient.save();
+    res.redirect(`/clinician/register`);
 };
+
+const renderRegister = (req, res) => {
+    res.render("clinician/register", {
+        style: "register.css",
+        user: req.session.user,
+        theme: req.session.user.theme,
+    });
+};
+const renderCommentsPage = async (req, res) => {
+    try {
+        const cid = req.session.user.id;
+        const clinician = await Clinician.findById({_id: cid}).lean();
+        const patientIDs = clinician.patients;
+
+        const data = [];
+        // get all timeseries data of each patient
+        for (pid of patientIDs) {
+            const ts = await TimeSeries.find({patient: pid, clinicianUse: false}).populate('patient').lean();
+            data.push(...ts);
+        }
+        
+
+        res.render('clinician/comments', {
+            style: 'comments.css',
+            user: req.session.user,
+            theme: req.session.user.theme,
+            data
+        })
+    } catch(e) {
+        console.log(e);
+    }
+}
+
 
 module.exports = {
     getDashboardData,
@@ -289,4 +369,6 @@ module.exports = {
     addNote,
     addMessage,
     insertData,
+    renderCommentsPage,
+    renderRegister,
 };

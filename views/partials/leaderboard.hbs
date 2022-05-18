@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 
+=======
+<script>
+    var allPatEgmts = {{{jStringify allPatEgmts}}};
+</script>
+>>>>>>> 340ee2f34db06357a4455fb3eb21fd0dbf301bca
 <section class="leaderboard-container">
     <h5>Leaderboard</h5>
     <div class="scroll">
@@ -7,28 +13,36 @@
             <p>4.50% behind Naomi!</p>
         </div>
         {{#each allPatEgmts}}
-            <p>{{nickName}} -- {{Eg}}</p>
+            <div class="placing">
+                <div class="place-number"></div>
+                {{!-- TODO (possible idea, idk what's good coding practice):
+                    - get innerHTML from place-name
+                    - use name to find index of person
+                    - add image/text in place-number --}}
+                {{!-- also mb format place-name/text for long nicknames --}}
+                {{!-- & change innerHTML in place-val to 2 decimal places via the existing innerHTML or via the var --}}
+                <p class="place-text"><span class="place-name">{{this.nickName}}</span> &#8212;&#8212; <span class="place-val">{{this.egmtRate}}</span>%</p>
+            </div>
         {{/each}}
-        
             <div class="placing">
                 <img class="medal place-number" alt="gold medal" src="https://uxwing.com/wp-content/themes/uxwing/download/24-sport-and-awards/gold-medal.svg">
-                <p class="leaderboard-nickname">Naomi -- 84.50%</p>
+                <p class="place-text">Naomi -- 84.50%</p>
             </div>
             <div class="placing">
                 <img class="medal place-number" alt="silver medal" src="https://uxwing.com/wp-content/themes/uxwing/download/24-sport-and-awards/silver-medal.svg">
-                <p class="leaderboard-nickname">Pat -- 80.00%</p>
+                <p class="place-text">Pat -- 80.00%</p>
             </div>
             <div class="placing">
                 <img class="medal place-number" alt="bronze medal" src="https://uxwing.com/wp-content/themes/uxwing/download/24-sport-and-awards/bronze-medal.svg">
-                <p class="leaderboard-nickname">Tarkik -- 78.50%</p>
+                <p class="place-text">Tarkik -- 78.50%</p>
             </div>
             <div class="placing">
                 <h5 class="place-number">4th</h5>
-                <p class="leaderboard-nickname">Jon -- 75.00%</p>
+                <p class="place-text">Jon -- 75.00%</p>
             </div>
             <div class="placing">
                 <h5 class="place-number">5th</h5>
-                <p class="leaderboard-nickname">Ige -- 70.80%</p>
+                <p class="place-text">Ige -- 70.80%</p>
             </div>
     </div>
 </section>
@@ -44,3 +58,4 @@
 <script>
     var allPatEgmts = {{{allPatEgmts}}};
 </script>
+<script src="/scripts/leaderboard.js"></script>

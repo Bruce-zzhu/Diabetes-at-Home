@@ -1,13 +1,102 @@
-<form action="/insertdata" method="POST">
- 
-    <input type="text" placeholder="First name" name="firstName" />
-    <input type="text" placeholder="Last name" name="lastName" />
-    <input type="text" placeholder="NickName" name="nickName" />
-    <input type="text" placeholder="email" name="email" />
-    <input type="text" placeholder="password" name="password" />
-    <input type="text" placeholder="age" name="age" />
-    <input type="text" placeholder="gender" name="gender" />
-    <input type="text" placeholder="engagementRate" name="engagementRate" />
-    <input type="text" placeholder="Theme" name="theme" />
-    <input type="submit" />
-</form>
+<div id="register-container">
+    <form action="/clinician/register" method="POST">
+        <div class="header">
+        <div class="header-text-wrapper">
+            <h1 class="header-text">Basic patient information</h1>
+        </div>
+        </div>
+        <div class="row g-1" >
+            <div class="col-5 offset-1">
+                <div class="p-3 bg-light"style="margin-left: 110px;" >First name:
+                    <input required type="text"  name="firstName" />
+                </div>
+            </div>
+            <div class="col-5 offset-1">
+                <div class="p-3 bg-light"style="margin-left: 70px;" >Last name:
+                    <input required type="text"  name="lastName" />
+                </div>
+            </div>
+            <div class="col-5 offset-1">
+                <div class="p-3 bg-light"style="margin-left: 110px;">Age:
+                    <input required type="number"  name="age" />
+                </div>
+            </div>
+            <div class="col-5 offset-1">
+                <div class="p-3 bg-light"style="margin-left: 70px;">Gender:
+                    <select required name="gender">
+                        <option value=""></option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-5 offset-1">
+                <div class="p-3 bg-light"style="margin-left: 110px;">Email:
+                   <input required type="text" name="email" />
+                </div>
+            </div>
+            <div class="col-5 offset-1">
+                <div class="p-3 bg-light"style="margin-left: 70px;">Password:
+                  <input required type="text"  name="password" />
+                </div>
+            </div>
+        </div>
+                {{!-- <input type="text" placeholder="First name" name="firstName" />
+                <input type="text" placeholder="Last name" name="lastName" />
+                <input type="text" placeholder="NickName" name="nickName" />
+                <input type="number" placeholder="age" name="age" />
+                <input type="text" placeholder="gender" name="gender" />
+                <input type="number" placeholder="engagementRate" name="engagementRate" />
+                <input type="text" placeholder="Theme" name="theme" />
+                <input type="text" placeholder="email" name="email" />
+                <input type="text" placeholder="password" name="password" /> --}}
+                
+        
+        <div class="header">
+        <div class="header-text-wrapper">
+                <h1 class="header-text">Time-series Requirements</h1>
+        </div>
+        </div>
+        <div class="row g-2">
+            <div class="col-5 offset-1">
+                <div class="p-3 bg-light">Blood Glucose Level:
+                    <input required class="from" name="bloodLow" type="number" />
+                    to
+                    <input required class="to" name="bloodHigh" type="number" />
+                    nmol/L
+                    <input class="checkbox" type="checkbox" name="bloodRequired"/>
+                </div>
+            </div>
+            <div class="col-5 offset-1">
+                <div class="p-3 bg-light">Weight:
+                    <input required class="from" name="weightLow" type="number"/>
+                    to
+                    <input required class="to" name="weightHigh" type="number"/>
+                    kg
+                    <input class="checkbox" type="checkbox" name="weightRequired"/>
+                </div>
+            </div>
+            <div class="col-5 offset-1">
+                <div class="p-3 bg-light">Insulin Taken:
+                    <input required class="from" name="insulinLow" type="number" />
+                    to
+                    <input required class="to" name="insulinHigh" type="number"/>
+                    doses
+                    <input class="checkbox" type="checkbox" name="insulinRequired" />
+                </div>
+            </div>
+            <div class="col-5 offset-1">
+                <div class="p-3 bg-light">Exercise:
+                    <input required class="from" name="exerciseLow" type="number" />
+                    to
+                    <input required class="to" name="exerciseHigh" type="number" />
+                    steps
+                    <input class="checkbox" type="checkbox" name="exerciseRequired"/>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="add-btn">Register</button></h1>
+    </form>
+
+</div>

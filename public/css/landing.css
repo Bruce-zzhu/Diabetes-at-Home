@@ -79,7 +79,7 @@
 
 .btn-list button {
     background-color: var(--primary-color);
-    color: white;
+    color: var(--altText-color);
     border: 1.5px solid white;
     border-radius: 0.5rem;
     font-size: 1.25rem;
@@ -98,6 +98,10 @@
     display: flex;
     justify-content: space-between;
     background-color: var(--bg-color);
+}
+
+.feature-list img {
+    /* TODO: filter: invert(62%) sepia(92%) saturate(2847%) hue-rotate(190deg) brightness(87%) contrast(99%); */
 }
 
 .feature {

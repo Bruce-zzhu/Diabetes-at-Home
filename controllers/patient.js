@@ -8,7 +8,7 @@ const {
 const { getDateInfo } = require("../public/scripts/js-helpers");
 
 // Hardcoded Patient Email
-const patientEmail = "pat@diabetemail.com";
+const patientEmail = 'harry@potter.email';
 // const loginEmailEntry = async(req, res) => {
 //     const patientEmail = req.body.loginEmail;
 // }
@@ -24,7 +24,7 @@ const addEntryData = async (req, res) => {
     const exerciseComment = req.body.stepComment;
 
     try {
-        const patient = await Patient.findOne({ email: patientEmail });
+        const patient = await Patient.findOne({ _id: req.session.user.id });
         const timeSeries = await getTodayTimeSeries(patient).then(
             (data) => data
         );
@@ -70,7 +70,6 @@ const addEntryData = async (req, res) => {
         var totalDays = Math.ceil(
             (today.getTime() - patient.createTime.getTime()) / 86400000
         );
-        console.log(today, patient.createTime);
         await Patient.findOneAndUpdate(
             { _id: patient._id },
             { engagementRate: daysActive / totalDays }
@@ -84,7 +83,15 @@ const addEntryData = async (req, res) => {
 
 const renderPatientDashboard = async (req, res) => {
     try {
-        const patient = await Patient.findOne({ email: patientEmail }).lean();
+        const patient = await Patient.findOne({ email: req.session.user.email }).populate('requirements').lean();
+
+        req.session.user.theme = JSON.stringify(
+            await Theme.findOne({ themeName: patient.theme }).lean()
+        );
+        req.session.user.firstName = patient.firstName;
+        req.session.user.lastName = patient.lastName;
+        req.session.user.id = patient._id;
+        req.session.user.nickName = patient.nickName;
 
         var todayTimeSeries = await getTodayTimeSeries(patient).then(
             (data) => data
@@ -157,16 +164,17 @@ const renderPatientDashboard = async (req, res) => {
 
         var allPatEgmts = await Patient.find({}, "nickName engagementRate");
         allPatEgmts.sort((a, b) => b.engagementRate - a.engagementRate);
-        allPatEgmts = allPatEgmts.slice(0, 5);
-        allPatEgmts = JSON.stringify(allPatEgmts);
-
-        req.session.theme = JSON.stringify(
-            await Theme.findOne({ themeName: patient.theme }).lean()
-        );
+        for (var i=0; i<allPatEgmts.length; i++) {
+            allPatEgmts[i] = {
+                nickName: allPatEgmts[i].nickName,
+                egmtRate: allPatEgmts[i].engagementRate * 100
+            }
+        }
 
         res.render("patient/dashboard", {
             style: "p-dashboard.css",
-            theme: req.session.theme,
+            theme: req.session.user.theme,
+            user: req.session.user,
             patient,
             todayTimeSeries,
             todayArray,
@@ -176,7 +184,7 @@ const renderPatientDashboard = async (req, res) => {
             timeSeriesList,
             histData: JSON.stringify(histData),
             messages,
-            allPatEgmts,
+            allPatEgmts
         });
     } catch (e) {
         console.log(e);

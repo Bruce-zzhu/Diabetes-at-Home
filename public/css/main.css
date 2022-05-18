@@ -13,13 +13,7 @@
 }
 body {
     margin: 0;
-    font-family: var(--bs-body-font-family);
     font-size: 1rem;
-    font-weight: var(--bs-body-font-weight);
-    line-height: var(--bs-body-line-height);
-    color: var(--bs-body-color);
-    text-align: var(--bs-body-text-align);
-    background-color: var(--bs-body-bg);
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: transparent;
 }
@@ -337,7 +331,9 @@ textarea.form-control {
     min-width: 0;
 }
 
-
+button {
+    background-color: var(--tertiary-color);
+}
 
 .btn {
     display: inline-block;
@@ -414,6 +410,7 @@ textarea.form-control {
     background-color: #f8f9fa;
     border-color: #f8f9fa;
 }
+
 .btn-check:active + .btn-outline-light:focus,
 .btn-check:checked + .btn-outline-light:focus,
 .btn-outline-light.active:focus,
@@ -421,19 +418,20 @@ textarea.form-control {
 .btn-outline-light:active:focus {
     box-shadow: 0 0 0 0.25rem rgba(248, 249, 250, 0.5);
 }
+
 .btn-outline-light.disabled,
 .btn-outline-light:disabled {
     color: #f8f9fa;
     background-color: transparent;
 }
+
 .progress {
     display: flex;
     height: 1rem;
     overflow: hidden;
     font-size: 0.75rem;
-    background-color: #e9ecef;
-    border-radius: 0.25rem;
 }
+
 .progress-bar {
     display: flex;
     flex-direction: column;
@@ -445,6 +443,7 @@ textarea.form-control {
     background-color: #0d6efd;
     transition: width 0.6s ease;
 }
+
 @media (prefers-reduced-motion: reduce) {
     .progress-bar {
         transition: none;

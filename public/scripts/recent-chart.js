@@ -7,16 +7,17 @@ var exerciseData = [];
 
 for (ts of histData) {
     var date = ts.date;
-    var res = `${date[0]}/${date[1]}/${date[2]}`;
+    var res = `${date[0]}/${date[1]}`;
     dates.push(res);
 
+    
     bloodData.push(ts.timeSeries.bloodGlucose.value);
     weightData.push(ts.timeSeries.weight.value);
     insulinData.push(ts.timeSeries.insulin.value);
     exerciseData.push(ts.timeSeries.exercise.value);
 }
 
-const labels = dates.reverse();
+var labels = dates.reverse();
 bloodData.reverse();
 weightData.reverse();
 insulinData.reverse();
@@ -31,24 +32,36 @@ const data = {
             borderColor: 'rgb(217, 22, 22)',
             data: bloodData,
         },
-        /*   {
-            label: 'Weight',
+        // {
+        //     label: 'Weight (kg)',
+        //     backgroundColor: 'rgb(255, 186, 0)',
+        //     borderColor: 'rgb(255, 186, 0)',
+        //     data: weightData,
+        // },
+        // {
+        //     label: 'Insulin',
+        //     backgroundColor: 'rgb(171, 59, 213)',
+        //     borderColor: 'rgb(171, 59, 213)',
+        //     data: insulinData,
+        // },
+        // {
+        //     label: 'Exercise',
+        //     backgroundColor: 'rgb(35, 150, 81)',
+        //     borderColor: 'rgb(35, 150, 81)',
+        //     data: exerciseData,
+        // }, 
+    ],
+};
+const data2 = {
+    labels: labels,
+    datasets: [
+        {
+            label: 'Weight (kg)',
             backgroundColor: 'rgb(255, 186, 0)',
             borderColor: 'rgb(255, 186, 0)',
             data: weightData,
         },
-        {
-            label: 'Insulin',
-            backgroundColor: 'rgb(171, 59, 213)',
-            borderColor: 'rgb(171, 59, 213)',
-            data: insulinData,
-        },
-        {
-            label: 'Exercise',
-            backgroundColor: 'rgb(35, 150, 81)',
-            borderColor: 'rgb(35, 150, 81)',
-            data: exerciseData,
-        }, */
+
     ],
 };
 
@@ -57,5 +70,11 @@ const config = {
     data: data,
     options: {},
 };
+const config2 = {
+    type: 'line',
+    data: data2,
+    options: {},
+};
 
 const myChart = new Chart(document.getElementById('myChart'), config);
+const myChart2 = new Chart(document.getElementById('myChart2'), config2);

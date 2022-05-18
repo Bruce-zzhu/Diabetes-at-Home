@@ -10,17 +10,20 @@
         alt="badge"
     />
 </div>
-<h3 id="pname">{{firstName}} {{lastName}}</h3>
-<div id="pinfo">Nickname:
-    {{nickName}}
-    <br />Age:
-    {{age}}
-    <br />Gender:
-    {{gender}}
+
+<div id="pinfo">
+    <h3 id="pname">{{firstName}} {{lastName}}</h3>
+    <div class="pinfo-details">
+        <p>Nickname: {{nickName}}</p>
+        <p>Age: {{age}}</p>
+        <p>Gender: {{gender}}</p>
+    </div>
+
+    
 </div>
 <div id="engagement">
     <h5>Engagement</h5>
-    <div class="progress">
+    <div id="progress-base" class="progress">
         <div
             id="progress-bar"
             class="progress-bar"
@@ -28,7 +31,8 @@
             style="background-color: var(--green-color);"
             aria-valuemin="0"
             aria-valuemax="100"
-        ><span id="egmt-val"></span></div>
+        ></div>
+        <span id="egmt-val"></span>
     </div>
 </div>
 <script>var egmt = {{engagementRate}} * 100;</script>

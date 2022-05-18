@@ -1,0 +1,19 @@
+<h1 class="page-title">All Comments</h1>
+<div id="comments-container">
+    {{#each data}}
+        {{#if (notEmpty this.bloodGlucose.comment)}}
+            
+                {{>commentBox this ts=this.bloodGlucose name="Blood Glucose"}}
+            
+        {{/if}}
+        {{#if (notEmpty this.weight.comment)}}
+            {{>commentBox this ts=this.weight name="Weight"}}
+        {{/if}}
+        {{#if (notEmpty this.insulin.comment)}}
+            {{>commentBox this ts=this.insulin name="Insulin Taken"}}
+        {{/if}}
+        {{#if (notEmpty this.exercise.comment)}}
+            {{>commentBox this ts=this.exercise name="Exercise"}}
+        {{/if}}
+    {{/each}}
+</div>

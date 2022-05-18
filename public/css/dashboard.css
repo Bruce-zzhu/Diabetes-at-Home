@@ -53,7 +53,7 @@
 
 thead {
     background-color: var(--primary-color);
-    color: white;
+    color: var(--altText-color);
 }
 
 span {
