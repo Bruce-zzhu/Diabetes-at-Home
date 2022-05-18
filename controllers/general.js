@@ -66,9 +66,9 @@ const renderSettings = async (req, res) => {
 
     var user;
 
-    if (req.session.user.type == "patient") {
+    if (req.session.user.role == "patient") {
         user = await Patient.findOne({_id: req.session.user.id });
-    } else if (req.session.user.type == "clinician") {
+    } else if (req.session.user.role == "clinician") {
         user = await Clinician.findOne({_id: req.session.user.id });
     }
 
@@ -82,7 +82,7 @@ const renderSettings = async (req, res) => {
 
     res.render("settings", {
         style: "settings.css",
-        user: req.session.user,
+        user: user,
         theme: req.session.user.theme,
     });
 }
@@ -90,9 +90,16 @@ const renderSettings = async (req, res) => {
 const setTheme = async (req, res) => {
 
     try {
+        var user;
         var themeName = req.body.themeChosen;
-        var patient = await Patient.findOneAndUpdate( {_id: req.session.user.id }, { theme: themeName }, { new: true } );
-        req.session.user.theme = JSON.stringify(await Theme.findOne( { themeName: patient.theme } ).lean());
+        if (req.session.role == "patient") {
+            user = await Patient.findOneAndUpdate( {_id: req.session.user.id }, { theme: themeName }, { new: true } );
+        } else {
+            user = await Clinician.findOneAndUpdate( {_id: req.session.user.id }, { theme: themeName }, { new: true } );
+        }
+
+        
+        req.session.user.theme = JSON.stringify(await Theme.findOne( { themeName: user.theme } ).lean());
     } catch (e) {
         console.log(e);
     }
