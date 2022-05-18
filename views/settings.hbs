@@ -15,7 +15,7 @@
         <p class="s-name s-info"><span>{{user.firstName}}</span><span>{{user.lastName}}</span></p>
         <div class="s-info s-details">
             <p>Email: {{user.email}}</p>
-            <p class="set-patient">Nickname: {{user.nickName}}</p>
+            <p>Nickname: {{user.nickName}}</p>
         </div>
         <div id="s-change-info" class="s-info">
             <a class="btn-theme field-btn" href="/reset-password">Change password</a>
@@ -29,15 +29,12 @@
         </div>
     </div>
 
-    {{#ifClin user}}
-    {{else}}
-        <h2 class="set-patient">Color theme</h2>
-        <form action="/settings/theme" method="post" class="set-patient set-item">
-            <button type="submit" name="themeChosen" value="default" style="background-color: var(--blue-color);" class="s-color"></button>
-            <button type="submit" name="themeChosen" value="dark" style="background-color: var(--offBlack-color);" class="s-color"></button>
-            <button type="submit" name="themeChosen" value="light" style="background-color: white;" class="s-color"></button>
-        </form>
-    {{/ifClin}}
+    <h2>Color theme</h2>
+    <form action="/settings/theme" method="post" class="set-item">
+        <button type="submit" name="themeChosen" value="default" style="background-color: var(--blue-color);" class="s-color"></button>
+        <button type="submit" name="themeChosen" value="dark" style="background-color: var(--offBlack-color);" class="s-color"></button>
+        <button type="submit" name="themeChosen" value="light" style="background-color: white;" class="s-color"></button>
+    </form>
 
     <form action="/log-out" method="post" class="set-item"><button class="set-logout" onclick="logOut()"><h3>Log out</h3></button></form>
 </div>

@@ -13,6 +13,7 @@ const clinicianSchema = new Schema({
         },
     ],
     password: { type: String, required: true },
+    theme: { type: String, required: true, default: "default" },
 });
 
 clinicianSchema.methods.verifyPassword = function (password, callback) {
