@@ -15,7 +15,7 @@ if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
 }
 
-const connectionURL = process.env.MONGO_URL || 'mongodb://localhost:27017/diabetes-at-home';
+const connectionURL = process.env.MONGO_URL || 'mongodb://localhost:27017/d-a-h';
 mongoose.connect(connectionURL);
 
 const db = mongoose.connection;
@@ -71,6 +71,18 @@ if (app.get('env') === 'production') {
 }
 
 
+// load blank user
+app.use((req, res, next) => {
+    if (req.session.user == undefined) {
+        req.session.user = {};
+    }
+    next();
+})
+
+// use PASSPORT
+// const passport = require('./passport.js');
+// const { nextTick } = require('process');
+// app.use(passport.authenticate('session'))
 
 // link views to views directory
 app.set('views', path.join(__dirname, '/views'));
@@ -92,4 +104,12 @@ app.use('/', authRouter)
 // app.use('/patient', patientRoutes);
 app.use('/', generalRoutes);
 
+// hero page
+app.get('/', async (req, res) => {
+    res.render('landing', {
+        style: 'landing.css',
+        user: req.session.user,
+        theme: req.session.user.theme,
+    });
+});
 

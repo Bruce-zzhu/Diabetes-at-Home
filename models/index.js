@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const { Patient, TimeSeries } = require("./patient");
-const { Clinician } = require("./clinician");
+const { Clinician, Note, Message } = require("./clinician");
 
 require("dotenv").config();
 const connectionURL = process.env.MONGO_URL || "mongodb://localhost:27017/diabetes-at-home";
@@ -14,6 +14,35 @@ db.once("open", () => {
 });
 
 // sample data
+const requirements = new TimeSeries({
+    clinicianUse: true,
+    date: new Date(),
+    bloodGlucose: {
+        isRequired: false,
+        value: 0,
+        upperBound: 0,
+        lowerBound: 0
+    },
+    insulin: {
+        isRequired: false,
+        value: 0,
+        upperBound: 0,
+        lowerBound: 0
+    },
+    weight: {
+        isRequired: false,
+        value: 0,
+        upperBound: 0,
+        lowerBound: 0
+    },
+    exercise: {
+        isRequired: false,
+        value: 0,
+        upperBound: 0,
+        lowerBound: 0
+    }
+});
+
 const newPatient = new Patient({
     firstName: "Pat",
     lastName: "Smith",
@@ -21,17 +50,8 @@ const newPatient = new Patient({
     age: 30,
     gender: "male",
     email: "pat@diabetemail.com",
-    password: "password"
-});
-
-const newPatient2 = new Patient({
-    firstName: "Jeffrey",
-    lastName: "Daniels",
-    nickName: "Jeff",
-    age: 50,
-    gender: "male",
-    email: "jeff@diabetemail.com",
-    password: "words"
+    password: "password",
+    requirements: requirements._id
 });
 
 const newClinician = new Clinician({
@@ -70,6 +90,20 @@ const newTimeseries = new TimeSeries({
     }
 })
 
+const newNote = new Note({
+    clinician: newClinician._id,
+    patient: newPatient._id,
+    title: "",
+    body: "",
+    time: Date()
+})
+
+const newMessage = new Message({
+    clinician: newClinician._id,
+    patient: newPatient._id,
+    body: "",
+    time: Date()
+})
 
 // load sample data into mongodb
 const loadDataToDB = async () => {
@@ -77,10 +111,15 @@ const loadDataToDB = async () => {
     // await Patient.deleteMany({});
     // await TimeSeries.deleteMany({});
     // await Clinician.deleteMany({});
+    // await Note.deleteMany({});
+    // await Message.deleteMany({});
 
-    //await newPatient.save();
-    //await newClinician.save();
+    // await requirements.save();
+    // await newPatient.save();
     // await newTimeseries.save();
+    // await newClinician.save();
+    // await newNote.save();
+    // await newMessage.save();
 };
 
 loadDataToDB().then(() => {

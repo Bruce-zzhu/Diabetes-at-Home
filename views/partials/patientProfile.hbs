@@ -10,13 +10,16 @@
         alt="badge"
     />
 </div>
-<h3 id="pname">{{firstName}} {{lastName}}</h3>
-<div id="pinfo">Nickname:
-    {{nickName}}
-    <br />Age:
-    {{age}}
-    <br />Gender:
-    {{gender}}
+
+<div id="pinfo">
+    <h3 id="pname">{{firstName}} {{lastName}}</h3>
+    <div class="pinfo-details">
+        <p>Nickname: {{nickName}}</p>
+        <p>Age: {{age}}</p>
+        <p>Gender: {{gender}}</p>
+    </div>
+
+    
 </div>
 <div id="engagement">
     <h5>Engagement</h5>
@@ -31,4 +34,5 @@
         ><span id="egmt-val"></span></div>
     </div>
 </div>
+<script>var egmt = {{engagementRate}} * 100;</script>
 <script src="/scripts/p-profile.js"></script>

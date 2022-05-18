@@ -1,8 +1,3 @@
-function logOut() {
-    console.log('User has logged out');
-    window.location.replace(window.location.origin + '/');
-}
-
 function consolelogs() {
     console.log('User creating new entry');
 }
@@ -15,12 +10,12 @@ function isSameDay(d1, d2) {
     );
 }
 
-function getDateInfo(dateString) {
-    var localDate = new Date(dateString.getTime() - dateString.getTimezoneOffset() * 60000).toISOString();
-    var year = localDate.slice(0, 4);
-    var month = localDate.slice(5, 7);
-    var day = localDate.slice(8, 10);
-
+function getDateInfo(date) {
+    var localDate = date.toLocaleString("en-AU", {"timeZone": "Australia/Melbourne"});
+    var day = localDate.slice(0, 2);
+    var month = localDate.slice(3, 5);
+    var year = localDate.slice(6, 10);
+    
     return [day, month, year]
 }
 
@@ -32,8 +27,8 @@ function tableToggleComment(cell) {
         comment.style.display = "block";
         value.style.display = "none";
         cell.style.background = "white";
-        cell.style.borderLeft = "1px solid var(--border-color)";
-        cell.style.borderRight = "1px solid var(--border-color)";
+        cell.style.borderLeft = "1px solid var(--grey-color)";
+        cell.style.borderRight = "1px solid var(--grey-color)";
     } else {
         comment.style.display = "none";
         value.style.display = "block";
@@ -43,68 +38,25 @@ function tableToggleComment(cell) {
     }
 }
 
-function setTheme(themeName) {
+function getTheme(theme) {
+    if (theme == undefined) {return;}
+
     var rootStyle = document.documentElement.style;
-    switch (themeName) {
-        case "default":
-            rootStyle.setProperty("--bg-color", "var(--offWhite-color)");
-            rootStyle.setProperty("--border-color", "var(--grey-color)");
-            rootStyle.setProperty("--text-color", "black");
-            rootStyle.setProperty("--alt-text-color", "white");
-            rootStyle.setProperty("--button-color", "var(--lightBlue-color)");
-            rootStyle.setProperty("--primary-color", "var(--blue-color)");
-            rootStyle.setProperty("--secondary-color", "var(--offGrey-color)");
-            rootStyle.setProperty("--tertiary-color", "white");
-            var logos = document.getElementsByClassName("logo");
-            for (var i=0; i<logos.length; i++) {
-                logos[i].src = "/images/logo-white.svg"
-            }
-            break;
-        case "dark":
-            rootStyle.setProperty("--bg-color", "var(--grey-color)");
-            rootStyle.setProperty("--border-color", "var(--offWhite-color)");
-            rootStyle.setProperty("--text-color", "white");
-            rootStyle.setProperty("--alt-text-color", "white");
-            rootStyle.setProperty("--button-color", "var(--grey-color)");
-            rootStyle.setProperty("--primary-color", "var(--offBlack-color");
-            rootStyle.setProperty("--secondary-color", "var(--lightGrey-color)");
-            rootStyle.setProperty("--tertiary-color", "var(--grey-color)");
-            var logos = document.getElementsByClassName("logo");
-            for (var i=0; i<logos.length; i++) {
-                logos[i].src = "/images/logo-white.svg"
-            }
-            break;
-        case "light":
-            rootStyle.setProperty("--bg-color", "white");
-            rootStyle.setProperty("--border-color", "var(--grey-color)");
-            rootStyle.setProperty("--text-color", "black");
-            rootStyle.setProperty("--alt-text-color", "black");
-            rootStyle.setProperty("--button-color", "white");
-            rootStyle.setProperty("--primary-color", "white");
-            rootStyle.setProperty("--secondary-color", "var(--offWhite-color)");
-            rootStyle.setProperty("--tertiary-color", "white");
-            var logos = document.getElementsByClassName("logo");
-            for (var i=0; i<logos.length; i++) {
-                logos[i].src = "/images/logo-black.svg"
-            }
+
+    for (var key in theme.colors) {
+        rootStyle.setProperty("--"+key+"-color", theme.colors[key]);
     }
 
-    
-
-    // TODO: change patient theme val in db
-}
-
-function calcEngagement(patient) {
-    // TODO logic
-    return 80;
+    var logos = document.getElementsByClassName("logo");
+    for (var i=0; i<logos.length; i++) {
+        logos[i].src = theme.logoPath;
+    }
 }
 
 module.exports = {
-    logOut,
     consolelogs,
     isSameDay,
     getDateInfo,
     tableToggleComment,
-    setTheme,
-    calcEngagement
+    getTheme
 };

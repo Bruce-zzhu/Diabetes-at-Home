@@ -21,8 +21,8 @@
                 <th scope="col">#</th>
                 <th scope="col">Patient</th>
                 <th scope="col">Blood GLucose<br /><span>nmol/L</span></th>
-                <th scope="col">Insulin Taken<br /><span>doses</span></th>
                 <th scope="col">Weight<br /><span>kg</span></th>
+                <th scope="col">Insulin Taken<br /><span>doses</span></th>
                 <th scope="col">Exercise Completed<br /><span>steps</span></th>
             </tr>
             
@@ -33,7 +33,7 @@
                 <th scope="row">{{idx @index}}</th>
                     
                 <td>
-                    <a href="/clinician/view-patient/{{patient._id}}/overview">
+                    <a href="/clinician/view-patient/{{patient._id}}">
                         <strong>{{patient.firstName}} {{patient.lastName}}</strong><br />
                         Age: {{patient.age}} &nbsp;
                         Gender: {{patient.gender}}
@@ -48,13 +48,7 @@
                     {{bloodGlucose.value}}{{#if bloodGlucose.isRequired}}*{{/if}}
                 </td>
                 
-                <td 
-                {{#if (isNotBounded insulin.value insulin.upperBound insulin.lowerBound)}}
-                style="color: red"
-                {{/if}}
-                >
-                    {{insulin.value}}{{#if insulin.isRequired}}*{{/if}}
-                </td>
+                
                 <td 
                 {{#if (isNotBounded weight.value weight.upperBound weight.lowerBound)}}
                 style="color: red"
@@ -62,6 +56,15 @@
                 >
                     {{weight.value}}{{#if weight.isRequired}}*{{/if}}
                 </td>
+
+                <td 
+                {{#if (isNotBounded insulin.value insulin.upperBound insulin.lowerBound)}}
+                style="color: red"
+                {{/if}}
+                >
+                    {{insulin.value}}{{#if insulin.isRequired}}*{{/if}}
+                </td>
+
                 <td 
                 {{#if (isNotBounded exercise.value exercise.upperBound exercise.lowerBound)}}
                 style="color: red"

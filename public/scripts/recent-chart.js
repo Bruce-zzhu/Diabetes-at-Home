@@ -7,16 +7,17 @@ var exerciseData = [];
 
 for (ts of histData) {
     var date = ts.date;
-    var res = `${date[0]}/${date[1]}/${date[2]}`;
+    var res = `${date[0]}/${date[1]}`;
     dates.push(res);
 
+    
     bloodData.push(ts.timeSeries.bloodGlucose.value);
     weightData.push(ts.timeSeries.weight.value);
     insulinData.push(ts.timeSeries.insulin.value);
     exerciseData.push(ts.timeSeries.exercise.value);
 }
 
-const labels = dates.reverse();
+var labels = dates.reverse();
 bloodData.reverse();
 weightData.reverse();
 insulinData.reverse();

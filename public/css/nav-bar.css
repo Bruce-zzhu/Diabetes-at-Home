@@ -2,17 +2,21 @@ nav {
     width: 100%;
     overflow: visible;
     background-color: var(--primary-color);
-    color: var(--alt-text-color);
+    color: var(--altText-color);
     position: fixed;
-    z-index: 5;
+    z-index: 50;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 16px;
     height: 48px;
     margin: auto;
-    box-shadow: 0 1.5px 0 var(--alt-text-color);
+    box-shadow: 0 1.5px 0 var(--altText-color);
     font-size: 16px;
+}
+
+nav * {
+    z-index: 50;
 }
 
 #nav-back {
@@ -38,14 +42,10 @@ nav {
 nav a,
 nav a:hover {
     text-decoration: none;
-    color: var(--alt-text-color);
+    color: var(--altText-color);
 }
 
-.nav-name {
-    padding-left: 16px;
-}
-
-nav .btn-light {
+nav .btn-theme {
     border-radius: 3px;
     padding: 0 8px 0 8px;
     border: 2px solid var(--border-color)
@@ -88,16 +88,33 @@ nav .btn-outline-light:hover {
     text-decoration: none;
 }
 
+#nav-entry-div {
+    position: fixed;
+    right: 3rem;
+    bottom: 3rem;
+}
+
+#new-entry-button-header {
+    background-color: var(--primary-color);
+    padding: 1rem;
+    box-shadow: 3px 3px 5px var(--border-color);
+    border-width: 2.5px;
+}
+
+#new-entry-button-header > * {
+    font-size: 4rem;
+}
+
 .dropdown {
+    position: relative;
     float: left;
     overflow: hidden;
-    z-index: 5;
 }
 
 .dropdown .dropbtn {
     border: none;
     outline: none;
-    color: var(--alt-text-color);
+    color: var(--altText-color);
     background-color: inherit;
     font-family: inherit;
     margin: 0;
@@ -105,7 +122,7 @@ nav .btn-outline-light:hover {
 
 #nav-links a:hover,
 .dropdown:hover .dropbtn {
-    background-color: var(--alt-text-color);
+    background-color: var(--altText-color);
     color: var(--primary-color);
 }
 .dropdown-content {
@@ -114,8 +131,7 @@ nav .btn-outline-light:hover {
     position: fixed;
     background-color: var(--primary-color);
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px var(--border-color);
-    z-index: 5;
+    box-shadow: 0px 10px 16px 0px var(--border-color);
 }
 
 .dropdown-content a {
@@ -126,7 +142,7 @@ nav .btn-outline-light:hover {
     text-align: left;
 }
 .dropdown-content a:hover {
-    background-color: var(--alt-text-color);
+    background-color: var(--altText-color);
     color: var(--primary-color);
 }
 .dropdown:hover .dropdown-content {
@@ -153,14 +169,8 @@ nav .btn-outline-light:hover {
     padding-bottom: 5px;
 }
 
-nav .post-login,
-nav .pre-login {
-    display: flex;
-    flex-direction: row;
-}
-
 nav .spacer {
-    width: 50px;
+    width: 1px;
 }
 
 nav .simple-spacer {
@@ -183,11 +193,11 @@ nav .desktop {
 }
 
 .btn-outline-light {
-    color: var(--alt-text-color);
-    border-color: var(--alt-text-color);
+    color: var(--altText-color);
+    border-color: var(--altText-color);
 }
 
-@media screen and (max-width: 376px) {
+@media screen and (max-width: 380px) {
     nav .mobile {
         display: flex;
     }
@@ -195,15 +205,24 @@ nav .desktop {
     #simple-nav .nav-name div {
         display: none;
     }
+
+    #nav-entry-div {
+        right: 1rem;
+        bottom: 1rem;
+    }
+    
+    #new-entry-button-header > * {
+        font-size: 2rem;
+    }
 }
 
-@media screen and (min-width: 376px) and (max-width: 1024px) {
+@media screen and (min-width: 381px) and (max-width: 1029px) {
     nav .tablet {
         display: flex;
     }
 }
 
-@media screen and (min-width: 1025px) {
+@media screen and (min-width: 1030px) {
     nav .desktop {
         display: flex;
     }

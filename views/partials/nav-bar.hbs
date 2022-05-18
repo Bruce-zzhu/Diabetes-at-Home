@@ -1,13 +1,17 @@
 {{!-- standard nav bar for landing page and patient/clinician views.
 links and functions change depending on login status/user type. --}}
 <nav id="normal-nav">
-    <div id="nav-entry-div" class="desktop tablet mobile nav-patient post-login">
-        <button id="new-entry-button-header" class="new-entry-button-header btn btn-outline-light icon nav-new-entry"><span
-                class="material-icons"
-            >create</span></button>
-        <div class="spacer desktop"></div>
-    </div>
+    <div class="spacer mobile"></div>
 
+    {{!-- {{#if user.id}}
+        {{#ifClin user}}
+            <a class="nav-name" href="/clinician/dashboard">
+        {{else}}
+            <a class="nav-name" href="/patient/dashboard">
+        {{/ifClin}}
+    {{else}}
+        <a class="nav-name" href="/">
+    {{/if}} --}}
     <a class="nav-name" href="/">
         <div>Diabetes</div>
         <img class="nav-logo logo" src="/images/logo-white.svg" alt="logo" />
@@ -16,71 +20,72 @@ links and functions change depending on login status/user type. --}}
 
     <div id="nav-links">
         <div class="desktop">
-            <div class="pre-login">
-                <div class="dropdown">
-                    <button class="dropbtn">Login</button>
-                    <div class="dropdown-content">
-                        <a href="/login-p">As Patient</a>
-                        <a href="/login-c">As Clinician</a>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <button class="dropbtn">About</button>
-                    <div class="dropdown-content">
-                        <a href="/about-us">About D@H</a>
-                        <a href="/about-diabetes">About Diabetes</a>
-                    </div>
-                </div>
-            </div>
-            <div class="post-login">
-                <a class="nav-clinician" href="/clinician/dashboard">Dashboard</a>
-                <a class="nav-clinician" href="/clinician/comments">Comments</a>
-                <div class="nav-patient dropdown">
-                    <button class="dropbtn">About</button>
-                    <div class="dropdown-content">
-                        <a href="/about-us">About D@H</a>
-                        <a href="/about-diabetes">About Diabetes</a>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <button class="dropbtn"><span
-                            class="material-icons"
-                        >account_circle</span></button>
-                    <div class="dropdown-content">
-                        <div class="nav-profile">
-                            <img
-                                style="width: 3rem;"
-                                src="https://uxwing.com/wp-content/themes/uxwing/download/12-peoples-avatars/no-profile-picture.svg"
-                            />
-                            <p class="nav-clinician"><strong>Chris Lee</strong><br/>chris@diabetemail.com</p>
-                            <p class="nav-patient"><strong>Pat Smith</strong><br/>pat@diabetemail.com</p>
-                            <form method="POST" action="/logout">
-                                <button class="btn btn-light">Log out</button>
-                            </form>     
-                            {{!-- <p><button
-                                    onclick="logOut()"
-                                    class="btn btn-light"
-                                >Log out</button></p> --}}
+                {{#if user.id}}
+                    {{#ifClin user}}
+                        <a class="nav-clinician" href="/clinician/dashboard">Dashboard</a>
+                        <a class="nav-clinician" href="/clinician/comments">Comments</a>
+                    {{else}}
+                        <div class="nav-patient dropdown">
+                            <button class="dropbtn">About</button>
+                            <div class="dropdown-content">
+                                <a href="/about-us">About D@H</a>
+                                <a href="/about-diabetes">About Diabetes</a>
+                            </div>
                         </div>
-                        <a href="/settings/colour"><span
-                                style="float: left"
-                            >Colour Scheme</span><span
-                                style="float: right"
+                    {{/ifClin}}
+                    <div class="dropdown">
+                        <button class="dropbtn"><span
                                 class="material-icons"
-                            >chevron_right</span></a>
-                        <a href="/settings/password"><span
-                                style="float: left"
-                            >Change Password</span><span
-                                style="float: right"
-                                class="material-icons"
-                            >chevron_right</span></a>
+                            >account_circle</span></button>
+                        <div class="dropdown-content">
+                            <div class="nav-profile">
+                                <img
+                                    style="width: 3rem;"
+                                    src="https://uxwing.com/wp-content/themes/uxwing/download/12-peoples-avatars/no-profile-picture.svg"
+                                />
+                                <p><strong>{{user.firstName}} {{user.lastName}}</strong><br/>{{user.email}}</p>
+                                <form action="/log-out" method="post">
+                                    <button class="btn btn-theme">Log out</button>
+                                </form>
+                            </div>
+                            <a href="/settings">Settings</a>
+                        </div>
                     </div>
-                </div>
-            </div>
+                {{else}}
+                    <div class="dropdown">
+                        <button class="dropbtn">Login</button>
+                        <div class="dropdown-content">
+                            <a href="/login-p">As Patient</a>
+                            <a href="/login-c">As Clinician</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <button class="dropbtn">About</button>
+                        <div class="dropdown-content">
+                            <a href="/about-us">About D@H</a>
+                            <a href="/about-diabetes">About Diabetes</a>
+                        </div>
+                    </div>
+                {{/if}}
         </div>
 
         <div class="tablet mobile">
-            <div class="pre-login">
+            {{#if user.id}}
+                <div class="dropdown">
+                    <button class="dropbtn"><span class="material-icons">menu</span></button>
+                    <div class="dropdown-content">
+                        {{#ifClin user}}
+                            <a class="nav-clinician" href="/clinician/dashboard">Dashboard</a>
+                            <a class="nav-clinician" href="/clinician/comments">Comments</a>
+                            <a href="/settings">Settings</a>
+                        {{else}}
+                            <a href="/patient/dashboard">Dashboard</a>
+                            <a href="/about-diabetes">About Diabetes</a>
+                            <a href="/about-us">About D@H</a>
+                        {{/ifClin}}
+                    </div>
+                </div>
+            {{else}}
                 <div class="dropdown">
                     <button class="dropbtn">Login</button>
                     <div class="dropdown-content">
@@ -95,33 +100,40 @@ links and functions change depending on login status/user type. --}}
                         <a href="/about-diabetes">About Diabetes</a>
                     </div>
                 </div>
-            </div>
-            <div class="post-login">
-                <div class="dropdown">
-                    <button class="dropbtn"><span
-                            class="material-icons"
-                        >menu</span></button>
-                    <div class="dropdown-content">
-                        <a class="nav-patient" href="/patient/dashboard">Dashboard</a>
-                        <a class="nav-patient" href="/about-diabetes">About Diabetes</a>
-                        <a class="nav-patient" href="/about-us">About D@H</a>
-                        <a class="nav-clinician" href="/clinician/dashboard">Dashboard</a>
-                        <a class="nav-clinician" href="/clinician/comments">Comments</a>
-                        <a href="/settings">Settings</a>
-                    </div>
-                </div>
-            </div>
+            {{/if}}
         </div>
     </div>
+
+    {{#if user.id}}
+        {{#ifClin user}}
+            {{else}}
+                <div id="nav-entry-div" class="desktop tablet mobile">
+                    <button id="new-entry-button-header" class="new-entry-button-header btn btn-outline-light icon nav-new-entry"><span
+                            class="material-icons"
+                        >create</span></button>
+                </div>
+            {{/ifClin}}
+        {{else}}
+    {{/if}}
+
 </nav>
 
 {{!-- simplified nav bar for lesser pages such as about/settings pages --}}
 <nav id="simple-nav">
+    
     <a id="nav-back" class="">
         <span class="material-icons">arrow_back_ios</span>
         <div>Back</div>
     </a>
-    <a class="nav-name" href="/">
+    {{#if user.id}}
+        {{#ifClin user}}
+            <a class="nav-name" href="/clinician/dashboard">
+        {{else}}
+            <a class="nav-name" href="/patient/dashboard">
+        {{/ifClin}}
+    {{else}}
+        <a class="nav-name" href="/">
+    {{/if}}
         <div>Diabetes</div>
         <img class="nav-logo logo" src="/images/logo-white.svg" alt="logo" />
         <div>Home</div>

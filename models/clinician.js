@@ -44,5 +44,39 @@ clinicianSchema.pre('save', function save(next) {
     })
 })
 
+
+const noteSchema = new Schema({
+    clinician: {
+        type: Schema.Types.ObjectId,
+        ref: "Clinician"
+    },
+    patient: {
+        type: Schema.Types.ObjectId,
+        ref: "Patient"
+    },
+    title: String,
+    body: String,
+    time: Date
+})
+
+const messageSchema = new Schema({
+    clinician: {
+        type: Schema.Types.ObjectId,
+        ref: "Clinician"
+    },
+    patient: {
+        type: Schema.Types.ObjectId,
+        ref: "Patient"
+    },
+    body: String,
+    time: Date,
+    unread: { type: Boolean, required: true, default: true }
+})
+
+
 const Clinician = mongoose.model("Clinician", clinicianSchema);
-module.exports = { Clinician };
+const Note = mongoose.model("Note", noteSchema);
+const Message = mongoose.model("Message", messageSchema);
+
+
+module.exports = { Clinician, Note, Message };

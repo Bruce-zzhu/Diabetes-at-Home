@@ -10,6 +10,11 @@ var register = function(Handlebars) {
             return parseInt(value) + 1;
         },
 
+        // check if value entry is recorded
+        recorded: function(value) {
+            return (value == 0) || value;
+        },
+
         // extract date info from Date object
         getDate: function (date) {
             const year = date.getFullYear();
@@ -17,6 +22,27 @@ var register = function(Handlebars) {
             const day = date.getDate();
 
             return `${day}/${month}/${year}`
+        },
+
+        // change mongodb default time to melbourne date without time
+        toMelbDate: function (date) {
+            const timestamp = date.toLocaleString("en-AU", {"timeZone": "Australia/Melbourne"})
+            return timestamp.slice(0, 10)
+        },
+
+        // date with time
+        toMelbTimestamp: function (date) {
+            return new Date(date).toLocaleString("en-AU", {"timeZone": "Australia/Melbourne"})
+        },
+
+        // JSON stringfy
+        jStringify: function (obj) {
+            return JSON.stringify(obj);
+        },
+
+        // check if a user (cookie) is clinician
+        ifClin: function (user, options) {
+            return (user.type == "clinician") ? options.fn(this) : options.inverse(this);
         }
         
     }

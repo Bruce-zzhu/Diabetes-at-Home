@@ -10,7 +10,7 @@
 
 
 .sub-nav a {
-    color: black;
+    color: var(--text-color);
     text-decoration: none;
     font-weight: bold;
     font-style: italic;
@@ -79,7 +79,7 @@
 
 .btn-list button {
     background-color: var(--primary-color);
-    color: white;
+    color: var(--altText-color);
     border: 1.5px solid white;
     border-radius: 0.5rem;
     font-size: 1.25rem;
@@ -114,7 +114,7 @@
     padding: 10px;
 }
 
-@media screen and (min-width: 376px) {
+@media screen and (min-width: 381px) {
 
     .banner-content {
         top: 0;
@@ -132,7 +132,7 @@
     }
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 380px) {
     .banner-content {
         grid-template-areas:
             "welcome welcome"
@@ -149,7 +149,7 @@
 
 }
 
-@media screen and (min-width: 1025px) {
+@media screen and (min-width: 1030px) {
     .features {
         padding-top: 80px;
     }

@@ -50,6 +50,7 @@
     grid-area: pfp;
     position: relative;
     padding-right: 6rem;
+    width: 10rem;
 }
 
 #profile-pic {
@@ -70,12 +71,14 @@
 
 #pinfo {
     font-size: 1.2rem;
-    grid-area: pinfo;
+    padding-left: 15%;
+    width: 15rem;
 }
 
 #engagement {
     grid-area: egmt;
     padding-left: 2rem;
+    margin-top: -2rem;
 }
 
 #engagement h5 {
@@ -99,7 +102,7 @@
     grid-area: m2;
 }
 
-#hist-chart {
+#recent-chart {
     grid-area: m3;
 }
 
@@ -129,7 +132,7 @@
     cursor: pointer;
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 380px) {
 
     #dashboard-body h2 {
         margin-left: 5%;
@@ -157,7 +160,8 @@
     }
 
     #engagement {
-        padding: 15% 0 5% 5%;
+        padding: 0 0 5% 5%;
+        margin-top: 0;
     }
 
     #full-history tr th {
@@ -173,7 +177,7 @@
      }
 }
 
-@media screen and (min-width: 376px) {
+@media screen and (min-width: 381px) {
     .home-container {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
@@ -194,19 +198,18 @@
     #hc1.module {
         height: 180px;
     }
+    
 }
 
-@media screen and (max-width: 1024px) and (min-width: 376px) {
+@media screen and (max-width: 1029px) and (min-width: 381px) {
     html {
         font-size: 60% !important;
     }
-    #engagement {
-        padding-top: 5%;
-    }
+
 }
 
 
-@media screen and (min-width: 1025px) {
+@media screen and (min-width: 1030px) {
     .module {
         width: 100%;
     }
