@@ -21,12 +21,26 @@ const renderLoginPatient = (req, res) => {
     });
 };
 
-const newFunction1 = (req, res) => {
-    const patientEmail = req.body.loginEmail;
-    console.log(patientEmail)
-    //res.send(req.body);
-    res.redirect('/patient/dashboard');
-};
+// const checkLoginDetails = async(req, res) => {
+//     // const patientEmailEntry = req.body.loginEmail;
+//     // console.log(patientEmailEntry);
+//     // // Get Data about user with this email...
+//     // try{
+//     //     const thisUser = await Patient.findOne({ email: patientEmailEntry });
+//     //     console.log(thisUser);
+//     //     // If correct, redirect to patient dashboard, else error
+//     //     if (thisUser != null){
+//     //         res.redirect('/patient/dashboard');
+//     //     }
+//     // } 
+//     //     // Else if email is not in db then print error
+//     // catch(err){
+//     //     console.log(err)
+//     // }
+    
+//     // // Nothing is currently passed to the patient.js controller. Currently hardcoded.
+//     // // Passwords
+// };
 
 const renderLoginClinician = (req, res) => {
     res.render("clinician/login", {
@@ -52,9 +66,9 @@ const renderSettings = async (req, res) => {
 
     var user;
 
-    if (req.session.user.type == "patient") {
+    if (req.session.user.role == "patient") {
         user = await Patient.findOne({_id: req.session.user.id });
-    } else if (req.session.user.type == "clinician") {
+    } else if (req.session.user.role == "clinician") {
         user = await Clinician.findOne({_id: req.session.user.id });
     }
 
@@ -68,7 +82,7 @@ const renderSettings = async (req, res) => {
 
     res.render("settings", {
         style: "settings.css",
-        user: req.session.user,
+        user: user,
         theme: req.session.user.theme,
     });
 }
@@ -76,9 +90,16 @@ const renderSettings = async (req, res) => {
 const setTheme = async (req, res) => {
 
     try {
+        var user;
         var themeName = req.body.themeChosen;
-        var patient = await Patient.findOneAndUpdate( {_id: req.session.user.id }, { theme: themeName }, { new: true } );
-        req.session.user.theme = JSON.stringify(await Theme.findOne( { themeName: patient.theme } ).lean());
+        if (req.session.role == "patient") {
+            user = await Patient.findOneAndUpdate( {_id: req.session.user.id }, { theme: themeName }, { new: true } );
+        } else {
+            user = await Clinician.findOneAndUpdate( {_id: req.session.user.id }, { theme: themeName }, { new: true } );
+        }
+
+        
+        req.session.user.theme = JSON.stringify(await Theme.findOne( { themeName: user.theme } ).lean());
     } catch (e) {
         console.log(e);
     }
@@ -110,6 +131,5 @@ module.exports = {
     renderSettings,
     setTheme,
     setNickname,
-    logOut,
-    newFunction1
+    logOut
 };

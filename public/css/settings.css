@@ -9,7 +9,7 @@
 }
 
 #settings-container h3 {
-    margin: 0;
+    margin: 4px 0 4px 0;
 }
 
 #settings-container button, #settings-container .field-btn {
@@ -123,6 +123,7 @@
 .set-logout {
     color: var(--red-color);
     width: 100%;
+    background-color: var(--offGrey-color);
 }
 
 @media screen and (min-width: 1030px) {

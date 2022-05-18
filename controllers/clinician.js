@@ -1,5 +1,6 @@
-const { Patient, TimeSeries } = require("../models/patient");
 const { Note, Message, Clinician } = require("../models/clinician");
+const { Patient, TimeSeries, Theme } = require("../models/patient");
+const { Note, Message } = require("../models/clinician");
 const { isSameDay, getDateInfo } = require("../public/scripts/js-helpers");
 
 const getTodayTimeSeries = async (patient) => {
@@ -60,13 +61,15 @@ const createTodayTimeSeries = async (patient) => {
 
 const getDashboardData = async (req, res) => {
 
-    req.session.user.type = "clinician";
+    const clinician = await Clinician.findOne({ email: req.session.user.email }).lean();
 
-    // TODO: replace hardcoded chris
-    req.session.user.id = "628208b8f2e1e34162d3b1e0";
-    req.session.user.firstName = "Chris";
-    req.session.user.lastName = "Lee";
-    req.session.user.email = "chris@diabetemail.com";
+    req.session.user.role = "clinician";
+    req.session.user.id = clinician._id;
+    req.session.user.firstName = clinician.firstName;
+    req.session.user.lastName = clinician.lastName;
+    req.session.user.theme = JSON.stringify(
+        await Theme.findOne({ themeName: clinician.theme }).lean()
+    );
 
     try {
         const patients = await Patient.find({}).populate("requirements").lean();
@@ -299,7 +302,7 @@ const addMessage = async (req, res) => {
 const insertData = (req, res) => {
     var newPatient = new Patient({
         firstName: req.body.firstName,
-        lastname: req.body.lastname,
+        lastName: req.body.lastName,
         nickName: req.body.nickName,
         email: req.body.email,
         password: req.body.password,
@@ -307,11 +310,30 @@ const insertData = (req, res) => {
         engagementRate: req.body.engagementRate,
         age: req.body.age,
         theme: req.body.theme,
+        bloodHigh: req.body.bloodHigh,
+        bloodLow: req.body.bloodLow,
+        bloodRequired: req.body.bloodRequired,
+        weightHigh: req.body.weightHigh,
+        weightLow: req.body.weightLow,
+        weightRequired: req.body.weightRequired,
+        insulinHigh: req.body.insulinHigh,
+        insulinRequired: req.body.insulinRequired,
+        insulinLow: req.body.insulinLow,
+        exerciseLow: req.body.exerciseLow,
+        exerciseHigh: req.body.exerciseHigh,
+        exerciseRequired: req.body.exerciseRequired,
     });
     newPatient.save();
+    res.redirect(`/clinician/register`);
 };
 
-
+const renderRegister = (req, res) => {
+    res.render("clinician/register", {
+        style: "register.css",
+        user: req.session.user,
+        theme: req.session.user.theme,
+    });
+};
 const renderCommentsPage = async (req, res) => {
     try {
         const cid = req.session.user.id;
@@ -328,6 +350,8 @@ const renderCommentsPage = async (req, res) => {
 
         res.render('clinician/comments', {
             style: 'comments.css',
+            user: req.session.user,
+            theme: req.session.user.theme,
             data
         })
     } catch(e) {
@@ -346,5 +370,6 @@ module.exports = {
     addNote,
     addMessage,
     insertData,
-    renderCommentsPage
+    renderCommentsPage,
+    renderRegister,
 };
