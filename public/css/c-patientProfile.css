@@ -1,7 +1,16 @@
 .progress {
     background-color: white;
     border: 1px solid var(--border-color);
-    border-radius: 10px;
+    border-radius: 0.25rem;
+    position: relative;
+}
+
+#egmt-val {
+    color: black;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
 }
 
 .profile {
