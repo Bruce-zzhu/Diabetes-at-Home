@@ -314,10 +314,16 @@ const insertData = (req, res) => {
 };
 
 const renderRegister = (req, res) => {
-    res.render("clinician/register");
+    res.render("clinician/register", {
+        user: req.session.user,
+        theme: req.session.user.theme,
+    });
 };
 const renderCommentsPage = (req, res) => {
-    res.render("clinician/comments");
+    res.render("clinician/comments", {
+        user: req.session.user,
+        theme: req.session.user.theme,
+    });
 };
 
 module.exports = {
