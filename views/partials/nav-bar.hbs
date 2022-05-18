@@ -3,15 +3,6 @@ links and functions change depending on login status/user type. --}}
 <nav id="normal-nav">
     <div class="spacer mobile"></div>
 
-    {{!-- {{#if user.id}}
-        {{#ifClin user}}
-            <a class="nav-name" href="/clinician/dashboard">
-        {{else}}
-            <a class="nav-name" href="/patient/dashboard">
-        {{/ifClin}}
-    {{else}}
-        <a class="nav-name" href="/">
-    {{/if}} --}}
     <a class="nav-name" href="/">
         <div>Diabetes</div>
         <img class="nav-logo logo" src="/images/logo-white.svg" alt="logo" />
@@ -81,11 +72,12 @@ links and functions change depending on login status/user type. --}}
                         {{#ifClin user}}
                             <a class="nav-clinician" href="/clinician/dashboard">Dashboard</a>
                             <a class="nav-clinician" href="/clinician/comments">Comments</a>
-                            <a href="/settings">Settings</a>
+                            <a href="/clinician/settings">Settings</a>
                         {{else}}
                             <a href="/patient/dashboard">Dashboard</a>
                             <a href="/about-diabetes">About Diabetes</a>
                             <a href="/about-us">About D@H</a>
+                            <a href="/patient/settings">Settings</a>
                         {{/ifClin}}
                     </div>
                 </div>

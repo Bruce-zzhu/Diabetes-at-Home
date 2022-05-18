@@ -28,6 +28,7 @@ router.post('/forgot-password', general.forgotPassword);
 
 // reset password page
 router.get('/reset-password', general.renderResetPassword);
+router.post('/reset-password', general.resetPassword);
 
 // log off
 router.post("/log-out", general.logOut);

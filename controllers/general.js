@@ -48,6 +48,9 @@ const renderLoginClinician = (req, res) => {
     });
 };
 const renderForgotPassword = (req, res) => {
+    if (req.session.resetPwd == undefined) {
+        req.session.resetPwd = {};
+    }
     res.render('forgotPassword', {
         style: 'forgotPassword.css',
         theme: req.session.user.theme,
@@ -55,11 +58,21 @@ const renderForgotPassword = (req, res) => {
     });
 };
 const renderResetPassword = (req, res) => {
-    res.render('resetPassword', {
-        style: 'forgotPassword.css',
-        theme: req.session.user.theme,
-        user: req.session.user,
-    });
+    if (req.session.resetPwd == undefined) {
+        req.session.resetPwd = {};
+    }
+    if (req.session.resetPwd.email == undefined && req.session.user.id == undefined) {
+        res.redirect('forgot-password');
+    } else {
+        if (req.session.resetPwd.email == undefined) {
+            req.session.resetPwd.email = req.session.user.email;
+        }
+        res.render('resetPassword', {
+            style: 'forgotPassword.css',
+            theme: req.session.user.theme,
+            user: req.session.user,
+        });
+    }
 };
 
 const renderSettings = async (req, res) => {
@@ -73,11 +86,11 @@ const renderSettings = async (req, res) => {
     }
 
     user = {
+        role: req.session.user.role,
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
         nickName: user.nickName
-        // pfp-path
     }
 
     res.render("settings", {
@@ -88,11 +101,33 @@ const renderSettings = async (req, res) => {
 }
 
 const forgotPassword = (req, res) => {
-    req.session.resetPassword = {};
-    if (req.session.user = {}) {
-        req.session.resetPassword.email = req.body.email;
-    }
+    req.session.resetPwd.email = req.body.email;
     res.redirect("/reset-password");
+}
+
+const resetPassword = (req, res) => {
+    // req.session.resetPwd.pwd = req.body.password;
+
+    var hashedPwd;
+    // TODO: hash password & store in db
+    // hashedPwd = hash(req.body.password);
+
+    var user;
+    switch (req.session.user.role) {
+        case "patient":
+            // console.log("reset pnt", req.session.resetPwd.email, "pwd", req.body.password);
+            // Patient.findOneAndUpdate({ _id: req.session.user.id }, { password: hashedPwd });
+            break;
+        case "clinician":
+            // console.log("reset clin" , req.session.resetPwd.email, "pwd", req.body.password);
+            // Clinician.findOneAndUpdate({ _id: req.session.user.id }, { password: hashedPwd });
+            break;
+        default:
+            console.log("unknown user", req.body.password);
+    }
+
+    req.session.destroy();
+    res.redirect("/");
 }
 
 const setTheme = async (req, res) => {
@@ -142,6 +177,7 @@ module.exports = {
     renderForgotPassword,
     forgotPassword,
     renderResetPassword,
+    resetPassword,
     renderSettings,
     setTheme,
     setNickname,

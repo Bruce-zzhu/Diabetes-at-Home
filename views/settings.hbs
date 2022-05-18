@@ -15,7 +15,7 @@
         <p class="s-name s-info"><span>{{user.firstName}}</span><span>{{user.lastName}}</span></p>
         <div class="s-info s-details">
             <p>Email: {{user.email}}</p>
-            <p>Nickname: {{user.nickName}}</p>
+            {{#ifClin user}}{{else}}<p>Nickname: {{user.nickName}}</p>{{/ifClin}}
         </div>
         <div id="s-change-info" class="s-info">
             <a class="btn-theme field-btn" href="/reset-password">Change password</a>

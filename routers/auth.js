@@ -24,6 +24,7 @@ router.use('/patient', isAuthenticated, patientRoutes);
 
 // Login page (with failure message displayed upon login failure)
 router.get('/login-p', (req, res) => {
+    req.session.user.role = "patient";
     res.render('patient/login', { flash: req.flash('error'), title: 'Login', style:'login.css' })
     
 })
@@ -44,6 +45,7 @@ router.use('/clinician', isAuthenticated, clinicianRoutes);
 
 // Login page (with failure message displayed upon login failure)
 router.get('/login-c', (req, res) => {
+    req.session.user.role = "clinician";
     res.render('clinician/login', { flash: req.flash('error'), title: 'Login', style:'login.css' })
 })
 

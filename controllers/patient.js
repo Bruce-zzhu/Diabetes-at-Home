@@ -86,7 +86,6 @@ const renderPatientDashboard = async (req, res) => {
     try {
         const patient = await Patient.findOne({ email: req.session.user.email }).populate('requirements').lean();
 
-        req.session.user.role = "patient";
         req.session.user.theme = JSON.stringify(
             await Theme.findOne({ themeName: patient.theme }).lean()
         );
