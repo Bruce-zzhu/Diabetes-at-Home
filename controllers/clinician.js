@@ -59,7 +59,6 @@ const createTodayTimeSeries = async (patient) => {
 };
 
 const getDashboardData = async (req, res) => {
-
     req.session.user.type = "clinician";
 
     // TODO: replace hardcoded chris
@@ -292,13 +291,12 @@ const insertData = (req, res) => {
         theme: req.body.theme,
     });
     newPatient.save();
+    res.render("clinician/register");
 };
 
-
 const renderCommentsPage = (req, res) => {
-    res.render('clinician/comments')
-}
-
+    res.render("clinician/comments");
+};
 
 module.exports = {
     getDashboardData,
@@ -310,5 +308,5 @@ module.exports = {
     addNote,
     addMessage,
     insertData,
-    renderCommentsPage
+    renderCommentsPage,
 };

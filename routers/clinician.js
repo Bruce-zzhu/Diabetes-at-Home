@@ -5,8 +5,8 @@ const clinician = require("../controllers/clinician");
 // clinician dashboard
 router.get("/dashboard", clinician.getDashboardData);
 
-router.get("/insertdata", clinician.insertData);
-router.post("/insertdata", clinician.insertData);
+router.get("/register", clinician.insertData);
+router.post("/register", clinician.insertData);
 
 // view patient page
 router
@@ -18,7 +18,6 @@ router.post("/view-patient/:id/note", clinician.addNote);
 
 router.post("/view-patient/:id/message", clinician.addMessage);
 
-
-router.get('/comments', clinician.renderCommentsPage)
+router.get("/comments", clinician.renderCommentsPage);
 
 module.exports = router;
