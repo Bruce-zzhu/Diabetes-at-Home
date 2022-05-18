@@ -1,8 +1,7 @@
+const { Note, Message, Clinician } = require("../models/clinician");
 const { Patient, TimeSeries, Theme } = require("../models/patient");
-const { Clinician } = require("../models/clinician");
 const { Note, Message } = require("../models/clinician");
 const { isSameDay, getDateInfo } = require("../public/scripts/js-helpers");
-const { redirect } = require("express/lib/response");
 
 const getTodayTimeSeries = async (patient) => {
     try {
@@ -330,17 +329,35 @@ const insertData = (req, res) => {
 const renderRegister = (req, res) => {
     res.render("clinician/register", {
         style: "register.css",
+        user: req.session.user,
+        theme: req.session.user.theme,
+    });
+};
+const renderCommentsPage = async (req, res) => {
+    try {
+        const cid = req.session.user.id;
+        const clinician = await Clinician.findById({_id: cid}).lean();
+        const patientIDs = clinician.patients;
 
-        user: req.session.user,
-        theme: req.session.user.theme,
-    });
-};
-const renderCommentsPage = (req, res) => {
-    res.render("clinician/comments", {
-        user: req.session.user,
-        theme: req.session.user.theme,
-    });
-};
+        const data = [];
+        // get all timeseries data of each patient
+        for (pid of patientIDs) {
+            const ts = await TimeSeries.find({patient: pid, clinicianUse: false}).populate('patient').lean();
+            data.push(...ts);
+        }
+        
+
+        res.render('clinician/comments', {
+            style: 'comments.css',
+            user: req.session.user,
+            theme: req.session.user.theme,
+            data
+        })
+    } catch(e) {
+        console.log(e);
+    }
+}
+
 
 module.exports = {
     getDashboardData,
