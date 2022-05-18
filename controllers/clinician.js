@@ -299,15 +299,16 @@ const addMessage = async (req, res) => {
 };
 const insertData = (req, res) => {
     var newPatient = new Patient({
+        createTime: new Date(),
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         nickName: req.body.nickName,
         email: req.body.email,
         password: req.body.password,
         gender: req.body.gender,
-        engagementRate: req.body.engagementRate,
+        engagementRate: 0,
         age: req.body.age,
-        theme: req.body.theme,
+        theme: "default",
         bloodHigh: req.body.bloodHigh,
         bloodLow: req.body.bloodLow,
         bloodRequired: req.body.bloodRequired,

@@ -70,7 +70,6 @@ const addEntryData = async (req, res) => {
         var totalDays = Math.ceil(
             (today.getTime() - patient.createTime.getTime()) / 86400000
         );
-        console.log(today, patient.createTime);
         await Patient.findOneAndUpdate(
             { _id: patient._id },
             { engagementRate: daysActive / totalDays }

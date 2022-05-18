@@ -8,42 +8,37 @@
         <div class="row g-1" >
             <div class="col-5 offset-1">
                 <div class="p-3 bg-light"style="margin-left: 110px;" >First name:
-                    <input type="text"  name="firstName" />
+                    <input required type="text"  name="firstName" />
                 </div>
             </div>
             <div class="col-5 offset-1">
                 <div class="p-3 bg-light"style="margin-left: 70px;" >Last name:
-                    <input type="text"  name="lastName" />
+                    <input required type="text"  name="lastName" />
                 </div>
             </div>
             <div class="col-5 offset-1">
                 <div class="p-3 bg-light"style="margin-left: 110px;">Age:
-                    <input type="number"  name="age" />
+                    <input required type="number"  name="age" />
                 </div>
             </div>
             <div class="col-5 offset-1">
                 <div class="p-3 bg-light"style="margin-left: 70px;">Gender:
-                   <input type="text" name="gender" />
-                </div>
-            </div>
-            <div class="col-5 offset-1">
-                <div class="p-3 bg-light" style="margin-left: 110px;">EngagementRate:
-                   <input  type="number"  name="engagementRate" />
-                </div>
-            </div>
-            <div class="col-5 offset-1">
-                <div class="p-3 bg-light"style="margin-left: 70px;">Theme:
-                  <input type="text"  name="theme" />
+                    <select required name="gender">
+                        <option value=""></option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
                 </div>
             </div>
             <div class="col-5 offset-1">
                 <div class="p-3 bg-light"style="margin-left: 110px;">Email:
-                   <input type="text" name="email" />
+                   <input required type="text" name="email" />
                 </div>
             </div>
             <div class="col-5 offset-1">
-                <div class="p-3 bg-light"style="margin-left: 70px;">Passowrd:
-                  <input type="text"  name="password" />
+                <div class="p-3 bg-light"style="margin-left: 70px;">Password:
+                  <input required type="text"  name="password" />
                 </div>
             </div>
         </div>
@@ -66,36 +61,36 @@
         <div class="row g-2">
             <div class="col-5 offset-1">
                 <div class="p-3 bg-light">Blood Glucose Level:
-                    <input class="from" name="bloodLow" type="number" />
+                    <input required class="from" name="bloodLow" type="number" />
                     to
-                    <input class="to" name="bloodHigh" type="number" />
+                    <input required class="to" name="bloodHigh" type="number" />
                     nmol/L
                     <input class="checkbox" type="checkbox" name="bloodRequired"/>
                 </div>
             </div>
             <div class="col-5 offset-1">
                 <div class="p-3 bg-light">Weight:
-                    <input class="from" name="weightLow" type="number"/>
+                    <input required class="from" name="weightLow" type="number"/>
                     to
-                    <input class="to" name="weightHigh" type="number"/>
+                    <input required class="to" name="weightHigh" type="number"/>
                     kg
                     <input class="checkbox" type="checkbox" name="weightRequired"/>
                 </div>
             </div>
             <div class="col-5 offset-1">
                 <div class="p-3 bg-light">Insulin Taken:
-                    <input class="from" name="insulinLow" type="number" />
+                    <input required class="from" name="insulinLow" type="number" />
                     to
-                    <input class="to" name="insulinHigh" type="number"/>
+                    <input required class="to" name="insulinHigh" type="number"/>
                     doses
                     <input class="checkbox" type="checkbox" name="insulinRequired" />
                 </div>
             </div>
             <div class="col-5 offset-1">
                 <div class="p-3 bg-light">Exercise:
-                    <input class="from" name="exerciseLow" type="number" />
+                    <input required class="from" name="exerciseLow" type="number" />
                     to
-                    <input class="to" name="exerciseHigh" type="number" />
+                    <input required class="to" name="exerciseHigh" type="number" />
                     steps
                     <input class="checkbox" type="checkbox" name="exerciseRequired"/>
                 </div>
