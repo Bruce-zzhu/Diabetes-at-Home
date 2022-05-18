@@ -1,16 +1,15 @@
-{{!-- <script>
-    var allPatEgmts = {{{allPatEgmts}}};
-</script> --}}
+
 <section class="leaderboard-container">
     <h5>Leaderboard</h5>
     <div class="scroll">
         <div class="user-place">
             <p>{{nickName}} -- <span id="egmt-val-ldrbd"></span> </p>
-            <p>   4.50% behind Naomi!</p>
+            <p>4.50% behind Naomi!</p>
         </div>
-        {{!-- {{#each allPatEgmts}}
-            <div>{{nickName}}</div>
-        {{/each}} --}}
+        {{#each allPatEgmts}}
+            <p>{{nickName}} -- {{Eg}}</p>
+        {{/each}}
+        
             <div class="placing">
                 <img class="medal place-number" alt="gold medal" src="https://uxwing.com/wp-content/themes/uxwing/download/24-sport-and-awards/gold-medal.svg">
                 <p class="leaderboard-nickname">Naomi -- 84.50%</p>
@@ -41,4 +40,7 @@
 <script>
     const list = document.getElementsByClassName("egmt-vals");
     .innerHTML = egmt + "%";
+</script>
+<script>
+    var allPatEgmts = {{{allPatEgmts}}};
 </script>
