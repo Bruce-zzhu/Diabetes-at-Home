@@ -66,9 +66,9 @@ const renderSettings = async (req, res) => {
 
     var user;
 
-    if (req.session.user.type == "patient") {
+    if (req.session.user.role == "patient") {
         user = await Patient.findOne({_id: req.session.user.id });
-    } else if (req.session.user.type == "clinician") {
+    } else if (req.session.user.role == "clinician") {
         user = await Clinician.findOne({_id: req.session.user.id });
     }
 
