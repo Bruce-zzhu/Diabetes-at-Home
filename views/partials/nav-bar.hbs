@@ -12,11 +12,14 @@ links and functions change depending on login status/user type. --}}
     <div id="nav-links">
         <div class="desktop">
                 {{#if user.id}}
+                    <script>console.log("{{user.role}}")</script>
                     {{#ifClin user}}
-                        <a class="nav-clinician" href="/clinician/dashboard">Dashboard</a>
-                        <a class="nav-clinician" href="/clinician/comments">Comments</a>
+                        <script>console.log({{user.role}})</script>
+                        <a href="/clinician/dashboard">Dashboard</a>
+                        <a href="/clinician/comments">Comments</a>
+                        <a href="/clinician/register">Add Patient</a>
                     {{else}}
-                        <div class="nav-patient dropdown">
+                        <div class="dropdown">
                             <button class="dropbtn">About</button>
                             <div class="dropdown-content">
                                 <a href="/about-us">About D@H</a>
@@ -70,8 +73,9 @@ links and functions change depending on login status/user type. --}}
                     <button class="dropbtn"><span class="material-icons">menu</span></button>
                     <div class="dropdown-content">
                         {{#ifClin user}}
-                            <a class="nav-clinician" href="/clinician/dashboard">Dashboard</a>
-                            <a class="nav-clinician" href="/clinician/comments">Comments</a>
+                            <a href="/clinician/dashboard">Dashboard</a>
+                            <a href="/clinician/comments">Comments</a>
+                            <a href="/clinician/register">Add Patient</a>
                             <a href="/clinician/settings">Settings</a>
                         {{else}}
                             <a href="/patient/dashboard">Dashboard</a>

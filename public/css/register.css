@@ -126,7 +126,7 @@
 .header-reminder {
     margin-bottom: -1rem;
     font-size: 0.9rem;
-    color: var(--grey-color);
+    color: var(--border-color);
 }
 
 .row {

@@ -42,7 +42,7 @@ var register = function(Handlebars) {
 
         // check if a user (cookie) is clinician
         ifClin: function (user, options) {
-            return (user.type == "clinician") ? options.fn(this) : options.inverse(this);
+            return (user.role == "clinician") ? options.fn(this) : options.inverse(this);
         },
 
         // check if the comment is empty
