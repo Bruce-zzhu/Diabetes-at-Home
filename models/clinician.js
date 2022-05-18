@@ -12,17 +12,10 @@ const clinicianSchema = new Schema({
     patients: [
         {
             type: Schema.Types.ObjectId,
-<<<<<<< HEAD
-            ref: "Patient"
-        }
-    ],
-    password: { type: String, required: true }
-=======
             ref: "Patient",
         },
     ],
     password: { type: String, required: true },
->>>>>>> fd3fc31d750ffbe4a45cfbd4f1fe5cab21f84422
 });
 
 clinicianSchema.methods.verifyPassword = function (password, callback) {
