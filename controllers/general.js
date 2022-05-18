@@ -85,18 +85,10 @@ const renderSettings = async (req, res) => {
         user = await Clinician.findOne({_id: req.session.user.id });
     }
 
-    user = {
-        role: req.session.user.role,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-        nickName: user.nickName
-    }
-
     res.render("settings", {
         style: "settings.css",
-        user: user,
         theme: req.session.user.theme,
+        user: req.session.user,
     });
 }
 

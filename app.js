@@ -36,13 +36,6 @@ app.engine(
 );
 app.set('view engine', 'hbs');
 
-// hero page
-app.get('/', async (req, res) => {
-    res.render('landing', {
-        style: 'landing.css',
-    });
-});
-
 app.listen(process.env.PORT || port, () => {
     console.log(`Listen on http://localhost:${port}`);
 });
