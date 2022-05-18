@@ -94,8 +94,6 @@ const renderPatientDashboard = async (req, res) => {
         req.session.user.lastName = patient.lastName;
         req.session.user.id = patient._id;
 
-        console.log(req.session);
-
         var todayTimeSeries = await getTodayTimeSeries(patient).then(
             (data) => data
         );

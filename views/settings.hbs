@@ -30,7 +30,11 @@
     </div>
 
     <h2>Color theme</h2>
-    <form action="/settings/theme" method="post" class="set-item">
+    {{#ifClin user}}
+        <form action="/clinician/settings/theme" method="post" class="set-item">
+    {{else}}
+        <form action="/patient/settings/theme" method="post" class="set-item">
+    {{/ifClin}}
         <button type="submit" name="themeChosen" value="default" style="background-color: var(--blue-color);" class="s-color"></button>
         <button type="submit" name="themeChosen" value="dark" style="background-color: var(--offBlack-color);" class="s-color"></button>
         <button type="submit" name="themeChosen" value="light" style="background-color: white;" class="s-color"></button>

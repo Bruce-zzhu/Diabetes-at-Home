@@ -48,7 +48,11 @@ links and functions change depending on login status/user type. --}}
                                     <button class="btn btn-theme">Log out</button>
                                 </form>
                             </div>
-                            <a href="/settings">Settings</a>
+                            {{#ifClin user}}
+                                <a href="/clinician/settings">Settings</a>
+                            {{else}}
+                                <a href="/patient/settings">Settings</a>
+                            {{/ifClin}}
                         </div>
                     </div>
                 {{else}}

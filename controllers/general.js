@@ -92,7 +92,7 @@ const setTheme = async (req, res) => {
     try {
         var user;
         var themeName = req.body.themeChosen;
-        if (req.session.role == "patient") {
+        if (req.session.user.role == "patient") {
             user = await Patient.findOneAndUpdate( {_id: req.session.user.id }, { theme: themeName }, { new: true } );
         } else {
             user = await Clinician.findOneAndUpdate( {_id: req.session.user.id }, { theme: themeName }, { new: true } );
@@ -103,7 +103,12 @@ const setTheme = async (req, res) => {
     } catch (e) {
         console.log(e);
     }
-    res.redirect("/settings");
+    if (req.session.user == "patient") {
+        res.redirect("/patient/settings");
+    } else {
+        res.redirect("/clinician/settings");
+    }
+    
 }
 
 const setNickname = async (req, res) => {
@@ -113,7 +118,7 @@ const setNickname = async (req, res) => {
     } catch (e) {
         console.log(e);
     }
-    res.redirect("/settings");
+    res.redirect("/patient/settings");
 }
 
 const logOut = (req, res) => {
