@@ -22,7 +22,7 @@
             {{#ifClin user}}
             {{else}}
                 <button onclick="showChgNick()" class="btn-theme field-btn">Change nickname</button>
-                <form action="/settings/nickname" method="post" id="chg-nick">
+                <form action="/patient/settings/nickname" method="post" id="chg-nick">
                     <input name="newName" type="text"></input><button id="nick-btn" class="btn-theme">Save</button>
                 </form>
             {{/ifClin}}

@@ -103,7 +103,7 @@ const setTheme = async (req, res) => {
     } catch (e) {
         console.log(e);
     }
-    if (req.session.user == "patient") {
+    if (req.session.user.role == "patient") {
         res.redirect("/patient/settings");
     } else {
         res.redirect("/clinician/settings");
