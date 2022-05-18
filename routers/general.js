@@ -23,7 +23,8 @@ router.get("/login-p", general.renderLoginPatient);
     // }
 // )
 // forgot password page
-router.get('/forgot-password', general.renderForgotPassword)
+router.get('/forgot-password', general.renderForgotPassword);
+router.post('/forgot-password', general.forgotPassword);
 
 // reset password page
 router.get('/reset-password', general.renderResetPassword);

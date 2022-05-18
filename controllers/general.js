@@ -87,6 +87,14 @@ const renderSettings = async (req, res) => {
     });
 }
 
+const forgotPassword = (req, res) => {
+    req.session.resetPassword = {};
+    if (req.session.user = {}) {
+        req.session.resetPassword.email = req.body.email;
+    }
+    res.redirect("/reset-password");
+}
+
 const setTheme = async (req, res) => {
 
     try {
@@ -132,6 +140,7 @@ module.exports = {
     renderLoginPatient,
     renderLoginClinician,
     renderForgotPassword,
+    forgotPassword,
     renderResetPassword,
     renderSettings,
     setTheme,
