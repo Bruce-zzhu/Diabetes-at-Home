@@ -1,6 +1,6 @@
 const { Patient, TimeSeries } = require("../models/patient");
 const { Note, Message } = require("../models/clinician");
-const { isSameDay } = require("../public/scripts/js-helpers");
+const { isSameDay, getDateInfo } = require("../public/scripts/js-helpers");
 
 const getTodayTimeSeries = async (patient) => {
     try {
@@ -159,6 +159,22 @@ const renderPatientProfile = async (req, res) => {
             return d - c;
         });
 
+        var datesArray = [];
+        for (ts of timeSeriesList) {
+            var date = getDateInfo(ts.date);
+            datesArray.push(date);
+        }
+
+        var histData = [];
+        if (timeSeriesList.length > 1) {
+            for (var i = 1; i < timeSeriesList.length; i++) {
+                histData.push({
+                    date: datesArray[i],
+                    timeSeries: timeSeriesList[i],
+                });
+            }
+        }
+
         // console.log(messages)
         res.render("clinician/viewPatient", {
             style: "viewPatient.css",
@@ -168,6 +184,7 @@ const renderPatientProfile = async (req, res) => {
             timeSeriesList,
             notes,
             messages,
+            histData: JSON.stringify(histData),
         });
     } catch (e) {
         console.log(e);
