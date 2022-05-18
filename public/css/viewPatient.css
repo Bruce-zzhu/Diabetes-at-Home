@@ -1,6 +1,24 @@
 @import "./c-patientProfile.css";
 @import "./fullHistTable.css";
 
+
+#pinfo {
+    width: 30rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.pinfo-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.pinfo-details > p {
+    margin-bottom: 0.4rem;
+}
+
 /* viewPatientNav styles */
 .nav-buttons {
     display: flex;

@@ -1,6 +1,6 @@
 const { Patient, TimeSeries } = require("../models/patient");
 const { Note, Message } = require("../models/clinician");
-const { isSameDay } = require("../public/scripts/js-helpers");
+const { isSameDay, getDateInfo } = require("../public/scripts/js-helpers");
 
 const getTodayTimeSeries = async (patient) => {
     try {
@@ -72,13 +72,15 @@ const getDashboardData = async (req, res) => {
         const patients = await Patient.find({}).populate("requirements").lean();
         var timeSeriesList = [];
         for (p of patients) {
-            const timeSeries = await getTodayTimeSeries(p).then((data) => data);
+            var timeSeries = await getTodayTimeSeries(p).then((data) => data);
             if (timeSeries) {
                 // today's timeseries found
                 timeSeriesList.push(timeSeries);
             } else {
                 // create today's timeseries
                 await createTodayTimeSeries(p);
+                timeSeries = await getTodayTimeSeries(p).then((data) => data);
+                timeSeriesList.push(timeSeries);
             }
         }
         res.render("clinician/dashboard", {
@@ -157,6 +159,22 @@ const renderPatientProfile = async (req, res) => {
             return d - c;
         });
 
+        var datesArray = [];
+        for (ts of timeSeriesList) {
+            var date = getDateInfo(ts.date);
+            datesArray.push(date);
+        }
+
+        var histData = [];
+        if (timeSeriesList.length > 1) {
+            for (var i = 1; i < timeSeriesList.length; i++) {
+                histData.push({
+                    date: datesArray[i],
+                    timeSeries: timeSeriesList[i],
+                });
+            }
+        }
+
         // console.log(messages)
         res.render("clinician/viewPatient", {
             style: "viewPatient.css",
@@ -166,6 +184,7 @@ const renderPatientProfile = async (req, res) => {
             timeSeriesList,
             notes,
             messages,
+            histData: JSON.stringify(histData),
         });
     } catch (e) {
         console.log(e);
@@ -292,6 +311,12 @@ const insertData = (req, res) => {
     newPatient.save();
 };
 
+
+const renderCommentsPage = (req, res) => {
+    res.render('clinician/comments')
+}
+
+
 module.exports = {
     getDashboardData,
     renderPatientProfile,
@@ -302,4 +327,5 @@ module.exports = {
     addNote,
     addMessage,
     insertData,
+    renderCommentsPage
 };

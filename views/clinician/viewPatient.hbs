@@ -148,6 +148,10 @@
 
     <h2 style="padding-top: 3rem; font-weight: bold">Full History</h2>
     {{>fullHistTable timeSeriesList=timeSeriesList}}
+
+    {{>hist-charts histData=histData}}
+    
+
 </div>
 
 
@@ -160,24 +164,5 @@
         pickerPosition: 'bottom'
     });
 
-    
 </script>
 
-{{!-- <script>
-    tinymce.init({
-        selector: 'textarea',
-        height: 300,
-        plugins: 'emoticons',
-        toolbar: 'undo redo | styles | bold italic | ' +
-            'alignleft aligncenter alignright alignjustify | ' +
-            'outdent indent | numlist bullist | emoticons',
-        emoticons_append: {
-            custom_mind_explode: {
-            keywords: ['brain', 'mind', 'explode', 'blown'],
-            char: '🤯'
-            }
-        },
-        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }',
-        tinydrive_token_provider: '/jwt',
-    });
-  </script> --}}
