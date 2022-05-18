@@ -1,5 +1,5 @@
 const { Patient, TimeSeries } = require("../models/patient");
-const { Note, Message } = require("../models/clinician");
+const { Note, Message, Clinician } = require("../models/clinician");
 const { isSameDay, getDateInfo } = require("../public/scripts/js-helpers");
 
 const getTodayTimeSeries = async (patient) => {
@@ -312,8 +312,27 @@ const insertData = (req, res) => {
 };
 
 
-const renderCommentsPage = (req, res) => {
-    res.render('clinician/comments')
+const renderCommentsPage = async (req, res) => {
+    try {
+        const cid = req.session.user.id;
+        const clinician = await Clinician.findById({_id: cid}).lean();
+        const patientIDs = clinician.patients;
+
+        const data = [];
+        // get all timeseries data of each patient
+        for (pid of patientIDs) {
+            const ts = await TimeSeries.find({patient: pid, clinicianUse: false}).populate('patient').lean();
+            data.push(...ts);
+        }
+        
+
+        res.render('clinician/comments', {
+            style: 'comments.css',
+            data
+        })
+    } catch(e) {
+        console.log(e);
+    }
 }
 
 

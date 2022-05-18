@@ -1,0 +1,82 @@
+#comments-container {
+    width: 85%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding-bottom: 10rem;
+
+}
+
+.page-title {
+    padding-top: 5rem;
+    text-align: center;
+}
+
+.comment-container {
+    border: 1px solid var(--offBlack-color);
+    border-radius: 6px;
+    margin-top: 3rem;
+    width: 25rem;
+    height: 15rem;
+    position: relative;
+    box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+}
+
+.comment-container:hover {
+    transform: scale(1.01);
+    transition: all 0.2s ease 0s;
+    cursor: pointer;
+}
+
+.border {
+    margin: 10px 5px 0px 10px;
+    height: 95%;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    width: 7rem;
+}
+
+.basic-info {
+    display: flex;
+}
+
+.basic-info p {
+    padding-right: 2rem;
+}
+
+.timeseries {
+    display: flex;
+}
+
+
+.name, .value {
+    font-size: 1.3rem;
+}
+
+.ts-value {
+    padding-left: 0.5rem;
+}
+
+.top-area {
+    display: flex;
+}
+
+.top-info {
+    padding-left: 1rem;
+}
+
+.comment {
+    padding-top: 1rem;
+}
+
+.date {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 0.5rem;
+}

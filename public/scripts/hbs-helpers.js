@@ -43,6 +43,16 @@ var register = function(Handlebars) {
         // check if a user (cookie) is clinician
         ifClin: function (user, options) {
             return (user.type == "clinician") ? options.fn(this) : options.inverse(this);
+        },
+
+        // check if the comment is empty
+        notEmpty: function (comment) {
+            return Boolean(comment);
+        },
+
+        // check if two strings are the same
+        sameStr: function (s1, s2) {
+            return s1 === s2;
         }
         
     }
