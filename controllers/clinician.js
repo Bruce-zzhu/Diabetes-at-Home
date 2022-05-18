@@ -1,6 +1,5 @@
 const { Note, Message, Clinician } = require("../models/clinician");
 const { Patient, TimeSeries, Theme } = require("../models/patient");
-const { Note, Message } = require("../models/clinician");
 const { isSameDay, getDateInfo } = require("../public/scripts/js-helpers");
 
 const getTodayTimeSeries = async (patient) => {
