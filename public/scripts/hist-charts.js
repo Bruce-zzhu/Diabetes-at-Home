@@ -10,7 +10,6 @@ for (ts of histData) {
     var res = `${date[0]}/${date[1]}`;
     dates.push(res);
 
-    
     bloodData.push(ts.timeSeries.bloodGlucose.value);
     weightData.push(ts.timeSeries.weight.value);
     insulinData.push(ts.timeSeries.insulin.value);
@@ -99,4 +98,3 @@ const insulinChart = new Chart(document.getElementById('insulinChart'), insulinC
 const exerciseChart = new Chart(document.getElementById('exerciseChart'), exerciseConfig);
 
 
-console.log("bloodChart")
