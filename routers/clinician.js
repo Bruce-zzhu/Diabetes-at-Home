@@ -5,7 +5,7 @@ const clinician = require("../controllers/clinician");
 // clinician dashboard
 router.get("/dashboard", clinician.getDashboardData);
 
-router.get("/register", clinician.insertData);
+router.get("/register", clinician.renderRegister);
 router.post("/register", clinician.insertData);
 
 // view patient page

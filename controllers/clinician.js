@@ -1,6 +1,7 @@
 const { Patient, TimeSeries } = require("../models/patient");
 const { Note, Message } = require("../models/clinician");
 const { isSameDay, getDateInfo } = require("../public/scripts/js-helpers");
+const { redirect } = require("express/lib/response");
 
 const getTodayTimeSeries = async (patient) => {
     try {
@@ -298,7 +299,7 @@ const addMessage = async (req, res) => {
 const insertData = (req, res) => {
     var newPatient = new Patient({
         firstName: req.body.firstName,
-        lastname: req.body.lastname,
+        lastName: req.body.lastName,
         nickName: req.body.nickName,
         email: req.body.email,
         password: req.body.password,
@@ -308,9 +309,12 @@ const insertData = (req, res) => {
         theme: req.body.theme,
     });
     newPatient.save();
-    res.render("clinician/register");
+    res.redirect(`/clinician/register`);
 };
 
+const renderRegister = (req, res) => {
+    res.render("clinician/register");
+};
 const renderCommentsPage = (req, res) => {
     res.render("clinician/comments");
 };
@@ -326,4 +330,5 @@ module.exports = {
     addMessage,
     insertData,
     renderCommentsPage,
+    renderRegister,
 };

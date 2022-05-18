@@ -8,44 +8,41 @@ const clinicianSchema = new Schema({
     patients: [
         {
             type: Schema.Types.ObjectId,
-            ref: "Patient"
-        }
-    ]
+            ref: "Patient",
+        },
+    ],
 });
-
 
 const noteSchema = new Schema({
     clinician: {
         type: Schema.Types.ObjectId,
-        ref: "Clinician"
+        ref: "Clinician",
     },
     patient: {
         type: Schema.Types.ObjectId,
-        ref: "Patient"
+        ref: "Patient",
     },
     title: String,
     body: String,
-    time: Date
-})
+    time: Date,
+});
 
 const messageSchema = new Schema({
     clinician: {
         type: Schema.Types.ObjectId,
-        ref: "Clinician"
+        ref: "Clinician",
     },
     patient: {
         type: Schema.Types.ObjectId,
-        ref: "Patient"
+        ref: "Patient",
     },
     body: String,
     time: Date,
-    unread: { type: Boolean, required: true, default: true }
-})
-
+    unread: { type: Boolean, required: true, default: true },
+});
 
 const Clinician = mongoose.model("Clinician", clinicianSchema);
 const Note = mongoose.model("Note", noteSchema);
 const Message = mongoose.model("Message", messageSchema);
-
 
 module.exports = { Clinician, Note, Message };
