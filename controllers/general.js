@@ -90,9 +90,16 @@ const renderSettings = async (req, res) => {
 const setTheme = async (req, res) => {
 
     try {
+        var user;
         var themeName = req.body.themeChosen;
-        var patient = await Patient.findOneAndUpdate( {_id: req.session.user.id }, { theme: themeName }, { new: true } );
-        req.session.user.theme = JSON.stringify(await Theme.findOne( { themeName: patient.theme } ).lean());
+        if (req.session.role == "patient") {
+            user = await Patient.findOneAndUpdate( {_id: req.session.user.id }, { theme: themeName }, { new: true } );
+        } else {
+            user = await Clinician.findOneAndUpdate( {_id: req.session.user.id }, { theme: themeName }, { new: true } );
+        }
+
+        
+        req.session.user.theme = JSON.stringify(await Theme.findOne( { themeName: user.theme } ).lean());
     } catch (e) {
         console.log(e);
     }

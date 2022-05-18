@@ -1,4 +1,4 @@
-const { Patient, TimeSeries } = require("../models/patient");
+const { Patient, TimeSeries, Theme } = require("../models/patient");
 const { Clinician } = require("../models/clinician");
 const { Note, Message } = require("../models/clinician");
 const { isSameDay, getDateInfo } = require("../public/scripts/js-helpers");
@@ -68,6 +68,9 @@ const getDashboardData = async (req, res) => {
     req.session.user.id = clinician._id;
     req.session.user.firstName = clinician.firstName;
     req.session.user.lastName = clinician.lastName;
+    req.session.user.theme = JSON.stringify(
+        await Theme.findOne({ themeName: clinician.theme }).lean()
+    );
 
     try {
         const patients = await Patient.find({}).populate("requirements").lean();
