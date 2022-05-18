@@ -22,6 +22,11 @@ if (pathname === "/" ||
     document.getElementById("normal-nav").remove()
 }
 
+var drops = document.getElementsByClassName("dropdown-content");
+for (var i=drops.length; i>0; i--) {
+    drops[i-1].style.right = 25 * (drops.length - (i+1)) + "px";
+}
+
 // New Entry Header Button Clicked
 var newEntryBtn = document.getElementById("new-entry-button-header");
 if (newEntryBtn != undefined) {

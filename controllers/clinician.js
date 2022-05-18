@@ -1,4 +1,5 @@
 const { Patient, TimeSeries } = require("../models/patient");
+const { Clinician } = require("../models/clinician");
 const { Note, Message } = require("../models/clinician");
 const { isSameDay, getDateInfo } = require("../public/scripts/js-helpers");
 const { redirect } = require("express/lib/response");
@@ -60,13 +61,13 @@ const createTodayTimeSeries = async (patient) => {
 };
 
 const getDashboardData = async (req, res) => {
-    req.session.user.type = "clinician";
 
-    // TODO: replace hardcoded chris
-    req.session.user.id = "628208b8f2e1e34162d3b1e0";
-    req.session.user.firstName = "Chris";
-    req.session.user.lastName = "Lee";
-    req.session.user.email = "chris@diabetemail.com";
+    const clinician = await Clinician.findOne({ email: req.session.user.email }).lean();
+
+    req.session.user.role = clinician.role;
+    req.session.user.id = clinician._id;
+    req.session.user.firstName = clinician.firstName;
+    req.session.user.lastName = clinician.lastName;
 
     try {
         const patients = await Patient.find({}).populate("requirements").lean();

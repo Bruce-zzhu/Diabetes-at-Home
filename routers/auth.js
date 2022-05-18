@@ -1,8 +1,11 @@
+
+const { Patient } = require("../models/patient");
 const passport = require('passport')
 const express = require('express')
 const router = express.Router()
 const patientRoutes = require('./patient');
 const clinicianRoutes = require('./clinician');
+const req = require("express/lib/request");
 
 // Authentication middleware (REMOVE FOR FINAL)
 const isAuthenticated = (req, res, next) => {
@@ -26,6 +29,10 @@ router.get('/login-p', (req, res) => {
 
 // Handle Patient login
 router.post('/login-p',
+    function(req, res, next) {
+        req.session.user.email = req.body.username;
+        next()
+    },
     passport.authenticate('patient-local', {
         successRedirect: 'patient/dashboard', failureRedirect: '/login-p', failureFlash: true
     })
@@ -41,6 +48,10 @@ router.get('/login-c', (req, res) => {
 
 // Handle Patient login
 router.post('/login-c',
+    function(req, res, next) {
+        req.session.user.email = req.body.username;
+        next()
+    },
     passport.authenticate('clinician-local', {
         successRedirect: 'clinician/dashboard', failureRedirect: '/login-c', failureFlash: true
     })
