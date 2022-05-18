@@ -134,7 +134,7 @@
     margin-top: 0;
 }
 
-input {
+#register-container input, #register-container select {
     width: 5rem;
 }
 
