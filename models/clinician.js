@@ -3,9 +3,6 @@ const Schema = mongoose.Schema;
 const bcrypt = require("bcryptjs");
 
 const clinicianSchema = new Schema({
-    role: {
-        type: String, required: true, default: "clinician"
-    },
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
     email: { type: String, required: true, unique: true },

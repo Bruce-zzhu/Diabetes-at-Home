@@ -64,7 +64,7 @@ const getDashboardData = async (req, res) => {
 
     const clinician = await Clinician.findOne({ email: req.session.user.email }).lean();
 
-    req.session.user.role = clinician.role;
+    req.session.user.role = "clinician";
     req.session.user.id = clinician._id;
     req.session.user.firstName = clinician.firstName;
     req.session.user.lastName = clinician.lastName;
