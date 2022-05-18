@@ -88,7 +88,7 @@ const authRouter = require('./routers/auth')
 app.use('/', authRouter)
 
 // routes
-app.use('/clinician', clinicianRoutes);
+// app.use('/clinician', clinicianRoutes);
 // app.use('/patient', patientRoutes);
 app.use('/', generalRoutes);
 

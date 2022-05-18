@@ -38,7 +38,8 @@ const newClinician = new Clinician({
     firstName: "Chris",
     lastName: " Lee",
     email: "chris@diabetemail.com",
-    patients: [newPatient._id]
+    patients: [newPatient._id],
+    password: "password"
 });
 const newTimeseries = new TimeSeries({
     patient: newPatient._id,
@@ -77,8 +78,8 @@ const loadDataToDB = async () => {
     // await TimeSeries.deleteMany({});
     // await Clinician.deleteMany({});
 
-    await newPatient.save();
-    // await newClinician.save();
+    //await newPatient.save();
+    //await newClinician.save();
     // await newTimeseries.save();
 };
 

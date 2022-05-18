@@ -25,8 +25,8 @@ const patientSchema = new Schema(
 // Allows us to call user.verifyPassword on any returned objects
 patientSchema.methods.verifyPassword = function (password, callback) {
     bcrypt.compare(password, this.password, (err, valid) => {
-        // console.log(this.email)
-        // console.log(password, this)
+        // console.log(password)
+        // console.log(this)
         callback(err, valid)
     })
 }
