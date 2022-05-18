@@ -7,7 +7,8 @@ const clinicianRoutes = require('./clinician');
 // Authentication middleware (REMOVE FOR FINAL)
 const isAuthenticated = (req, res, next) => {
     // If user is not authenticated via passport, redirect to login page
-    if (!req.isAuthenticated()) {
+    // console.log(req.isAuthenticated())
+    if (!req.isAuthenticated()) {  
         return res.redirect('/')
     }
     // Otherwise, proceed to next middleware function
