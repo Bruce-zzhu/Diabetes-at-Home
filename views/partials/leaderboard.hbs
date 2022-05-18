@@ -16,7 +16,8 @@
                     - use name to find index of person
                     - add image/text in place-number --}}
                 {{!-- also mb format place-name/text for long nicknames --}}
-                <p class="place-text"><span class="place-name">{{this.nickName}}</span> &#8212;&#8212; {{this.egmtRate}}%</p>
+                {{!-- & change innerHTML in place-val to 2 decimal places via the existing innerHTML or via the var --}}
+                <p class="place-text"><span class="place-name">{{this.nickName}}</span> &#8212;&#8212; <span class="place-val">{{this.egmtRate}}</span>%</p>
             </div>
         {{/each}}
             <div class="placing">
