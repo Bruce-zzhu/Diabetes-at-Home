@@ -56,7 +56,7 @@ passport.use('patient-local',
             }
             if (!patient) {
                 return done(undefined, false, {
-                    message: 'Incorrect email', // Descriptive error for debugging purposes. DELETE LATER.
+                    message: 'Incorrect credentials', // Descriptive error for debugging purposes. DELETE LATER.
                 })
             }
             // Check password
@@ -69,7 +69,7 @@ passport.use('patient-local',
                 }
                 if (!valid) {
                     return done(undefined, false, {
-                        message: 'Incorrect password', // Descriptive error for debugging purposes. DELETE LATER.
+                        message: 'Incorrect credentials', // Descriptive error for debugging purposes. DELETE LATER.
                     })
                 }
 
@@ -91,7 +91,7 @@ passport.use('clinician-local',
             }
             if (!clinician) {
                 return done(undefined, false, {
-                    message: 'Incorrect email', // Descriptive error for debugging purposes. DELETE LATER.
+                    message: 'Incorrect credentials', // Descriptive error for debugging purposes. DELETE LATER.
                 })
             }
             // Check password
@@ -104,7 +104,7 @@ passport.use('clinician-local',
                 }
                 if (!valid) {
                     return done(undefined, false, {
-                        message: 'Incorrect password', // Descriptive error for debugging purposes. DELETE LATER.
+                        message: 'Incorrect credentials', // Descriptive error for debugging purposes. DELETE LATER.
                     })
                 }
 
@@ -116,9 +116,9 @@ passport.use('clinician-local',
 )
 
 //New user for testing if password is being hashed
-// Clinician.find({}, (err, clinicians) => {
-//     Clinician.create({ email: 'clinician@email', password: 'password', firstName: 'DR', 
-//     lastName: 'CLINICIAN', patients: [null]}, (err) => {
+// Patient.find({}, (err, patients) => {
+//     Patient.create({ email: 'harry@potter.email', age: 12, gender: 'male',  password: 'hashed', firstName: 'Harry', 
+//     lastName: 'Potter', nickName: 'HP'}, (err) => {
 //         if (err) { console.log(err); return; }
 //         console.log('Dummy user inserted')
 //     })

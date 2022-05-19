@@ -167,9 +167,28 @@ input {
     padding-bottom: 5rem;
 }
 
-h2 {
+#view-container h2 {
     font-weight: bold;
-    text-align: center;
+    padding-top: 3rem;
+}
+
+#toggleChart {
+    float: right;
+    background-color: var(--button-color);
+    font-size: 1rem;
+    color: var(--altText-color);
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    padding: 4px 6px;
+    font-weight: bold;
+}
+
+#chart-bkg {
+    background-color: var(--offWhite-color);
+}
+
+#full-hist-chart {
+    width: 100%;
 }
 
 .new-text-entry {
