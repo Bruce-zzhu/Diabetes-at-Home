@@ -148,9 +148,12 @@
     border: 1px solid var(--border-color);
 }
 
-#fullHistChart {
+#full-hist-chart {
     border: 1px solid var(--border-color);
     background-color: var(--secondary-color);
+    display: none;
+    width: 80%;
+    margin: auto;
 }
 
 .ts:hover {

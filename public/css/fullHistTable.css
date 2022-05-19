@@ -80,13 +80,13 @@ thead {
         "blood weight"
         "insulin exercise"
     ;
-    grid-gap: 1rem;
-    /* justify-content: center;
-    align-content: center; */
-    margin-bottom: 5rem;
+    grid-gap: 2rem;
+    padding: 2rem;
 }
 .hist-chart {
-    width: 45%;
+    margin: auto;
+    width: 90%;
+    border: 1px solid var(--border-color);
 }
 .bl-chart {
     grid-area: blood;
