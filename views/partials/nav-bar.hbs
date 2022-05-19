@@ -12,9 +12,7 @@ links and functions change depending on login status/user type. --}}
     <div id="nav-links">
         <div class="desktop">
                 {{#if user.id}}
-                    <script>console.log("{{user.role}}")</script>
                     {{#ifClin user}}
-                        <script>console.log({{user.role}})</script>
                         <a href="/clinician/dashboard">Dashboard</a>
                         <a href="/clinician/comments">Comments</a>
                         <a href="/clinician/register">Add Patient</a>

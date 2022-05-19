@@ -23,7 +23,8 @@
     {{> footer}}
     <script src="/scripts/js-helpers.js"></script>
     <script>
-        getTheme({{{theme}}});
+        console.log({{{user.theme}}});
+        getTheme({{{user.theme}}});
     </script>
     <script
         src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
