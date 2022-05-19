@@ -1,6 +1,5 @@
 const { Note, Message, Clinician } = require("../models/clinician");
 const { Patient, TimeSeries, Theme } = require("../models/patient");
-const { Note, Message } = require("../models/clinician");
 const { isSameDay, getDateInfo } = require("../public/scripts/js-helpers");
 
 const getTodayTimeSeries = async (patient) => {
@@ -141,7 +140,7 @@ const renderPatientProfile = async (req, res) => {
 
         const notes = await Note.find({
             patient: patient._id,
-            clinician: patient.clinician._id,
+            clinician: req.session.user.id,
         }).lean();
         // sort with descending order by the time
         notes.sort(function (a, b) {
@@ -152,7 +151,7 @@ const renderPatientProfile = async (req, res) => {
 
         const messages = await Message.find({
             patient: patient._id,
-            clinician: patient.clinician._id,
+            clinician: req.session.user.id,
         })
             .populate("clinician")
             .lean();
@@ -265,7 +264,7 @@ const addNote = async (req, res) => {
         const body = req.body.body;
 
         const newNote = new Note({
-            clinician: patient.clinician._id,
+            clinician: req.session.user.id,
             patient: patient._id,
             title: title,
             body: body,
@@ -287,7 +286,7 @@ const addMessage = async (req, res) => {
         const body = req.body.body;
 
         const newMessage = new Message({
-            clinician: patient.clinician._id,
+            clinician: req.session.user.id,
             patient: patient._id,
             body: body,
             time: Date(),
