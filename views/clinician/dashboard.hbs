@@ -41,36 +41,48 @@
                 </td>
                     
                 <td 
+                {{#if (recorded bloodGlucose.value)}}
                 {{#if (isNotBounded bloodGlucose.value bloodGlucose.upperBound bloodGlucose.lowerBound)}}
                 style="color: red"
                 {{/if}}
+                {{/if}}
                 >
-                    {{bloodGlucose.value}}{{#if bloodGlucose.isRequired}}*{{/if}}
+                    {{#if (recorded bloodGlucose.value)}}{{bloodGlucose.value}}{{else}}&mdash;{{/if}}
+                    {{#if bloodGlucose.isRequired}}*{{/if}}
                 </td>
                 
                 
                 <td 
+                {{#if (recorded weight.value)}}
                 {{#if (isNotBounded weight.value weight.upperBound weight.lowerBound)}}
                 style="color: red"
                 {{/if}}
-                >
-                    {{weight.value}}{{#if weight.isRequired}}*{{/if}}
+                {{/if}}
+                >   
+                    {{#if (recorded weight.value)}}{{weight.value}}{{else}}&mdash;{{/if}}
+                    {{#if weight.isRequired}}*{{/if}}
                 </td>
 
                 <td 
+                {{#if (recorded insulin.value)}}
                 {{#if (isNotBounded insulin.value insulin.upperBound insulin.lowerBound)}}
                 style="color: red"
                 {{/if}}
-                >
-                    {{insulin.value}}{{#if insulin.isRequired}}*{{/if}}
+                {{/if}}
+                >   
+                    {{#if (recorded insulin.value)}}{{insulin.value}}{{else}}&mdash;{{/if}}
+                    {{#if insulin.isRequired}}*{{/if}}
                 </td>
 
                 <td 
+                {{#if (recorded exercise.value)}}
                 {{#if (isNotBounded exercise.value exercise.upperBound exercise.lowerBound)}}
                 style="color: red"
                 {{/if}}
+                {{/if}}
                 >
-                    {{exercise.value}}{{#if exercise.isRequired}}*{{/if}}
+                    {{#if (recorded exercise.value)}}{{exercise.value}}{{else}}&mdash;{{/if}}
+                    {{#if exercise.isRequired}}*{{/if}}
                 </td>
         
                 

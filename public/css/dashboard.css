@@ -1,6 +1,7 @@
 #db-container {
     width: 80%;
     margin: auto;
+    padding-bottom: 5rem;
 }
 
 #db-container h1, h4 {
