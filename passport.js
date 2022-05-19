@@ -116,9 +116,9 @@ passport.use('clinician-local',
 )
 
 //New user for testing if password is being hashed
-// Clinician.find({}, (err, clinicians) => {
-//     Clinician.create({ email: 'clinician@email', password: 'password', firstName: 'DR', 
-//     lastName: 'CLINICIAN', patients: [null]}, (err) => {
+// Patient.find({}, (err, patients) => {
+//     Patient.create({ email: 'harry@potter.email', age: 12, gender: 'male',  password: 'hashed', firstName: 'Harry', 
+//     lastName: 'Potter', nickName: 'HP'}, (err) => {
 //         if (err) { console.log(err); return; }
 //         console.log('Dummy user inserted')
 //     })
