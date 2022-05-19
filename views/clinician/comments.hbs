@@ -1,19 +1,44 @@
 <h1 class="page-title">All Comments</h1>
-<div id="comments-container">
-    {{#each data}}
-        {{#if (notEmpty this.bloodGlucose.comment)}}
+<div id="comments-page-conteiner">
+
+    <div class="filter-bar">
+        <form action="/clinician/comments">
+            <button id="view-all" type="submit" name="viewAll" value="true">View All</button>
             
-                {{>commentBox this ts=this.bloodGlucose name="Blood Glucose"}}
-            
-        {{/if}}
-        {{#if (notEmpty this.weight.comment)}}
-            {{>commentBox this ts=this.weight name="Weight"}}
-        {{/if}}
-        {{#if (notEmpty this.insulin.comment)}}
-            {{>commentBox this ts=this.insulin name="Insulin Taken"}}
-        {{/if}}
-        {{#if (notEmpty this.exercise.comment)}}
-            {{>commentBox this ts=this.exercise name="Exercise"}}
-        {{/if}}
-    {{/each}}
+            <label for="selectedPatientId">Select a patient: </label>
+            <select name="selectedPatientId" id="selectedPatient">
+                <option value="">--select a patient--</option>
+                {{#each patients}}
+                <option value="{{this._id}}" name="">{{this.firstName}} {{this.lastName}}</option>
+                {{/each}}
+            </select>
+
+            <label for="selectedDate">Select a date: </label>
+            <input type="date" name="selectedDate"
+                    value=""
+                    min="2022-01-01" max="2030-12-31"
+            >
+
+            <button id="filter" type="submit">Filter</button>
+        </form>
+    </div>
+    <div id="comments-container">
+        {{#each data}}
+            {{#if (notEmpty this.bloodGlucose.comment)}}
+                
+                    {{>commentBox this ts=this.bloodGlucose name="Blood Glucose"}}
+                
+            {{/if}}
+            {{#if (notEmpty this.weight.comment)}}
+                {{>commentBox this ts=this.weight name="Weight"}}
+            {{/if}}
+            {{#if (notEmpty this.insulin.comment)}}
+                {{>commentBox this ts=this.insulin name="Insulin Taken"}}
+            {{/if}}
+            {{#if (notEmpty this.exercise.comment)}}
+                {{>commentBox this ts=this.exercise name="Exercise"}}
+            {{/if}}
+        {{/each}}
+    </div>
 </div>
+

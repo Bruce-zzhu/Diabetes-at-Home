@@ -1,6 +1,7 @@
 const { Note, Message, Clinician } = require("../models/clinician");
 const { Patient, TimeSeries, Theme } = require("../models/patient");
-const { isSameDay, getDateInfo } = require("../public/scripts/js-helpers");
+const { isSameDay, getDateInfo, toMelbDate } = require("../public/scripts/js-helpers");
+const { all } = require("../routers/clinician");
 
 const getTodayTimeSeries = async (patient) => {
     try {
@@ -333,17 +334,72 @@ const renderRegister = (req, res) => {
         theme: req.session.user.theme,
     });
 };
+
 const renderCommentsPage = async (req, res) => {
     try {
         const cid = req.session.user.id;
         const clinician = await Clinician.findById({_id: cid}).lean();
         const patientIDs = clinician.patients;
 
-        const data = [];
-        // get all timeseries data of each patient
+        var patients = []
         for (pid of patientIDs) {
-            const ts = await TimeSeries.find({patient: pid, clinicianUse: false}).populate('patient').lean();
-            data.push(...ts);
+            var p = await Patient.findById(pid).lean();
+            patients.push(p);
+        }
+
+        // get filtered information if any
+        const viewAll = req.query.viewAll;   
+        const { selectedPatientId, selectedDate } = req.query;   
+
+        const data = [];
+        if (viewAll === 'true') {
+            // get all timeseries data of each patient
+            for (pid of patientIDs) {
+                const ts = await TimeSeries.find({patient: pid, clinicianUse: false}).populate('patient').lean();
+                data.push(...ts);
+            }
+        } else {
+            if (selectedPatientId && !selectedDate) {
+                // fiter by selected patient
+                const ts = await TimeSeries.find({patient: selectedPatientId, clinicianUse: false}).populate('patient').lean();
+                data.push(...ts);
+            } else if (selectedDate && !selectedPatientId) {
+                // fiter by selected date
+                var selectedMelbDate = selectedDate.slice(8, 10) + "/" + selectedDate.slice(5, 7) + "/" + selectedDate.slice(0, 4);
+
+                for (pid of patientIDs) {
+                    // find all timeseries and compare date
+                    const ts = await TimeSeries.find({patient: pid, clinicianUse: false}).populate('patient').lean();
+                    for (i of ts) {
+                        var tsDate = toMelbDate(i.date);
+                        if (selectedMelbDate === tsDate) {
+                            data.push(i);
+                            
+                        } 
+                    }
+                    
+                }
+            } else if (selectedPatientId && selectedDate) {
+                // get timeseries based on patient and date
+                var selectedMelbDate = selectedDate.slice(8, 10) + "/" + selectedDate.slice(5, 7) + "/" + selectedDate.slice(0, 4);
+                const ts = await TimeSeries.find({patient: selectedPatientId, clinicianUse: false}).populate('patient').lean();
+                for (i of ts) {
+                    var tsDate = toMelbDate(i.date);
+                    if (selectedMelbDate === tsDate) {
+                        data.push(i);
+                    } 
+                }
+                
+                
+            }
+        }
+        
+        if (!selectedPatientId && !selectedDate) {
+            // default all patients
+            for (pid of patientIDs) {
+                const ts = await TimeSeries.find({patient: pid, clinicianUse: false}).populate('patient').lean();
+                data.push(...ts);
+            }
         }
         
 
@@ -351,7 +407,8 @@ const renderCommentsPage = async (req, res) => {
             style: 'comments.css',
             user: req.session.user,
             theme: req.session.user.theme,
-            data
+            patients,
+            data,
         })
     } catch(e) {
         console.log(e);
