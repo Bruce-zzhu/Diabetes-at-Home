@@ -5,7 +5,7 @@ const {
     getDateInfo,
     toMelbDate,
 } = require("../public/scripts/js-helpers");
-const { all } = require("../routers/clinician");
+// const { all } = require("../routers/clinician");
 
 const getTodayTimeSeries = async (patient) => {
     try {
