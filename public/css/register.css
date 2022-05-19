@@ -7,7 +7,9 @@
     padding-top: 5rem;
 }
 
-
+#register-container form {
+    margin: 0 10%;
+}
 
 #pinfo {
     width: 30rem;
@@ -94,27 +96,23 @@
 
 .header {
     height: 5rem;
-    
-    
     display: flex;
     align-items: center;
-    justify-content: center;
     position: relative;
 }
 
 .add-btn {
-    background-color: var(--button-color);
-    color: white;
+    background-color: var(--primary-color);
+    color: var(--altText-color);
     font-weight: bold;
     border: 1px solid var(--border-color);
     cursor: default;
     border-radius: 0.5rem;
     padding: 0.5rem 1rem;
-    margin-left: 46%;
-}
-
-.header-text-wrapper {
-    text-align: center;
+    margin-top: 1.5rem;
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
 }
 
 .header-text {
@@ -132,11 +130,18 @@
 
 .row {
     font-size: 1rem;
-    margin-top: 0;
+    margin: 0 10% 1.5rem 10%;
+    background-color: var(--secondary-color);
+    border: 1px solid var(--border-color);
+    justify-content: space-evenly;
 }
 
-#register-container input, #register-container select {
+#register-container .g-1 input, #register-container .g-1 select {
     width: 10rem;
+}
+
+#register-container .g-2 input {
+    width: 5rem;
 }
 
 #new-note input, #new-message textarea {
