@@ -83,6 +83,13 @@ thead {
     grid-gap: 2rem;
     padding: 2rem;
 }
+#full-hist-chart {
+    border: 1px solid var(--border-color);
+    background-color: var(--secondary-color);
+    display: none;
+    width: 80%;
+    margin: auto;
+}
 .hist-chart {
     margin: auto;
     width: 90%;

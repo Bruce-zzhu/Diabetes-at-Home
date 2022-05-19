@@ -33,10 +33,7 @@
     </div>
     <h2>Full History<button id="toggleChart" onclick="toggleChart()">SHOW CHART</button></h2>
     {{>fullHistTable timeSeriesList=timeSeriesList}}
-
-    <div id="full-hist-chart">
-        {{>hist-charts histData=histData}}
-    </div>
+    {{>hist-charts histData=histData}}
     
 </div>
 
