@@ -155,6 +155,10 @@
 }
 
 @media screen and (max-width: 380px) {
+    #engagement h5 {
+        margin-top: 3%;
+        margin-bottom: 3%;
+    }
 
     #dashboard-body h2 {
         margin-left: 5%;
