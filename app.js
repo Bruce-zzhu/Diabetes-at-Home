@@ -77,7 +77,7 @@ app.use(express.static(path.join(__dirname, '/public')));
 // process incoming request
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
+app.use(passport.authenticate('session'))
 
 // load blank user
 app.use((req, res, next) => {
@@ -87,7 +87,16 @@ app.use((req, res, next) => {
     next();
 })
 
-app.use(passport.authenticate('session'))
+
+// // middleware for flash
+// app.use((req, res, next) => {
+//     res.locals.currentUser = req.user;
+//     res.locals.success = req.flash('success');
+//     res.locals.error = req.flash('error');
+//     res.locals.info = req.flash('info')
+//     next();
+// })
+
 
 // Load authentication router
 const authRouter = require('./routers/auth')
@@ -100,9 +109,12 @@ const authRouter = require('./routers/auth')
 app.use('/', authRouter, generalRoutes);
 
 // hero page
-app.get('/', async (req, res) => {
+app.get('/', (req, res) => {
+    // req.flash('info', 'hhhhhhhhhhhhhh')
+    // console.log(res.locals)
     res.render('landing', {
         style: 'landing.css',
+        
     });
 });
 

@@ -7,7 +7,7 @@ const router = express.Router()
 const patientRoutes = require('./patient');
 const clinicianRoutes = require('./clinician');
 
-const { isAuthenticated, isClinician, isPatient } = require('../middleware');
+const { isAuthenticated, isClinician, isPatient, checkDataSafety } = require('../middleware');
 
 
 // PATIENT LOGIN AUTHENTICATION
@@ -32,7 +32,7 @@ router.post('/login-p',
 )
 // 
 // CLINICIAN LOGIN AUTHENTICATION
-router.use('/clinician', isAuthenticated, isClinician, clinicianRoutes);
+router.use('/clinician', isAuthenticated, isClinician, checkDataSafety, clinicianRoutes);
 
 // Login page (with failure message displayed upon login failure)
 router.get('/login-c', (req, res) => {
