@@ -184,7 +184,7 @@ input {
 }
 
 #chart-bkg {
-    background-color: var(--offWhite-color);
+    background-color: white;
 }
 
 #full-hist-chart {
