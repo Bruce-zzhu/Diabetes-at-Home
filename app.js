@@ -36,9 +36,14 @@ app.engine(
 );
 app.set('view engine', 'hbs');
 
-app.listen(process.env.PORT || port, () => {
-    console.log(`Listen on http://localhost:${port}`);
+// hero page
+app.get('/', async (req, res) => {
+    res.render('landing', {
+        style: 'landing.css',
+    });
 });
+
+
 
 // Flash messages for failed logins, and (possibly) other success/error messages
 app.use(flash())
@@ -71,6 +76,8 @@ app.use((req, res, next) => {
     }
     next();
 })
+
+
 
 // use PASSPORT
 // const passport = require('./passport.js');
@@ -106,3 +113,6 @@ app.get('/', async (req, res) => {
     });
 });
 
+app.listen(process.env.PORT || port, () => {
+    console.log(`Listen on http://localhost:${port}`);
+});

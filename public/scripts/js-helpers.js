@@ -19,6 +19,11 @@ function getDateInfo(date) {
     return [day, month, year]
 }
 
+function toMelbDate(date) {
+    const newDate = new Date(date);
+    return newDate.toLocaleString("en-AU", {"timeZone": "Australia/Melbourne"}).slice(0, 10);
+}
+
 // display/hide a data table cell's comment/value
 function tableToggleComment(cell) {
     var comment = cell.querySelector(".tb-comm"); 
@@ -58,5 +63,6 @@ module.exports = {
     isSameDay,
     getDateInfo,
     tableToggleComment,
-    getTheme
+    getTheme,
+    toMelbDate
 };
