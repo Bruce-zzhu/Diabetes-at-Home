@@ -30,6 +30,12 @@ var register = function(Handlebars) {
             return timestamp.slice(0, 10)
         },
 
+        // date without year
+        toMelbDateNoYear: function (date) {
+            const timestamp = date.toLocaleString("en-AU", {"timeZone": "Australia/Melbourne"})
+            return timestamp.slice(0, 5)
+        },
+
         // date with time
         toMelbTimestamp: function (date) {
             return new Date(date).toLocaleString("en-AU", {"timeZone": "Australia/Melbourne"})

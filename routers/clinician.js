@@ -10,8 +10,7 @@ router.get("/register", clinician.renderRegister);
 router.post("/register", clinician.insertData);
 
 // view patient page
-router
-    .route("/view-patient/:id")
+router.route("/view-patient/:id")
     .get(clinician.renderPatientProfile)
     .post(clinician.submitRequirement);
 
