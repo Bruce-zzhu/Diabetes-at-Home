@@ -83,24 +83,21 @@ const renderResetPassword = (req, res) => {
     });
 }
 
-// hashes the password, finds the account corresponding to the user, then updates
-const resetPassword = (req, res) => {
-
-    var hashedPwd;
-    // TODO: hash password & store in db
-    // hashedPwd = hash(req.body.password);
-
+// finds the account corresponding to the user
+// then updates the account with hashed password (using save() prehook)
+const resetPassword = async (req, res) => {
+    var user;
     switch (req.session.user.role) {
         case "patient":
-            console.log("reset pnt", req.session.resetEmail, "pwd", req.body.password);
-            // Patient.findOneAndUpdate({ email: req.session.resetEmail }, { password: hashedPwd });
+            user = await Patient.findOne({ email: req.session.resetEmail });
             break;
         case "clinician":
-            console.log("reset clin" , req.session.resetEmail, "pwd", req.body.password);
-            // Clinician.findOneAndUpdate({ email: req.session.resetEmail }, { password: hashedPwd });
+            user = await Clinician.findOne({ email: req.session.resetEmail });
             break;
-        default:
-            console.log("unknown user", req.body.password);
+    }
+    if (user) {
+        user.password = req.body.password;
+        await user.save();
     }
 
     req.session.destroy();
