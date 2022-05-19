@@ -414,7 +414,7 @@ const insertData = async (req, res) => {
     clin.patients.push(newPatient._id);
     await clin.save();
 
-    res.redirect(`/clinician/register`);
+    res.redirect(`/clinician/dashboard`);
 };
 
 const renderRegister = (req, res) => {
