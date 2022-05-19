@@ -107,12 +107,12 @@ const resetPassword = (req, res) => {
     var user;
     switch (req.session.user.role) {
         case "patient":
-            // console.log("reset pnt", req.session.resetPwd.email, "pwd", req.body.password);
-            // Patient.findOneAndUpdate({ _id: req.session.user.id }, { password: hashedPwd });
+            console.log("reset pnt", req.session.resetPwd.email, "pwd", req.body.password);
+            // Patient.findOneAndUpdate({ email: req.session.resetPwd.email }, { password: hashedPwd });
             break;
         case "clinician":
-            // console.log("reset clin" , req.session.resetPwd.email, "pwd", req.body.password);
-            // Clinician.findOneAndUpdate({ _id: req.session.user.id }, { password: hashedPwd });
+            console.log("reset clin" , req.session.resetPwd.email, "pwd", req.body.password);
+            // Clinician.findOneAndUpdate({ email: req.session.resetPwd.email }, { password: hashedPwd });
             break;
         default:
             console.log("unknown user", req.body.password);
@@ -133,11 +133,11 @@ const setTheme = async (req, res) => {
             user = await Clinician.findOneAndUpdate( {_id: req.session.user.id }, { theme: themeName }, { new: true } );
         }
 
-        
-        req.session.user.theme = JSON.stringify(await Theme.findOne( { themeName: user.theme } ).lean());
     } catch (e) {
         console.log(e);
     }
+    req.session.user.theme = JSON.stringify(await Theme.findOne( { themeName: user.theme } ).lean());
+    console.log(req.session.user.theme);
     if (req.session.user.role == "patient") {
         res.redirect("/patient/settings");
     } else {

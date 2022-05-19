@@ -320,7 +320,7 @@ const addMessage = async (req, res) => {
         console.log(e);
     }
 };
-const insertData = (req, res) => {
+const insertData = async (req, res) => {
     var newPatient = new Patient({
         createTime: new Date(),
         firstName: req.body.firstName,
@@ -334,10 +334,10 @@ const insertData = (req, res) => {
         theme: "default",
         clinician: req.session.user.id,
     });
-    newPatient.save();
+    await newPatient.save();
     var newTimeseries = new TimeSeries({
         patient: newPatient._id,
-        clinicianUse: false,
+        clinicianUse: true,
         date: new Date(),
         bloodGlucose: {
             upperBound: req.body.bloodHigh,
@@ -360,8 +360,9 @@ const insertData = (req, res) => {
             isRequired: req.body.exerciseRequired,
         },
     });
-    newTimeseries.save();
-    newPatient.requirements = newTimeseries._id;
+    await newTimeseries.save();
+    var newPatient = await Patient.findOneAndUpdate( {_id: newPatient._id}, {requirements: newTimeseries._id});
+    // newPatient.requirements = newTimeseries._id;
     res.redirect(`/clinician/register`);
 };
 
