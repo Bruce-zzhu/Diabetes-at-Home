@@ -31,10 +31,10 @@
         <div id="recent-chart" class="module">{{>recent-chart histData=histData}}</div>
 
     </div>
-    <h2>Full History</h2>
+    <h2>Full History<button id="toggleChart" onclick="toggleChart()">SHOW CHART</button></h2>
     {{>fullHistTable timeSeriesList=timeSeriesList}}
 
-    <div style="width: 80%; margin: auto;">
+    <div id="fullHistChart" style="width: 80%; margin: auto;">
         {{>hist-charts histData=histData}}
     </div>
     
