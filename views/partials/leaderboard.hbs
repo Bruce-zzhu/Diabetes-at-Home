@@ -3,7 +3,7 @@
     <h5>Leaderboard</h5>
     <div class="scroll">
         <div class="user-place">
-            <p>{{nickName}}<br><span id="user-val"></span> </p>
+            <p><span class="nickname">{{nickName}}</span><br><span id="user-val"></span> </p>
             <script>
                 document.getElementById("user-val").innerHTML = ({{engagementRate}}*100).toFixed(2) + "%";
             </script>
@@ -14,7 +14,7 @@
             <div class="placing">
                 <div class="place-number">aaaa</div>
                 <p class="place-text">
-                    <span class="place-name">{{this.nickName}}</span>
+                    <span class="nickname">{{this.nickName}}</span>
                      &#8212;&#8212; {{this.egmtRate}}%
                 </p>
             </div>

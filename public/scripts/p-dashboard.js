@@ -15,3 +15,9 @@ switch (window.innerWidth <= 380) {
         // pass
 }
 
+var nicks = document.getElementsByClassName("nickname");
+for (n of nicks) {
+    if (n.innerHTML.length > 12) {
+        n.innerHTML = n.innerHTML.slice(0, 9) + "..."
+    }
+}
