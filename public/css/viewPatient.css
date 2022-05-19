@@ -183,10 +183,6 @@ input {
     font-weight: bold;
 }
 
-#chart-bkg {
-    background-color: white;
-}
-
 #full-hist-chart {
     width: 100%;
 }

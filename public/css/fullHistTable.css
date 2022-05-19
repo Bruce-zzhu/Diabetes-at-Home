@@ -90,10 +90,13 @@ thead {
     width: 80%;
     margin: auto;
 }
+#chart-bkg {
+    background-color: white;
+    border: 1px solid var(--border-color);
+}
 .hist-chart {
     margin: auto;
     width: 90%;
-    border: 1px solid var(--border-color);
 }
 .bl-chart {
     grid-area: blood;

@@ -103,9 +103,10 @@
 }
 
 .add-btn {
-    background-color: var(--grey-color);
+    background-color: var(--button-color);
     color: white;
-    border: var(--offWhite-color) solid;
+    font-weight: bold;
+    border: 1px solid var(--border-color);
     cursor: default;
     border-radius: 0.5rem;
     padding: 0.5rem 1rem;
@@ -135,7 +136,7 @@
 }
 
 #register-container input, #register-container select {
-    width: 5rem;
+    width: 10rem;
 }
 
 #new-note input, #new-message textarea {
