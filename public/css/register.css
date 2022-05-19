@@ -126,7 +126,7 @@
 .header-reminder {
     margin-bottom: -1rem;
     font-size: 0.9rem;
-    color: var(--grey-color);
+    color: var(--border-color);
 }
 
 .row {
@@ -134,7 +134,7 @@
     margin-top: 0;
 }
 
-input {
+#register-container input, #register-container select {
     width: 5rem;
 }
 

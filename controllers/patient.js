@@ -70,7 +70,6 @@ const addEntryData = async (req, res) => {
         var totalDays = Math.ceil(
             (today.getTime() - patient.createTime.getTime()) / 86400000
         );
-        console.log(today, patient.createTime);
         await Patient.findOneAndUpdate(
             { _id: patient._id },
             { engagementRate: daysActive / totalDays }
@@ -87,7 +86,6 @@ const renderPatientDashboard = async (req, res) => {
     try {
         const patient = await Patient.findOne({ email: req.session.user.email }).populate('requirements').lean();
 
-        req.session.user.role = "patient";
         req.session.user.theme = JSON.stringify(
             await Theme.findOne({ themeName: patient.theme }).lean()
         );
@@ -96,6 +94,7 @@ const renderPatientDashboard = async (req, res) => {
         req.session.user.id = patient._id;
 
         //console.log(req.session);
+        req.session.user.nickName = patient.nickName;
 
         var todayTimeSeries = await getTodayTimeSeries(patient).then(
             (data) => data

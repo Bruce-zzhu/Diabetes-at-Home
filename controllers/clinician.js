@@ -62,7 +62,6 @@ const getDashboardData = async (req, res) => {
 
     const clinician = await Clinician.findOne({ email: req.session.user.email }).lean();
 
-    req.session.user.role = "clinician";
     req.session.user.id = clinician._id;
     req.session.user.firstName = clinician.firstName;
     req.session.user.lastName = clinician.lastName;
@@ -300,15 +299,16 @@ const addMessage = async (req, res) => {
 };
 const insertData = (req, res) => {
     var newPatient = new Patient({
+        createTime: new Date(),
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         nickName: req.body.nickName,
         email: req.body.email,
         password: req.body.password,
         gender: req.body.gender,
-        engagementRate: req.body.engagementRate,
+        engagementRate: 0,
         age: req.body.age,
-        theme: req.body.theme,
+        theme: "default",
         bloodHigh: req.body.bloodHigh,
         bloodLow: req.body.bloodLow,
         bloodRequired: req.body.bloodRequired,

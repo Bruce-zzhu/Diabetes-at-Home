@@ -23,15 +23,12 @@ router.get("/login-p", general.renderLoginPatient);
     // }
 // )
 // forgot password page
-router.get('/forgot-password', general.renderForgotPassword)
+router.get('/forgot-password', general.renderForgotPassword);
+router.post('/forgot-password', general.forgotPassword);
 
 // reset password page
 router.get('/reset-password', general.renderResetPassword);
-
-// settings page
-router.get('/settings', general.renderSettings);
-router.post("/settings/theme", general.setTheme);
-router.post("/settings/nickname", general.setNickname);
+router.post('/reset-password', general.resetPassword);
 
 // log off
 router.post("/log-out", general.logOut);

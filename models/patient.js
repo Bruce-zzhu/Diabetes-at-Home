@@ -12,7 +12,7 @@ const patientSchema = new Schema(
         lastName: { type: String, required: true },
         nickName: { type: String, required: true, unique: true },
         age: { type: Number, required: true, min: 0, max: 150 },
-        gender: { type: String, enum: ["male", "female"], required: true },
+        gender: { type: String, enum: ["male", "female", "other"], required: true },
         engagementRate: { type: Number, required: true, default: 0 },
         theme: { type: String, required: true, default: "default" },
         email: { type: String, required: true, unique: true },
