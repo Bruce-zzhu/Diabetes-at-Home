@@ -4,6 +4,7 @@ const {
     isSameDay,
     getDateInfo,
     toMelbDate,
+    isNotBounded
 } = require("../public/scripts/js-helpers");
 // const { all } = require("../routers/clinician");
 
@@ -123,6 +124,18 @@ const getPatientTimeSeriesList = async (patient) => {
     }
 };
 
+// Check if any data is outside the threshold
+const checkDataSafety = (ts) => {
+    if (
+        (ts.bloodGlucose.isRequired && isNotBounded(ts.bloodGlucose.value, ts.bloodGlucose.lowerBound, ts.bloodGlucose.upperBound)) ||
+        (ts.weight.isRequired && isNotBounded(ts.weight.value, ts.weight.lowerBound, ts.weight.upperBound)) ||
+        (ts.insulin.isRequired && isNotBounded(ts.insulin.value, ts.insulin.lowerBound, ts.insulin.upperBound)) || 
+        (ts.exercise.isRequired && isNotBounded(ts.exercise.value, ts.exercise.lowerBound, ts.exercise.upperBound))
+    ) return false;
+
+    return true;
+}
+
 const renderPatientProfile = async (req, res) => {
     try {
         const pid = req.params.id;
@@ -141,6 +154,10 @@ const renderPatientProfile = async (req, res) => {
                 (data) => data
             );
             timeSeriesList.push(todayTimeSeries);
+            if (!checkDataSafety) {
+                // Data outside the safety value
+                req.flash('info', 'Patient data outside the threshold value')
+            }
         }
 
         const notes = await Note.find({
