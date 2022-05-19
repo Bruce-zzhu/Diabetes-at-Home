@@ -76,6 +76,8 @@ const getDashboardData = async (req, res) => {
         await Theme.findOne({ themeName: clinician.theme }).lean()
     );
 
+    console.log(req.session.user.theme);
+
     try {
         var patients = [];
         for (pid of clinician.patients) {
