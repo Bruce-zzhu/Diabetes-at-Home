@@ -7,11 +7,13 @@
     margin: auto;
     left: 0px;
     right: 0px;
+    padding-bottom: 6rem;
 }
 
 #dashboard-body h2 {
     font-weight: bold;
     margin-left: 10%;
+    margin-right: 10%;
 }
 
 .home-container {
@@ -107,7 +109,7 @@
 }
 
 #chart-bkg {
-    background-color: var(--offWhite-color);
+    background-color: white;
 }
 
 .profile-text {
@@ -135,6 +137,17 @@
 .full-hist-title {
     font-weight: bold;
     padding-bottom: 1rem;
+}
+
+#toggleChart {
+    float: right;
+    background-color: var(--button-color);
+    font-size: 1rem;
+    color: var(--altText-color);
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    padding: 4px 6px;
+    font-weight: bold;
 }
 
 .ts:hover {

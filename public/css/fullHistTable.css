@@ -72,3 +72,41 @@ thead {
     font-weight: bold;
     padding-bottom: 1rem;
 }
+
+#charts-container {
+    margin: auto;
+    display: grid;
+    grid-template-areas:
+        "blood weight"
+        "insulin exercise"
+    ;
+    grid-gap: 2rem;
+    padding: 2rem;
+}
+#full-hist-chart {
+    border: 1px solid var(--border-color);
+    background-color: var(--secondary-color);
+    display: none;
+    width: 80%;
+    margin: auto;
+}
+#chart-bkg {
+    background-color: white;
+    border: 1px solid var(--border-color);
+}
+.hist-chart {
+    margin: auto;
+    width: 90%;
+}
+.bl-chart {
+    grid-area: blood;
+}
+.wt-chart {
+    grid-area: weight;
+}
+.in-chart {
+    grid-area: insulin;
+}
+.ex-chart {
+    grid-area: exercise;
+}

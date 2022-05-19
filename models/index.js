@@ -107,7 +107,7 @@ const newMessage = new Message({
 
 // load sample data into mongodb
 const loadDataToDB = async () => {
-    // delete the old data
+    //delete the old data
     // await Patient.deleteMany({});
     // await TimeSeries.deleteMany({});
     // await Clinician.deleteMany({});

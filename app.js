@@ -7,6 +7,7 @@ const path = require('path');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const passport = require('passport')
 const clinicianRoutes = require('./routers/clinician');
 const patientRoutes = require('./routers/patient');
 const generalRoutes = require('./routers/general');
@@ -39,9 +40,6 @@ app.engine(
 );
 app.set('view engine', 'hbs');
 
-app.listen(process.env.PORT || port, () => {
-    console.log(`Listen on http://localhost:${port}`);
-});
 
 // Flash messages for failed logins, and (possibly) other success/error messages
 app.use(flash())
@@ -67,14 +65,6 @@ if (app.get('env') === 'production') {
 }
 
 
-// load blank user
-app.use((req, res, next) => {
-    if (req.session.user == undefined) {
-        req.session.user = {};
-    }
-    next();
-})
-
 // use PASSPORT
 // const passport = require('./passport.js');
 // const { nextTick } = require('process');
@@ -87,18 +77,27 @@ app.use(express.static(path.join(__dirname, '/public')));
 // process incoming request
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// use PASSPORT
-const passport = require('passport')
+
+
+// load blank user
+app.use((req, res, next) => {
+    if (req.session.user == undefined) {
+        req.session.user = {};
+    }
+    next();
+})
+
 app.use(passport.authenticate('session'))
 
 // Load authentication router
 const authRouter = require('./routers/auth')
-app.use('/', authRouter)
+//app.use('/', authRouter)
+
 
 // routes
 // app.use('/clinician', clinicianRoutes);
 // app.use('/patient', patientRoutes);
-app.use('/', generalRoutes);
+app.use('/', authRouter, generalRoutes);
 
 // hero page
 app.get('/', async (req, res) => {
@@ -109,3 +108,14 @@ app.get('/', async (req, res) => {
     });
 });
 
+// If any attempts to access any other routes get a 404 error page
+app.get('*', (req, res) => {
+    res.render('404.hbs')
+})
+
+
+
+
+app.listen(process.env.PORT || port, () => {
+    console.log(`Listen on http://localhost:${port}`);
+});

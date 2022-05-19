@@ -19,6 +19,11 @@ function getDateInfo(date) {
     return [day, month, year]
 }
 
+function toMelbDate(date) {
+    const newDate = new Date(date);
+    return newDate.toLocaleString("en-AU", {"timeZone": "Australia/Melbourne"}).slice(0, 10);
+}
+
 // display/hide a data table cell's comment/value
 function tableToggleComment(cell) {
     var comment = cell.querySelector(".tb-comm"); 
@@ -53,10 +58,35 @@ function getTheme(theme) {
     }
 }
 
+
+
+function isNotBounded(value, low, high) {
+    return low <= value <= high;
+}
+
+function toggleChart() {
+    var btn = document.getElementById("toggleChart");
+    var table = document.getElementById("full-history");
+    var chart = document.getElementById("full-hist-chart");
+    if (table.style.display == "block") {
+        btn.innerHTML = "SHOW TABLE";
+        table.style.display = "none";
+        chart.style.display = "block";
+    } else {
+        btn.innerHTML = "SHOW CHART";
+        table.style.display = "block";
+        chart.style.display = "none";
+    }
+}
+
 module.exports = {
     consolelogs,
     isSameDay,
     getDateInfo,
     tableToggleComment,
-    getTheme
+    getTheme,
+    toMelbDate,
+    isNotBounded,
+    toggleChart
+
 };

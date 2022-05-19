@@ -1,15 +1,51 @@
-#comments-container {
+#comments-page-conteiner {
     width: 85%;
     margin: auto;
+}
+
+#comments-container {
     display: grid;
     grid-template-columns: auto auto auto;
     padding-bottom: 10rem;
 
 }
 
+.filter-bar {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 2rem;
+    font-size: 1.2rem;
+}
+
+#selectedPatient {
+    margin-right: 3rem;
+}
+
+#view-all, #filter {
+    width: 6rem;
+    height: 2.5rem;
+    background-color: var(--lightBlue-color);
+    color: white;
+    border: 1px solid var(--grey-color);
+    border-radius: 5px;
+}
+
+#view-all:hover, #filter:hover {
+    background-color: #6e99e7;
+}
+
+#view-all {
+    margin-right: 3rem;
+}
+
+#filter {
+    margin-left: 3rem;
+}
+
 .page-title {
     padding-top: 5rem;
     text-align: center;
+    color: var(--grey-color)
 }
 
 .comment-container {
@@ -42,18 +78,13 @@ img {
     width: 7rem;
 }
 
-.basic-info {
+.basic-info, .top-area, .timeseries {
     display: flex;
 }
 
 .basic-info p {
     padding-right: 2rem;
 }
-
-.timeseries {
-    display: flex;
-}
-
 
 .name, .value {
     font-size: 1.3rem;
@@ -63,9 +94,6 @@ img {
     padding-left: 0.5rem;
 }
 
-.top-area {
-    display: flex;
-}
 
 .top-info {
     padding-left: 1rem;
