@@ -129,10 +129,11 @@ const setNickname = async (req, res) => {
     console.log(req.session.user);
     try {
         var newNick = req.body.newName;
-        await Patient.findOneAndUpdate( {_id: req.session.user.id }, { nickName: newNick }, { new: true } );
+        var patient = await Patient.findOneAndUpdate( {_id: req.session.user.id }, { nickName: newNick }, { new: true } );
     } catch (e) {
         console.log(e);
     }
+    req.session.user.nickName = patient.nickName;
     res.redirect("/patient/settings");
 }
 

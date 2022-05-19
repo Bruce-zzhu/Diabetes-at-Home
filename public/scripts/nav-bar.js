@@ -1,4 +1,3 @@
-document.getElementById("nav-back").setAttribute('href', document.referrer);
 var pathname = window.location.pathname;
 
 // show simplified nav unless on landing/patient/clinician pages
@@ -20,7 +19,8 @@ if (pathname === "/" ||
         }
     }
 } else {
-    document.getElementById("normal-nav").remove()
+    document.getElementById("normal-nav").remove();
+    document.getElementById("nav-back").setAttribute('href', document.referrer);
 }
 
 var drops = document.getElementsByClassName("dropdown-content");
