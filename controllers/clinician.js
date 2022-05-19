@@ -328,7 +328,7 @@ const insertData = async (req, res) => {
         createTime: new Date(),
         firstName: req.body.firstName,
         lastName: req.body.lastName,
-        nickName: req.body.firstName + " " + req.body.lastName,
+        nickName: req.body.firstName[0] + req.body.lastName[0] + Math.floor(Math.random() * 10000),
         email: req.body.email,
         password: req.body.password,
         gender: req.body.gender,
