@@ -62,6 +62,10 @@ grid-template-rows: 100%;
     margin: 0% 15px 0% 15px;
     color: initial;
 }
+#popup-overlay h5 {
+    display: block;
+    text-align: center;
+}
 #make-entry button.button {
     background-color: var(--button-color);
     border: 1px solid var(--border-color);

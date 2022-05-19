@@ -25,9 +25,9 @@ if (pathname === "/" ||
 }
 
 // adjusts dropdown gap from right side of screen
-var drops = document.getElementsByClassName("dropdown-content");
+var drops = document.querySelectorAll(".desktop .dropdown-content")
 for (var i=drops.length; i>0; i--) {
-    drops[i-1].style.right = 25 * (drops.length - (i+1)) + "px";
+    drops[i-1].style.right = 25 * (drops.length - (i)) + "px";
 }
 
 // New Entry Header Button Clicked
@@ -50,9 +50,12 @@ if (newEntryBtn != undefined) {
     };
 }
 
-
 // Window onload functions
 window.onload = function() {
+    // show correct date on title
+    var date = new Date().toDateString().split(" ").slice(1, 3);
+    document.getElementById("todayDate").innerHTML = date[0] + " " + date[1];
+    
     // Escape By clicking outside popup window
     (document.getElementById("escape-popup").onclick = function closePopup() {
         var dbBody = document.getElementById("dashboard-body");
