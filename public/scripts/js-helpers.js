@@ -58,11 +58,17 @@ function getTheme(theme) {
     }
 }
 
+
+function isNotBounded(value, low, high) {
+    return low <= value <= high;
+}
+
 module.exports = {
     consolelogs,
     isSameDay,
     getDateInfo,
     tableToggleComment,
     getTheme,
-    toMelbDate
+    toMelbDate,
+    isNotBounded
 };
