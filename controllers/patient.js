@@ -170,13 +170,10 @@ const renderPatientDashboard = async (req, res) => {
             await Message.findByIdAndUpdate(m._id, { unread: false });
         }
 
-        var allPatEgmts = await Patient.find({}, "nickName engagementRate");
+        var allPatEgmts = await Patient.find({}, "nickName engagementRate").lean();
         allPatEgmts.sort((a, b) => b.engagementRate - a.engagementRate);
         for (var i=0; i<allPatEgmts.length; i++) {
-            allPatEgmts[i] = {
-                nickName: allPatEgmts[i].nickName,
-                egmtRate: ((allPatEgmts[i].engagementRate * 100).toFixed(2))
-            }
+            allPatEgmts[i].egmtRate = ((allPatEgmts[i].engagementRate * 100).toFixed(2));
         }
 
         res.render("patient/dashboard", {

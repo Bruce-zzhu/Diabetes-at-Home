@@ -12,10 +12,11 @@ if (pathname === "/" ||
         var links = document.getElementById("nav-links");
         links.innerHTML = "";
         links.style.width = "16px";
-        
+    }
+    if (!pathname.includes("patient/dashboard")) {
         var newEntry = document.getElementById("nav-entry-div");
         if (newEntry) {
-            newEntry.remove;
+            newEntry.remove();
         }
     }
 } else {
