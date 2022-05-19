@@ -41,6 +41,11 @@
                   <input required type="text"  name="password" />
                 </div>
             </div>
+            <div class="col-5 offset-1">
+                <div class="p-3 bg-light"style="margin-left: 70px;">Nick name:
+                  <input required type="text"  name="nickName" />
+                </div>
+            </div>
         </div>
                 {{!-- <input type="text" placeholder="First name" name="firstName" />
                 <input type="text" placeholder="Last name" name="lastName" />
@@ -64,8 +69,14 @@
                     <input required class="from" name="bloodLow" type="number" />
                     to
                     <input required class="to" name="bloodHigh" type="number" />
-                    nmol/L
-                    <input class="checkbox" type="checkbox" name="bloodRequired"/>
+                    nmol/L  
+                    
+                    <input class="checkbox"  type="checkbox" id="checkbox1" value= "false" name="bloodRequired"/>
+                        <script>
+                            $("#checkbox1").is(':checked', function(){
+                                $("#checkbox1").attr('value', 'true');
+                            });
+                        </script>
                 </div>
             </div>
             <div class="col-5 offset-1">
@@ -74,7 +85,12 @@
                     to
                     <input required class="to" name="weightHigh" type="number"/>
                     kg
-                    <input class="checkbox" type="checkbox" name="weightRequired"/>
+                    <input class="checkbox" type="checkbox" id ="checkbox1" value= "false" name="weightRequired"/>
+                        <script>
+                            $("#checkbox1").is(':checked', function(){
+                                $("#checkbox1").attr('value', 'true');
+                            });
+                        </script>
                 </div>
             </div>
             <div class="col-5 offset-1">
@@ -83,7 +99,12 @@
                     to
                     <input required class="to" name="insulinHigh" type="number"/>
                     doses
-                    <input class="checkbox" type="checkbox" name="insulinRequired" />
+                    <input class="checkbox" type="checkbox" id ="checkbox1" value= "false" name="insulinRequired" />
+                        <script>
+                            $("#checkbox1").is(':checked', function(){
+                                $("#checkbox1").attr('value', 'true');
+                            });
+                        </script>
                 </div>
             </div>
             <div class="col-5 offset-1">
@@ -92,7 +113,12 @@
                     to
                     <input required class="to" name="exerciseHigh" type="number" />
                     steps
-                    <input class="checkbox" type="checkbox" name="exerciseRequired"/>
+                    <input class="checkbox" type="checkbox" id="checkbox1" value= "false" name="exerciseRequired"/>
+                        <script>
+                            $("#checkbox1").is(':checked', function(){
+                                $("#checkbox1").attr('value', 'true');
+                            });
+                        </script>
                 </div>
             </div>
         </div>
