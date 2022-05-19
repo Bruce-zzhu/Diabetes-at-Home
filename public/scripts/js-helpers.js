@@ -58,6 +58,12 @@ function getTheme(theme) {
     }
 }
 
+
+
+function isNotBounded(value, low, high) {
+    return low <= value <= high;
+}
+
 function toggleChart() {
     var btn = document.getElementById("toggleChart");
     var table = document.getElementById("full-history");
@@ -80,5 +86,7 @@ module.exports = {
     tableToggleComment,
     getTheme,
     toMelbDate,
+    isNotBounded,
     toggleChart
+
 };

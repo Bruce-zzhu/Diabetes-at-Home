@@ -6,7 +6,6 @@ const express = require('express')
 const router = express.Router()
 const patientRoutes = require('./patient');
 const clinicianRoutes = require('./clinician');
-const req = require("express/lib/request");
 
 // Authentication middleware 
 const isAuthenticated = (req, res, next) => {
