@@ -76,14 +76,13 @@ const getDashboardData = async (req, res) => {
         await Theme.findOne({ themeName: clinician.theme }).lean()
     );
 
-    console.log(req.session.user.theme);
-
+    
     try {
         var patients = [];
         for (pid of clinician.patients) {
-            patients.push(await Patient.find({ _id: pid }).populate("requirements").lean());
+            patients.push(await Patient.findById(pid).populate("requirements").lean());
         }
-        console.log(patients);
+        
         var timeSeriesList = [];
         for (p of patients) {
             var timeSeries = await getTodayTimeSeries(p).then((data) => data);
@@ -367,12 +366,12 @@ const insertData = async (req, res) => {
     await newTimeseries.save();
     var newPatient = await Patient.findOneAndUpdate( {_id: newPatient._id}, {requirements: newTimeseries._id}, {new: true});
     var clin = await Clinician.findOne({_id: req.session.user.id});
-    console.log(clin.patients);
+    
     clin.patients.push(newPatient._id);
     await clin.save();
     
     var clin = await Clinician.findOne({_id: req.session.user.id});
-    console.log(clin.patients);
+    
 
     res.redirect(`/clinician/register`);
 };

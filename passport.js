@@ -123,5 +123,11 @@ passport.use('clinician-local',
 //         console.log('Dummy user inserted')
 //     })
 // })
+// Clinician.find({}, (err, clinicians) => {
+//     Clinician.create({ email: 'chris@dah.com', firstName: 'Chris', lastName: 'Lee', password: '123456', patients: []}, (err) => {
+//         if (err) { console.log(err); return; }
+//         console.log('Dummy user inserted')
+//     })
+// })
 
 module.exports = passport
