@@ -76,14 +76,13 @@ const getDashboardData = async (req, res) => {
         await Theme.findOne({ themeName: clinician.theme }).lean()
     );
 
-    console.log(req.session.user.theme);
-
+    
     try {
         var patients = [];
         for (pid of clinician.patients) {
-            patients.push(await Patient.find({ _id: pid }).populate("requirements").lean());
+            patients.push(await Patient.findById(pid).populate("requirements").lean());
         }
-        console.log(patients);
+        
         var timeSeriesList = [];
         for (p of patients) {
             var timeSeries = await getTodayTimeSeries(p).then((data) => data);
