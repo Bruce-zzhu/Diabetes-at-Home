@@ -146,6 +146,8 @@
     color: var(--altText-color);
     border-radius: 5px;
     border: 1px solid var(--border-color);
+    padding: 4px 6px;
+    font-weight: bold;
 }
 
 #full-hist-chart {
