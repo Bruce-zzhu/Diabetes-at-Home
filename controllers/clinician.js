@@ -59,8 +59,9 @@ const createTodayTimeSeries = async (patient) => {
 };
 
 const getDashboardData = async (req, res) => {
-
-    const clinician = await Clinician.findOne({ email: req.session.user.email }).lean();
+    const clinician = await Clinician.findOne({
+        email: req.session.user.email,
+    }).lean();
 
     req.session.user.id = clinician._id;
     req.session.user.firstName = clinician.firstName;
@@ -309,20 +310,36 @@ const insertData = (req, res) => {
         engagementRate: 0,
         age: req.body.age,
         theme: "default",
-        bloodHigh: req.body.bloodHigh,
-        bloodLow: req.body.bloodLow,
-        bloodRequired: req.body.bloodRequired,
-        weightHigh: req.body.weightHigh,
-        weightLow: req.body.weightLow,
-        weightRequired: req.body.weightRequired,
-        insulinHigh: req.body.insulinHigh,
-        insulinRequired: req.body.insulinRequired,
-        insulinLow: req.body.insulinLow,
-        exerciseLow: req.body.exerciseLow,
-        exerciseHigh: req.body.exerciseHigh,
-        exerciseRequired: req.body.exerciseRequired,
+        clinician: req.session.user.id,
     });
     newPatient.save();
+    var newTimeseries = new TimeSeries({
+        patient: newPatient._id,
+        clinicianUse: false,
+        date: new Date(),
+        bloodGlucose: {
+            upperBound: req.body.bloodHigh,
+            lowerBound: req.body.bloodLow,
+            isRequired: req.body.bloodRequired,
+        },
+        weight: {
+            upperBound: req.body.weightHigh,
+            lowerBound: req.body.weightLow,
+            isRequired: req.body.weightRequired,
+        },
+        insulin: {
+            upperBound: req.body.insulinHigh,
+            isRequired: req.body.insulinRequired,
+            lowerBound: req.body.insulinLow,
+        },
+        exercise: {
+            lowerBound: req.body.exerciseLow,
+            upperBound: req.body.exerciseHigh,
+            isRequired: req.body.exerciseRequired,
+        },
+    });
+    newTimeseries.save();
+    newPatient.requirements = newTimeseries._id;
     res.redirect(`/clinician/register`);
 };
 
@@ -336,28 +353,31 @@ const renderRegister = (req, res) => {
 const renderCommentsPage = async (req, res) => {
     try {
         const cid = req.session.user.id;
-        const clinician = await Clinician.findById({_id: cid}).lean();
+        const clinician = await Clinician.findById({ _id: cid }).lean();
         const patientIDs = clinician.patients;
 
         const data = [];
         // get all timeseries data of each patient
         for (pid of patientIDs) {
-            const ts = await TimeSeries.find({patient: pid, clinicianUse: false}).populate('patient').lean();
+            const ts = await TimeSeries.find({
+                patient: pid,
+                clinicianUse: false,
+            })
+                .populate("patient")
+                .lean();
             data.push(...ts);
         }
-        
 
-        res.render('clinician/comments', {
-            style: 'comments.css',
+        res.render("clinician/comments", {
+            style: "comments.css",
             user: req.session.user,
             theme: req.session.user.theme,
-            data
-        })
-    } catch(e) {
+            data,
+        });
+    } catch (e) {
         console.log(e);
     }
-}
-
+};
 
 module.exports = {
     getDashboardData,
