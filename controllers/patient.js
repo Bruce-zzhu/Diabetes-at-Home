@@ -162,6 +162,12 @@ const renderPatientDashboard = async (req, res) => {
             return d - c;
         });
 
+        var preReadMsgs = messages;
+
+        for (m of messages) {
+            await Message.findByIdAndUpdate(m._id, { unread: false });
+        }
+
         var allPatEgmts = await Patient.find({}, "nickName engagementRate");
         allPatEgmts.sort((a, b) => b.engagementRate - a.engagementRate);
         for (var i=0; i<allPatEgmts.length; i++) {
@@ -182,7 +188,7 @@ const renderPatientDashboard = async (req, res) => {
             endDateArray,
             timeSeriesList,
             histData: JSON.stringify(histData),
-            messages,
+            messages: preReadMsgs,
             allPatEgmts
         });
     } catch (e) {
