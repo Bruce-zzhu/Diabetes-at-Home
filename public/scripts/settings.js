@@ -1,3 +1,4 @@
+// show change nickname input box
 function showChgNick() {
     var toHide = document.querySelector("#s-change-info .field-btn:nth-child(2)");
     var toShow = document.querySelector("#s-change-info form");
@@ -5,6 +6,7 @@ function showChgNick() {
     toShow.style.display = "flex";
 }
 
+// truncate nicknames long enough to be disruptive
 var nick = document.getElementById("s-nick");
 console.log(nick.innerHTML.length);
 if (nick.innerHTML.length > 23) {

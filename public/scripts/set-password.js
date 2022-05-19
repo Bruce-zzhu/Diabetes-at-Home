@@ -1,3 +1,4 @@
+// changes submit button style based on field input
 function emailWithValue(){
     var subBtn = document.getElementById("email-submit");
     if (document.getElementById("email").value != ""){
@@ -13,6 +14,7 @@ function emailWithValue(){
     }
 }
 
+// changes submit button style based on field input
 function passwordWithValue(){
     var pw1 = document.getElementById("password").value;
     var pw2 = document.getElementById("second-password").value;

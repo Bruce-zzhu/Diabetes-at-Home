@@ -4,6 +4,7 @@ for (var i=0; i<placing.length; i++) {
     placing[i].querySelector(".place-number").innerHTML = pNumFill(i);
 }
 
+// renders a medal image or a place number given a place
 function pNumFill(pNum) {
     var fill;
     switch (pNum) {
@@ -22,6 +23,7 @@ function pNumFill(pNum) {
     return fill;
 }
 
+// change "behind other user" comment based on other patients ranked before logged-in patient
 var comm = document.getElementById("egmt-comm");
 var rank = getIdxByNick(pntNick, allPatEgmts);
 console.log(rank);

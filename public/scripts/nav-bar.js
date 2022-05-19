@@ -24,6 +24,7 @@ if (pathname === "/" ||
     document.getElementById("nav-back").setAttribute('href', document.referrer);
 }
 
+// adjusts dropdown gap from right side of screen
 var drops = document.getElementsByClassName("dropdown-content");
 for (var i=drops.length; i>0; i--) {
     drops[i-1].style.right = 25 * (drops.length - (i+1)) + "px";
