@@ -8,7 +8,6 @@ const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport')
-const ExpressError = require("./ExpressError");
 const clinicianRoutes = require('./routers/clinician');
 const patientRoutes = require('./routers/patient');
 const generalRoutes = require('./routers/general');
@@ -111,22 +110,6 @@ app.get('*', (req, res) => {
     res.render('404.hbs')
 })
 
-
-
-
-
-// for every request and every path, pass error to error handler
-app.all('*', (req, res, next) => {
-    next(new ExpressError("Page Not Found", 404))
-})
-
-// Error handler
-app.use((err, req, res, next) => {
-    const { statusCode = 500 } = err;
-    if(!err.message) err.message = "Oh No, Something Went Wrong!";
-    res.status(statusCode).render('error', { err });
-    
-})
 
 
 
