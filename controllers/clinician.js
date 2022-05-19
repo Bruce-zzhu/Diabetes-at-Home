@@ -325,7 +325,7 @@ const insertData = async (req, res) => {
         createTime: new Date(),
         firstName: req.body.firstName,
         lastName: req.body.lastName,
-        nickName: req.body.nickName,
+        nickName: req.body.firstName + " " + req.body.lastName,
         email: req.body.email,
         password: req.body.password,
         gender: req.body.gender,
@@ -342,27 +342,34 @@ const insertData = async (req, res) => {
         bloodGlucose: {
             upperBound: req.body.bloodHigh,
             lowerBound: req.body.bloodLow,
-            isRequired: req.body.bloodRequired,
+            isRequired: Boolean(req.body.bloodRequired),
         },
         weight: {
             upperBound: req.body.weightHigh,
             lowerBound: req.body.weightLow,
-            isRequired: req.body.weightRequired,
+            isRequired: Boolean(req.body.weightRequired),
         },
         insulin: {
             upperBound: req.body.insulinHigh,
-            isRequired: req.body.insulinRequired,
             lowerBound: req.body.insulinLow,
+            isRequired: Boolean(req.body.insulinRequired),
         },
         exercise: {
             lowerBound: req.body.exerciseLow,
             upperBound: req.body.exerciseHigh,
-            isRequired: req.body.exerciseRequired,
+            isRequired: Boolean(req.body.exerciseRequired),
         },
     });
     await newTimeseries.save();
-    var newPatient = await Patient.findOneAndUpdate( {_id: newPatient._id}, {requirements: newTimeseries._id});
-    // newPatient.requirements = newTimeseries._id;
+    var newPatient = await Patient.findOneAndUpdate( {_id: newPatient._id}, {requirements: newTimeseries._id}, {new: true});
+    var clin = await Clinician.findOne({_id: req.session.user.id});
+    console.log(clin.patients);
+    clin.patients.push(newPatient._id);
+    await clin.save();
+    
+    var clin = await Clinician.findOne({_id: req.session.user.id});
+    console.log(clin.patients);
+
     res.redirect(`/clinician/register`);
 };
 
