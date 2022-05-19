@@ -113,6 +113,12 @@ app.get('/', async (req, res) => {
     });
 });
 
+// If any attempts to access any other routes get a 404 error page
+app.get('*', (req, res) => {
+    res.render('404.hbs')
+})
+
+
 app.listen(process.env.PORT || port, () => {
     console.log(`Listen on http://localhost:${port}`);
 });
