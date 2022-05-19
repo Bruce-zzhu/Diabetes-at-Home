@@ -1,3 +1,4 @@
+// toggle to display/hide the three menus within page
 function viewPatient(id) {
     var reqCon = document.getElementById("require-container");
     var msgCon = document.getElementById("message-container");
@@ -22,6 +23,7 @@ function viewPatient(id) {
     }
 }
 
+// show new note/message entry option
 function newTextEntry(id) {
     document.getElementById(id).style.display = "block";
     var scroll = document.getElementsByClassName("scroll");
@@ -30,6 +32,7 @@ function newTextEntry(id) {
     }
 }
 
+// hide new note/message entry option
 function cancelTextEntry(id) {
     const entry = document.getElementById(id);
     const fields= document.querySelectorAll("input");
@@ -39,28 +42,8 @@ function cancelTextEntry(id) {
     entry.style.display = "none";
 }
 
-function sendMsg(msgInput) {
-    var msg = document.getElementById(msgInput).value;
-    // TODO: add msg - pntId, clinId, msg, date
-    // TODO: refresh scroll box
-    // cancelTextEntry("new-message");
-}
-
-function addNote(topicInput, bodyInput) {
-    var topic = document.getElementById(topicInput).value;
-    var body = document.getElementById(bodyInput).value;
-    // TODO: add note to patient - clinId, topic, body, date
-    // TODO: refresh scroll box
-    cancelTextEntry("new-note");
-}
-
-
-
-
 module.exports = {
     viewPatient,
     newTextEntry,
     cancelTextEntry,
-    sendMsg,
-    addNote
 }

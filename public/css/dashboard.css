@@ -1,6 +1,7 @@
 #db-container {
     width: 80%;
     margin: auto;
+    padding-bottom: 5rem;
 }
 
 #db-container h1, h4 {
@@ -56,7 +57,7 @@ thead {
     color: var(--altText-color);
 }
 
-span {
+#dashboard-body span {
     font-weight: normal;
 }
 
@@ -72,5 +73,5 @@ a {
 }
 
 a:hover {
-    color: var(--primary-color);
+    color: var(--blue-color);
 }

@@ -26,10 +26,7 @@
 .placing {
     display: flex;
     justify-content: space-between;
-    padding-left: 15%;
-    padding-right: 15%;
-    padding-top: 1%;
-    padding-bottom: 1%;
+    padding: 1% 15% 1% 15%;
     top: 50%;
     vertical-align: middle;
     text-align: center;
@@ -44,7 +41,7 @@ p .place-text {
 }
 
 .user-place {
-    padding-bottom: 1%;
+    padding: 1rem 12.5% 1% 12.5%;
     display: flex;
     justify-content: space-between;
     font-size: 1.25rem;

@@ -19,7 +19,7 @@ if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
 }
 
-const connectionURL = process.env.MONGO_URL || 'mongodb://localhost:27017/d-a-h';
+const connectionURL = process.env.MONGO_URL || 'mongodb://localhost:27017/diabetes-at-home';
 mongoose.connect(connectionURL);
 
 const db = mongoose.connection;
@@ -103,8 +103,6 @@ app.use('/', authRouter, generalRoutes);
 app.get('/', async (req, res) => {
     res.render('landing', {
         style: 'landing.css',
-        user: req.session.user,
-        theme: req.session.user.theme,
     });
 });
 

@@ -6,7 +6,6 @@ const {
     toMelbDate,
     isNotBounded
 } = require("../public/scripts/js-helpers");
-// const { all } = require("../routers/clinician");
 
 const getTodayTimeSeries = async (patient) => {
     try {
@@ -64,11 +63,42 @@ const createTodayTimeSeries = async (patient) => {
     }
 };
 
+// calculates a patient's engagement rate
+const calcEgmt = async (pid) => {
+    const patient = await Patient.findById(pid);
+
+    var today = new Date();
+    const allTS = await TimeSeries.find({
+        patient: patient._id,
+        clinicianUse: false,
+    }).lean();
+    var daysActive = 0;
+    for (var i = 0; i < allTS.length; i++) {
+        var dayTS = allTS[i];
+        if (
+            (dayTS.bloodGlucose.isRequired &&
+                dayTS.bloodGlucose.value == null) ||
+            (dayTS.weight.isRequired && dayTS.weight.value == null) ||
+            (dayTS.insulin.isRequired && dayTS.insulin.value == null) ||
+            (dayTS.exercise.isRequired && dayTS.exercise.value == null)
+        ) {
+            continue;
+        } else {
+            daysActive++;
+        }
+    }
+    var totalDays = 1 + Math.ceil(
+        (today.getTime() - patient.createTime.getTime()) / 86400000
+    );
+    return daysActive / totalDays;
+}
+
 const getDashboardData = async (req, res) => {
     const clinician = await Clinician.findOne({
         email: req.session.user.email,
     }).lean();
 
+    // record clinician details in cookie
     req.session.user.id = clinician._id;
     req.session.user.firstName = clinician.firstName;
     req.session.user.lastName = clinician.lastName;
@@ -76,8 +106,13 @@ const getDashboardData = async (req, res) => {
         await Theme.findOne({ themeName: clinician.theme }).lean()
     );
 
+    
     try {
-        const patients = await Patient.find({ clinician: clinician._id }).populate("requirements").lean();
+        var patients = [];
+        for (pid of clinician.patients) {
+            patients.push(await Patient.findById(pid).populate("requirements").lean());
+        }
+        
         var timeSeriesList = [];
         for (p of patients) {
             var timeSeries = await getTodayTimeSeries(p).then((data) => data);
@@ -93,7 +128,6 @@ const getDashboardData = async (req, res) => {
         }
         res.render("clinician/dashboard", {
             style: "dashboard.css",
-            theme: req.session.user.theme,
             user: req.session.user,
             timeSeriesList,
         });
@@ -139,9 +173,16 @@ const checkDataSafety = (ts) => {
 const renderPatientProfile = async (req, res) => {
     try {
         const pid = req.params.id;
-        const patient = await Patient.findById(pid)
+        var patient = await Patient.findById(pid)
             .populate("requirements")
             .lean();
+
+        currentEgmt = await calcEgmt(patient._id);
+        patient = await Patient.findOneAndUpdate(
+            { _id: patient._id },
+            { engagementRate: currentEgmt },
+            { new: true }
+        ).lean();
 
         const timeSeriesList = await getPatientTimeSeriesList(patient).then(
             (data) => data
@@ -203,7 +244,6 @@ const renderPatientProfile = async (req, res) => {
         res.render("clinician/viewPatient", {
             style: "viewPatient.css",
             user: req.session.user,
-            theme: req.session.user.theme,
             patient,
             timeSeriesList,
             notes,
@@ -320,12 +360,16 @@ const addMessage = async (req, res) => {
         console.log(e);
     }
 };
+
+// registers a new patient
 const insertData = async (req, res) => {
+    
+    // creates the patient
     var newPatient = new Patient({
         createTime: new Date(),
         firstName: req.body.firstName,
         lastName: req.body.lastName,
-        nickName: req.body.firstName + " " + req.body.lastName,
+        nickName: req.body.firstName[0] + req.body.lastName[0] + Math.floor(Math.random() * 10000),
         email: req.body.email,
         password: req.body.password,
         gender: req.body.gender,
@@ -335,6 +379,8 @@ const insertData = async (req, res) => {
         clinician: req.session.user.id,
     });
     await newPatient.save();
+
+    // adds the requirements onto the patient
     var newTimeseries = new TimeSeries({
         patient: newPatient._id,
         clinicianUse: true,
@@ -362,22 +408,19 @@ const insertData = async (req, res) => {
     });
     await newTimeseries.save();
     var newPatient = await Patient.findOneAndUpdate( {_id: newPatient._id}, {requirements: newTimeseries._id}, {new: true});
+    
+    // registers the patient under the clinician
     var clin = await Clinician.findOne({_id: req.session.user.id});
-    console.log(clin.patients);
     clin.patients.push(newPatient._id);
     await clin.save();
-    
-    var clin = await Clinician.findOne({_id: req.session.user.id});
-    console.log(clin.patients);
 
-    res.redirect(`/clinician/register`);
+    res.redirect(`/clinician/dashboard`);
 };
 
 const renderRegister = (req, res) => {
     res.render("clinician/register", {
         style: "register.css",
         user: req.session.user,
-        theme: req.session.user.theme,
     });
 };
 
@@ -482,7 +525,6 @@ const renderCommentsPage = async (req, res) => {
         res.render("clinician/comments", {
             style: "comments.css",
             user: req.session.user,
-            theme: req.session.user.theme,
             patients,
             data,
         });
@@ -498,6 +540,7 @@ module.exports = {
     createTodayTimeSeries,
     getPatientTimeSeriesList,
     submitRequirement,
+    calcEgmt,
     addNote,
     addMessage,
     insertData,

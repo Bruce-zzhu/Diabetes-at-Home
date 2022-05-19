@@ -31,13 +31,13 @@ function mobile_adjust_histTable(req_count) {
         }
     }
 
-    // Adjust stacks height
+    // Adjust stacks height depending on number of stacks
     var stacks = document.getElementsByClassName("stack");
     for (var i=0; i<stacks.length; i++) {
         stacks[i].style.height = "calc(" + 100/req_count + "% + 0.25px)";
     }
     
-    // Adjust hist-table date box
+    // Adjust hist-table date box depending on number of stacks
     var dateArea = document.getElementsByClassName("date-area");
     var dayText = document.getElementsByClassName("date-day");
     var todayDateBox = document.getElementById("hist-today").querySelector(".date-area");
