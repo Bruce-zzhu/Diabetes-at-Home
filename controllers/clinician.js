@@ -367,12 +367,12 @@ const insertData = async (req, res) => {
     await newTimeseries.save();
     var newPatient = await Patient.findOneAndUpdate( {_id: newPatient._id}, {requirements: newTimeseries._id}, {new: true});
     var clin = await Clinician.findOne({_id: req.session.user.id});
-    console.log(clin.patients);
+    
     clin.patients.push(newPatient._id);
     await clin.save();
     
     var clin = await Clinician.findOne({_id: req.session.user.id});
-    console.log(clin.patients);
+    
 
     res.redirect(`/clinician/register`);
 };
