@@ -2,8 +2,8 @@ var placing = document.getElementsByClassName("placing")
 for (var i=0; i<placing.length; i++) {
     var pName = placing[i].querySelector(".place-name");
     var pNum = placing[i].querySelector(".place-number");
-    if (pName.innerHTML.length > 10) {
-        pName.innerHTML = pName.innerHTML.slice(0, 7) + "...";
+    if (pName.innerHTML.length > 15) {
+        pName.innerHTML = pName.innerHTML.slice(0, 12) + "...";
     }
     placing[i].querySelector(".place-number").innerHTML = pNumFill(i);
 }
