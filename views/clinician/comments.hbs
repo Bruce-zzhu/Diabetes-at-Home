@@ -25,9 +25,7 @@
     <div id="comments-container">
         {{#each data}}
             {{#if (notEmpty this.bloodGlucose.comment)}}
-                
-                    {{>commentBox this ts=this.bloodGlucose name="Blood Glucose"}}
-                
+                {{>commentBox this ts=this.bloodGlucose name="Blood Glucose"}}
             {{/if}}
             {{#if (notEmpty this.weight.comment)}}
                 {{>commentBox this ts=this.weight name="Weight"}}
