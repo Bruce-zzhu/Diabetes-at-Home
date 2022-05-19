@@ -197,6 +197,22 @@
      #full-history {
          width: 90%;
      }
+
+     #full-hist-chart {
+        width: 90%;
+        background-color: inherit;
+     }
+
+     #charts-container {
+        display: block;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .hist-chart {
+        margin-bottom: 2rem;
+        width: 95%;
+    }
 }
 
 @media screen and (min-width: 381px) {
