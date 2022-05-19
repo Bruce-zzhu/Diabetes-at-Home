@@ -59,12 +59,18 @@ var register = function(Handlebars) {
         // check if two strings are the same
         sameStr: function (s1, s2) {
             return s1 === s2;
+        },
+
+        topRanked: function (context, block) {
+            var topRanked = "";
+            var n = Math.min(parseInt(block.hash.n), context.length);
+            for (var i=0; i<n; i++) {
+                topRanked += block.fn(context[i]);
+            }
+            return topRanked;
         }
         
     }
-
-
-
 
     if (Handlebars && typeof Handlebars.registerHelper === "function") {
         // for each helper we defined above
