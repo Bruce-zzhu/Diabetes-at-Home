@@ -57,7 +57,7 @@ thead {
     color: var(--altText-color);
 }
 
-span {
+#dashboard-body span {
     font-weight: normal;
 }
 

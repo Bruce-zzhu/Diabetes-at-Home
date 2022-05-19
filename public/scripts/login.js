@@ -1,3 +1,4 @@
+// changes styling of submit button when fields are entered
 function withValue(){
     if ((document.getElementById("email").value != "") && (document.getElementById("password").value != "")){
         document.getElementById("login-submit").style.backgroundColor = "var(--deepBlue-color)"

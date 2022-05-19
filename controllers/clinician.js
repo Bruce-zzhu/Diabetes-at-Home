@@ -6,7 +6,6 @@ const {
     toMelbDate,
     isNotBounded
 } = require("../public/scripts/js-helpers");
-// const { all } = require("../routers/clinician");
 
 const getTodayTimeSeries = async (patient) => {
     try {
@@ -64,10 +63,10 @@ const createTodayTimeSeries = async (patient) => {
     }
 };
 
+// calculates a patient's engagement rate
 const calcEgmt = async (pid) => {
     const patient = await Patient.findById(pid);
 
-    // Re-calculate engagement
     var today = new Date();
     const allTS = await TimeSeries.find({
         patient: patient._id,
@@ -99,6 +98,7 @@ const getDashboardData = async (req, res) => {
         email: req.session.user.email,
     }).lean();
 
+    // record clinician details in cookie
     req.session.user.id = clinician._id;
     req.session.user.firstName = clinician.firstName;
     req.session.user.lastName = clinician.lastName;
@@ -360,7 +360,11 @@ const addMessage = async (req, res) => {
         console.log(e);
     }
 };
+
+// registers a new patient
 const insertData = async (req, res) => {
+    
+    // creates the patient
     var newPatient = new Patient({
         createTime: new Date(),
         firstName: req.body.firstName,
@@ -375,6 +379,8 @@ const insertData = async (req, res) => {
         clinician: req.session.user.id,
     });
     await newPatient.save();
+
+    // adds the requirements onto the patient
     var newTimeseries = new TimeSeries({
         patient: newPatient._id,
         clinicianUse: true,
@@ -402,13 +408,11 @@ const insertData = async (req, res) => {
     });
     await newTimeseries.save();
     var newPatient = await Patient.findOneAndUpdate( {_id: newPatient._id}, {requirements: newTimeseries._id}, {new: true});
-    var clin = await Clinician.findOne({_id: req.session.user.id});
     
+    // registers the patient under the clinician
+    var clin = await Clinician.findOne({_id: req.session.user.id});
     clin.patients.push(newPatient._id);
     await clin.save();
-    
-    var clin = await Clinician.findOne({_id: req.session.user.id});
-    
 
     res.redirect(`/clinician/register`);
 };

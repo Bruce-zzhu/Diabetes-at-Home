@@ -61,6 +61,7 @@ var register = function(Handlebars) {
             return s1 === s2;
         },
 
+        // returns the first n items of an array
         topRanked: function (context, block) {
             var topRanked = "";
             var n = Math.min(parseInt(block.hash.n), context.length);

@@ -1,13 +1,10 @@
 var placing = document.getElementsByClassName("placing")
 for (var i=0; i<placing.length; i++) {
-    var pName = placing[i].querySelector(".place-name");
     var pNum = placing[i].querySelector(".place-number");
-    if (pName.innerHTML.length > 15) {
-        pName.innerHTML = pName.innerHTML.slice(0, 12) + "...";
-    }
     placing[i].querySelector(".place-number").innerHTML = pNumFill(i);
 }
 
+// renders a medal image or a place number given a place
 function pNumFill(pNum) {
     var fill;
     switch (pNum) {
@@ -26,6 +23,7 @@ function pNumFill(pNum) {
     return fill;
 }
 
+// change "behind other user" comment based on other patients ranked before logged-in patient
 var comm = document.getElementById("egmt-comm");
 var rank = getIdxByNick(pntNick, allPatEgmts);
 console.log(rank);

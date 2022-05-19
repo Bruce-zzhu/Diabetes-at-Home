@@ -80,6 +80,7 @@ const renderPatientDashboard = async (req, res) => {
     try {
         var patient = await Patient.findOne({ email: req.session.user.email }).populate('requirements').lean();
 
+        // re-calculate engagement
         currentEgmt = await calcEgmt(patient._id);
         patient = await Patient.findOneAndUpdate(
             { _id: patient._id },
@@ -170,13 +171,11 @@ const renderPatientDashboard = async (req, res) => {
             await Message.findByIdAndUpdate(m._id, { unread: false });
         }
 
-        var allPatEgmts = await Patient.find({}, "nickName engagementRate");
+        // get all nickname <-> egagements to use to display leaderboard
+        var allPatEgmts = await Patient.find({}, "nickName engagementRate").lean();
         allPatEgmts.sort((a, b) => b.engagementRate - a.engagementRate);
         for (var i=0; i<allPatEgmts.length; i++) {
-            allPatEgmts[i] = {
-                nickName: allPatEgmts[i].nickName,
-                egmtRate: ((allPatEgmts[i].engagementRate * 100).toFixed(2))
-            }
+            allPatEgmts[i].egmtRate = ((allPatEgmts[i].engagementRate * 100).toFixed(2));
         }
 
         res.render("patient/dashboard", {

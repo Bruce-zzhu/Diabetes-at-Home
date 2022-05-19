@@ -24,7 +24,7 @@ function toMelbDate(date) {
     return newDate.toLocaleString("en-AU", {"timeZone": "Australia/Melbourne"}).slice(0, 10);
 }
 
-// display/hide a data table cell's comment/value
+// display/hide a full data table cell's comment/value
 function tableToggleComment(cell) {
     var comment = cell.querySelector(".tb-comm"); 
     var value = cell.querySelector(".tb-value");
@@ -43,6 +43,7 @@ function tableToggleComment(cell) {
     }
 }
 
+// displays a given color theme object
 function getTheme(theme) {
     if (theme == undefined) {return;}
 
@@ -58,12 +59,11 @@ function getTheme(theme) {
     }
 }
 
-
-
 function isNotBounded(value, low, high) {
     return low <= value <= high;
 }
 
+// changes whether full data are displayed as table or as chart
 function toggleChart() {
     var btn = document.getElementById("toggleChart");
     var table = document.getElementById("full-history");
