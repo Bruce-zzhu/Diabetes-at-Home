@@ -3,8 +3,9 @@ var pathname = window.location.pathname;
 
 // show simplified nav unless on landing/patient/clinician pages
 if (pathname === "/" ||
-    pathname.startsWith("/patient") ||
-    pathname.startsWith("/clinician")) {
+    (pathname.startsWith("/patient") || pathname.startsWith("/clinician")) &&
+    (!pathname.includes("settings"))
+    ) {
     document.getElementById("simple-nav").remove()
 
     // depending on logged-in status/user type, change nav bar buttons/links
