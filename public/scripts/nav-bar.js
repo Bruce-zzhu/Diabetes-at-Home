@@ -3,8 +3,8 @@ var pathname = window.location.pathname;
 
 // show simplified nav unless on landing/patient/clinician pages
 if (pathname === "/" ||
-    (pathname.startsWith("/patient") || pathname.startsWith("/clinician")) &&
-    (!pathname.includes("settings"))
+    (pathname.startsWith("/patient") ||
+    pathname.startsWith("/clinician"))
     ) {
     document.getElementById("simple-nav").remove()
 

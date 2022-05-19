@@ -103,8 +103,6 @@ app.use('/', authRouter, generalRoutes);
 app.get('/', async (req, res) => {
     res.render('landing', {
         style: 'landing.css',
-        user: req.session.user,
-        theme: req.session.user.theme,
     });
 });
 

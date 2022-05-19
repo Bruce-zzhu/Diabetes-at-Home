@@ -77,7 +77,11 @@ const getDashboardData = async (req, res) => {
     );
 
     try {
-        const patients = await Patient.find({ clinician: clinician._id }).populate("requirements").lean();
+        var patients = [];
+        for (pid of clinician.patients) {
+            patients.push(await Patient.find({ _id: pid }).populate("requirements").lean());
+        }
+        console.log(patients);
         var timeSeriesList = [];
         for (p of patients) {
             var timeSeries = await getTodayTimeSeries(p).then((data) => data);
@@ -93,7 +97,6 @@ const getDashboardData = async (req, res) => {
         }
         res.render("clinician/dashboard", {
             style: "dashboard.css",
-            theme: req.session.user.theme,
             user: req.session.user,
             timeSeriesList,
         });
@@ -203,7 +206,6 @@ const renderPatientProfile = async (req, res) => {
         res.render("clinician/viewPatient", {
             style: "viewPatient.css",
             user: req.session.user,
-            theme: req.session.user.theme,
             patient,
             timeSeriesList,
             notes,
@@ -377,7 +379,6 @@ const renderRegister = (req, res) => {
     res.render("clinician/register", {
         style: "register.css",
         user: req.session.user,
-        theme: req.session.user.theme,
     });
 };
 
@@ -482,7 +483,6 @@ const renderCommentsPage = async (req, res) => {
         res.render("clinician/comments", {
             style: "comments.css",
             user: req.session.user,
-            theme: req.session.user.theme,
             patients,
             data,
         });
