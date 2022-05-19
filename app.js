@@ -10,6 +10,9 @@ const mongoose = require('mongoose');
 const clinicianRoutes = require('./routers/clinician');
 const patientRoutes = require('./routers/patient');
 const generalRoutes = require('./routers/general');
+// var Handlebars = require("handlebars");
+// var NumeralHelper = require("handlebars.numeral");
+// NumeralHelper.registerHelpers(Handlebars);
 
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();

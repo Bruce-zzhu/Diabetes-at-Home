@@ -1,17 +1,16 @@
-<<<<<<< HEAD
 
-=======
-<script>
-    var allPatEgmts = {{{jStringify allPatEgmts}}};
-</script>
->>>>>>> 340ee2f34db06357a4455fb3eb21fd0dbf301bca
 <section class="leaderboard-container">
     <h5>Leaderboard</h5>
     <div class="scroll">
         <div class="user-place">
-            <p>{{nickName}} -- <span id="egmt-val-ldrbd"></span> </p>
-            <p>4.50% behind Naomi!</p>
+            <p>{{nickName}} &#8212;&#8212; <span id="user-val"></span> </p>
+            <script>
+                document.getElementById("user-val").innerHTML = ({{engagementRate}}*100).toFixed(2) + "%";
+            </script>
+            {{!--<p>4.50% behind Naomi!</p>--}}
         </div>
+        
+        
         {{#each allPatEgmts}}
             <div class="placing">
                 <div class="place-number"></div>
@@ -21,9 +20,10 @@
                     - add image/text in place-number --}}
                 {{!-- also mb format place-name/text for long nicknames --}}
                 {{!-- & change innerHTML in place-val to 2 decimal places via the existing innerHTML or via the var --}}
-                <p class="place-text"><span class="place-name">{{this.nickName}}</span> &#8212;&#8212; <span class="place-val">{{this.egmtRate}}</span>%</p>
+                <p class="place-text"><span class="place-name">{{this.nickName}}</span> &#8212;&#8212; <span id="place-val">{{this.egmtRate}}</span>%</p>
             </div>
         {{/each}}
+        
             <div class="placing">
                 <img class="medal place-number" alt="gold medal" src="https://uxwing.com/wp-content/themes/uxwing/download/24-sport-and-awards/gold-medal.svg">
                 <p class="place-text">Naomi -- 84.50%</p>
@@ -47,15 +47,28 @@
     </div>
 </section>
 
+{{!--<script>
+    Handlebars.registerHelper("decimalNumberFormat", function() {  
+   
+});
+</script>
+--}}
+{{!--
 <script>
     var egmt = {{engagementRate}}*100;
-    document.getElementByClassId("egmt-val-ldrbd").innerHTML = egmt + "%";
+    document.getElementByClassId("egmt-val-ldrbd").innerHTML = `${egmt.toFixed(2)}` + "%";
 </script>
+--}}
+
 <script>
-    const list = document.getElementsByClassName("egmt-vals");
-    .innerHTML = egmt + "%";
+    var allPatEgmts = {{{jStringify allPatEgmts}}};
 </script>
+
 <script>
-    var allPatEgmts = {{{allPatEgmts}}};
+    const list = document.getElementsByClassName("place-val");
+    for (var user : myStringArray) {
+        list[user].innerHTML = egmtRate.toFixed(2);
+    }   
 </script>
-<script src="/scripts/leaderboard.js"></script>
+
+{{!--<script src="/scripts/leaderboard.js"></script> --}}

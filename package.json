@@ -28,6 +28,7 @@
     "express-handlebars": "^6.0.3",
     "express-session": "^1.17.2",
     "flash": "^1.1.0",
+    "handlebars.numeral": "^0.2.0",
     "mongoose": "^6.3.0",
     "node": "^17.7.2",
     "nodemon": "^2.0.16",
