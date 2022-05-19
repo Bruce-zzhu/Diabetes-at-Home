@@ -30,17 +30,18 @@ const addEntryData = async (req, res) => {
         );
 
         if (timeSeries) {
-            TimeSeries.findOne({ _id: timeSeries._id }, (err, doc) => {
-                doc.bloodGlucose.value = blood;
-                doc.bloodGlucose.comment = bloodComment;
-                doc.weight.value = weight;
-                doc.weight.comment = weightComment;
-                doc.insulin.value = insulin;
-                doc.insulin.comment = insulinComment;
-                doc.exercise.value = exercise;
-                doc.exercise.comment = exerciseComment;
-                doc.save();
-            });
+            await TimeSeries.updateOne(
+                {_id: timeSeries._id}, 
+                {$set: {
+                    'bloodGlucose.value': blood,
+                    'bloodGlucose.comment': bloodComment,
+                    'weight.value': weight,
+                    'weight.comment': weightComment,
+                    'insulin.value': insulin,
+                    'insulin.comment': insulinComment,
+                    'exercise.value': exercise,
+                    'exercise.comment': exerciseComment,
+                }}, {new: true});
         } else {
             // create timeseries
             await createTodayTimeSeries(patient);
@@ -67,9 +68,10 @@ const addEntryData = async (req, res) => {
                 daysActive++;
             }
         }
-        var totalDays = Math.ceil(
+        var totalDays = 1 + Math.ceil(
             (today.getTime() - patient.createTime.getTime()) / 86400000
         );
+        console.log(daysActive, totalDays);
         await Patient.findOneAndUpdate(
             { _id: patient._id },
             { engagementRate: daysActive / totalDays }

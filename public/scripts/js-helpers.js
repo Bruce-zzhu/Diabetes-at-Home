@@ -69,11 +69,11 @@ function toggleChart() {
     var table = document.getElementById("full-history");
     var chart = document.getElementById("full-hist-chart");
     if (table.style.display == "block") {
-        btn.innerHTML = "SHOW TABLE";
+        btn.innerHTML = "Show Table";
         table.style.display = "none";
         chart.style.display = "block";
     } else {
-        btn.innerHTML = "SHOW CHART";
+        btn.innerHTML = "Show Chart";
         table.style.display = "block";
         chart.style.display = "none";
     }
