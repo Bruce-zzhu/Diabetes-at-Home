@@ -4,14 +4,9 @@ const {
     getTodayTimeSeries,
     createTodayTimeSeries,
     getPatientTimeSeriesList,
+    calcEgmt,
 } = require("./clinician");
 const { getDateInfo } = require("../public/scripts/js-helpers");
-
-// Hardcoded Patient Email
-const patientEmail = 'harry@potter.email';
-// const loginEmailEntry = async(req, res) => {
-//     const patientEmail = req.body.loginEmail;
-// }
 
 const addEntryData = async (req, res) => {
     const blood = req.body.bloodGlucose;
@@ -30,17 +25,18 @@ const addEntryData = async (req, res) => {
         );
 
         if (timeSeries) {
-            TimeSeries.findOne({ _id: timeSeries._id }, (err, doc) => {
-                doc.bloodGlucose.value = blood;
-                doc.bloodGlucose.comment = bloodComment;
-                doc.weight.value = weight;
-                doc.weight.comment = weightComment;
-                doc.insulin.value = insulin;
-                doc.insulin.comment = insulinComment;
-                doc.exercise.value = exercise;
-                doc.exercise.comment = exerciseComment;
-                doc.save();
-            });
+            await TimeSeries.updateOne(
+                {_id: timeSeries._id}, 
+                {$set: {
+                    'bloodGlucose.value': blood,
+                    'bloodGlucose.comment': bloodComment,
+                    'weight.value': weight,
+                    'weight.comment': weightComment,
+                    'insulin.value': insulin,
+                    'insulin.comment': insulinComment,
+                    'exercise.value': exercise,
+                    'exercise.comment': exerciseComment,
+                }}, {new: true});
         } else {
             // create timeseries
             await createTodayTimeSeries(patient);
@@ -67,13 +63,12 @@ const addEntryData = async (req, res) => {
                 daysActive++;
             }
         }
-        var totalDays = Math.ceil(
+        var totalDays = 1 + Math.ceil(
             (today.getTime() - patient.createTime.getTime()) / 86400000
         );
-        await Patient.findOneAndUpdate(
-            { _id: patient._id },
-            { engagementRate: daysActive / totalDays }
-        );
+        console.log(daysActive, totalDays);
+
+        var newEgmt = await calcEgmt(patient._id);
 
         res.redirect("/patient/dashboard");
     } catch (e) {
@@ -83,7 +78,15 @@ const addEntryData = async (req, res) => {
 
 const renderPatientDashboard = async (req, res) => {
     try {
-        const patient = await Patient.findOne({ email: req.session.user.email }).populate('requirements').lean();
+        var patient = await Patient.findOne({ email: req.session.user.email }).populate('requirements').lean();
+
+        // re-calculate engagement
+        currentEgmt = await calcEgmt(patient._id);
+        patient = await Patient.findOneAndUpdate(
+            { _id: patient._id },
+            { engagementRate: currentEgmt },
+            { new: true }
+        ).lean();
 
         req.session.user.id = patient._id;
         req.session.user.firstName = patient.firstName;
@@ -162,13 +165,17 @@ const renderPatientDashboard = async (req, res) => {
             return d - c;
         });
 
-        var allPatEgmts = await Patient.find({}, "nickName engagementRate");
+        var preReadMsgs = messages;
+
+        for (m of messages) {
+            await Message.findByIdAndUpdate(m._id, { unread: false });
+        }
+
+        // get all nickname <-> egagements to use to display leaderboard
+        var allPatEgmts = await Patient.find({}, "nickName engagementRate").lean();
         allPatEgmts.sort((a, b) => b.engagementRate - a.engagementRate);
         for (var i=0; i<allPatEgmts.length; i++) {
-            allPatEgmts[i] = {
-                nickName: allPatEgmts[i].nickName,
-                egmtRate: ((allPatEgmts[i].engagementRate * 100).toFixed(2))
-            }
+            allPatEgmts[i].egmtRate = ((allPatEgmts[i].engagementRate * 100).toFixed(2));
         }
 
         res.render("patient/dashboard", {
@@ -182,7 +189,7 @@ const renderPatientDashboard = async (req, res) => {
             endDateArray,
             timeSeriesList,
             histData: JSON.stringify(histData),
-            messages,
+            messages: preReadMsgs,
             allPatEgmts
         });
     } catch (e) {

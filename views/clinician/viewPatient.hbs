@@ -105,7 +105,7 @@
                             <textarea name="body" id="new-msg-text" class="form-control" placeholder="New message" aria-label="New message" aria-describedby="basic-addon2" rows="1"></textarea>
                             <div class="input-group-append">
                                 <button onclick="cancelTextEntry('new-message')" class="btn btn-outline-danger" type="button"><span class="material-icons">close</span></button>
-                                <button onclick="sendMsg('new-msg-text')" class="btn btn-outline-success" type="submit"><span class="material-icons">send</span></button>
+                                <button class="btn btn-outline-success" type="submit"><span class="material-icons">send</span></button>
                             </div>
                         </div>
                     </form>
@@ -130,7 +130,7 @@
                             <input name="title" id="new-note-topic" type="text" class="form-control" placeholder="New note topic" aria-label="New note" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button onclick="cancelTextEntry('new-note')" class="btn btn-outline-danger" type="button"><span class="material-icons">close</span></button>
-                                <button onclick="addNotee('new-note-topic', 'new-note-body')" class="btn btn-outline-success" type="submit"><span class="material-icons">save</span></button>
+                                <button class="btn btn-outline-success" type="submit"><span class="material-icons">save</span></button>
                             </div>
                         </div>
                         <textarea name="body" d="new-note-body" class="form-control" type="text" placeholder="Note body" rows="5"></textarea>
@@ -146,7 +146,7 @@
         </div>
     </div>
 
-    <h2>Full History<button id="toggleChart" onclick="toggleChart()">SHOW CHART</button></h2>
+    <h2>Full History<button id="toggleChart" onclick="toggleChart()">Show Chart</button></h2>
     {{>fullHistTable timeSeriesList=timeSeriesList}}
 
     {{>hist-charts histData=histData}}

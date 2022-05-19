@@ -2,7 +2,7 @@
     <div id="escape-popup"></div>
     <div id="popup" class="container"> <!-- Add New Entry Container -->
         <div class="content-container">
-        <h5>Add new entry for DD/MM</h5> <!-- change to heading -->
+        <h5>Add new entry for <span id="todayDate"></span></h5> <!-- change to heading -->
         
         <br>
         <div class="form-container">
@@ -57,9 +57,8 @@
                     </div>
                 </div>
                 {{/if}}
-                <div class="buttons">
+                <div id="make-entry" class="buttons">
                     <button class="button" id="cancel-button" type="button">Cancel</button>
-                    <button class="button">Save</button> {{!-- TODO Keep or discard?? --}}
                     <button type="submit" value="Upload" id="upload-button"class="button">Upload</button>
                 </div>
             </form>

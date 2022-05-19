@@ -60,11 +60,15 @@ const renderForgotPassword = (req, res) => {
         user: req.session.user,
     });
 };
+
+// remember email corresponding to the forgotten password
 const forgotPassword = (req, res) => {
     req.session.resetEmail = req.body.email;
     res.redirect("/reset-password");
 }
 
+// make sure unlogged in user has inputted email at forgot-password page
+// automatically record a logged-in user's email as email to change password
 const renderResetPassword = (req, res) => {
     if (req.session.resetEmail == undefined) {
         if (req.session.user.id == undefined) {
@@ -78,29 +82,29 @@ const renderResetPassword = (req, res) => {
         user: req.session.user,
     });
 }
-const resetPassword = (req, res) => {
 
-    var hashedPwd;
-    // TODO: hash password & store in db
-    // hashedPwd = hash(req.body.password);
-
+// finds the account corresponding to the user
+// then updates the account with hashed password (using save() prehook)
+const resetPassword = async (req, res) => {
+    var user;
     switch (req.session.user.role) {
         case "patient":
-            console.log("reset pnt", req.session.resetEmail, "pwd", req.body.password);
-            // Patient.findOneAndUpdate({ email: req.session.resetEmail }, { password: hashedPwd });
+            user = await Patient.findOne({ email: req.session.resetEmail });
             break;
         case "clinician":
-            console.log("reset clin" , req.session.resetEmail, "pwd", req.body.password);
-            // Clinician.findOneAndUpdate({ email: req.session.resetEmail }, { password: hashedPwd });
+            user = await Clinician.findOne({ email: req.session.resetEmail });
             break;
-        default:
-            console.log("unknown user", req.body.password);
+    }
+    if (user) {
+        user.password = req.body.password;
+        await user.save();
     }
 
     req.session.destroy();
     res.redirect("/");
 }
 
+// changes a user's theme based on the theme selected, then refreshes settings page
 const setTheme = async (req, res) => {
     console.log(req.session.user);
     try {
@@ -125,6 +129,7 @@ const setTheme = async (req, res) => {
     
 }
 
+// changes a patient's nickname based on input, then refreshes settings page
 const setNickname = async (req, res) => {
     console.log(req.session.user);
     try {
