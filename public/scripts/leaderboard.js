@@ -1,5 +1,3 @@
-console.log(allPatEgmts);
-
 var placing = document.getElementsByClassName("placing")
 for (var i=0; i<placing.length; i++) {
     var pName = placing[i].querySelector(".place-name");
@@ -26,4 +24,25 @@ function pNumFill(pNum) {
             fill = `<h5 class='place-number'>${pNum+1}th</h5>`;
     }
     return fill;
+}
+
+var comm = document.getElementById("egmt-comm");
+var rank = getIdxByNick(pntNick, allPatEgmts);
+console.log(rank);
+if (rank == 0) {
+    comm.innerHTML = "You're in first place!";
+} else {
+    var diff = parseFloat(allPatEgmts[rank-1].egmtRate) - parseFloat(allPatEgmts[rank].egmtRate);
+    comm.innerHTML = `${diff.toFixed(2)}% behind ${allPatEgmts[rank-1].nickName}!`;
+}
+
+function getIdxByNick(nickName, nameArray) {
+    var idx = 0;
+    for (n of nameArray) {
+        if (n.nickName == nickName) {
+            return idx;
+        } else {
+            idx++;
+        }
+    }
 }

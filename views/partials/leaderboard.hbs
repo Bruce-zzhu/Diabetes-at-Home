@@ -7,7 +7,7 @@
             <script>
                 document.getElementById("user-val").innerHTML = ({{engagementRate}}*100).toFixed(2) + "%";
             </script>
-            <p id="egmt-comm"><span id="egmt-diff"></span>% behind <span id="egmt-next"></span>!</p>
+            <p id="egmt-comm"></p>
         </div>
         
         {{#topRanked allPatEgmts n=5}}
@@ -24,7 +24,8 @@
 </section>
 
 <script>
-    var patNick = "{{nickName}}";
+    var pntNick = "{{nickName}}";
+    var pntEgmt = {{engagementRate}};
     var allPatEgmts = {{{jStringify allPatEgmts}}};
 </script>
 <script src="/scripts/leaderboard.js"></script>
