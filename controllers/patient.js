@@ -4,14 +4,9 @@ const {
     getTodayTimeSeries,
     createTodayTimeSeries,
     getPatientTimeSeriesList,
+    calcEgmt,
 } = require("./clinician");
 const { getDateInfo } = require("../public/scripts/js-helpers");
-
-// Hardcoded Patient Email
-const patientEmail = 'harry@potter.email';
-// const loginEmailEntry = async(req, res) => {
-//     const patientEmail = req.body.loginEmail;
-// }
 
 const addEntryData = async (req, res) => {
     const blood = req.body.bloodGlucose;
@@ -72,10 +67,8 @@ const addEntryData = async (req, res) => {
             (today.getTime() - patient.createTime.getTime()) / 86400000
         );
         console.log(daysActive, totalDays);
-        await Patient.findOneAndUpdate(
-            { _id: patient._id },
-            { engagementRate: daysActive / totalDays }
-        );
+
+        var newEgmt = await calcEgmt(patient._id);
 
         res.redirect("/patient/dashboard");
     } catch (e) {
@@ -85,7 +78,14 @@ const addEntryData = async (req, res) => {
 
 const renderPatientDashboard = async (req, res) => {
     try {
-        const patient = await Patient.findOne({ email: req.session.user.email }).populate('requirements').lean();
+        var patient = await Patient.findOne({ email: req.session.user.email }).populate('requirements').lean();
+
+        currentEgmt = await calcEgmt(patient._id);
+        patient = await Patient.findOneAndUpdate(
+            { _id: patient._id },
+            { engagementRate: currentEgmt },
+            { new: true }
+        ).lean();
 
         req.session.user.id = patient._id;
         req.session.user.firstName = patient.firstName;

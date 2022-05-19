@@ -64,6 +64,36 @@ const createTodayTimeSeries = async (patient) => {
     }
 };
 
+const calcEgmt = async (pid) => {
+    const patient = await Patient.findById(pid);
+
+    // Re-calculate engagement
+    var today = new Date();
+    const allTS = await TimeSeries.find({
+        patient: patient._id,
+        clinicianUse: false,
+    }).lean();
+    var daysActive = 0;
+    for (var i = 0; i < allTS.length; i++) {
+        var dayTS = allTS[i];
+        if (
+            (dayTS.bloodGlucose.isRequired &&
+                dayTS.bloodGlucose.value == null) ||
+            (dayTS.weight.isRequired && dayTS.weight.value == null) ||
+            (dayTS.insulin.isRequired && dayTS.insulin.value == null) ||
+            (dayTS.exercise.isRequired && dayTS.exercise.value == null)
+        ) {
+            continue;
+        } else {
+            daysActive++;
+        }
+    }
+    var totalDays = 1 + Math.ceil(
+        (today.getTime() - patient.createTime.getTime()) / 86400000
+    );
+    return daysActive / totalDays;
+}
+
 const getDashboardData = async (req, res) => {
     const clinician = await Clinician.findOne({
         email: req.session.user.email,
@@ -143,9 +173,16 @@ const checkDataSafety = (ts) => {
 const renderPatientProfile = async (req, res) => {
     try {
         const pid = req.params.id;
-        const patient = await Patient.findById(pid)
+        var patient = await Patient.findById(pid)
             .populate("requirements")
             .lean();
+
+        currentEgmt = await calcEgmt(patient._id);
+        patient = await Patient.findOneAndUpdate(
+            { _id: patient._id },
+            { engagementRate: currentEgmt },
+            { new: true }
+        ).lean();
 
         const timeSeriesList = await getPatientTimeSeriesList(patient).then(
             (data) => data
@@ -499,6 +536,7 @@ module.exports = {
     createTodayTimeSeries,
     getPatientTimeSeriesList,
     submitRequirement,
+    calcEgmt,
     addNote,
     addMessage,
     insertData,
