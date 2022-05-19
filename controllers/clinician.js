@@ -6,7 +6,6 @@ const {
     toMelbDate,
     isNotBounded
 } = require("../public/scripts/js-helpers");
-// const { all } = require("../routers/clinician");
 
 const getTodayTimeSeries = async (patient) => {
     try {
@@ -64,10 +63,10 @@ const createTodayTimeSeries = async (patient) => {
     }
 };
 
+// calculates a patient's engagement rate
 const calcEgmt = async (pid) => {
     const patient = await Patient.findById(pid);
 
-    // Re-calculate engagement
     var today = new Date();
     const allTS = await TimeSeries.find({
         patient: patient._id,
@@ -99,6 +98,7 @@ const getDashboardData = async (req, res) => {
         email: req.session.user.email,
     }).lean();
 
+    // record clinician details in cookie
     req.session.user.id = clinician._id;
     req.session.user.firstName = clinician.firstName;
     req.session.user.lastName = clinician.lastName;

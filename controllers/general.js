@@ -60,11 +60,15 @@ const renderForgotPassword = (req, res) => {
         user: req.session.user,
     });
 };
+
+// remember email corresponding to the forgotten password
 const forgotPassword = (req, res) => {
     req.session.resetEmail = req.body.email;
     res.redirect("/reset-password");
 }
 
+// make sure unlogged in user has inputted email at forgot-password page
+// automatically record a logged-in user's email as email to change password
 const renderResetPassword = (req, res) => {
     if (req.session.resetEmail == undefined) {
         if (req.session.user.id == undefined) {
@@ -78,6 +82,8 @@ const renderResetPassword = (req, res) => {
         user: req.session.user,
     });
 }
+
+// hashes the password, finds the account corresponding to the user, then updates
 const resetPassword = (req, res) => {
 
     var hashedPwd;
@@ -101,6 +107,7 @@ const resetPassword = (req, res) => {
     res.redirect("/");
 }
 
+// changes a user's theme based on the theme selected, then refreshes settings page
 const setTheme = async (req, res) => {
     console.log(req.session.user);
     try {
@@ -125,6 +132,7 @@ const setTheme = async (req, res) => {
     
 }
 
+// changes a patient's nickname based on input, then refreshes settings page
 const setNickname = async (req, res) => {
     console.log(req.session.user);
     try {
