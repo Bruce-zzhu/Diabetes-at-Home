@@ -146,7 +146,7 @@
         </div>
     </div>
 
-    <h2 style="padding-top: 3rem; font-weight: bold">Full History</h2>
+    <h2>Full History<button id="toggleChart" onclick="toggleChart()">SHOW CHART</button></h2>
     {{>fullHistTable timeSeriesList=timeSeriesList}}
 
     {{>hist-charts histData=histData}}

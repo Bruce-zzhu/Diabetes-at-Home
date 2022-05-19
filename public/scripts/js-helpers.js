@@ -58,11 +58,27 @@ function getTheme(theme) {
     }
 }
 
+function toggleChart() {
+    var btn = document.getElementById("toggleChart");
+    var table = document.getElementById("full-history");
+    var chart = document.getElementById("full-hist-chart");
+    if (table.style.display == "block") {
+        btn.innerHTML = "SHOW TABLE";
+        table.style.display = "none";
+        chart.style.display = "block";
+    } else {
+        btn.innerHTML = "SHOW CHART";
+        table.style.display = "block";
+        chart.style.display = "none";
+    }
+}
+
 module.exports = {
     consolelogs,
     isSameDay,
     getDateInfo,
     tableToggleComment,
     getTheme,
-    toMelbDate
+    toMelbDate,
+    toggleChart
 };
