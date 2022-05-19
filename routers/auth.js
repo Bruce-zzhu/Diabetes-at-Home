@@ -1,5 +1,6 @@
 
 const { Patient } = require("../models/patient");
+const { Clinician } = require("../models/clinician");
 const passport = require('passport')
 const express = require('express')
 const router = express.Router()
@@ -7,7 +8,7 @@ const patientRoutes = require('./patient');
 const clinicianRoutes = require('./clinician');
 const req = require("express/lib/request");
 
-// Authentication middleware (REMOVE FOR FINAL)
+// Authentication middleware 
 const isAuthenticated = (req, res, next) => {
     // If user is not authenticated via passport, redirect to login page
     // console.log(req.isAuthenticated())
@@ -18,9 +19,51 @@ const isAuthenticated = (req, res, next) => {
     return next()
 }
 
+const isClinician = (req, res, next) => {
+    // Checks to see if user has role (stored in session cookie) 
+    // has role clinician
+
+    // TRY used because req.session.user is undefined before
+    // authentication
+    try{
+        if (req.session.user.role == 'patient'){
+            return res.redirect('/')
+        }
+        if (req.session.user.role == 'clinician'){
+            return next()
+        }
+        else{
+            return res.redirect('/')
+        }
+    } 
+    catch (e) {
+        return res.redirect('/')
+    }
+}
+
+const isPatient = (req, res, next) => {
+    // Checks to see if user has role (stored in session cookie) has role: 'patient'
+
+    // TRY used because req.session.user is undefined before authentication
+    try{
+        if (req.session.user.role == 'clinician'){
+            return res.redirect('/')
+        }
+        if (req.session.user.role == 'patient'){
+            return next()
+        }
+        else{
+            return res.redirect('/')
+        }
+    } 
+    catch (e) {
+        return res.redirect('/')
+    }
+}
+
 
 // PATIENT LOGIN AUTHENTICATION
-router.use('/patient', isAuthenticated, patientRoutes);
+router.use('/patient', isAuthenticated, isPatient, patientRoutes);
 
 // Login page (with failure message displayed upon login failure)
 router.get('/login-p', (req, res) => {
@@ -41,7 +84,7 @@ router.post('/login-p',
 )
 // 
 // CLINICIAN LOGIN AUTHENTICATION
-router.use('/clinician', isAuthenticated, clinicianRoutes);
+router.use('/clinician', isAuthenticated, isClinician, clinicianRoutes);
 
 // Login page (with failure message displayed upon login failure)
 router.get('/login-c', (req, res) => {
