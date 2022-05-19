@@ -15,3 +15,7 @@ switch (window.innerWidth <= 380) {
         // pass
 }
 
+if (){
+    document.getElementById("unread-notif").remove();
+}
+
