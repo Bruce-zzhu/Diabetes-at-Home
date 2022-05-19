@@ -1,0 +1,11 @@
+.container{
+    background-color: var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: baseline;
+    
+}
+.container > *{
+    color: var(--altText-color);
+}
