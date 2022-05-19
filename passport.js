@@ -56,7 +56,7 @@ passport.use('patient-local',
             }
             if (!patient) {
                 return done(undefined, false, {
-                    message: 'Incorrect email', // Descriptive error for debugging purposes. DELETE LATER.
+                    message: 'Incorrect credentials', // Descriptive error for debugging purposes. DELETE LATER.
                 })
             }
             // Check password
@@ -69,7 +69,7 @@ passport.use('patient-local',
                 }
                 if (!valid) {
                     return done(undefined, false, {
-                        message: 'Incorrect password', // Descriptive error for debugging purposes. DELETE LATER.
+                        message: 'Incorrect credentials', // Descriptive error for debugging purposes. DELETE LATER.
                     })
                 }
 
@@ -91,7 +91,7 @@ passport.use('clinician-local',
             }
             if (!clinician) {
                 return done(undefined, false, {
-                    message: 'Incorrect email', // Descriptive error for debugging purposes. DELETE LATER.
+                    message: 'Incorrect credentials', // Descriptive error for debugging purposes. DELETE LATER.
                 })
             }
             // Check password
@@ -104,7 +104,7 @@ passport.use('clinician-local',
                 }
                 if (!valid) {
                     return done(undefined, false, {
-                        message: 'Incorrect password', // Descriptive error for debugging purposes. DELETE LATER.
+                        message: 'Incorrect credentials', // Descriptive error for debugging purposes. DELETE LATER.
                     })
                 }
 

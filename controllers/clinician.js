@@ -70,7 +70,7 @@ const getDashboardData = async (req, res) => {
     );
 
     try {
-        const patients = await Patient.find({}).populate("requirements").lean();
+        const patients = await Patient.find({ clinician: clinician._id }).populate("requirements").lean();
         var timeSeriesList = [];
         for (p of patients) {
             var timeSeries = await getTodayTimeSeries(p).then((data) => data);
