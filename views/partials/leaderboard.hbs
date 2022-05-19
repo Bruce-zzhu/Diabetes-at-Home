@@ -3,72 +3,29 @@
     <h5>Leaderboard</h5>
     <div class="scroll">
         <div class="user-place">
-            <p>{{nickName}} &#8212;&#8212; <span id="user-val"></span> </p>
+            <p>{{nickName}}<br><span id="user-val"></span> </p>
             <script>
                 document.getElementById("user-val").innerHTML = ({{engagementRate}}*100).toFixed(2) + "%";
             </script>
-            {{!--<p>4.50% behind Naomi!</p>--}}
+            <p id="egmt-comm"></p>
         </div>
         
-        
-        {{#each allPatEgmts}}
+        {{#topRanked allPatEgmts n=5}}
             <div class="placing">
-                <div class="place-number"></div>
-                {{!-- TODO (possible idea, idk what's good coding practice):
-                    - get innerHTML from place-name
-                    - use name to find index of person
-                    - add image/text in place-number --}}
-                {{!-- also mb format place-name/text for long nicknames --}}
-                {{!-- & change innerHTML in place-val to 2 decimal places via the existing innerHTML or via the var --}}
-                <p class="place-text"><span class="place-name">{{this.nickName}}</span> &#8212;&#8212; <span id="place-val">{{this.egmtRate}}</span>%</p>
+                <div class="place-number">aaaa</div>
+                <p class="place-text">
+                    <span class="place-name">{{this.nickName}}</span>
+                     &#8212;&#8212; 
+                    <span id="place-val">{{this.egmtRate}}</span>%
+                </p>
             </div>
-        {{/each}}
-        
-            <div class="placing">
-                <img class="medal place-number" alt="gold medal" src="https://uxwing.com/wp-content/themes/uxwing/download/24-sport-and-awards/gold-medal.svg">
-                <p class="place-text">Naomi -- 84.50%</p>
-            </div>
-            <div class="placing">
-                <img class="medal place-number" alt="silver medal" src="https://uxwing.com/wp-content/themes/uxwing/download/24-sport-and-awards/silver-medal.svg">
-                <p class="place-text">Pat -- 80.00%</p>
-            </div>
-            <div class="placing">
-                <img class="medal place-number" alt="bronze medal" src="https://uxwing.com/wp-content/themes/uxwing/download/24-sport-and-awards/bronze-medal.svg">
-                <p class="place-text">Tarkik -- 78.50%</p>
-            </div>
-            <div class="placing">
-                <h5 class="place-number">4th</h5>
-                <p class="place-text">Jon -- 75.00%</p>
-            </div>
-            <div class="placing">
-                <h5 class="place-number">5th</h5>
-                <p class="place-text">Ige -- 70.80%</p>
-            </div>
+        {{/topRanked}}
     </div>
 </section>
 
-{{!--<script>
-    Handlebars.registerHelper("decimalNumberFormat", function() {  
-   
-});
-</script>
---}}
-{{!--
 <script>
-    var egmt = {{engagementRate}}*100;
-    document.getElementByClassId("egmt-val-ldrbd").innerHTML = `${egmt.toFixed(2)}` + "%";
-</script>
---}}
-
-<script>
+    var pntNick = "{{nickName}}";
+    var pntEgmt = {{engagementRate}};
     var allPatEgmts = {{{jStringify allPatEgmts}}};
 </script>
-
-<script>
-    const list = document.getElementsByClassName("place-val");
-    for (var user : myStringArray) {
-        list[user].innerHTML = egmtRate.toFixed(2);
-    }   
-</script>
-
-{{!--<script src="/scripts/leaderboard.js"></script> --}}
+<script src="/scripts/leaderboard.js"></script>
