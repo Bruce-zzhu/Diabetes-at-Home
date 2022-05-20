@@ -13,7 +13,7 @@ router.get("/about-diabetes", general.renderAboutDiabetes);
 // Clinician Login page
 router.route("/login-c")
     .get(general.renderLoginClinician)
-    .post(general.postClinicianPatient,
+    .post(general.postLoginClinician,
         passport.authenticate('clinician-local', {
             successRedirect: 'clinician/dashboard', failureRedirect: '/login-c', failureFlash: true
         })
