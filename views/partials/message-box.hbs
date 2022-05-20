@@ -1,6 +1,6 @@
 {{!-- TODO: message read/unread, clin firstname, time, details --}}
 {{#if viewAsPatient}}
-    {{#if unread}}<div class="message unread">{{else}}<div class="message">{{/if}}
+    {{#if unread}}<div class="message unread">{{else}}<div class="message read">{{/if}}
         <div class="message-details">
             <span class="message-name-send">{{clinician.firstName}}:</span>
             <span class="message-time">{{toMelbTimestamp time}}</span>
