@@ -45,6 +45,14 @@ nav a:hover {
     color: var(--altText-color);
 }
 
+nav form {
+    text-align: center;
+}
+
+nav form button {
+    font-size: 16px;
+}
+
 nav .btn-theme {
     border-radius: 3px;
     padding: 0 8px 0 8px;
