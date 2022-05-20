@@ -6,7 +6,7 @@
         </div>
         <div class="view-nav">
             <div class="nav-buttons">
-                <button class="nav-links">
+                <button class="nav-links req">
                     <img
                         class="nav-icons"
                         src="https://uxwing.com/wp-content/themes/uxwing/download/21-medical-science-lab/diagnostic-pulse.svg?fbclid=IwAR1zaDg8YWbt1LRrpu-2IynV1cZh296G-nxhCZfb2leP_v4WbXJRVmpaUSc"
@@ -64,7 +64,7 @@
                         to
                         <input class="to" name="weightHigh" type="number" step=0.1 value="{{patient.requirements.weight.upperBound}}" />
                         kg
-                        <input class="checkbox" type="checkbox" name="weightRequired" {{#if patient.requirements.weight.isRequired}}checked="checked"{{/if}} />
+                        <input class="checkbox" type="checkbox" name="weightRequired" {{#if patient.requirements.weight.isRequired}}checked = "checked"{{/if}} />
                     </div>
                 </div>
                 <div class="col-5 offset-1">
@@ -73,7 +73,7 @@
                         to
                         <input class="to" name="insulinHigh" type="number" value="{{patient.requirements.insulin.upperBound}}" />
                         doses
-                        <input class="checkbox" type="checkbox" name="insulinRequired" {{#if patient.requirements.insulin.isRequired}}checked="checked"{{/if}} />
+                        <input class="checkbox" type="checkbox" name="insulinRequired" {{#if patient.requirements.insulin.isRequired}}checked = "checked"{{/if}} />
                     </div>
                 </div>
                 <div class="col-5 offset-1">
