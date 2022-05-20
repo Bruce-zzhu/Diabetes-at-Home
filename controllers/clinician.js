@@ -357,7 +357,7 @@ const insertData = async (req, res) => {
 
     // generates unique nickname
     var newNick = req.body.firstName[0] + req.body.lastName[0] + Math.floor(Math.random() * 10000);
-    while (await Patient.findOne({nickName: newNick}).lean) {
+    while (await Patient.findOne({nickName: newNick}).lean()) {
         newNick = req.body.firstName[0] + req.body.lastName[0] + Math.floor(Math.random() * 10000);
     }
     
