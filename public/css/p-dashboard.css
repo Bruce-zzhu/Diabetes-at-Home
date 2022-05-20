@@ -77,6 +77,10 @@
     width: 15rem;
 }
 
+#pinfo p{
+    margin-bottom: 0;
+}
+
 #engagement {
     grid-area: egmt;
     padding-left: 2rem;
