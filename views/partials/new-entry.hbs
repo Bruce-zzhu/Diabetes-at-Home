@@ -75,6 +75,8 @@
 function mobileCommentPrompt(id) {
   let new_id= id.replace(".","-");
   let category =id.replace("."," ");
+  category = category.replace(/([A-Z]+)/g, " $1").replace(/([A-Z][a-z])/g, " $1");
+  
   let comment = prompt("Please enter a " + category);
   if (comment != null) {
     document.getElementById(new_id).value = 
