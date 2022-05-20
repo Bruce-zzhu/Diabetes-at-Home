@@ -115,7 +115,6 @@ const resetPassword = async (req, res) => {
 
 // changes a user's theme based on the theme selected, then refreshes settings page
 const setTheme = async (req, res) => {
-    console.log(req.session.user);
     try {
         var user;
         var themeName = req.body.themeChosen;
@@ -124,7 +123,6 @@ const setTheme = async (req, res) => {
         } else {
             user = await Clinician.findOneAndUpdate( {_id: req.session.user.id }, { theme: themeName }, { new: true } );
         }
-        console.log(user);
     } catch (e) {
         console.log(e);
     }
@@ -140,7 +138,6 @@ const setTheme = async (req, res) => {
 
 // changes a patient's nickname based on input, then refreshes settings page
 const setNickname = async (req, res) => {
-    console.log(req.session.user);
     try {
         var newNick = req.body.newName;
         var patient = await Patient.findOneAndUpdate( {_id: req.session.user.id }, { nickName: newNick }, { new: true } );

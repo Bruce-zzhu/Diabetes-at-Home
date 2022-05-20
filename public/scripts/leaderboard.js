@@ -26,7 +26,6 @@ function pNumFill(pNum) {
 // change "behind other user" comment based on other patients ranked before logged-in patient
 var comm = document.getElementById("egmt-comm");
 var rank = getIdxByNick(pntNick, allPatEgmts);
-console.log(rank);
 if (rank == 0) {
     comm.innerHTML = "You're in first place!";
 } else {
