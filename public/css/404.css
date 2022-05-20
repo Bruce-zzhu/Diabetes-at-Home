@@ -1,11 +1,15 @@
 .container{
-    background-color: var(--primary-color);
+    /* background-color: var(--primary-color); */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
     
 }
 .container > *{
-    color: var(--altText-color);
+    color: var(--primary-color);
+}
+
+.heading-large{
+    font-size: 100px;
 }

@@ -121,12 +121,21 @@ section:nth-child(4) {
   color: var(--text-color);
 }
 
+.about-heading{
+  margin: 25px;
+}
+
+.last-element{
+  padding-bottom: 75px;
+}
+
 .ytVid-container {
   position: relative;
   padding-bottom: 56.25%;
   padding-top: 20px;
   height: 0;
   overflow: hidden;
+  margin-bottom: 25px;
 }
 
 .ytVid-container iframe {
