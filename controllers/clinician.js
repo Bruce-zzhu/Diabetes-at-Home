@@ -519,6 +519,10 @@ const renderCommentsPage = async (req, res) => {
             }
         }
 
+        data.sort(function (a, b) {
+            return b.date - a.date;
+        });
+
         res.render("clinician/comments", {
             style: "comments.css",
             user: req.session.user,
