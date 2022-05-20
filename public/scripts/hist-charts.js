@@ -26,7 +26,7 @@ const bloodConfigData = {
     labels: labels,
     datasets: [
         {
-            label: 'BloodGlucose (nmol/L)',
+            label: 'BloodGlucose (mmol/L)',
             backgroundColor: 'rgb(217, 22, 22)',
             borderColor: 'rgb(217, 22, 22)',
             data: bloodData,
@@ -74,22 +74,48 @@ const exerciseConfigData = {
 const bloodConfig = {
     type: 'line',
     data: bloodConfigData,
-    options: {},
+    options: {
+        scales: {
+            y: {
+                suggestedMin: 0,
+                suggestedMax: 20
+            }
+        }
+    },
 };
 const weightConfig = {
     type: 'line',
     data: weightConfigData,
-    options: {},
+    options: {
+        scales: {
+            y: {
+                suggestedMin: 20,
+            }
+        }
+    },
 };
 const insulinConfig = {
     type: 'line',
     data: insulinConfigData,
-    options: {},
+    options: {
+        scales: {
+            y: {
+                suggestedMin: 0,
+                suggestedMax: 10,
+            }
+        }
+    },
 };
 const exerciseConfig = {
     type: 'line',
     data: exerciseConfigData,
-    options: {},
+    options: {
+        scales: {
+            y: {
+                suggestedMin: 0
+            }
+        }
+    },
 };
 
 const bloodChart = new Chart(document.getElementById('bloodChart'), bloodConfig);

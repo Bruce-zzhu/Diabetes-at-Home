@@ -12,8 +12,8 @@ switch (window.innerWidth <= 380) {
 // truncate nicknames that are long enough to be disruptive to UI
 var nicks = document.getElementsByClassName("nickname");
 for (n of nicks) {
-    if (n.innerHTML.length > 12) {
-        n.innerHTML = n.innerHTML.slice(0, 9) + "..."
+    if (n.innerHTML.length > 11) {
+        n.innerHTML = n.innerHTML.slice(0, 8) + "..."
     }
 }
 
