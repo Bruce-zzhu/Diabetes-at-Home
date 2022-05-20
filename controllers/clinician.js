@@ -91,7 +91,7 @@ const calcEgmt = async (pid) => {
             daysActive++;
         }
     }
-    var totalDays = 1 + Math.ceil(
+    var totalDays = 1 + Math.round(
         (today.getTime() - earliestDay.getTime()) / 86400000
     );
     return daysActive / totalDays;
@@ -172,11 +172,11 @@ const renderPatientProfile = async (req, res) => {
             .lean();
 
         currentEgmt = await calcEgmt(patient._id);
-        await Patient.findOneAndUpdate(
+        patient = await Patient.findOneAndUpdate(
             { _id: patient._id },
             { engagementRate: currentEgmt },
             { new: true }
-        );
+        ).lean();
 
         const timeSeriesList = await getPatientTimeSeriesList(patient).then(
             (data) => data

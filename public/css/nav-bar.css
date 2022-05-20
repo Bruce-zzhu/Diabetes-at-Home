@@ -161,6 +161,8 @@ nav .btn-outline-light:hover {
 .nav-profile {
     margin: auto;
     padding-top: 12px;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 .nav-profile > * {
