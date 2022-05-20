@@ -3,8 +3,7 @@ var pathname = window.location.pathname;
 // depending on logged-in status/user type, change nav bar buttons/links
 if (pathname === "/") {
     var links = document.getElementById("nav-links");
-    links.innerHTML = "";
-    links.style.width = "32px";
+    links.innerHTML = "<div class='spacer mobile' style='width: 48px'></div>";
 }
 if (!pathname.includes("patient/dashboard")) {
     var newEntry = document.getElementById("nav-entry-div");
