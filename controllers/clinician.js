@@ -66,6 +66,7 @@ const createTodayTimeSeries = async (patient) => {
 // calculates a patient's engagement rate
 const calcEgmt = async (pid) => {
     const patient = await Patient.findById(pid);
+    var earliestDay = patient.createTime;
 
     var today = new Date();
     const allTS = await TimeSeries.find({
@@ -75,6 +76,9 @@ const calcEgmt = async (pid) => {
     var daysActive = 0;
     for (var i = 0; i < allTS.length; i++) {
         var dayTS = allTS[i];
+        if (dayTS.date < earliestDay) {
+            earliestDay = dayTS.date;
+        }
         if (
             (dayTS.bloodGlucose.isRequired &&
                 dayTS.bloodGlucose.value == null) ||
@@ -88,9 +92,8 @@ const calcEgmt = async (pid) => {
         }
     }
     var totalDays = 1 + Math.ceil(
-        (today.getTime() - patient.createTime.getTime()) / 86400000
+        (today.getTime() - earliestDay.getTime()) / 86400000
     );
-    console.log(patient.createTime.getDate());
     return daysActive / totalDays;
 }
 
@@ -351,13 +354,19 @@ const addMessage = async (req, res) => {
 
 // registers a new patient
 const insertData = async (req, res) => {
+
+    // generates unique nickname
+    var newNick = req.body.firstName[0] + req.body.lastName[0] + Math.floor(Math.random() * 10000);
+    while (await Patient.findOne({nickName: newNick}).lean) {
+        newNick = req.body.firstName[0] + req.body.lastName[0] + Math.floor(Math.random() * 10000);
+    }
     
     // creates the patient
     var newPatient = new Patient({
         createTime: new Date(),
         firstName: req.body.firstName,
         lastName: req.body.lastName,
-        nickName: req.body.firstName[0] + req.body.lastName[0] + Math.floor(Math.random() * 10000),
+        nickName: newNick,
         email: req.body.email,
         password: req.body.password,
         gender: req.body.gender,
