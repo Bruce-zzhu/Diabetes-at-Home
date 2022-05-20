@@ -102,7 +102,7 @@ em {
 #login-submit {
     background-color: var(--grey-color);
     color: white;
-    border: var(--offWhite-color) solid;
+    border: 2px var(--offWhite-color) solid;
     cursor: default;
     border-radius: 0.5rem;
     padding: 0.5rem 1rem;
