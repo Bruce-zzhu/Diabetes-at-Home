@@ -104,10 +104,15 @@
     /* TODO: filter: invert(62%) sepia(92%) saturate(2847%) hue-rotate(190deg) brightness(87%) contrast(99%); */
 }
 
+.svg-filter-primary{
+    filter: invert(55%) sepia(96%) saturate(3732%) hue-rotate(196deg) brightness(92%) contrast(76%)
+}
+
 .feature {
     display: flex;
     flex-direction: column;
     text-align: center;
+    width: 224px;
 }
 
 .feature img {
@@ -149,6 +154,7 @@
 
     .feature-list {
         flex-direction: column;
+        align-items: center;
     }
 
 }

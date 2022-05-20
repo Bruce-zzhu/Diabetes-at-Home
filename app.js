@@ -11,9 +11,7 @@ const passport = require('passport')
 const clinicianRoutes = require('./routers/clinician');
 const patientRoutes = require('./routers/patient');
 const generalRoutes = require('./routers/general');
-// var Handlebars = require("handlebars");
-// var NumeralHelper = require("handlebars.numeral");
-// NumeralHelper.registerHelpers(Handlebars);
+const { isAuthenticated, isClinician, isPatient, checkDataSafety } = require('./middleware');
 
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
@@ -40,9 +38,12 @@ app.engine(
 );
 app.set('view engine', 'hbs');
 
-
-// Flash messages for failed logins, and (possibly) other success/error messages
-app.use(flash())
+// link views to views directory
+app.set('views', path.join(__dirname, '/views'));
+// link static files to public directory
+app.use(express.static(path.join(__dirname, '/public')));
+// process incoming request
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Login Sessions setup - see week 10 tute for explanation of code
 app.use(
@@ -65,18 +66,11 @@ if (app.get('env') === 'production') {
 }
 
 
-// use PASSPORT
-// const passport = require('./passport.js');
-// const { nextTick } = require('process');
-// app.use(passport.authenticate('session'))
+app.use(passport.authenticate('session'))
 
-// link views to views directory
-app.set('views', path.join(__dirname, '/views'));
-// link static files to public directory
-app.use(express.static(path.join(__dirname, '/public')));
-// process incoming request
-app.use(bodyParser.urlencoded({ extended: true }));
 
+// Flash messages for failed logins, and (possibly) other success/error messages
+app.use(flash())
 
 
 // load blank user
@@ -87,22 +81,21 @@ app.use((req, res, next) => {
     next();
 })
 
-app.use(passport.authenticate('session'))
-
-// Load authentication router
-const authRouter = require('./routers/auth')
-//app.use('/', authRouter)
 
 
 // routes
-// app.use('/clinician', clinicianRoutes);
-// app.use('/patient', patientRoutes);
-app.use('/', authRouter, generalRoutes);
+app.use('/', generalRoutes);
+app.use('/patient', isAuthenticated, isPatient, patientRoutes);
+app.use('/clinician', isAuthenticated, isClinician, checkDataSafety, clinicianRoutes);
+
 
 // hero page
-app.get('/', async (req, res) => {
+app.get('/', (req, res) => {
+    // req.flash('info', 'hhhhhhhhhhhhhh')
+    // console.log(res.locals)
     res.render('landing', {
         style: 'landing.css',
+        
     });
 });
 

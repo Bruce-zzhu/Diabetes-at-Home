@@ -66,6 +66,7 @@ const createTodayTimeSeries = async (patient) => {
 // calculates a patient's engagement rate
 const calcEgmt = async (pid) => {
     const patient = await Patient.findById(pid);
+    var earliestDay = patient.createTime;
 
     var today = new Date();
     const allTS = await TimeSeries.find({
@@ -75,6 +76,9 @@ const calcEgmt = async (pid) => {
     var daysActive = 0;
     for (var i = 0; i < allTS.length; i++) {
         var dayTS = allTS[i];
+        if (dayTS.date < earliestDay) {
+            earliestDay = dayTS.date;
+        }
         if (
             (dayTS.bloodGlucose.isRequired &&
                 dayTS.bloodGlucose.value == null) ||
@@ -87,8 +91,8 @@ const calcEgmt = async (pid) => {
             daysActive++;
         }
     }
-    var totalDays = 1 + Math.ceil(
-        (today.getTime() - patient.createTime.getTime()) / 86400000
+    var totalDays = 1 + Math.round(
+        (today.getTime() - earliestDay.getTime()) / 86400000
     );
     return daysActive / totalDays;
 }
@@ -158,17 +162,7 @@ const getPatientTimeSeriesList = async (patient) => {
     }
 };
 
-// Check if any data is outside the threshold
-const checkDataSafety = (ts) => {
-    if (
-        (ts.bloodGlucose.isRequired && isNotBounded(ts.bloodGlucose.value, ts.bloodGlucose.lowerBound, ts.bloodGlucose.upperBound)) ||
-        (ts.weight.isRequired && isNotBounded(ts.weight.value, ts.weight.lowerBound, ts.weight.upperBound)) ||
-        (ts.insulin.isRequired && isNotBounded(ts.insulin.value, ts.insulin.lowerBound, ts.insulin.upperBound)) || 
-        (ts.exercise.isRequired && isNotBounded(ts.exercise.value, ts.exercise.lowerBound, ts.exercise.upperBound))
-    ) return false;
 
-    return true;
-}
 
 const renderPatientProfile = async (req, res) => {
     try {
@@ -182,7 +176,7 @@ const renderPatientProfile = async (req, res) => {
             { _id: patient._id },
             { engagementRate: currentEgmt },
             { new: true }
-        ).lean();
+        ).populate('requirements').lean();
 
         const timeSeriesList = await getPatientTimeSeriesList(patient).then(
             (data) => data
@@ -195,10 +189,7 @@ const renderPatientProfile = async (req, res) => {
                 (data) => data
             );
             timeSeriesList.push(todayTimeSeries);
-            if (!checkDataSafety) {
-                // Data outside the safety value
-                req.flash('info', 'Patient data outside the threshold value')
-            }
+            
         }
 
         const notes = await Note.find({
@@ -363,13 +354,19 @@ const addMessage = async (req, res) => {
 
 // registers a new patient
 const insertData = async (req, res) => {
+
+    // generates unique nickname
+    var newNick = req.body.firstName[0] + req.body.lastName[0] + Math.floor(Math.random() * 10000);
+    while (await Patient.findOne({nickName: newNick}).lean()) {
+        newNick = req.body.firstName[0] + req.body.lastName[0] + Math.floor(Math.random() * 10000);
+    }
     
     // creates the patient
     var newPatient = new Patient({
         createTime: new Date(),
         firstName: req.body.firstName,
         lastName: req.body.lastName,
-        nickName: req.body.firstName[0] + req.body.lastName[0] + Math.floor(Math.random() * 10000),
+        nickName: newNick,
         email: req.body.email,
         password: req.body.password,
         gender: req.body.gender,
@@ -386,23 +383,23 @@ const insertData = async (req, res) => {
         clinicianUse: true,
         date: new Date(),
         bloodGlucose: {
-            upperBound: req.body.bloodHigh,
-            lowerBound: req.body.bloodLow,
+            upperBound: req.body.bloodHigh ? req.body.bloodHigh : 0,
+            lowerBound: req.body.bloodLow ? req.body.bloodLow : 0,
             isRequired: Boolean(req.body.bloodRequired),
         },
         weight: {
-            upperBound: req.body.weightHigh,
-            lowerBound: req.body.weightLow,
+            upperBound: req.body.weightHigh ? req.body.weightHigh : 0,
+            lowerBound: req.body.weightLow ? req.body.weightLow : 0,
             isRequired: Boolean(req.body.weightRequired),
         },
         insulin: {
-            upperBound: req.body.insulinHigh,
-            lowerBound: req.body.insulinLow,
+            upperBound: req.body.insulinHigh ? req.body.insulinHigh : 0,
+            lowerBound: req.body.insulinLow ? req.body.insulinLow : 0,
             isRequired: Boolean(req.body.insulinRequired),
         },
         exercise: {
-            lowerBound: req.body.exerciseLow,
-            upperBound: req.body.exerciseHigh,
+            upperBound: req.body.exerciseHigh ? req.body.exerciseHigh : 0,
+            lowerBound: req.body.exerciseLow ? req.body.exerciseLow : 0,
             isRequired: Boolean(req.body.exerciseRequired),
         },
     });
@@ -506,21 +503,24 @@ const renderCommentsPage = async (req, res) => {
                         data.push(i);
                     }
                 }
+            } else if (!selectedPatientId && !selectedDate) {
+                // default all patients
+                for (pid of patientIDs) {
+                    const ts = await TimeSeries.find({
+                        patient: pid,
+                        clinicianUse: false,
+                    })
+                        .populate("patient")
+                        .lean();
+                    data.push(...ts);
+                }
             }
         }
 
-        if (!selectedPatientId && !selectedDate) {
-            // default all patients
-            for (pid of patientIDs) {
-                const ts = await TimeSeries.find({
-                    patient: pid,
-                    clinicianUse: false,
-                })
-                    .populate("patient")
-                    .lean();
-                data.push(...ts);
-            }
-        }
+        // sort comments by time descending
+        data.sort(function (a, b) {
+            return b.date - a.date;
+        });
 
         res.render("clinician/comments", {
             style: "comments.css",

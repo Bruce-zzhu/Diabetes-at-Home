@@ -3,15 +3,7 @@ links and functions change depending on login status/user type. --}}
 <nav id="normal-nav">
     <div class="spacer mobile"></div>
 
-    {{#if user.id}}
-        {{#ifClin user}}
-            <a class="nav-name" href="/clinician/dashboard">
-        {{else}}
-            <a class="nav-name" href="/patient/dashboard">
-        {{/ifClin}}
-    {{else}}
-        <a class="nav-name" href="/">
-    {{/if}}
+    <a class="nav-name" href="/">
         <div>Diabetes</div>
         <img class="nav-logo logo" src="/images/logo-white.svg" alt="logo" />
         <div>Home</div>
@@ -25,6 +17,7 @@ links and functions change depending on login status/user type. --}}
                         <a href="/clinician/comments">Comments</a>
                         <a href="/clinician/register">Add Patient</a>
                     {{else}}
+                        <a href="/patient/dashboard">Dashboard</a>
                         <div class="dropdown">
                             <button class="dropbtn">About</button>
                             <div class="dropdown-content">
@@ -89,21 +82,19 @@ links and functions change depending on login status/user type. --}}
                             <a href="/about-us">About D@H</a>
                             <a href="/patient/settings">Settings</a>
                         {{/ifClin}}
+                        <form action="/log-out" method="post">
+                            <button class="btn btn-theme">Log out</button>
+                        </form>
                     </div>
                 </div>
             {{else}}
                 <div class="dropdown">
-                    <button class="dropbtn">Login</button>
+                    <button class="dropbtn"><span class="material-icons">menu</span></button>
                     <div class="dropdown-content">
                         <a href="/login-p">As Patient</a>
                         <a href="/login-c">As Clinician</a>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <button class="dropbtn">About</button>
-                    <div class="dropdown-content">
-                        <a href="/about-us">About D@H</a>
                         <a href="/about-diabetes">About Diabetes</a>
+                        <a href="/about-us">About D@H</a>
                     </div>
                 </div>
             {{/if}}
@@ -123,28 +114,4 @@ links and functions change depending on login status/user type. --}}
     {{/if}}
 
 </nav>
-
-{{!-- simplified nav bar for lesser pages such as about/settings pages --}}
-<nav id="simple-nav">
-    
-    <a id="nav-back" class="">
-        <span class="material-icons">arrow_back_ios</span>
-        <div>Back</div>
-    </a>
-    {{#if user.id}}
-        {{#ifClin user}}
-            <a class="nav-name" href="/clinician/dashboard">
-        {{else}}
-            <a class="nav-name" href="/patient/dashboard">
-        {{/ifClin}}
-    {{else}}
-        <a class="nav-name" href="/">
-    {{/if}}
-        <div>Diabetes</div>
-        <img class="nav-logo logo" src="/images/logo-white.svg" alt="logo" />
-        <div>Home</div>
-    </a>
-    <div class="simple-spacer"></div>
-</nav>
-
 <script src="/scripts/nav-bar.js"></script>

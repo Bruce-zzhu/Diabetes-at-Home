@@ -8,7 +8,6 @@ function showChgNick() {
 
 // truncate nicknames long enough to be disruptive
 var nick = document.getElementById("s-nick");
-console.log(nick.innerHTML.length);
 if (nick.innerHTML.length > 23) {
     nick.innerHTML = nick.innerHTML.slice(0, 20) + "..."
 }

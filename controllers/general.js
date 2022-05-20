@@ -15,15 +15,24 @@ const renderAboutDiabetes = (req, res) => {
 };
 
 const renderLoginPatient = (req, res) => {
-    res.render("patient/login", {
-        style: "login.css",
-    });
+    req.session.user.role = "patient";
+    res.render('patient/login', { flash: req.flash('error'), title: 'Login', style:'login.css' })
 };
+
+const postLoginPatient = (req, res, next) => {
+    req.session.user.email = req.body.username;
+    next()
+}
+
 const renderLoginClinician = (req, res) => {
-    res.render("clinician/login", {
-        style: "login.css",
-    });
+    req.session.user.role = "clinician";
+    res.render('clinician/login', { flash: req.flash('error'), title: 'Login', style:'login.css' })
 };
+
+const postLoginClinician = (req, res, next) => {
+    req.session.user.email = req.body.username;
+    next()
+}
 
 // const checkLoginDetails = async(req, res) => {
 //     // const patientEmailEntry = req.body.loginEmail;
@@ -106,7 +115,6 @@ const resetPassword = async (req, res) => {
 
 // changes a user's theme based on the theme selected, then refreshes settings page
 const setTheme = async (req, res) => {
-    console.log(req.session.user);
     try {
         var user;
         var themeName = req.body.themeChosen;
@@ -115,7 +123,6 @@ const setTheme = async (req, res) => {
         } else {
             user = await Clinician.findOneAndUpdate( {_id: req.session.user.id }, { theme: themeName }, { new: true } );
         }
-        console.log(user);
     } catch (e) {
         console.log(e);
     }
@@ -131,7 +138,6 @@ const setTheme = async (req, res) => {
 
 // changes a patient's nickname based on input, then refreshes settings page
 const setNickname = async (req, res) => {
-    console.log(req.session.user);
     try {
         var newNick = req.body.newName;
         var patient = await Patient.findOneAndUpdate( {_id: req.session.user.id }, { nickName: newNick }, { new: true } );
@@ -144,6 +150,7 @@ const setNickname = async (req, res) => {
 
 const logOut = (req, res) => {
     req.session.destroy();
+    req.logout()
     res.redirect("/");
 }
 
@@ -153,6 +160,8 @@ module.exports = {
     renderLoginPatient,
     renderLoginClinician,
     renderForgotPassword,
+    postLoginPatient,
+    postLoginClinician,
     forgotPassword,
     renderResetPassword,
     resetPassword,

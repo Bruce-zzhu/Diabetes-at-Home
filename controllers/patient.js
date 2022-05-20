@@ -42,34 +42,6 @@ const addEntryData = async (req, res) => {
             await createTodayTimeSeries(patient);
         }
 
-        // Re-calculate engagement
-        var today = new Date();
-        const allTS = await TimeSeries.find({
-            patient: patient._id,
-            clinicianUse: false,
-        }).lean();
-        var daysActive = 0;
-        for (var i = 0; i < allTS.length; i++) {
-            var dayTS = allTS[i];
-            if (
-                (dayTS.bloodGlucose.isRequired &&
-                    dayTS.bloodGlucose.value == null) ||
-                (dayTS.weight.isRequired && dayTS.weight.value == null) ||
-                (dayTS.insulin.isRequired && dayTS.insulin.value == null) ||
-                (dayTS.exercise.isRequired && dayTS.exercise.value == null)
-            ) {
-                continue;
-            } else {
-                daysActive++;
-            }
-        }
-        var totalDays = 1 + Math.ceil(
-            (today.getTime() - patient.createTime.getTime()) / 86400000
-        );
-        console.log(daysActive, totalDays);
-
-        var newEgmt = await calcEgmt(patient._id);
-
         res.redirect("/patient/dashboard");
     } catch (e) {
         console.log(e);
@@ -172,6 +144,10 @@ const renderPatientDashboard = async (req, res) => {
         }
 
         // get all nickname <-> egagements to use to display leaderboard
+        var allPatEgmts = await Patient.find({}, "_id").lean();
+        for (pat of allPatEgmts) {
+            await Patient.findOneAndUpdate({ _id: pat._id }, { engagementRate: await calcEgmt(pat._id) });
+        }
         var allPatEgmts = await Patient.find({}, "nickName engagementRate").lean();
         allPatEgmts.sort((a, b) => b.engagementRate - a.engagementRate);
         for (var i=0; i<allPatEgmts.length; i++) {

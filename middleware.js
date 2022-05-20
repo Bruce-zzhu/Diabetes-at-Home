@@ -1,3 +1,16 @@
+const { isNotBounded } = require("./public/scripts/js-helpers");
+const { Patient, TimeSeries } = require("./models/patient");
+const { getTodayTimeSeries } = require("./controllers/clinician");
+
+// module.exports.isLoggedIn = (req, res, next) => {
+//     if (!req.isAuthenticated()) {
+//         req.session.returnTo = req.originalUrl;
+//         req.flash('error', 'You must be signed in first!');
+//         return res.redirect('/login-p');
+//     }
+//     next();
+// }
+
 // Authentication middleware 
 const isAuthenticated = (req, res, next) => {
     // If user is not authenticated via passport, redirect to login page
@@ -51,8 +64,33 @@ const isPatient = (req, res, next) => {
     }
 }
 
+
+// Check if any data is outside the threshold
+const isSafe = (ts) => {
+    if (
+        (ts.bloodGlucose.isRequired && isNotBounded(ts.bloodGlucose.value, ts.bloodGlucose.lowerBound, ts.bloodGlucose.upperBound)) ||
+        (ts.weight.isRequired && isNotBounded(ts.weight.value, ts.weight.lowerBound, ts.weight.upperBound)) ||
+        (ts.insulin.isRequired && isNotBounded(ts.insulin.value, ts.insulin.lowerBound, ts.insulin.upperBound)) || 
+        (ts.exercise.isRequired && isNotBounded(ts.exercise.value, ts.exercise.lowerBound, ts.exercise.upperBound))
+    ) return false;
+
+    return true;
+}
+
+const checkDataSafety = (req, res, next) => {
+    
+    // Data outside the safety value
+    req.flash('info', 'Patient data outside the threshold value');
+    next();
+}
+
+
+
+
+
 module.exports = {
     isAuthenticated, 
     isClinician,
-    isPatient
+    isPatient,
+    checkDataSafety
 }
