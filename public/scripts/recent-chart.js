@@ -68,7 +68,14 @@ const data2 = {
 const config = {
     type: 'line',
     data: data,
-    options: {},
+    options: {
+        scales: {
+            y: {
+                suggestedMin: 0,
+                suggestedMax: 20
+            }
+        }
+    },
 };
 const config2 = {
     type: 'line',
