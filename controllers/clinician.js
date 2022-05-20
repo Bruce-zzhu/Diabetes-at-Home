@@ -176,7 +176,7 @@ const renderPatientProfile = async (req, res) => {
             { _id: patient._id },
             { engagementRate: currentEgmt },
             { new: true }
-        ).lean();
+        ).populate('requirements').lean();
 
         const timeSeriesList = await getPatientTimeSeriesList(patient).then(
             (data) => data
