@@ -11,7 +11,7 @@ const passport = require('passport')
 const clinicianRoutes = require('./routers/clinician');
 const patientRoutes = require('./routers/patient');
 const generalRoutes = require('./routers/general');
-const { isAuthenticated, isClinician, isPatient, checkDataSafety } = require('./middleware');
+const { isAuthenticated, isClinician, isPatient } = require('./middleware');
 
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
@@ -48,7 +48,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Login Sessions setup - see week 10 tute for explanation of code
 app.use(
     session({
-    // The decret used to sign session cookies (ADD ENV VAR)
+    // The secret used to sign session cookies (ADD ENV VAR)
         secret: process.env.SESSION_SECRET || 'keyboard cat',
         name: 'session cookie', // The cookie name (CHANGE THIS)
         saveUninitialized: false,
@@ -81,18 +81,43 @@ app.use((req, res, next) => {
     next();
 })
 
-
+// record prev page
+app.use((req, res, next) => {
+    if (!req.url.includes("favicon.ico")) {
+        var winRef = `${req.protocol}://${req.get("host")}${req.url}`;
+        var docRef = req.get('referer');
+        if (!docRef) {
+            switch (req.session.user.role) {
+                case "patient":
+                    req.session.prevPage = `${req.protocol}://${req.get("host")}/patient/dashboard`;
+                    break;
+                    
+                case "client":
+                    req.session.prevPage = `${req.protocol}://${req.get("host")}/client/dashboard`;
+                    break;
+                    
+                default:
+                    req.session.prevPage = `${req.protocol}://${req.get("host")}/`;
+                    break;
+                    
+            }
+        } else {
+            if (!winRef.includes(docRef) && !docRef.includes(winRef)) {
+                req.session.prevPage = docRef;
+            }
+        }
+    }
+    next();
+})
 
 // routes
 app.use('/', generalRoutes);
 app.use('/patient', isAuthenticated, isPatient, patientRoutes);
-app.use('/clinician', isAuthenticated, isClinician, checkDataSafety, clinicianRoutes);
+app.use('/clinician', isAuthenticated, isClinician, clinicianRoutes);
 
 
 // hero page
 app.get('/', (req, res) => {
-    // req.flash('info', 'hhhhhhhhhhhhhh')
-    // console.log(res.locals)
     res.render('landing', {
         style: 'landing.css',
         
@@ -101,7 +126,10 @@ app.get('/', (req, res) => {
 
 // If any attempts to access any other routes get a 404 error page
 app.get('*', (req, res) => {
-    res.render('404.hbs')
+    res.render('404.hbs', {
+        user: req.session.user,
+        prevPage: req.session.prevPage,
+    });
 })
 
 

@@ -17,6 +17,7 @@
         <p>Nickname: <span class="nickname">{{nickName}}</span></p>
         <p>Age: {{age}}</p>
         <p>Gender: {{gender}}</p>
+        <p>Joined on: <span id="p-joinOn"></span></p>
     </div>
 
     
@@ -35,5 +36,8 @@
         <span id="egmt-val"></span>
     </div>
 </div>
-<script>var egmt = {{engagementRate}} * 100;</script>
+<script>
+    var egmt = {{engagementRate}} * 100;
+    var createTime = "{{createTime}}";
+</script>
 <script src="/scripts/p-profile.js"></script>

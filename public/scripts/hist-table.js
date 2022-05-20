@@ -34,7 +34,7 @@ function mobile_adjust_histTable(req_count) {
     // Adjust stacks height depending on number of stacks
     var stacks = document.getElementsByClassName("stack");
     for (var i=0; i<stacks.length; i++) {
-        stacks[i].style.height = "calc(" + 100/req_count + "% + 0.25px)";
+        stacks[i].style.height = `calc(${100/req_count}% + ${1/req_count}px)`;
     }
     
     // Adjust hist-table date box depending on number of stacks
@@ -113,6 +113,6 @@ function tab_desk_adjust_histTable(req_count) {
     // Adjust stacks height
     var stacks = document.getElementsByClassName("stack");
     for (var i=0; i<stacks.length; i++) {
-        stacks[i].style.height = "calc(" + 100/req_count + "% + 0.25px)";
+        stacks[i].style.height = `calc(${100/req_count}% + ${1/req_count}px)`;
     }
 }

@@ -5,18 +5,25 @@ const renderAboutUs = (req, res) => {
     res.render('about/aboutUs', {
         style: 'about.css',
         user: req.session.user,
+        prevPage: req.session.prevPage,
     });
 };
 const renderAboutDiabetes = (req, res) => {
     res.render("about/aboutDiabetes", {
         style: "about.css",
         user: req.session.user,
+        prevPage: req.session.prevPage,
     });
 };
 
 const renderLoginPatient = (req, res) => {
     req.session.user.role = "patient";
-    res.render('patient/login', { flash: req.flash('error'), title: 'Login', style:'login.css' })
+    res.render('patient/login', {
+        flash: req.flash('error'),
+        title: 'Login',
+        style:'login.css',
+        prevPage: req.session.prevPage,
+    })
 };
 
 const postLoginPatient = (req, res, next) => {
@@ -26,7 +33,12 @@ const postLoginPatient = (req, res, next) => {
 
 const renderLoginClinician = (req, res) => {
     req.session.user.role = "clinician";
-    res.render('clinician/login', { flash: req.flash('error'), title: 'Login', style:'login.css' })
+    res.render('clinician/login', {
+        flash: req.flash('error'),
+        title: 'Login',
+        style:'login.css',
+        prevPage: req.session.prevPage,
+    })
 };
 
 const postLoginClinician = (req, res, next) => {
@@ -34,32 +46,11 @@ const postLoginClinician = (req, res, next) => {
     next()
 }
 
-// const checkLoginDetails = async(req, res) => {
-//     // const patientEmailEntry = req.body.loginEmail;
-//     // console.log(patientEmailEntry);
-//     // // Get Data about user with this email...
-//     // try{
-//     //     const thisUser = await Patient.findOne({ email: patientEmailEntry });
-//     //     console.log(thisUser);
-//     //     // If correct, redirect to patient dashboard, else error
-//     //     if (thisUser != null){
-//     //         res.redirect('/patient/dashboard');
-//     //     }
-//     // } 
-//     //     // Else if email is not in db then print error
-//     // catch(err){
-//     //     console.log(err)
-//     // }
-    
-//     // // Nothing is currently passed to the patient.js controller. Currently hardcoded.
-//     // // Passwords
-// };
-
-
 const renderSettings = async (req, res) => {
     res.render("settings", {
         style: "settings.css",
         user: req.session.user,
+        prevPage: req.session.prevPage,
     });
 }
 
@@ -67,6 +58,7 @@ const renderForgotPassword = (req, res) => {
     res.render('forgotPassword', {
         style: 'forgotPassword.css',
         user: req.session.user,
+        prevPage: req.session.prevPage,
     });
 };
 
@@ -89,6 +81,7 @@ const renderResetPassword = (req, res) => {
     res.render('resetPassword', {
         style: 'forgotPassword.css',
         user: req.session.user,
+        prevPage: req.session.prevPage,
     });
 }
 
@@ -96,17 +89,22 @@ const renderResetPassword = (req, res) => {
 // then updates the account with hashed password (using save() prehook)
 const resetPassword = async (req, res) => {
     var user;
-    switch (req.session.user.role) {
-        case "patient":
-            user = await Patient.findOne({ email: req.session.resetEmail });
-            break;
-        case "clinician":
-            user = await Clinician.findOne({ email: req.session.resetEmail });
-            break;
-    }
-    if (user) {
-        user.password = req.body.password;
-        await user.save();
+    try {
+        switch (req.session.user.role) {
+            case "patient":
+                user = await Patient.findOne({ email: req.session.resetEmail });
+                break;
+            case "clinician":
+                user = await Clinician.findOne({ email: req.session.resetEmail });
+                break;
+        }
+        if (user) {
+            user.password = req.body.password;
+            await user.save();
+        }
+    
+    } catch(e) {
+
     }
 
     req.session.destroy();
@@ -123,10 +121,11 @@ const setTheme = async (req, res) => {
         } else {
             user = await Clinician.findOneAndUpdate( {_id: req.session.user.id }, { theme: themeName }, { new: true } );
         }
+        req.session.user.theme = JSON.stringify(await Theme.findOne( { themeName: user.theme } ).lean());
     } catch (e) {
         console.log(e);
     }
-    req.session.user.theme = JSON.stringify(await Theme.findOne( { themeName: user.theme } ).lean());
+    
 
     if (req.session.user.role == "patient") {
         res.redirect("/patient/settings");

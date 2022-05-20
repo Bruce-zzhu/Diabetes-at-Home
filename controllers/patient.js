@@ -1,11 +1,6 @@
 const { Patient, TimeSeries, Theme } = require("../models/patient");
 const { Message } = require("../models/clinician");
-const {
-    getTodayTimeSeries,
-    createTodayTimeSeries,
-    getPatientTimeSeriesList,
-    calcEgmt,
-} = require("./clinician");
+const { getTodayTimeSeries, createTodayTimeSeries, getPatientTimeSeriesList, calcEgmt } = require("./clinician");
 const { getDateInfo } = require("../public/scripts/js-helpers");
 
 const addEntryData = async (req, res) => {
@@ -144,10 +139,6 @@ const renderPatientDashboard = async (req, res) => {
         }
 
         // get all nickname <-> egagements to use to display leaderboard
-        var allPatEgmts = await Patient.find({}, "_id").lean();
-        for (pat of allPatEgmts) {
-            await Patient.findOneAndUpdate({ _id: pat._id }, { engagementRate: await calcEgmt(pat._id) });
-        }
         var allPatEgmts = await Patient.find({}, "nickName engagementRate").lean();
         allPatEgmts.sort((a, b) => b.engagementRate - a.engagementRate);
         for (var i=0; i<allPatEgmts.length; i++) {

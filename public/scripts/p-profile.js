@@ -18,3 +18,7 @@ valText.innerHTML = `${egmt.toFixed(2)}` + "%";
 if (egmt > 65) {
     valText.style.color = "white";
 }
+
+console.log(createTime);
+date = createTime.split(" ").slice(1, 4);
+document.getElementById("p-joinOn").innerHTML = date[0] + " " + date[1] + ", " + date[2];

@@ -24,8 +24,8 @@ div.scroll {
     font-weight: bold;
 }
 
-.read{
-    font-weight:1 ;
+.read > * {
+    font-weight: normal;
 }
 
 .message-details{

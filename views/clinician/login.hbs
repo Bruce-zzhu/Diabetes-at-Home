@@ -22,7 +22,7 @@
         {{/each}}
         <h4>Error: Clinician Login only available on desktop</h4>
         <form action="login-c" method="POST" onchange="withValue()" class="login-form">
-            <input type="text" id="email" name="username" placeholder="user@email.com"> <br>
+            <input type="text" id="email" required pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" name="username" placeholder="user@email.com"> <br>
             <input type="password" id="password" name="password" placeholder="Password"> <br> <br>
             <input type="submit" id="login-submit" value="Submit">
         </form>
