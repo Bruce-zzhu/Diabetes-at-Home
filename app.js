@@ -73,15 +73,6 @@ app.use(passport.authenticate('session'))
 app.use(flash())
 
 
-// // middleware for flash
-// app.use((req, res, next) => {
-//     res.locals.currentUser = req.user;
-//     res.locals.success = req.flash('success');
-//     res.locals.error = req.flash('error');
-//     res.locals.info = req.flash('info')
-//     next();
-// })
-
 // load blank user
 app.use((req, res, next) => {
     if (req.session.user == undefined) {

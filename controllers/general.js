@@ -29,7 +29,7 @@ const renderLoginClinician = (req, res) => {
     res.render('clinician/login', { flash: req.flash('error'), title: 'Login', style:'login.css' })
 };
 
-const postClinicianPatient = (req, res, next) => {
+const postLoginClinician = (req, res, next) => {
     req.session.user.email = req.body.username;
     next()
 }
@@ -161,7 +161,7 @@ module.exports = {
     renderLoginClinician,
     renderForgotPassword,
     postLoginPatient,
-    postClinicianPatient,
+    postLoginClinician,
     forgotPassword,
     renderResetPassword,
     resetPassword,
