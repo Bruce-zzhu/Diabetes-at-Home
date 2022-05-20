@@ -18,8 +18,6 @@ The web application, coded primarily in Node.js and the usual front-end web-base
 - MongoDB Atlas: The cloud-based database of choice for handling data and requests to data.
 - Heroku: Finally, the app is deployed on the cloud platform Heroku.
 
-## Files
-
 ## Students
 
 - Hannah Redwood-Segovia, Student ID - 1172839
