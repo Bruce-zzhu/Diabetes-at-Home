@@ -1,11 +1,6 @@
 const { Note, Message, Clinician } = require("../models/clinician");
 const { Patient, TimeSeries, Theme } = require("../models/patient");
-const {
-    isSameDay,
-    getDateInfo,
-    toMelbDate,
-    isNotBounded
-} = require("../public/scripts/js-helpers");
+const { isSameDay, getDateInfo, toMelbDate } = require("../public/scripts/js-helpers");
 
 const getTodayTimeSeries = async (patient) => {
     try {
@@ -65,53 +60,58 @@ const createTodayTimeSeries = async (patient) => {
 
 // calculates a patient's engagement rate
 const calcEgmt = async (pid) => {
-    const patient = await Patient.findById(pid);
-    var earliestDay = patient.createTime;
+    try {
+        const patient = await Patient.findById(pid);
+        var earliestDay = patient.createTime;
 
-    var today = new Date();
-    const allTS = await TimeSeries.find({
-        patient: patient._id,
-        clinicianUse: false,
-    }).lean();
-    var daysActive = 0;
-    for (var i = 0; i < allTS.length; i++) {
-        var dayTS = allTS[i];
-        if (dayTS.date < earliestDay) {
-            earliestDay = dayTS.date;
+        var today = new Date();
+        const allTS = await TimeSeries.find({
+            patient: patient._id,
+            clinicianUse: false,
+        }).lean();
+        var daysActive = 0;
+        for (var i = 0; i < allTS.length; i++) {
+            var dayTS = allTS[i];
+            if (dayTS.date < earliestDay) {
+                earliestDay = dayTS.date;
+            }
+            if (
+                (dayTS.bloodGlucose.isRequired &&
+                    dayTS.bloodGlucose.value == null) ||
+                (dayTS.weight.isRequired && dayTS.weight.value == null) ||
+                (dayTS.insulin.isRequired && dayTS.insulin.value == null) ||
+                (dayTS.exercise.isRequired && dayTS.exercise.value == null)
+            ) {
+                continue;
+            } else {
+                daysActive++;
+            }
         }
-        if (
-            (dayTS.bloodGlucose.isRequired &&
-                dayTS.bloodGlucose.value == null) ||
-            (dayTS.weight.isRequired && dayTS.weight.value == null) ||
-            (dayTS.insulin.isRequired && dayTS.insulin.value == null) ||
-            (dayTS.exercise.isRequired && dayTS.exercise.value == null)
-        ) {
-            continue;
-        } else {
-            daysActive++;
-        }
+        var totalDays = 1 + Math.round(
+            (today.getTime() - earliestDay.getTime()) / 86400000
+        );
+        return daysActive / totalDays;
+    } catch(e) {
+        console.log(e)
     }
-    var totalDays = 1 + Math.round(
-        (today.getTime() - earliestDay.getTime()) / 86400000
-    );
-    return daysActive / totalDays;
+    
 }
 
 const getDashboardData = async (req, res) => {
-    const clinician = await Clinician.findOne({
-        email: req.session.user.email,
-    }).lean();
+    try {
+        const clinician = await Clinician.findOne({
+            email: req.session.user.email,
+        }).lean();
 
-    // record clinician details in cookie
-    req.session.user.id = clinician._id;
-    req.session.user.firstName = clinician.firstName;
-    req.session.user.lastName = clinician.lastName;
-    req.session.user.theme = JSON.stringify(
-        await Theme.findOne({ themeName: clinician.theme }).lean()
-    );
+        // record clinician details in cookie
+        req.session.user.id = clinician._id;
+        req.session.user.firstName = clinician.firstName;
+        req.session.user.lastName = clinician.lastName;
+        req.session.user.theme = JSON.stringify(
+            await Theme.findOne({ themeName: clinician.theme }).lean()
+        );
 
     
-    try {
         var patients = [];
         for (pid of clinician.patients) {
             patients.push(await Patient.findById(pid).populate("requirements").lean());
@@ -354,64 +354,67 @@ const addMessage = async (req, res) => {
 
 // registers a new patient
 const insertData = async (req, res) => {
+    try {
+        // generates unique nickname
+        var newNick = req.body.firstName[0] + req.body.lastName[0] + Math.floor(Math.random() * 10000);
+        while (await Patient.findOne({nickName: newNick}).lean()) {
+            newNick = req.body.firstName[0] + req.body.lastName[0] + Math.floor(Math.random() * 10000);
+        }
+        
+        // creates the patient
+        var newPatient = new Patient({
+            createTime: new Date(),
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            nickName: newNick,
+            email: req.body.email,
+            password: req.body.password,
+            gender: req.body.gender,
+            engagementRate: 0,
+            age: req.body.age,
+            theme: "default",
+            clinician: req.session.user.id,
+        });
+        await newPatient.save();
 
-    // generates unique nickname
-    var newNick = req.body.firstName[0] + req.body.lastName[0] + Math.floor(Math.random() * 10000);
-    while (await Patient.findOne({nickName: newNick}).lean()) {
-        newNick = req.body.firstName[0] + req.body.lastName[0] + Math.floor(Math.random() * 10000);
+        // adds the requirements onto the patient
+        var newTimeseries = new TimeSeries({
+            patient: newPatient._id,
+            clinicianUse: true,
+            date: new Date(),
+            bloodGlucose: {
+                upperBound: req.body.bloodHigh ? req.body.bloodHigh : 0,
+                lowerBound: req.body.bloodLow ? req.body.bloodLow : 0,
+                isRequired: Boolean(req.body.bloodRequired),
+            },
+            weight: {
+                upperBound: req.body.weightHigh ? req.body.weightHigh : 0,
+                lowerBound: req.body.weightLow ? req.body.weightLow : 0,
+                isRequired: Boolean(req.body.weightRequired),
+            },
+            insulin: {
+                upperBound: req.body.insulinHigh ? req.body.insulinHigh : 0,
+                lowerBound: req.body.insulinLow ? req.body.insulinLow : 0,
+                isRequired: Boolean(req.body.insulinRequired),
+            },
+            exercise: {
+                upperBound: req.body.exerciseHigh ? req.body.exerciseHigh : 0,
+                lowerBound: req.body.exerciseLow ? req.body.exerciseLow : 0,
+                isRequired: Boolean(req.body.exerciseRequired),
+            },
+        });
+        await newTimeseries.save();
+        var newPatient = await Patient.findOneAndUpdate( {_id: newPatient._id}, {requirements: newTimeseries._id}, {new: true});
+        
+        // registers the patient under the clinician
+        var clin = await Clinician.findOne({_id: req.session.user.id});
+        clin.patients.push(newPatient._id);
+        await clin.save();
+
+        res.redirect(`/clinician/dashboard`);
+    } catch(e) {
+        console.log(e)
     }
-    
-    // creates the patient
-    var newPatient = new Patient({
-        createTime: new Date(),
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        nickName: newNick,
-        email: req.body.email,
-        password: req.body.password,
-        gender: req.body.gender,
-        engagementRate: 0,
-        age: req.body.age,
-        theme: "default",
-        clinician: req.session.user.id,
-    });
-    await newPatient.save();
-
-    // adds the requirements onto the patient
-    var newTimeseries = new TimeSeries({
-        patient: newPatient._id,
-        clinicianUse: true,
-        date: new Date(),
-        bloodGlucose: {
-            upperBound: req.body.bloodHigh ? req.body.bloodHigh : 0,
-            lowerBound: req.body.bloodLow ? req.body.bloodLow : 0,
-            isRequired: Boolean(req.body.bloodRequired),
-        },
-        weight: {
-            upperBound: req.body.weightHigh ? req.body.weightHigh : 0,
-            lowerBound: req.body.weightLow ? req.body.weightLow : 0,
-            isRequired: Boolean(req.body.weightRequired),
-        },
-        insulin: {
-            upperBound: req.body.insulinHigh ? req.body.insulinHigh : 0,
-            lowerBound: req.body.insulinLow ? req.body.insulinLow : 0,
-            isRequired: Boolean(req.body.insulinRequired),
-        },
-        exercise: {
-            upperBound: req.body.exerciseHigh ? req.body.exerciseHigh : 0,
-            lowerBound: req.body.exerciseLow ? req.body.exerciseLow : 0,
-            isRequired: Boolean(req.body.exerciseRequired),
-        },
-    });
-    await newTimeseries.save();
-    var newPatient = await Patient.findOneAndUpdate( {_id: newPatient._id}, {requirements: newTimeseries._id}, {new: true});
-    
-    // registers the patient under the clinician
-    var clin = await Clinician.findOne({_id: req.session.user.id});
-    clin.patients.push(newPatient._id);
-    await clin.save();
-
-    res.redirect(`/clinician/dashboard`);
 };
 
 const renderRegister = (req, res) => {

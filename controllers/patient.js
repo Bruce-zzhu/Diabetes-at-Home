@@ -1,11 +1,6 @@
 const { Patient, TimeSeries, Theme } = require("../models/patient");
 const { Message } = require("../models/clinician");
-const {
-    getTodayTimeSeries,
-    createTodayTimeSeries,
-    getPatientTimeSeriesList,
-    calcEgmt,
-} = require("./clinician");
+const { getTodayTimeSeries, createTodayTimeSeries, getPatientTimeSeriesList, calcEgmt } = require("./clinician");
 const { getDateInfo } = require("../public/scripts/js-helpers");
 
 const addEntryData = async (req, res) => {
@@ -58,7 +53,7 @@ const renderPatientDashboard = async (req, res) => {
             { _id: patient._id },
             { engagementRate: currentEgmt },
             { new: true }
-        ).lean();
+        ).populate('requirements').lean();
 
         req.session.user.id = patient._id;
         req.session.user.firstName = patient.firstName;

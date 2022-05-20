@@ -34,6 +34,15 @@
     justify-content: center;
     align-items: center;
 }
+
+.req{
+    background-color: var(--lightBlue-color);
+}
+
+#require {
+    filter: invert(100%);
+}
+
 .nav-icons {
     width: 2.2rem;
 }

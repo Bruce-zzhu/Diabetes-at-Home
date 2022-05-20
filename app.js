@@ -11,7 +11,7 @@ const passport = require('passport')
 const clinicianRoutes = require('./routers/clinician');
 const patientRoutes = require('./routers/patient');
 const generalRoutes = require('./routers/general');
-const { isAuthenticated, isClinician, isPatient, checkDataSafety } = require('./middleware');
+const { isAuthenticated, isClinician, isPatient } = require('./middleware');
 
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
@@ -48,7 +48,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Login Sessions setup - see week 10 tute for explanation of code
 app.use(
     session({
-    // The decret used to sign session cookies (ADD ENV VAR)
+    // The secret used to sign session cookies (ADD ENV VAR)
         secret: process.env.SESSION_SECRET || 'keyboard cat',
         name: 'session cookie', // The cookie name (CHANGE THIS)
         saveUninitialized: false,
@@ -113,13 +113,11 @@ app.use((req, res, next) => {
 // routes
 app.use('/', generalRoutes);
 app.use('/patient', isAuthenticated, isPatient, patientRoutes);
-app.use('/clinician', isAuthenticated, isClinician, checkDataSafety, clinicianRoutes);
+app.use('/clinician', isAuthenticated, isClinician, clinicianRoutes);
 
 
 // hero page
 app.get('/', (req, res) => {
-    // req.flash('info', 'hhhhhhhhhhhhhh')
-    // console.log(res.locals)
     res.render('landing', {
         style: 'landing.css',
         

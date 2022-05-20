@@ -81,7 +81,6 @@ const timeSeriesSchema = new Schema({
         lowerBound: Number,
         unit: { type: String, default: "nmol/L" },
         comment: { type: String, default: "" },
-        updateAt: Date,
     },
     insulin: {
         isRequired: {
@@ -94,7 +93,6 @@ const timeSeriesSchema = new Schema({
         lowerBound: Number,
         unit: { type: String, default: "doses" },
         comment: { type: String, default: "" },
-        updateAt: Date,
     },
     weight: {
         isRequired: {
@@ -107,7 +105,6 @@ const timeSeriesSchema = new Schema({
         lowerBound: Number,
         unit: { type: String, default: "kg" },
         comment: { type: String, default: "" },
-        updateAt: Date,
     },
     exercise: {
         isRequired: {
@@ -120,7 +117,6 @@ const timeSeriesSchema = new Schema({
         lowerBound: Number,
         unit: { type: String, default: "steps" },
         comment: { type: String, default: "" },
-        updateAt: Date,
     },
 });
 
