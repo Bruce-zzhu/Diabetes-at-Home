@@ -6,8 +6,8 @@
     align-items: center;
     
 }
-.container > *{
-    color: var(--primary-color);
+.container > * {
+    color: var(--text-color);
 }
 
 .heading-large{
