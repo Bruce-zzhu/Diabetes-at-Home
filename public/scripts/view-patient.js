@@ -11,7 +11,7 @@ function viewPatient(id) {
     switch (id) {
         case "require":
             reqCon.style.display = "block";
-            reqBut.style.backgroundColor = "var(--button-color)";
+            reqBut.style.backgroundColor = "var(--lightBlue-color)";
             document.getElementById("require").style.filter= "invert(100%)"
             msgCon.style.display = "none";
             msgBut.style.backgroundColor = "var(--tertiary-color)";
@@ -25,7 +25,7 @@ function viewPatient(id) {
             reqBut.style.backgroundColor = "var(--tertiary-color)";
             document.getElementById("require").style.filter= "invert(0%)"
             msgCon.style.display = "block";
-            msgBut.style.backgroundColor = "var(--button-color)";
+            msgBut.style.backgroundColor = "var(--lightBlue-color)";
             document.getElementById("message").style.filter= "invert(100%)"
             ntsCon.style.display = "none";
             ntsBut.style.backgroundColor = "var(--tertiary-color)";
@@ -39,7 +39,7 @@ function viewPatient(id) {
             msgBut.style.backgroundColor = "var(--tertiary-color)";
             document.getElementById("message").style.filter= "invert(0%)"
             ntsCon.style.display = "block";
-            ntsBut.style.backgroundColor = "var(--button-color)";
+            ntsBut.style.backgroundColor = "var(--lightBlue-color)";
             document.getElementById("note").style.filter= "invert(100%)"
             break;
     }
