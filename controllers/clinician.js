@@ -176,7 +176,7 @@ const renderPatientProfile = async (req, res) => {
             { _id: patient._id },
             { engagementRate: currentEgmt },
             { new: true }
-        ).lean();
+        ).populate('requirements').lean();
 
         const timeSeriesList = await getPatientTimeSeriesList(patient).then(
             (data) => data
@@ -383,23 +383,23 @@ const insertData = async (req, res) => {
         clinicianUse: true,
         date: new Date(),
         bloodGlucose: {
-            upperBound: req.body.bloodHigh,
-            lowerBound: req.body.bloodLow,
+            upperBound: req.body.bloodHigh ? req.body.bloodHigh : 0,
+            lowerBound: req.body.bloodLow ? req.body.bloodLow : 0,
             isRequired: Boolean(req.body.bloodRequired),
         },
         weight: {
-            upperBound: req.body.weightHigh,
-            lowerBound: req.body.weightLow,
+            upperBound: req.body.weightHigh ? req.body.weightHigh : 0,
+            lowerBound: req.body.weightLow ? req.body.weightLow : 0,
             isRequired: Boolean(req.body.weightRequired),
         },
         insulin: {
-            upperBound: req.body.insulinHigh,
-            lowerBound: req.body.insulinLow,
+            upperBound: req.body.insulinHigh ? req.body.insulinHigh : 0,
+            lowerBound: req.body.insulinLow ? req.body.insulinLow : 0,
             isRequired: Boolean(req.body.insulinRequired),
         },
         exercise: {
-            lowerBound: req.body.exerciseLow,
-            upperBound: req.body.exerciseHigh,
+            upperBound: req.body.exerciseHigh ? req.body.exerciseHigh : 0,
+            lowerBound: req.body.exerciseLow ? req.body.exerciseLow : 0,
             isRequired: Boolean(req.body.exerciseRequired),
         },
     });
@@ -503,21 +503,24 @@ const renderCommentsPage = async (req, res) => {
                         data.push(i);
                     }
                 }
+            } else if (!selectedPatientId && !selectedDate) {
+                // default all patients
+                for (pid of patientIDs) {
+                    const ts = await TimeSeries.find({
+                        patient: pid,
+                        clinicianUse: false,
+                    })
+                        .populate("patient")
+                        .lean();
+                    data.push(...ts);
+                }
             }
         }
 
-        if (!selectedPatientId && !selectedDate) {
-            // default all patients
-            for (pid of patientIDs) {
-                const ts = await TimeSeries.find({
-                    patient: pid,
-                    clinicianUse: false,
-                })
-                    .populate("patient")
-                    .lean();
-                data.push(...ts);
-            }
-        }
+        // sort comments by time descending
+        data.sort(function (a, b) {
+            return b.date - a.date;
+        });
 
         res.render("clinician/comments", {
             style: "comments.css",
