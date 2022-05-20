@@ -58,7 +58,7 @@ const renderPatientDashboard = async (req, res) => {
             { _id: patient._id },
             { engagementRate: currentEgmt },
             { new: true }
-        ).lean();
+        ).populate('requirements').lean();
 
         req.session.user.id = patient._id;
         req.session.user.firstName = patient.firstName;
