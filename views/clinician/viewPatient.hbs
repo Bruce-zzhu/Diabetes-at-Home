@@ -54,7 +54,7 @@
                         <input class="from" name="bloodLow" type="number" step=0.01 value="{{patient.requirements.bloodGlucose.lowerBound}}" />
                         to
                         <input class="to" name="bloodHigh" type="number" step=0.01 value="{{patient.requirements.bloodGlucose.upperBound}}" />
-                        nmol/L
+                        mmol/L
                         <input class="checkbox" type="checkbox" name="bloodRequired" {{#if patient.requirements.bloodGlucose.isRequired}}checked="checked"{{/if}} />
                     </div>
                 </div>

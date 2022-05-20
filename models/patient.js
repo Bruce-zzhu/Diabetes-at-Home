@@ -79,7 +79,7 @@ const timeSeriesSchema = new Schema({
         value: Number,
         upperBound: Number,
         lowerBound: Number,
-        unit: { type: String, default: "nmol/L" },
+        unit: { type: String, default: "mmol/L" },
         comment: { type: String, default: "" },
     },
     insulin: {

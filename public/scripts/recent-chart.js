@@ -27,7 +27,7 @@ const data = {
     labels: labels,
     datasets: [
         {
-            label: 'BloodGlucose (nmol/L)',
+            label: 'BloodGlucose (mmol/L)',
             backgroundColor: 'rgb(217, 22, 22)',
             borderColor: 'rgb(217, 22, 22)',
             data: bloodData,
