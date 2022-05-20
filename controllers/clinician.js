@@ -383,23 +383,23 @@ const insertData = async (req, res) => {
         clinicianUse: true,
         date: new Date(),
         bloodGlucose: {
-            upperBound: req.body.bloodHigh,
-            lowerBound: req.body.bloodLow,
+            upperBound: req.body.bloodHigh ? req.body.bloodHigh : 0,
+            lowerBound: req.body.bloodLow ? req.body.bloodLow : 0,
             isRequired: Boolean(req.body.bloodRequired),
         },
         weight: {
-            upperBound: req.body.weightHigh,
-            lowerBound: req.body.weightLow,
+            upperBound: req.body.weightHigh ? req.body.weightHigh : 0,
+            lowerBound: req.body.weightLow ? req.body.weightLow : 0,
             isRequired: Boolean(req.body.weightRequired),
         },
         insulin: {
-            upperBound: req.body.insulinHigh,
-            lowerBound: req.body.insulinLow,
+            upperBound: req.body.insulinHigh ? req.body.insulinHigh : 0,
+            lowerBound: req.body.insulinLow ? req.body.insulinLow : 0,
             isRequired: Boolean(req.body.insulinRequired),
         },
         exercise: {
-            lowerBound: req.body.exerciseLow,
-            upperBound: req.body.exerciseHigh,
+            upperBound: req.body.exerciseHigh ? req.body.exerciseHigh : 0,
+            lowerBound: req.body.exerciseLow ? req.body.exerciseLow : 0,
             isRequired: Boolean(req.body.exerciseRequired),
         },
     });
