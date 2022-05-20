@@ -168,11 +168,11 @@ const renderPatientProfile = async (req, res) => {
             .lean();
 
         currentEgmt = await calcEgmt(patient._id);
-        patient = await Patient.findOneAndUpdate(
+        await Patient.findOneAndUpdate(
             { _id: patient._id },
             { engagementRate: currentEgmt },
             { new: true }
-        ).lean();
+        );
 
         const timeSeriesList = await getPatientTimeSeriesList(patient).then(
             (data) => data
