@@ -91,7 +91,7 @@ const calcEgmt = async (pid) => {
             daysActive++;
         }
     }
-    var totalDays = 1 + Math.ceil(
+    var totalDays = 1 + Math.round(
         (today.getTime() - earliestDay.getTime()) / 86400000
     );
     return daysActive / totalDays;
