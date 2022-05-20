@@ -1,6 +1,7 @@
 const { Note, Message, Clinician } = require("../models/clinician");
 const { Patient, TimeSeries, Theme } = require("../models/patient");
 const { isSameDay, getDateInfo, toMelbDate } = require("../public/scripts/js-helpers");
+const mongoose = require('mongoose');
 
 const getTodayTimeSeries = async (patient) => {
     try {
@@ -167,6 +168,15 @@ const getPatientTimeSeriesList = async (patient) => {
 const renderPatientProfile = async (req, res) => {
     try {
         const pid = req.params.id;
+        if (!mongoose.Types.ObjectId.isValid(pid)){
+            return res.redirect('/404');
+        }
+        var patient = await Patient.findById(pid)
+
+        if (patient == undefined){
+            return res.redirect('/404');
+        }
+
         var patient = await Patient.findById(pid)
             .populate("requirements")
             .lean();
