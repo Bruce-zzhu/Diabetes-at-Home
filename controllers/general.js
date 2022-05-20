@@ -144,6 +144,7 @@ const setNickname = async (req, res) => {
 
 const logOut = (req, res) => {
     req.session.destroy();
+    req.logout()
     res.redirect("/");
 }
 
