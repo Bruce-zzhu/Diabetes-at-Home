@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const general = require('../controllers/general');
 const passport = require('../passport');
-const req = require('express/lib/request')
 const { Patient, TimeSeries } = require('../models/patient');
 
 // aboutUs page
@@ -12,16 +11,40 @@ router.get("/about-us", general.renderAboutUs);
 router.get("/about-diabetes", general.renderAboutDiabetes);
 
 // Clinician Login page
-router.get("/login-c", general.renderLoginClinician);
+//router.get("/login-c", general.renderLoginClinician);
+router.get('/login-c', (req, res) => {
+    req.session.user.role = "clinician";
+    res.render('clinician/login', { flash: req.flash('error'), title: 'Login', style:'login.css' })
+})
+
+router.post('/login-c',
+    function(req, res, next) {
+        req.session.user.email = req.body.username;
+        next()
+    },
+    passport.authenticate('clinician-local', {
+        successRedirect: 'clinician/dashboard', failureRedirect: '/login-c', failureFlash: true
+    })
+)
+
+
 
 // Patient Login page
-router.get("/login-p", general.renderLoginPatient);
-// router.post('/login-p', passport.PatientLocalStrategy);
-    // passport.authenticate ('local', { failureRedirect: '/login', failureFlash: true }), // if bad login, send user back to login page
-    // (reg, res) => {
-    //     res.redirect('/') // login was successful, send user to home page
-    // }
-// )
+router.get('/login-p', (req, res) => {
+    req.session.user.role = "patient";
+    res.render('patient/login', { flash: req.flash('error'), title: 'Login', style:'login.css' })
+    
+})
+router.post('/login-p',
+    function(req, res, next) {
+        req.session.user.email = req.body.username;
+        next()
+    },
+    passport.authenticate('patient-local', {
+        successRedirect: 'patient/dashboard', failureRedirect: '/login-p', failureFlash: true
+    })
+)
+
 // forgot password page
 router.get('/forgot-password', general.renderForgotPassword);
 router.post('/forgot-password', general.forgotPassword);
@@ -32,6 +55,7 @@ router.post('/reset-password', general.resetPassword);
 
 // log off
 router.post("/log-out", general.logOut);
+
 
 module.exports = router;
 
