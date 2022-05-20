@@ -11,47 +11,36 @@ router.get("/about-us", general.renderAboutUs);
 router.get("/about-diabetes", general.renderAboutDiabetes);
 
 // Clinician Login page
-//router.get("/login-c", general.renderLoginClinician);
-router.get('/login-c', (req, res) => {
-    req.session.user.role = "clinician";
-    res.render('clinician/login', { flash: req.flash('error'), title: 'Login', style:'login.css' })
-})
-
-router.post('/login-c',
-    function(req, res, next) {
-        req.session.user.email = req.body.username;
-        next()
-    },
-    passport.authenticate('clinician-local', {
-        successRedirect: 'clinician/dashboard', failureRedirect: '/login-c', failureFlash: true
-    })
-)
+router.route("/login-c")
+    .get(general.renderLoginClinician)
+    .post(general.postClinicianPatient,
+        passport.authenticate('clinician-local', {
+            successRedirect: 'clinician/dashboard', failureRedirect: '/login-c', failureFlash: true
+        })
+    );
 
 
 
 // Patient Login page
-router.get('/login-p', (req, res) => {
-    req.session.user.role = "patient";
-    res.render('patient/login', { flash: req.flash('error'), title: 'Login', style:'login.css' })
-    
-})
-router.post('/login-p',
-    function(req, res, next) {
-        req.session.user.email = req.body.username;
-        next()
-    },
-    passport.authenticate('patient-local', {
-        successRedirect: 'patient/dashboard', failureRedirect: '/login-p', failureFlash: true
-    })
-)
+router.route('/login-p')
+    .get(general.renderLoginPatient)
+    .post(general.postLoginPatient,
+        passport.authenticate('patient-local', {
+            successRedirect: 'patient/dashboard', failureRedirect: '/login-p', failureFlash: true
+        })
+        
+    );
+
 
 // forgot password page
-router.get('/forgot-password', general.renderForgotPassword);
-router.post('/forgot-password', general.forgotPassword);
+router.route('/forgot-password')
+    .get(general.renderForgotPassword)
+    .post(general.forgotPassword);
 
 // reset password page
-router.get('/reset-password', general.renderResetPassword);
-router.post('/reset-password', general.resetPassword);
+router.route('/reset-password')
+    .get(general.renderResetPassword)
+    .post(general.resetPassword);
 
 // log off
 router.post("/log-out", general.logOut);
