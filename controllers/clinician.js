@@ -90,6 +90,7 @@ const calcEgmt = async (pid) => {
     var totalDays = 1 + Math.ceil(
         (today.getTime() - patient.createTime.getTime()) / 86400000
     );
+    console.log(patient.createTime.getDate());
     return daysActive / totalDays;
 }
 
