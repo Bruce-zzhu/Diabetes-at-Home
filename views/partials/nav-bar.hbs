@@ -120,6 +120,30 @@ links and functions change depending on login status/user type. --}}
             {{/ifClin}}
         {{else}}
     {{/if}}
-
 </nav>
+
+{{!-- simplified nav bar for lesser pages such as about/settings pages --}}
+<nav id="simple-nav">
+
+    <a id="nav-back" class="">
+        <span class="material-icons">arrow_back_ios</span>
+        <div>Back</div>
+    </a>
+    {{#if user.id}}
+        {{#ifClin user}}
+            <a class="nav-name" href="/clinician/dashboard">
+        {{else}}
+            <a class="nav-name" href="/patient/dashboard">
+        {{/ifClin}}
+    {{else}}
+        <a class="nav-name" href="/">
+    {{/if}}
+        <div>Diabetes</div>
+        <img class="nav-logo logo" src="/images/logo-white.svg" alt="logo" />
+        <div>Home</div>
+    </a>
+    <div class="simple-spacer"></div>
+</nav>
+
+<script>var prevPage = "{{prevPage}}"</script>
 <script src="/scripts/nav-bar.js"></script>

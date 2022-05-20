@@ -5,18 +5,25 @@ const renderAboutUs = (req, res) => {
     res.render('about/aboutUs', {
         style: 'about.css',
         user: req.session.user,
+        prevPage: req.session.prevPage,
     });
 };
 const renderAboutDiabetes = (req, res) => {
     res.render("about/aboutDiabetes", {
         style: "about.css",
         user: req.session.user,
+        prevPage: req.session.prevPage,
     });
 };
 
 const renderLoginPatient = (req, res) => {
     req.session.user.role = "patient";
-    res.render('patient/login', { flash: req.flash('error'), title: 'Login', style:'login.css' })
+    res.render('patient/login', {
+        flash: req.flash('error'),
+        title: 'Login',
+        style:'login.css',
+        prevPage: req.session.prevPage,
+    })
 };
 
 const postLoginPatient = (req, res, next) => {
@@ -26,7 +33,12 @@ const postLoginPatient = (req, res, next) => {
 
 const renderLoginClinician = (req, res) => {
     req.session.user.role = "clinician";
-    res.render('clinician/login', { flash: req.flash('error'), title: 'Login', style:'login.css' })
+    res.render('clinician/login', {
+        flash: req.flash('error'),
+        title: 'Login',
+        style:'login.css',
+        prevPage: req.session.prevPage,
+    })
 };
 
 const postLoginClinician = (req, res, next) => {
@@ -34,32 +46,11 @@ const postLoginClinician = (req, res, next) => {
     next()
 }
 
-// const checkLoginDetails = async(req, res) => {
-//     // const patientEmailEntry = req.body.loginEmail;
-//     // console.log(patientEmailEntry);
-//     // // Get Data about user with this email...
-//     // try{
-//     //     const thisUser = await Patient.findOne({ email: patientEmailEntry });
-//     //     console.log(thisUser);
-//     //     // If correct, redirect to patient dashboard, else error
-//     //     if (thisUser != null){
-//     //         res.redirect('/patient/dashboard');
-//     //     }
-//     // } 
-//     //     // Else if email is not in db then print error
-//     // catch(err){
-//     //     console.log(err)
-//     // }
-    
-//     // // Nothing is currently passed to the patient.js controller. Currently hardcoded.
-//     // // Passwords
-// };
-
-
 const renderSettings = async (req, res) => {
     res.render("settings", {
         style: "settings.css",
         user: req.session.user,
+        prevPage: req.session.prevPage,
     });
 }
 
@@ -67,6 +58,7 @@ const renderForgotPassword = (req, res) => {
     res.render('forgotPassword', {
         style: 'forgotPassword.css',
         user: req.session.user,
+        prevPage: req.session.prevPage,
     });
 };
 
@@ -89,6 +81,7 @@ const renderResetPassword = (req, res) => {
     res.render('resetPassword', {
         style: 'forgotPassword.css',
         user: req.session.user,
+        prevPage: req.session.prevPage,
     });
 }
 
