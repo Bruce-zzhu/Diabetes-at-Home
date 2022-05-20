@@ -14,9 +14,8 @@
     flex-direction: column;
     justify-content: space-around;
 }
-
-.pinfo-details > p {
-    margin-bottom: 0.4rem;
+.pinfo-details p {
+    margin: 0;
 }
 
 /* viewPatientNav styles */

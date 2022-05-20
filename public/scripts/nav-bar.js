@@ -1,22 +1,33 @@
 var pathname = window.location.pathname;
 
-// depending on logged-in status/user type, change nav bar buttons/links
-if (pathname === "/") {
-    var links = document.getElementById("nav-links");
-    links.innerHTML = "<div class='spacer mobile' style='width: 48px'></div>";
-}
-if (!pathname.includes("patient/dashboard")) {
-    var newEntry = document.getElementById("nav-entry-div");
-    if (newEntry) {
-        newEntry.remove();
-    }
-}
+// use simple nav bar for lesser pages
+if (pathname != "/" && (
+            pathname.includes("settings") ||
+            (!pathname.includes("patient") && !pathname.includes("clinician"))
+        )
+    ) {
+        document.getElementById("normal-nav").remove();
+        document.getElementById("nav-back").setAttribute('href', prevPage);
+    } else {
+        document.getElementById("simple-nav").remove();
+        // depending on logged-in status/user type, change nav bar buttons/links
+        if (pathname === "/") {
+            var links = document.getElementById("nav-links");
+            links.innerHTML = "<div class='spacer mobile' style='width: 48px'></div>";
+        }
+        if (!pathname.includes("patient/dashboard")) {
+            var newEntry = document.getElementById("nav-entry-div");
+            if (newEntry) {
+                newEntry.remove();
+            }
+        }
 
-// adjusts dropdown gap from right side of screen
-var drops = document.querySelectorAll(".desktop .dropdown-content")
-for (var i=drops.length; i>0; i--) {
-    drops[i-1].style.right = 25 * (drops.length - (i)) + "px";
-}
+        // adjusts dropdown gap from right side of screen
+        var drops = document.querySelectorAll(".desktop .dropdown-content")
+        for (var i=drops.length; i>0; i--) {
+            drops[i-1].style.right = 25 * (drops.length - (i)) + "px";
+        }
+    }
 
 // New Entry Header Button Clicked
 var newEntryBtn = document.getElementById("new-entry-button-header");

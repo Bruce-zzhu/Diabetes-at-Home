@@ -5,18 +5,25 @@ const renderAboutUs = (req, res) => {
     res.render('about/aboutUs', {
         style: 'about.css',
         user: req.session.user,
+        prevPage: req.session.prevPage,
     });
 };
 const renderAboutDiabetes = (req, res) => {
     res.render("about/aboutDiabetes", {
         style: "about.css",
         user: req.session.user,
+        prevPage: req.session.prevPage,
     });
 };
 
 const renderLoginPatient = (req, res) => {
     req.session.user.role = "patient";
-    res.render('patient/login', { flash: req.flash('error'), title: 'Login', style:'login.css' })
+    res.render('patient/login', {
+        flash: req.flash('error'),
+        title: 'Login',
+        style:'login.css',
+        prevPage: req.session.prevPage,
+    })
 };
 
 const postLoginPatient = (req, res, next) => {
@@ -26,7 +33,12 @@ const postLoginPatient = (req, res, next) => {
 
 const renderLoginClinician = (req, res) => {
     req.session.user.role = "clinician";
-    res.render('clinician/login', { flash: req.flash('error'), title: 'Login', style:'login.css' })
+    res.render('clinician/login', {
+        flash: req.flash('error'),
+        title: 'Login',
+        style:'login.css',
+        prevPage: req.session.prevPage,
+    })
 };
 
 const postLoginClinician = (req, res, next) => {
@@ -34,12 +46,11 @@ const postLoginClinician = (req, res, next) => {
     next()
 }
 
-
-
 const renderSettings = async (req, res) => {
     res.render("settings", {
         style: "settings.css",
         user: req.session.user,
+        prevPage: req.session.prevPage,
     });
 }
 
@@ -47,6 +58,7 @@ const renderForgotPassword = (req, res) => {
     res.render('forgotPassword', {
         style: 'forgotPassword.css',
         user: req.session.user,
+        prevPage: req.session.prevPage,
     });
 };
 
@@ -69,6 +81,7 @@ const renderResetPassword = (req, res) => {
     res.render('resetPassword', {
         style: 'forgotPassword.css',
         user: req.session.user,
+        prevPage: req.session.prevPage,
     });
 }
 

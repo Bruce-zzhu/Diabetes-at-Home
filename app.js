@@ -81,7 +81,34 @@ app.use((req, res, next) => {
     next();
 })
 
-
+// record prev page
+app.use((req, res, next) => {
+    if (!req.url.includes("favicon.ico")) {
+        var winRef = `${req.protocol}://${req.get("host")}${req.url}`;
+        var docRef = req.get('referer');
+        if (!docRef) {
+            switch (req.session.user.role) {
+                case "patient":
+                    req.session.prevPage = `${req.protocol}://${req.get("host")}/patient/dashboard`;
+                    break;
+                    
+                case "client":
+                    req.session.prevPage = `${req.protocol}://${req.get("host")}/client/dashboard`;
+                    break;
+                    
+                default:
+                    req.session.prevPage = `${req.protocol}://${req.get("host")}/`;
+                    break;
+                    
+            }
+        } else {
+            if (!winRef.includes(docRef) && !docRef.includes(winRef)) {
+                req.session.prevPage = docRef;
+            }
+        }
+    }
+    next();
+})
 
 // routes
 app.use('/', generalRoutes);
@@ -99,7 +126,10 @@ app.get('/', (req, res) => {
 
 // If any attempts to access any other routes get a 404 error page
 app.get('*', (req, res) => {
-    res.render('404.hbs')
+    res.render('404.hbs', {
+        user: req.session.user,
+        prevPage: req.session.prevPage,
+    });
 })
 
 
