@@ -27,7 +27,7 @@ const data = {
     labels: labels,
     datasets: [
         {
-            label: 'BloodGlucose (nmol/L)',
+            label: 'BloodGlucose (mmol/L)',
             backgroundColor: 'rgb(217, 22, 22)',
             borderColor: 'rgb(217, 22, 22)',
             data: bloodData,
@@ -68,7 +68,14 @@ const data2 = {
 const config = {
     type: 'line',
     data: data,
-    options: {},
+    options: {
+        scales: {
+            y: {
+                suggestedMin: 0,
+                suggestedMax: 20
+            }
+        }
+    },
 };
 const config2 = {
     type: 'line',
