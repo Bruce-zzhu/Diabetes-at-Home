@@ -1,7 +1,11 @@
 # Diabetes@Home
 
+![demo image](demo.png)
+
 'Diabetes @ Home' is the flagship app from tech-newcomers 'Group xD'.
-The app endeavours to simplify and habituate the oftentimes tedious task of keeping track of one's own health data, while also offering client-patient communication features for people with Diabetes. The app allows users to make daily logs of some of the most important health data attributes for diabetes patients (Blood-Glucose Levels, Insulin, Weight, and step-count) and to easily keep track of changes to these health indicators over time. Clinicians, through their own dedicated user-interface can easily glance at (or deeply analyse) this same data for a number of their patients, and critically, provide timely advise and messages of encouragement to help their patients alomng their diabetes journey's.
+The app endeavours to simplify and habituate the oftentimes tedious task of keeping track of one's own health data, while also offering client-patient communication features for people with Diabetes. The app allows users to make daily logs of some of the most important health data attributes for diabetes patients (Blood-Glucose Levels, Insulin, Weight, and step-count) and to easily keep track of changes to these health indicators over time. Clinicians, through their own dedicated user-interface can easily glance at (or deeply analyse) this same data for a number of their patients, and critically, provide timely advise and messages of encouragement to help their patients alomng their diabetes journey's. </br>
+
+App deployed on Heroku: https://diabetes-at-home-xd.herokuapp.com/
 
 ## Features
 
