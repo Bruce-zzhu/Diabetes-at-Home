@@ -3,7 +3,6 @@ const router = express.Router();
 const patient = require('../controllers/patient');
 const general = require('../controllers/general');
 
-
 router.post('/new-entry', patient.addEntryData);
 
 router.get('/dashboard', patient.renderPatientDashboard);

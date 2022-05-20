@@ -48,7 +48,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Login Sessions setup - see week 10 tute for explanation of code
 app.use(
     session({
-    // The decret used to sign session cookies (ADD ENV VAR)
+    // The secret used to sign session cookies (ADD ENV VAR)
         secret: process.env.SESSION_SECRET || 'keyboard cat',
         name: 'session cookie', // The cookie name (CHANGE THIS)
         saveUninitialized: false,
