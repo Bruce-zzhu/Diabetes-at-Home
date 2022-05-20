@@ -11,7 +11,7 @@ const passport = require('passport')
 const clinicianRoutes = require('./routers/clinician');
 const patientRoutes = require('./routers/patient');
 const generalRoutes = require('./routers/general');
-const { isAuthenticated, isClinician, isPatient, checkDataSafety } = require('./middleware');
+const { isAuthenticated, isClinician, isPatient } = require('./middleware');
 
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
@@ -86,13 +86,11 @@ app.use((req, res, next) => {
 // routes
 app.use('/', generalRoutes);
 app.use('/patient', isAuthenticated, isPatient, patientRoutes);
-app.use('/clinician', isAuthenticated, isClinician, checkDataSafety, clinicianRoutes);
+app.use('/clinician', isAuthenticated, isClinician, clinicianRoutes);
 
 
 // hero page
 app.get('/', (req, res) => {
-    // req.flash('info', 'hhhhhhhhhhhhhh')
-    // console.log(res.locals)
     res.render('landing', {
         style: 'landing.css',
         

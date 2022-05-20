@@ -1,11 +1,6 @@
 const { Patient, TimeSeries, Theme } = require("../models/patient");
 const { Message } = require("../models/clinician");
-const {
-    getTodayTimeSeries,
-    createTodayTimeSeries,
-    getPatientTimeSeriesList,
-    calcEgmt,
-} = require("./clinician");
+const { getTodayTimeSeries, createTodayTimeSeries, getPatientTimeSeriesList, calcEgmt } = require("./clinician");
 const { getDateInfo } = require("../public/scripts/js-helpers");
 
 const addEntryData = async (req, res) => {
