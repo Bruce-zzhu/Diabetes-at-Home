@@ -1,27 +1,16 @@
 var pathname = window.location.pathname;
 
-// show simplified nav unless on landing/patient/clinician pages
-if (pathname === "/" ||
-    (pathname.startsWith("/patient") ||
-    pathname.startsWith("/clinician"))
-    ) {
-    document.getElementById("simple-nav").remove()
-
-    // depending on logged-in status/user type, change nav bar buttons/links
-    if (pathname === "/") {
-        var links = document.getElementById("nav-links");
-        links.innerHTML = "";
-        links.style.width = "16px";
+// depending on logged-in status/user type, change nav bar buttons/links
+if (pathname === "/") {
+    var links = document.getElementById("nav-links");
+    links.innerHTML = "";
+    links.style.width = "32px";
+}
+if (!pathname.includes("patient/dashboard")) {
+    var newEntry = document.getElementById("nav-entry-div");
+    if (newEntry) {
+        newEntry.remove();
     }
-    if (!pathname.includes("patient/dashboard")) {
-        var newEntry = document.getElementById("nav-entry-div");
-        if (newEntry) {
-            newEntry.remove();
-        }
-    }
-} else {
-    document.getElementById("normal-nav").remove();
-    document.getElementById("nav-back").setAttribute('href', document.referrer);
 }
 
 // adjusts dropdown gap from right side of screen
