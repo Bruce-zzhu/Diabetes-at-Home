@@ -503,22 +503,21 @@ const renderCommentsPage = async (req, res) => {
                         data.push(i);
                     }
                 }
+            } else if (!selectedPatientId && !selectedDate) {
+                // default all patients
+                for (pid of patientIDs) {
+                    const ts = await TimeSeries.find({
+                        patient: pid,
+                        clinicianUse: false,
+                    })
+                        .populate("patient")
+                        .lean();
+                    data.push(...ts);
+                }
             }
         }
 
-        if (!selectedPatientId && !selectedDate) {
-            // default all patients
-            for (pid of patientIDs) {
-                const ts = await TimeSeries.find({
-                    patient: pid,
-                    clinicianUse: false,
-                })
-                    .populate("patient")
-                    .lean();
-                data.push(...ts);
-            }
-        }
-
+        // sort comments by time descending
         data.sort(function (a, b) {
             return b.date - a.date;
         });
