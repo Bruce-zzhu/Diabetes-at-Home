@@ -47,10 +47,11 @@ nav a:hover {
 
 nav form {
     text-align: center;
+    margin: 0.75em auto 0.75em auto;
 }
 
 nav form button {
-    font-size: 16px;
+    font-size: 1em;
 }
 
 nav .btn-theme {
