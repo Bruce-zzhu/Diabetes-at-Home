@@ -9,10 +9,6 @@ switch (window.innerWidth <= 380) {
         break;
 }
 
-//if (){
-    //document.getElementById("unread-notif").remove();
-//}
-
 // truncate nicknames that are long enough to be disruptive to UI
 var nicks = document.getElementsByClassName("nickname");
 for (n of nicks) {
