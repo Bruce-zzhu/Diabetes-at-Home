@@ -15,15 +15,24 @@ const renderAboutDiabetes = (req, res) => {
 };
 
 const renderLoginPatient = (req, res) => {
-    res.render("patient/login", {
-        style: "login.css",
-    });
+    req.session.user.role = "patient";
+    res.render('patient/login', { flash: req.flash('error'), title: 'Login', style:'login.css' })
 };
+
+const postLoginPatient = (req, res, next) => {
+    req.session.user.email = req.body.username;
+    next()
+}
+
 const renderLoginClinician = (req, res) => {
-    res.render("clinician/login", {
-        style: "login.css",
-    });
+    req.session.user.role = "clinician";
+    res.render('clinician/login', { flash: req.flash('error'), title: 'Login', style:'login.css' })
 };
+
+const postClinicianPatient = (req, res, next) => {
+    req.session.user.email = req.body.username;
+    next()
+}
 
 // const checkLoginDetails = async(req, res) => {
 //     // const patientEmailEntry = req.body.loginEmail;
@@ -151,6 +160,8 @@ module.exports = {
     renderLoginPatient,
     renderLoginClinician,
     renderForgotPassword,
+    postLoginPatient,
+    postClinicianPatient,
     forgotPassword,
     renderResetPassword,
     resetPassword,
