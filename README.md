@@ -7,6 +7,10 @@ The app endeavours to simplify and habituate the oftentimes tedious task of keep
 
 App deployed on Heroku: https://diabetes-at-home-xd.herokuapp.com/
 
+Example login credentials:
+- Patient - username: pat@dah.com, pw: Pat2022$
+- Clinician - username: chris@dah.com, pw: Chris2022$
+
 ## Features
 
 ### Clinician
