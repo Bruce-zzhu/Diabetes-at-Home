@@ -50,8 +50,8 @@ The web application, coded primarily in Node.js and the usual front-end web-base
 
 ## Contributors
 
+- Bruce Zhu, Student ID - 1100017
+- Flynn Schneider, Student ID - 982143
 - Hannah Redwood-Segovia, Student ID - 1172839
 - Vivien Guo, Student ID - 1173459
-- Flynn Schneider, Student ID - 982143
-- Bruce Zhu, Student ID - 1100017
 - Xuanhao Zhang, Student ID - 1133384
